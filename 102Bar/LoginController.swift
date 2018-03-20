@@ -3,6 +3,8 @@ import Alamofire
 
 class LoginController: UIViewController {
     
+    var loginOk = false
+    
     @IBOutlet weak var _username: UITextField!
     @IBOutlet weak var _password: UITextField!
     @IBOutlet weak var labelMessage: UILabel!
@@ -23,6 +25,16 @@ class LoginController: UIViewController {
             self.navigationController?.pushViewController(drinkController, animated: true)
             
         }
+    }
+    
+    override func shouldPerformSegue(withIdentifier identifier: String,
+                                     sender: Any!) -> Bool {
+        
+        if identifier == "login" {
+            return loginOk
+        }
+        return true
+        
     }
     
     @IBAction func LoginButton(_ sender: Any) {
@@ -64,6 +76,9 @@ class LoginController: UIViewController {
                         self.defaultValues.set(userFirstname, forKey: "userfirstname")
                         self.defaultValues.set(userLastname, forKey: "userlastname")
                         
+                        self.loginOk = true
+                        
+                        
                         //switching the screen
                         //let drinkController = self.storyboard?.instantiateViewController(withIdentifier: "DrinkController") as! DrinkController
                         //self.navigationController?.pushViewController(drinkController, animated: true)
@@ -71,6 +86,7 @@ class LoginController: UIViewController {
                         //self.dismiss(animated: false, completion: nil)
                     }else{
                         //error message in case of invalid credential
+                        self.loginOk = false
                         self.labelMessage.text = "Invalid username or password"
                     }
                 }
