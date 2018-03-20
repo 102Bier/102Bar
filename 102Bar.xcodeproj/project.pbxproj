@@ -22,6 +22,7 @@
 		8A46A0FB206030CC004EDA94 /* Alamofire.xcworkspace in Resources */ = {isa = PBXBuildFile; fileRef = 8A46A0F9206030CC004EDA94 /* Alamofire.xcworkspace */; };
 		8AB52C4020603C91003EA1BB /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A46A0EB206030CB004EDA94 /* Alamofire.framework */; };
 		8AB52C4120603C91003EA1BB /* Alamofire.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8A46A0EB206030CB004EDA94 /* Alamofire.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		C35A81C220617141002A3477 /* AddDrinkController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C35A81C120617141002A3477 /* AddDrinkController.swift */; };
 		C3F1AAE52061452500FC39AC /* CustomDrinkView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3F1AAE42061452500FC39AC /* CustomDrinkView.swift */; };
 		C3F1AAE72061453500FC39AC /* DefaultDrinkView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3F1AAE62061453500FC39AC /* DefaultDrinkView.swift */; };
 /* End PBXBuildFile section */
@@ -141,6 +142,7 @@
 		8A46A0DF206030CB004EDA94 /* Alamofire.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; path = Alamofire.xcodeproj; sourceTree = "<group>"; };
 		8A46A0F8206030CC004EDA94 /* Source */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Source; sourceTree = "<group>"; };
 		8A46A0F9206030CC004EDA94 /* Alamofire.xcworkspace */ = {isa = PBXFileReference; lastKnownFileType = wrapper.workspace; path = Alamofire.xcworkspace; sourceTree = "<group>"; };
+		C35A81C120617141002A3477 /* AddDrinkController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddDrinkController.swift; sourceTree = "<group>"; };
 		C3F1AAE42061452500FC39AC /* CustomDrinkView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomDrinkView.swift; sourceTree = "<group>"; };
 		C3F1AAE62061453500FC39AC /* DefaultDrinkView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultDrinkView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -207,6 +209,7 @@
 				8A41BA15205FDD9900907669 /* Info.plist */,
 				C3F1AAE42061452500FC39AC /* CustomDrinkView.swift */,
 				C3F1AAE62061453500FC39AC /* DefaultDrinkView.swift */,
+				C35A81C120617141002A3477 /* AddDrinkController.swift */,
 			);
 			path = 102Bar;
 			sourceTree = "<group>";
@@ -460,6 +463,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C35A81C220617141002A3477 /* AddDrinkController.swift in Sources */,
 				C3F1AAE52061452500FC39AC /* CustomDrinkView.swift in Sources */,
 				C3F1AAE72061453500FC39AC /* DefaultDrinkView.swift in Sources */,
 				8A46A0DA206012CC004EDA94 /* DrinkController.swift in Sources */,

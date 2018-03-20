@@ -2,13 +2,11 @@ import UIKit
 
 class DrinkController: UIViewController {
     
-    @IBOutlet weak var NavBar: UINavigationBar!
     var customDrinkController: UIView!
     var defaultDrinkController: UIView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.bringSubview(toFront: NavBar)
         
         customDrinkController = CustomDrinkController().view
         defaultDrinkController = DefaultDrinkController().view
@@ -23,6 +21,7 @@ class DrinkController: UIViewController {
         let loginController = self.storyboard?.instantiateViewController(withIdentifier: "LoginController") as! LoginController
         self.navigationController?.pushViewController(loginController, animated: true)
         self.dismiss(animated: false, completion: nil)
+        LoginController.loginVar.loginOk = false
     }
     
     

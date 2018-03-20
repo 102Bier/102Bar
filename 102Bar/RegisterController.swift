@@ -13,7 +13,7 @@ class RegisterController: UIViewController {
     @IBOutlet weak var _confirmPassword: UITextField!
     @IBOutlet weak var labelMessage: UILabel!
     
-    @IBAction func RegisterButton(_ sender: Any) {
+    @IBAction func RegisterButton(_ sender: UIButton) {
         
         if(_firstname.text! == "" || _lastname.text! == "" || _username.text == "" || _email.text! == "" || _password.text! == "" || _confirmPassword.text! == ""){
             return
@@ -48,7 +48,7 @@ class RegisterController: UIViewController {
         })
     }
     
-    @IBAction func CancelButton(_ sender: Any) {
+    @IBAction func CancelButton(_ sender: UIBarButtonItem) {
         self.dismiss(animated: true, completion: nil)
     }
     

@@ -2,8 +2,12 @@ import UIKit
 import Alamofire
 
 class LoginController: UIViewController {
+
+    struct loginVar {
+        static var loginOk = false
+    }
     
-    var loginOk = false
+    let dispatchGroup = DispatchGroup()
     
     @IBOutlet weak var _username: UITextField!
     @IBOutlet weak var _password: UITextField!
@@ -20,40 +24,37 @@ class LoginController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        if defaultValues.string(forKey: "username") != nil{
+        /*if defaultValues.string(forKey: "username") != nil{
             let drinkController = self.storyboard?.instantiateViewController(withIdentifier: "DrinkController") as! DrinkController
             self.navigationController?.pushViewController(drinkController, animated: true)
             
-        }
+        }*/
     }
     
-   override func shouldPerformSegue(withIdentifier identifier: String,
-                                     sender: Any!) -> Bool {
-        
-        if identifier == "login" {
-            return loginOk
+    func changeViewAfterLoggedIn()
+    {
+        if loginVar.loginOk {
+            let storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+            let vc: UIViewController = storyboard.instantiateViewController(withIdentifier: "TabBarController") as UIViewController
+            self.present(vc, animated: true, completion: nil)
         }
-        return true
-        
     }
-    
+
     @IBAction func LoginButton(_ sender: Any) {
         
-        if(_username.text! == "" || _password.text! == ""){
-            self.labelMessage.text = "please type in username and password"
-            self.labelMessage.isHidden = false
-            return
+            if(_username.text! == "" || _password.text! == ""){
+                self.labelMessage.text = "please type in username and password"
+                self.labelMessage.isHidden = false
+                return
         }
         
         let parameters: Parameters=[
-            "username":_username.text!,
-            "password":_password.text!
+            "username":self._username.text!,
+            "password":self._password.text!
         ]
-        
-        Alamofire.request(URL_USER_LOGIN, method: .post, parameters: parameters).responseJSON
+            Alamofire.request(self.URL_USER_LOGIN, method: .post, parameters: parameters).responseJSON
             {
                 response in
-                
                 print(response)
                 if let result = response.result.value {
                     let jsonData = result as! NSDictionary
@@ -78,19 +79,15 @@ class LoginController: UIViewController {
                         self.defaultValues.set(userFirstname, forKey: "userfirstname")
                         self.defaultValues.set(userLastname, forKey: "userlastname")
                         
-                        self.loginOk = true
-                        
-                        
-                        //switching the screen
-                        //let drinkController = self.storyboard?.instantiateViewController(withIdentifier: "DrinkController") as! DrinkController
-                        //self.navigationController?.pushViewController(drinkController, animated: true)
+                        loginVar.loginOk = true
+                        self.changeViewAfterLoggedIn()
                         
                         //self.dismiss(animated: false, completion: nil)
                     }else{
                         //error message in case of invalid credential
-                        self.loginOk = false
                         self.labelMessage.text = "Invalid username or password"
                         self.labelMessage.isHidden = false
+                        loginVar.loginOk = true
                     }
                 }
         }
@@ -103,5 +100,4 @@ class LoginController: UIViewController {
     @IBAction func RegisterButton(_ sender: Any) {
         
     }
-    
 }
