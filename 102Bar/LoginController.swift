@@ -27,7 +27,7 @@ class LoginController: UIViewController {
         }
     }
     
-    override func shouldPerformSegue(withIdentifier identifier: String,
+   override func shouldPerformSegue(withIdentifier identifier: String,
                                      sender: Any!) -> Bool {
         
         if identifier == "login" {
@@ -40,6 +40,8 @@ class LoginController: UIViewController {
     @IBAction func LoginButton(_ sender: Any) {
         
         if(_username.text! == "" || _password.text! == ""){
+            self.labelMessage.text = "please type in username and password"
+            self.labelMessage.isHidden = false
             return
         }
         
@@ -88,6 +90,7 @@ class LoginController: UIViewController {
                         //error message in case of invalid credential
                         self.loginOk = false
                         self.labelMessage.text = "Invalid username or password"
+                        self.labelMessage.isHidden = false
                     }
                 }
         }

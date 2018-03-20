@@ -13,9 +13,8 @@
         <!--Login Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
                 <viewController storyboardIdentifier="LoginController" id="BYZ-38-t0r" customClass="LoginController" customModule="_02Bar" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                    <view key="view" contentMode="redraw" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
@@ -40,7 +39,7 @@
                                 <textInputTraits key="textInputTraits" secureTextEntry="YES" textContentType="password"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Iv8-cP-5UX">
-                                <rect key="frame" x="164" y="441" width="46.666666666666657" height="30"/>
+                                <rect key="frame" x="168.33333333333334" y="441" width="38" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="V5O-WQ-obi"/>
                                 </constraints>
@@ -71,25 +70,27 @@
                                     <segue destination="hJZ-rO-IvN" kind="show" id="Thc-gJ-l2H"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="d5I-yo-eCC">
-                                <rect key="frame" x="60" y="604" width="256" height="66"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="This is a error message" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="d5I-yo-eCC">
+                                <rect key="frame" x="59" y="635" width="285" height="34.666666666666629"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="29"/>
                                 <color key="textColor" red="0.88235294119999996" green="0.34509803919999998" blue="0.16078431369999999" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="Iv8-cP-5UX" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="164" id="7A3-G6-1Gn"/>
+                            <constraint firstItem="d5I-yo-eCC" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="59" id="5GY-ds-LgB"/>
                             <constraint firstItem="Im3-mX-rV4" firstAttribute="centerX" secondItem="nPe-PY-M2p" secondAttribute="centerX" id="9sO-gc-d58"/>
                             <constraint firstItem="hWv-5w-0ag" firstAttribute="top" secondItem="nPe-PY-M2p" secondAttribute="bottom" constant="41" id="Air-YV-E0n"/>
                             <constraint firstItem="Im3-mX-rV4" firstAttribute="top" secondItem="hWv-5w-0ag" secondAttribute="bottom" constant="23" id="Eh7-3U-lpg"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="d5I-yo-eCC" secondAttribute="trailing" constant="31" id="GAm-GV-96h"/>
                             <constraint firstItem="f9G-sD-ei9" firstAttribute="top" secondItem="2hc-hN-jsH" secondAttribute="bottom" constant="28" id="Ha0-9S-TZB"/>
                             <constraint firstItem="2hc-hN-jsH" firstAttribute="top" secondItem="Iv8-cP-5UX" secondAttribute="bottom" constant="21" id="Mgp-lc-I1x"/>
+                            <constraint firstItem="d5I-yo-eCC" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="591" id="OrA-nz-ckR"/>
                             <constraint firstItem="Iv8-cP-5UX" firstAttribute="top" secondItem="Im3-mX-rV4" secondAttribute="bottom" constant="20" id="Rh9-K6-hGJ"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="2hc-hN-jsH" secondAttribute="bottom" constant="256" id="TkY-gK-taj"/>
                             <constraint firstItem="f9G-sD-ei9" firstAttribute="centerX" secondItem="2hc-hN-jsH" secondAttribute="centerX" id="TmZ-zA-Eub"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="d5I-yo-eCC" secondAttribute="bottom" id="WhM-Km-HgR"/>
                             <constraint firstItem="Iv8-cP-5UX" firstAttribute="centerX" secondItem="nPe-PY-M2p" secondAttribute="centerX" id="dp6-Sy-G3g"/>
                             <constraint firstItem="hWv-5w-0ag" firstAttribute="centerX" secondItem="nPe-PY-M2p" secondAttribute="centerX" id="o4f-6M-LzP"/>
                             <constraint firstItem="nPe-PY-M2p" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="plf-rZ-e0e"/>
@@ -107,6 +108,7 @@
                         <outlet property="labelMessage" destination="d5I-yo-eCC" id="8mf-rZ-jvk"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="117.59999999999999" y="118.22660098522168"/>
         </scene>
@@ -124,7 +126,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4Nz-1a-xNh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2087" y="366"/>
+            <point key="canvasLocation" x="2050" y="1265"/>
         </scene>
         <!--Item 1-->
         <scene sceneID="pks-It-lfz">
@@ -140,7 +142,7 @@
                                     <navigationItem title="Drinks" id="M8a-Gf-gmd">
                                         <barButtonItem key="leftBarButtonItem" title="Logout" id="ZJ0-1R-KEG">
                                             <connections>
-                                                <action selector="LogoutButton:" destination="aML-Ww-Htk" id="8Tk-KN-LO4"/>
+                                                <action selector="LogoutTapped:" destination="aML-Ww-Htk" id="YUR-3p-xnM"/>
                                             </connections>
                                         </barButtonItem>
                                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="rpv-2z-pHw">
@@ -176,12 +178,11 @@
                     <tabBarItem key="tabBarItem" title="Item 1" id="flX-Xi-btY"/>
                     <connections>
                         <outlet property="NavBar" destination="Co9-2o-Vud" id="CeS-Rn-XYs"/>
-                        <outlet property="logoutButton" destination="ZJ0-1R-KEG" id="Wh7-Li-zod"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NP8-yN-4X0" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2085.5999999999999" y="-332.51231527093597"/>
+            <point key="canvasLocation" x="2050" y="57"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="kbI-vQ-uhB">
@@ -346,7 +347,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BGF-6C-xsp" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="118" y="-546"/>
+            <point key="canvasLocation" x="118" y="-791"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="jw9-eT-Woa">
@@ -361,7 +362,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="w3A-NT-4wg" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2086" y="-1038"/>
+            <point key="canvasLocation" x="2087" y="-1265"/>
         </scene>
     </scenes>
     <resources>

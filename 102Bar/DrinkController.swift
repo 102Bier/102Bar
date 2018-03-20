@@ -14,7 +14,8 @@ class DrinkController: UIViewController {
         defaultDrinkController = DefaultDrinkController().view
     }
 
-    @IBAction func LogoutButton(_ sender: Any) {
+    
+    @IBAction func LogoutTapped(_ sender: Any) {
         UserDefaults.standard.removePersistentDomain(forName: Bundle.main.bundleIdentifier!)
         UserDefaults.standard.synchronize()
         
@@ -23,6 +24,8 @@ class DrinkController: UIViewController {
         self.navigationController?.pushViewController(loginController, animated: true)
         self.dismiss(animated: false, completion: nil)
     }
+    
+    
     
     @IBAction func switchView(_ sender: UISegmentedControl) {
         switch sender.selectedSegmentIndex {
