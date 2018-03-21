@@ -18,10 +18,9 @@ class DrinkController: UIViewController {
         UserDefaults.standard.synchronize()
         
         //switching to login screen
-        let loginController = self.storyboard?.instantiateViewController(withIdentifier: "LoginController") as! LoginController
-        self.navigationController?.pushViewController(loginController, animated: true)
-        self.dismiss(animated: false, completion: nil)
-        LoginController.loginVar.loginOk = false
+        let storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        let vc: UIViewController = storyboard.instantiateViewController(withIdentifier: "LoginController") as UIViewController
+        present(vc, animated: true, completion: nil)
     }
     
     
