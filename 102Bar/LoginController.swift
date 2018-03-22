@@ -76,7 +76,6 @@ class LoginController: UIViewController {
                     }else{
                         //error message in case of invalid credential
                         self.labelMessage.text = "Invalid username or password"
-                        self.labelMessage.isHidden = false
                     }
                 }
         }

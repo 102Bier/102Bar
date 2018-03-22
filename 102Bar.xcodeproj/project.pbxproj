@@ -13,6 +13,7 @@
 		8A41BA14205FDD9900907669 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8A41BA12205FDD9900907669 /* LaunchScreen.storyboard */; };
 		8A41BA1F205FDD9900907669 /* _02BarTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A41BA1E205FDD9900907669 /* _02BarTests.swift */; };
 		8A41BA2A205FDD9900907669 /* _02BarUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A41BA29205FDD9900907669 /* _02BarUITests.swift */; };
+		8A43A82E2063F81600E76C27 /* BarkeeperController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A43A82D2063F81600E76C27 /* BarkeeperController.swift */; };
 		8A46A0D0205FE337004EDA94 /* banner_853_480.png in Resources */ = {isa = PBXBuildFile; fileRef = 8A46A0CF205FE337004EDA94 /* banner_853_480.png */; };
 		8A46A0D2205FE4F4004EDA94 /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A46A0D1205FE4F4004EDA94 /* LoginController.swift */; };
 		8A46A0D4205FE71E004EDA94 /* icon_256.png in Resources */ = {isa = PBXBuildFile; fileRef = 8A46A0D3205FE71E004EDA94 /* icon_256.png */; };
@@ -134,6 +135,7 @@
 		8A41BA25205FDD9900907669 /* 102BarUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = 102BarUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		8A41BA29205FDD9900907669 /* _02BarUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = _02BarUITests.swift; sourceTree = "<group>"; };
 		8A41BA2B205FDD9900907669 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8A43A82D2063F81600E76C27 /* BarkeeperController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarkeeperController.swift; sourceTree = "<group>"; };
 		8A46A0CF205FE337004EDA94 /* banner_853_480.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = banner_853_480.png; sourceTree = "<group>"; };
 		8A46A0D1205FE4F4004EDA94 /* LoginController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
 		8A46A0D3205FE71E004EDA94 /* icon_256.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_256.png; sourceTree = "<group>"; };
@@ -201,6 +203,7 @@
 				8A46A0D3205FE71E004EDA94 /* icon_256.png */,
 				8A46A0CF205FE337004EDA94 /* banner_853_480.png */,
 				8A41BA0D205FDD9900907669 /* Main.storyboard */,
+				8A43A82D2063F81600E76C27 /* BarkeeperController.swift */,
 				8A46A0DB20601362004EDA94 /* RegisterController.swift */,
 				8A46A0D9206012CC004EDA94 /* DrinkController.swift */,
 				8A46A0D1205FE4F4004EDA94 /* LoginController.swift */,
@@ -464,6 +467,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C35A81C220617141002A3477 /* AddDrinkController.swift in Sources */,
+				8A43A82E2063F81600E76C27 /* BarkeeperController.swift in Sources */,
 				C3F1AAE52061452500FC39AC /* CustomDrinkView.swift in Sources */,
 				C3F1AAE72061453500FC39AC /* DefaultDrinkView.swift in Sources */,
 				8A46A0DA206012CC004EDA94 /* DrinkController.swift in Sources */,
