@@ -82,11 +82,19 @@ class AddDrinkController : UIViewController, UITableViewDataSource, UITableViewD
     
     func updateTableviewTextfields(_ sourceIndexPath: IndexPath, destinationIndexPath: IndexPath) {
         if ingredArray[destinationIndexPath.section].sectionName == "Selected ingredients" { //something was moved to 1st section
-            percenteges.forEach { p in
-                p.isHidden = false
+            let countVisible = ingredArray[destinationIndexPath.section].sectionObjects.count-1
+            for i in 0...countVisible {
+                percenteges[i].isHidden = false
+            }
+        }
+         if ingredArray[destinationIndexPath.section].sectionName == "Available ingredients" { //something was moved to 2st section
+            let countHidden = ingredArray[sourceIndexPath.section].sectionObjects.count
+            for i in countHidden...percenteges.count-1{
+                percenteges[i].isHidden = true
             }
         }
     }
+        
     
     func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
         
