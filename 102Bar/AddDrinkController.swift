@@ -16,8 +16,7 @@ class AddDrinkController : UIViewController, UITableViewDataSource, UITableViewD
     
     @IBOutlet var percenteges: [UITextField]!
     @IBAction func dismissKeyboard(_ sender: UITapGestureRecognizer) {
-        percentigeInput.resignFirstResponder()
-        percentigeInput2.resignFirstResponder()
+        percenteges.forEach { p in p.resignFirstResponder() }
     }
     
     @IBOutlet weak var tableView: UITableView!
@@ -57,13 +56,9 @@ class AddDrinkController : UIViewController, UITableViewDataSource, UITableViewD
         super.updateViewConstraints()
         let offset = percenteges[0].constraints[1].constant//gets constant of top-constraint of textfield above pI2
         for i in 1...7 {
-            let factorizedOffset = CGFloat(i) * offset
             percenteges[i].translatesAutoresizingMaskIntoConstraints = false
-            percenteges[i].topAnchor.constraint(equalTo: percenteges[0].topAnchor, constant: factorizedOffset + cons).isActive = true //accurate y-spacing
+            percenteges[i].topAnchor.constraint(equalTo: percenteges[i-1].topAnchor, constant: offset + cons).isActive = true //accurate y-spacing
         }
-        
-       
-        
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -86,7 +81,11 @@ class AddDrinkController : UIViewController, UITableViewDataSource, UITableViewD
     }
     
     func updateTableviewTextfields(_ sourceIndexPath: IndexPath, destinationIndexPath: IndexPath) {
-        
+        if ingredArray[destinationIndexPath.section].sectionName == "Selected ingredients" { //something was moved to 1st section
+            percenteges.forEach { p in
+                p.isHidden = false
+            }
+        }
     }
     
     func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
