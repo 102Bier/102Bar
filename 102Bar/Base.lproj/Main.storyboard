@@ -211,62 +211,52 @@
                                 </connections>
                             </tableView>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="100" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="gSP-10-a74">
-                                <rect key="frame" x="319" y="245" width="48" height="30"/>
+                                <rect key="frame" x="317" y="245" width="50" height="30"/>
                                 <nil key="textColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="FU4-Ed-zKj">
-                                <rect key="frame" x="319" y="283" width="46" height="30"/>
+                            <textField opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="100" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="FU4-Ed-zKj">
+                                <rect key="frame" x="317" y="283" width="50" height="30"/>
                                 <nil key="textColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="68B-al-RAJ">
-                                <rect key="frame" x="320" y="321" width="46" height="30"/>
+                            <textField opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="100" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="68B-al-RAJ">
+                                <rect key="frame" x="316.66666666666669" y="321" width="51" height="30"/>
                                 <nil key="textColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="FQD-Xl-TZM">
-                                <rect key="frame" x="321" y="359" width="46" height="30"/>
+                            <textField opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="100" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="7pn-hV-eYg">
+                                <rect key="frame" x="316.66666666666669" y="359" width="51" height="30"/>
                                 <nil key="textColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="2bp-J9-sW5">
-                                <rect key="frame" x="319" y="397" width="46" height="30"/>
-                                <nil key="textColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <gestureRecognizers/>
                         <constraints>
-                            <constraint firstItem="FU4-Ed-zKj" firstAttribute="leading" secondItem="gSP-10-a74" secondAttribute="leading" id="1kc-He-K57"/>
-                            <constraint firstItem="FQD-Xl-TZM" firstAttribute="top" secondItem="68B-al-RAJ" secondAttribute="bottom" constant="8" symbolic="YES" id="1v4-Xz-kfW"/>
-                            <constraint firstItem="FQD-Xl-TZM" firstAttribute="leading" secondItem="JXb-ZQ-0L7" secondAttribute="trailing" constant="12" id="7SB-cj-Av0"/>
-                            <constraint firstItem="68B-al-RAJ" firstAttribute="leading" secondItem="JXb-ZQ-0L7" secondAttribute="trailing" constant="11" id="Adf-ip-aHP"/>
+                            <constraint firstItem="7pn-hV-eYg" firstAttribute="centerX" secondItem="gSP-10-a74" secondAttribute="centerX" id="34l-HQ-B89"/>
+                            <constraint firstItem="FU4-Ed-zKj" firstAttribute="centerX" secondItem="gSP-10-a74" secondAttribute="centerX" id="7gO-TF-MU0"/>
+                            <constraint firstItem="68B-al-RAJ" firstAttribute="centerX" secondItem="gSP-10-a74" secondAttribute="centerX" id="8Rr-wZ-0af"/>
                             <constraint firstItem="JXb-ZQ-0L7" firstAttribute="leading" secondItem="PQh-f8-Ksp" secondAttribute="leading" id="BDg-UZ-Fjb"/>
-                            <constraint firstItem="2bp-J9-sW5" firstAttribute="top" secondItem="FQD-Xl-TZM" secondAttribute="bottom" constant="8" symbolic="YES" id="Co0-Dj-gFD"/>
                             <constraint firstItem="PQh-f8-Ksp" firstAttribute="trailing" secondItem="gSP-10-a74" secondAttribute="trailing" constant="8" id="FLe-lo-ZjK"/>
-                            <constraint firstItem="FU4-Ed-zKj" firstAttribute="top" secondItem="gSP-10-a74" secondAttribute="bottom" constant="8" symbolic="YES" id="HGT-11-aQM"/>
                             <constraint firstItem="PQh-f8-Ksp" firstAttribute="bottom" secondItem="JXb-ZQ-0L7" secondAttribute="bottom" id="Ita-aK-Tyu"/>
-                            <constraint firstItem="FQD-Xl-TZM" firstAttribute="trailing" secondItem="gSP-10-a74" secondAttribute="trailing" id="P9M-86-b11"/>
                             <constraint firstItem="N9R-No-yjt" firstAttribute="leading" secondItem="PQh-f8-Ksp" secondAttribute="leading" constant="16" id="Sl5-NC-IjT"/>
                             <constraint firstItem="PQh-f8-Ksp" firstAttribute="trailing" secondItem="N9R-No-yjt" secondAttribute="trailing" constant="16" id="TBk-xo-ADQ"/>
-                            <constraint firstItem="PQh-f8-Ksp" firstAttribute="trailing" secondItem="FU4-Ed-zKj" secondAttribute="trailing" constant="10" id="Ykd-bh-j59"/>
                             <constraint firstItem="gSP-10-a74" firstAttribute="top" secondItem="JXb-ZQ-0L7" secondAttribute="top" constant="34" id="aDw-5z-Jg4"/>
-                            <constraint firstItem="68B-al-RAJ" firstAttribute="top" secondItem="FU4-Ed-zKj" secondAttribute="bottom" constant="8" symbolic="YES" id="aVe-5h-k9N"/>
-                            <constraint firstItem="68B-al-RAJ" firstAttribute="centerX" secondItem="gSP-10-a74" secondAttribute="centerX" id="eC7-rF-EaT"/>
                             <constraint firstItem="JXb-ZQ-0L7" firstAttribute="bottom" secondItem="PQh-f8-Ksp" secondAttribute="bottom" id="kzZ-jS-F26"/>
-                            <constraint firstItem="2bp-J9-sW5" firstAttribute="trailing" secondItem="FU4-Ed-zKj" secondAttribute="trailing" id="lbZ-f8-3W4"/>
-                            <constraint firstItem="2bp-J9-sW5" firstAttribute="leading" secondItem="FU4-Ed-zKj" secondAttribute="leading" id="ni0-gJ-TGA"/>
+                            <constraint firstItem="PQh-f8-Ksp" firstAttribute="trailing" secondItem="FU4-Ed-zKj" secondAttribute="trailing" constant="8" id="ph1-yp-yR1"/>
                             <constraint firstItem="JXb-ZQ-0L7" firstAttribute="top" secondItem="N9R-No-yjt" secondAttribute="bottom" constant="80" id="uoj-86-5gW"/>
                             <constraint firstItem="N9R-No-yjt" firstAttribute="top" secondItem="PQh-f8-Ksp" secondAttribute="top" constant="13" id="vWB-wF-HYi"/>
                             <constraint firstItem="PQh-f8-Ksp" firstAttribute="trailing" secondItem="JXb-ZQ-0L7" secondAttribute="trailing" constant="66" id="zpV-UJ-JF1"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="PQh-f8-Ksp"/>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="DUS-Eb-h8L" appends="YES" id="HOh-0h-oZD"/>
+                        </connections>
                     </view>
                     <navigationItem key="navigationItem" title="New Drink" id="QNY-7C-nLZ">
                         <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="Jif-Mc-mmz">
@@ -282,12 +272,19 @@
                     </navigationItem>
                     <connections>
                         <outlet property="percentigeInput" destination="gSP-10-a74" id="gmY-bx-83c"/>
+                        <outlet property="percentigeInput2" destination="FU4-Ed-zKj" id="Nd3-6C-XKo"/>
+                        <outlet property="percentigeInput3" destination="68B-al-RAJ" id="2E1-kx-81z"/>
                         <outlet property="tableView" destination="JXb-ZQ-0L7" id="eUW-JP-Ncq"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KH0-SU-ONb" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="DUS-Eb-h8L">
+                    <connections>
+                        <action selector="dismissKeyboard:" destination="E26-Ro-RJQ" id="YCD-04-XIU"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="3021.5999999999999" y="-692.36453201970448"/>
+            <point key="canvasLocation" x="3020" y="-693.10344827586209"/>
         </scene>
         <!--Drinks-->
         <scene sceneID="ezE-8d-8J2">

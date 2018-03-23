@@ -10,8 +10,19 @@ import UIKit
 class AddDrinkController : UIViewController, UITableViewDataSource, UITableViewDelegate
 {
     
+    @IBOutlet weak var percentigeInput2: UITextField!
     @IBOutlet weak var percentigeInput: UITextField!
+    @IBOutlet weak var percentigeInput3: UITextField!
+    
+    @IBAction func dismissKeyboard(_ sender: UITapGestureRecognizer) {
+        percentigeInput.resignFirstResponder()
+        percentigeInput2.resignFirstResponder()
+    }
+    
     @IBOutlet weak var tableView: UITableView!
+
+    var cellHeight : CGFloat = 0
+    var cons : CGFloat = 15
     
     struct SectionAndObjects {
         var sectionName : String!
@@ -22,6 +33,14 @@ class AddDrinkController : UIViewController, UITableViewDataSource, UITableViewD
     let helpText = "Drag here to add stuff"
     let noMoreIngredientsText = "You greedy little bitch"
     
+    override func viewDidLayoutSubviews() {
+        cellHeight = tableView.visibleCells[0].bounds.height
+        cons = cellHeight - percentigeInput.frame.height
+        updateViewConstraints()
+        super.viewDidLayoutSubviews()
+    }
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -30,8 +49,34 @@ class AddDrinkController : UIViewController, UITableViewDataSource, UITableViewD
         
         tableView.setEditing(true, animated: true)
         ingredArray = [SectionAndObjects(sectionName: "Selected ingredients", sectionObjects: selectedIngredients), SectionAndObjects(sectionName: "Available ingredients", sectionObjects: availableIngredients)]
+        
+        
+        /*var frameRect = percentigeInput.frame
+        frameRect.size.height = cellHeight
+        percentigeInput.frame = frameRect
+        percentigeInput2.frame = frameRect
+        percentigeInput3.frame = frameRect*/
+        
     }
     
+    override func updateViewConstraints() {
+        
+        super.updateViewConstraints()
+        
+        percentigeInput2.translatesAutoresizingMaskIntoConstraints = false
+        let offset = percentigeInput.constraints[1].constant
+        
+        percentigeInput2.topAnchor.constraint(equalTo: percentigeInput.topAnchor, constant: offset + cons).isActive = true
+        percentigeInput2.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
+        var frame = percentigeInput2.frame
+        frame.size.width = percentigeInput.frame.size.width
+        percentigeInput2.frame = frame
+        percentigeInput2.center.x = percentigeInput.center.x
+        
+        percentigeInput2.trailingAnchor.constraint(equalTo: percentigeInput.trailingAnchor)
+        
+    }
+
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return ingredArray[section].sectionObjects.count
     }
