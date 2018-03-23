@@ -10,6 +10,7 @@ import UIKit
 class AddDrinkController : UIViewController, UITableViewDataSource, UITableViewDelegate
 {
     
+    @IBOutlet weak var percentigeInput: UITextField!
     @IBOutlet weak var tableView: UITableView!
     
     struct SectionAndObjects {
