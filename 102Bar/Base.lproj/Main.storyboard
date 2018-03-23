@@ -234,20 +234,48 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
+                            <textField opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="100" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="KDZ-S1-cKM">
+                                <rect key="frame" x="316" y="397" width="51" height="30"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="100" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="zVv-WP-tQ3">
+                                <rect key="frame" x="316" y="435" width="51" height="30"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="100" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="kWD-1v-9en">
+                                <rect key="frame" x="316" y="473" width="51" height="30"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="100" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="wU4-rz-Vxy">
+                                <rect key="frame" x="316" y="511" width="51" height="30"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="7pn-hV-eYg" firstAttribute="centerX" secondItem="gSP-10-a74" secondAttribute="centerX" id="34l-HQ-B89"/>
+                            <constraint firstItem="KDZ-S1-cKM" firstAttribute="centerX" secondItem="gSP-10-a74" secondAttribute="centerX" id="3ja-MZ-Xk6"/>
                             <constraint firstItem="FU4-Ed-zKj" firstAttribute="centerX" secondItem="gSP-10-a74" secondAttribute="centerX" id="7gO-TF-MU0"/>
                             <constraint firstItem="68B-al-RAJ" firstAttribute="centerX" secondItem="gSP-10-a74" secondAttribute="centerX" id="8Rr-wZ-0af"/>
                             <constraint firstItem="JXb-ZQ-0L7" firstAttribute="leading" secondItem="PQh-f8-Ksp" secondAttribute="leading" id="BDg-UZ-Fjb"/>
                             <constraint firstItem="PQh-f8-Ksp" firstAttribute="trailing" secondItem="gSP-10-a74" secondAttribute="trailing" constant="8" id="FLe-lo-ZjK"/>
                             <constraint firstItem="PQh-f8-Ksp" firstAttribute="bottom" secondItem="JXb-ZQ-0L7" secondAttribute="bottom" id="Ita-aK-Tyu"/>
+                            <constraint firstItem="kWD-1v-9en" firstAttribute="centerX" secondItem="gSP-10-a74" secondAttribute="centerX" id="RBK-gY-68Y"/>
                             <constraint firstItem="N9R-No-yjt" firstAttribute="leading" secondItem="PQh-f8-Ksp" secondAttribute="leading" constant="16" id="Sl5-NC-IjT"/>
                             <constraint firstItem="PQh-f8-Ksp" firstAttribute="trailing" secondItem="N9R-No-yjt" secondAttribute="trailing" constant="16" id="TBk-xo-ADQ"/>
                             <constraint firstItem="gSP-10-a74" firstAttribute="top" secondItem="JXb-ZQ-0L7" secondAttribute="top" constant="34" id="aDw-5z-Jg4"/>
+                            <constraint firstItem="zVv-WP-tQ3" firstAttribute="centerX" secondItem="gSP-10-a74" secondAttribute="centerX" id="kFh-0L-mUW"/>
                             <constraint firstItem="JXb-ZQ-0L7" firstAttribute="bottom" secondItem="PQh-f8-Ksp" secondAttribute="bottom" id="kzZ-jS-F26"/>
+                            <constraint firstItem="wU4-rz-Vxy" firstAttribute="centerX" secondItem="gSP-10-a74" secondAttribute="centerX" id="o3o-sh-ldl"/>
                             <constraint firstItem="PQh-f8-Ksp" firstAttribute="trailing" secondItem="FU4-Ed-zKj" secondAttribute="trailing" constant="8" id="ph1-yp-yR1"/>
                             <constraint firstItem="JXb-ZQ-0L7" firstAttribute="top" secondItem="N9R-No-yjt" secondAttribute="bottom" constant="80" id="uoj-86-5gW"/>
                             <constraint firstItem="N9R-No-yjt" firstAttribute="top" secondItem="PQh-f8-Ksp" secondAttribute="top" constant="13" id="vWB-wF-HYi"/>
@@ -275,6 +303,14 @@
                         <outlet property="percentigeInput2" destination="FU4-Ed-zKj" id="Nd3-6C-XKo"/>
                         <outlet property="percentigeInput3" destination="68B-al-RAJ" id="2E1-kx-81z"/>
                         <outlet property="tableView" destination="JXb-ZQ-0L7" id="eUW-JP-Ncq"/>
+                        <outletCollection property="percenteges" destination="gSP-10-a74" collectionClass="NSMutableArray" id="ejm-Sy-Arn"/>
+                        <outletCollection property="percenteges" destination="FU4-Ed-zKj" collectionClass="NSMutableArray" id="uda-nc-rHy"/>
+                        <outletCollection property="percenteges" destination="68B-al-RAJ" collectionClass="NSMutableArray" id="Lc4-ua-Tsi"/>
+                        <outletCollection property="percenteges" destination="7pn-hV-eYg" collectionClass="NSMutableArray" id="1T7-zC-FXe"/>
+                        <outletCollection property="percenteges" destination="KDZ-S1-cKM" collectionClass="NSMutableArray" id="Nse-FY-kTQ"/>
+                        <outletCollection property="percenteges" destination="zVv-WP-tQ3" collectionClass="NSMutableArray" id="X3Q-8t-Ues"/>
+                        <outletCollection property="percenteges" destination="kWD-1v-9en" collectionClass="NSMutableArray" id="PO7-Ib-Lwz"/>
+                        <outletCollection property="percenteges" destination="wU4-rz-Vxy" collectionClass="NSMutableArray" id="scI-QT-8H0"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KH0-SU-ONb" userLabel="First Responder" sceneMemberID="firstResponder"/>

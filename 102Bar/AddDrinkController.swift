@@ -14,6 +14,7 @@ class AddDrinkController : UIViewController, UITableViewDataSource, UITableViewD
     @IBOutlet weak var percentigeInput: UITextField!
     @IBOutlet weak var percentigeInput3: UITextField!
     
+    @IBOutlet var percenteges: [UITextField]!
     @IBAction func dismissKeyboard(_ sender: UITapGestureRecognizer) {
         percentigeInput.resignFirstResponder()
         percentigeInput2.resignFirstResponder()
@@ -34,10 +35,10 @@ class AddDrinkController : UIViewController, UITableViewDataSource, UITableViewD
     let noMoreIngredientsText = "You greedy little bitch"
     
     override func viewDidLayoutSubviews() {
-        cellHeight = tableView.visibleCells[0].bounds.height
-        cons = cellHeight - percentigeInput.frame.height
-        updateViewConstraints()
         super.viewDidLayoutSubviews()
+        cellHeight = tableView.visibleCells[0].bounds.height //returns height of first cell, represantative for all cells, just available when tableView (sub view) loaded
+        cons = cellHeight - percenteges[0].frame.height //constant for contraints for accurate y-spacing of pI's
+        updateViewConstraints()
     }
     
     
@@ -49,31 +50,19 @@ class AddDrinkController : UIViewController, UITableViewDataSource, UITableViewD
         
         tableView.setEditing(true, animated: true)
         ingredArray = [SectionAndObjects(sectionName: "Selected ingredients", sectionObjects: selectedIngredients), SectionAndObjects(sectionName: "Available ingredients", sectionObjects: availableIngredients)]
-        
-        
-        /*var frameRect = percentigeInput.frame
-        frameRect.size.height = cellHeight
-        percentigeInput.frame = frameRect
-        percentigeInput2.frame = frameRect
-        percentigeInput3.frame = frameRect*/
-        
     }
     
     override func updateViewConstraints() {
         
         super.updateViewConstraints()
+        let offset = percenteges[0].constraints[1].constant//gets constant of top-constraint of textfield above pI2
+        for i in 1...7 {
+            let factorizedOffset = CGFloat(i) * offset
+            percenteges[i].translatesAutoresizingMaskIntoConstraints = false
+            percenteges[i].topAnchor.constraint(equalTo: percenteges[0].topAnchor, constant: factorizedOffset + cons).isActive = true //accurate y-spacing
+        }
         
-        percentigeInput2.translatesAutoresizingMaskIntoConstraints = false
-        let offset = percentigeInput.constraints[1].constant
-        
-        percentigeInput2.topAnchor.constraint(equalTo: percentigeInput.topAnchor, constant: offset + cons).isActive = true
-        percentigeInput2.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
-        var frame = percentigeInput2.frame
-        frame.size.width = percentigeInput.frame.size.width
-        percentigeInput2.frame = frame
-        percentigeInput2.center.x = percentigeInput.center.x
-        
-        percentigeInput2.trailingAnchor.constraint(equalTo: percentigeInput.trailingAnchor)
+       
         
     }
 
@@ -94,6 +83,10 @@ class AddDrinkController : UIViewController, UITableViewDataSource, UITableViewD
     
     func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCellEditingStyle {
         return UITableViewCellEditingStyle.none
+    }
+    
+    func updateTableviewTextfields(_ sourceIndexPath: IndexPath, destinationIndexPath: IndexPath) {
+        
     }
     
     func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
@@ -133,6 +126,9 @@ class AddDrinkController : UIViewController, UITableViewDataSource, UITableViewD
         {
             ingredArray[sourceIndexPath.section].sectionObjects.append(noMoreIngredientsText)
         }
+        
+        updateTableviewTextfields(sourceIndexPath, destinationIndexPath: destinationIndexPath)
+        
         tableView.reloadData()
     }
     
