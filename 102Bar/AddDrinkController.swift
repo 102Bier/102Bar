@@ -9,13 +9,9 @@
 import UIKit
 class AddDrinkController : UIViewController, UITableViewDataSource, UITableViewDelegate
 {
+    var drinkContent = AddDrinkTableContent();
     
-    @IBOutlet weak var percentigeInput2: UITextField!
-    @IBOutlet weak var percentigeInput: UITextField!
-    @IBOutlet weak var percentigeInput3: UITextField!
-    
-    @IBOutlet var percenteges: [UITextField]!
-    @IBAction func dismissKeyboard(_ sender: UITapGestureRecognizer) {
+    /*@IBAction func dismissKeyboard(_ sender: UITapGestureRecognizer) {
         if !ingredArray[0].sectionPercentage.isEmpty
         {
             for i in 0...ingredArray[0].sectionPercentage.count-1 {
@@ -23,50 +19,27 @@ class AddDrinkController : UIViewController, UITableViewDataSource, UITableViewD
             }
         }
         percenteges.forEach { p in p.resignFirstResponder() }
-    }
+    }*/
     
     @IBOutlet weak var tableView: UITableView!
 
     var cellHeight : CGFloat = 0
     var cons : CGFloat = 15
     
-    struct SectionAndObjects {
-        var sectionName : String!
-        var sectionObjects : [String]!
-        var sectionPercentage : [String]!
-    }
-    
-    var ingredArray = [SectionAndObjects]()
-    let helpText = "Drag here to add stuff"
-    let noMoreIngredientsText = "You greedy little bitch"
-    
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        cellHeight = tableView.visibleCells[0].bounds.height //returns height of first cell, represantative for all cells, just available when tableView (sub view) loaded
-        cons = cellHeight - percenteges[0].frame.height //constant for contraints for accurate y-spacing of pI's
-        updateViewConstraints()
+        //cellHeight = tableView.visibleCells[0].bounds.height //returns height of first cell, represantative for all cells, just available when tableView (sub view) loaded
+        //cons = cellHeight - percenteges[0].frame.height //constant for contraints for accurate y-spacing of pI's
+        //updateViewConstraints()
     }
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        let availableIngredients = ["Wodka", "Gletscherwasser", "Wiskey", "Jägermeister", "Cola", "Fanta", "Organgensaft", "Red Bull"]
-        let selectedIngredients : [String] = [helpText]
-        
-        tableView.setEditing(true, animated: true)
-        ingredArray = [SectionAndObjects(sectionName: "Selected ingredients", sectionObjects: selectedIngredients, sectionPercentage : [String]()), SectionAndObjects(sectionName: "Available ingredients", sectionObjects: availableIngredients, sectionPercentage : [String]())]
-        
-        if(!ingredArray[0].sectionPercentage.isEmpty)
-        {
-            for i in 0...ingredArray[0].sectionPercentage.count-1 {
-                percenteges[i].text = ingredArray[0].sectionPercentage[i]
-            }
-        }
-    }
+        tableView.setEditing(true, animated: true)    }
     
-    override func updateViewConstraints() {
+    /*override func updateViewConstraints() {
         
         super.updateViewConstraints()
         let offset = percenteges[0].constraints[1].constant//gets constant of top-constraint of textfield above pI2
@@ -74,28 +47,30 @@ class AddDrinkController : UIViewController, UITableViewDataSource, UITableViewD
             percenteges[i].translatesAutoresizingMaskIntoConstraints = false
             percenteges[i].topAnchor.constraint(equalTo: percenteges[i-1].topAnchor, constant: offset + cons).isActive = true //accurate y-spacing
         }
-    }
+    }*/
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return ingredArray[section].sectionObjects.count
+        return drinkContent.ingredArray[section].sectionObjects.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "DrinkCell", for: indexPath) as! DrinkCell
         
-        cell.drinkLabel.text = ingredArray[indexPath.section].sectionObjects[indexPath.row]
+        cell.drinkLabel.text = drinkContent.ingredArray[indexPath.section].sectionObjects[indexPath.row]
+        //ingredArray[indexPath.section].sectionObjects[indexPath.row]
+        cell.percentageTextField.text = drinkContent.ingredArray[indexPath.section].sectionPercentage[indexPath.row]
         return cell
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return ingredArray.count;
+        return drinkContent.ingredArray.count;
     }
     
     func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCellEditingStyle {
         return UITableViewCellEditingStyle.none
     }
     
-    func updateTableviewTextfieldVisibility(_ sourceIndexPath: IndexPath, destinationIndexPath: IndexPath) {
+    /*func updateTableviewTextfieldVisibility(_ sourceIndexPath: IndexPath, destinationIndexPath: IndexPath) {
         if ingredArray[destinationIndexPath.section].sectionName == "Selected ingredients" { //something was moved to 1st section
             let countVisible = ingredArray[destinationIndexPath.section].sectionObjects.count-1 //indexed number of visible text fields
             for i in 0...countVisible {
@@ -113,10 +88,10 @@ class AddDrinkController : UIViewController, UITableViewDataSource, UITableViewD
                 percenteges[i].isHidden = true
             }
         }
-    }
+    }*/
         
     
-    func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
+    /*func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
         
         let sourceIngredient = ingredArray[sourceIndexPath.section].sectionObjects[sourceIndexPath.row]
         //let destinationIngredient = ingredArray[destinationIndexPath.section].sectionObjects[destinationIndexPath.row]
@@ -197,11 +172,11 @@ class AddDrinkController : UIViewController, UITableViewDataSource, UITableViewD
             {
                 //nothing
             }
-        }
+        }*/
         
         
         
-        /*update texts, reconsider position of code*/
+        /* update texts, reconsider position of code
         if(!ingredArray[0].sectionPercentage.isEmpty)
         {
             for i in 0...ingredArray[0].sectionPercentage.count-1 {
@@ -212,10 +187,10 @@ class AddDrinkController : UIViewController, UITableViewDataSource, UITableViewD
         updateTableviewTextfieldVisibility(sourceIndexPath, destinationIndexPath: destinationIndexPath)
         
         tableView.reloadData()
-    }
+    }*/
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return ingredArray[section].sectionName
+        return drinkContent.ingredArray[section].sectionName
     }
     
     @IBAction func CancelTapped(_ sender: UIBarButtonItem) {

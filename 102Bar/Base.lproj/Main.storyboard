@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Q5U-zw-1Z3">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="qin-Fp-dy7">
     <device id="retina5_9" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -182,12 +182,6 @@
         <!--New Drink-->
         <scene sceneID="hP0-o5-8xj">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="KH0-SU-ONb" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <tapGestureRecognizer id="DUS-Eb-h8L">
-                    <connections>
-                        <action selector="dismissKeyboard:" destination="E26-Ro-RJQ" id="YCD-04-XIU"/>
-                    </connections>
-                </tapGestureRecognizer>
                 <viewController id="E26-Ro-RJQ" customClass="AddDrinkController" customModule="_02Bar" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Wb5-mn-MRT">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
@@ -318,21 +312,13 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
-                    <connections>
-                        <outlet property="percentigeInput" destination="gSP-10-a74" id="gmY-bx-83c"/>
-                        <outlet property="percentigeInput2" destination="FU4-Ed-zKj" id="Nd3-6C-XKo"/>
-                        <outlet property="percentigeInput3" destination="68B-al-RAJ" id="2E1-kx-81z"/>
-                        <outlet property="tableView" destination="JXb-ZQ-0L7" id="eUW-JP-Ncq"/>
-                        <outletCollection property="percenteges" destination="gSP-10-a74" collectionClass="NSMutableArray" id="ejm-Sy-Arn"/>
-                        <outletCollection property="percenteges" destination="FU4-Ed-zKj" collectionClass="NSMutableArray" id="uda-nc-rHy"/>
-                        <outletCollection property="percenteges" destination="68B-al-RAJ" collectionClass="NSMutableArray" id="Lc4-ua-Tsi"/>
-                        <outletCollection property="percenteges" destination="7pn-hV-eYg" collectionClass="NSMutableArray" id="1T7-zC-FXe"/>
-                        <outletCollection property="percenteges" destination="KDZ-S1-cKM" collectionClass="NSMutableArray" id="Nse-FY-kTQ"/>
-                        <outletCollection property="percenteges" destination="zVv-WP-tQ3" collectionClass="NSMutableArray" id="X3Q-8t-Ues"/>
-                        <outletCollection property="percenteges" destination="kWD-1v-9en" collectionClass="NSMutableArray" id="PO7-Ib-Lwz"/>
-                        <outletCollection property="percenteges" destination="wU4-rz-Vxy" collectionClass="NSMutableArray" id="scI-QT-8H0"/>
-                    </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="KH0-SU-ONb" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="DUS-Eb-h8L">
+                    <connections>
+                        <action selector="dismissKeyboard:" destination="E26-Ro-RJQ" id="YCD-04-XIU"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="3022" y="-1785"/>
         </scene>
@@ -355,10 +341,10 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="DrinkCell" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="78" id="kPA-Pq-2WN" customClass="DrinkCell" customModule="_02Bar" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="DrinkCell" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="DrinkCell" rowHeight="78" id="kPA-Pq-2WN" customClass="DrinkCell" customModule="_02Bar" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="375" height="78"/>
                                         <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="kPA-Pq-2WN" id="Ale-2R-z4e" customClass="DrinkCell" customModule="_02Bar">
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="kPA-Pq-2WN" id="Ale-2R-z4e">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="77.666666666666671"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
@@ -380,8 +366,16 @@
                                                 <constraint firstItem="TBN-i9-nbu" firstAttribute="leading" secondItem="Ale-2R-z4e" secondAttribute="leadingMargin" constant="8" id="ho5-Do-XOz"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="drinkLabel" destination="TBN-i9-nbu" id="FdE-Mz-CBp"/>
+                                            <outlet property="percentageTextField" destination="AcX-YX-6XO" id="qq3-Xn-aaM"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="qin-Fp-dy7" id="4tC-Dc-ETF"/>
+                                    <outlet property="delegate" destination="qin-Fp-dy7" id="Zlk-MV-gxD"/>
+                                </connections>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -391,6 +385,9 @@
                         <viewLayoutGuide key="safeArea" id="QjI-HI-r2A"/>
                     </view>
                     <navigationItem key="navigationItem" id="aaY-fO-egy"/>
+                    <connections>
+                        <outlet property="tableView" destination="EtB-Ey-yDE" id="wqr-P0-eHa"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IGd-dk-Qnv" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
