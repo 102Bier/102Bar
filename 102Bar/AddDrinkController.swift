@@ -16,11 +16,10 @@ class AddDrinkController : UIViewController, UITableViewDataSource, UITableViewD
     
     @IBOutlet var percenteges: [UITextField]!
     @IBAction func dismissKeyboard(_ sender: UITapGestureRecognizer) {
-        
-        for i in 0...percenteges.count-1 {
-            texts[i] = (percenteges[i].text)!
-            percenteges[i].resignFirstResponder()
+        for i in 0...ingredArray[0].sectionPercentage.count-1 {
+            ingredArray[0].sectionPercentage[i] = percenteges[i].text!
         }
+        percenteges.forEach { p in p.resignFirstResponder() }
     }
     
     @IBOutlet weak var tableView: UITableView!
@@ -31,13 +30,13 @@ class AddDrinkController : UIViewController, UITableViewDataSource, UITableViewD
     struct SectionAndObjects {
         var sectionName : String!
         var sectionObjects : [String]!
-        var sectionPercentage : [String]! // percentage in text field maybe consider directly connecting with text field
+        var sectionPercentage : [String]!
     }
     
     var ingredArray = [SectionAndObjects]()
     let helpText = "Drag here to add stuff"
     let noMoreIngredientsText = "You greedy little bitch"
-    var texts : [String] = ["100", "100", "100", "100", "100", "100", "100", "100"]
+    
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
@@ -54,7 +53,14 @@ class AddDrinkController : UIViewController, UITableViewDataSource, UITableViewD
         let selectedIngredients : [String] = [helpText]
         
         tableView.setEditing(true, animated: true)
-        ingredArray = [SectionAndObjects(sectionName: "Selected ingredients", sectionObjects: selectedIngredients, sectionPercentage : texts), SectionAndObjects(sectionName: "Available ingredients", sectionObjects: availableIngredients, sectionPercentage : texts)] //reconsider sectionPercentages or mabye add count or something
+        ingredArray = [SectionAndObjects(sectionName: "Selected ingredients", sectionObjects: selectedIngredients, sectionPercentage : [String]()), SectionAndObjects(sectionName: "Available ingredients", sectionObjects: availableIngredients, sectionPercentage : [String]())]
+        
+        if(!ingredArray[0].sectionPercentage.isEmpty)
+        {
+            for i in 0...ingredArray[0].sectionPercentage.count-1 {
+                percenteges[i].text = ingredArray[0].sectionPercentage[i]
+            }
+        }
     }
     
     override func updateViewConstraints() {
@@ -86,13 +92,15 @@ class AddDrinkController : UIViewController, UITableViewDataSource, UITableViewD
         return UITableViewCellEditingStyle.none
     }
     
-    func updateTableviewTextfields(_ sourceIndexPath: IndexPath, destinationIndexPath: IndexPath) {
+    func updateTableviewTextfieldVisibility(_ sourceIndexPath: IndexPath, destinationIndexPath: IndexPath) {
         if ingredArray[destinationIndexPath.section].sectionName == "Selected ingredients" { //something was moved to 1st section
-            let countVisible = ingredArray[destinationIndexPath.section].sectionObjects.count-1 //number of visible text fields
+            let countVisible = ingredArray[destinationIndexPath.section].sectionObjects.count-1 //indexed number of visible text fields
             for i in 0...countVisible {
-                percenteges[i].isHidden = false
+                percenteges[i].isHidden = false //making textfields visible
             }
             if ingredArray[sourceIndexPath.section].sectionName == "Available ingredients" { // moved enterely in 1st section
+                
+                
                 //swap textfield texts accordingly
             }
         }
@@ -118,32 +126,51 @@ class AddDrinkController : UIViewController, UITableViewDataSource, UITableViewD
         {
             ingredArray[destinationIndexPath.section].sectionObjects.insert(ingredArray[sourceIndexPath.section].sectionObjects[sourceIndexPath.row], at: destinationIndexPath.row)
             ingredArray[sourceIndexPath.section].sectionObjects.remove(at: sourceIndexPath.row)
+            
+            //ingredArray[destinationIndexPath.section].sectionPercentage.insert("0", at: destinationIndexPath.row)
         }
         else if ingredArray[sourceIndexPath.section].sectionObjects[sourceIndexPath.row] != helpText &&
                 ingredArray[sourceIndexPath.section].sectionObjects[sourceIndexPath.row] != noMoreIngredientsText
         {
             ingredArray[sourceIndexPath.section].sectionObjects.swapAt(sourceIndexPath.row, destinationIndexPath.row)
+            ingredArray[sourceIndexPath.section].sectionPercentage.swapAt(sourceIndexPath.row, destinationIndexPath.row) //swap texts
         }
         
-        if((ingredArray[destinationIndexPath.section].sectionName == "Selected ingredients") &&     /*something was dragged to 1st section*/ (ingredArray[destinationIndexPath.section].sectionObjects.count >= 2) /*array of dest Strings contains 2 Strings or more */ &&
-            (ingredArray[destinationIndexPath.section].sectionObjects.contains(helpText))) /*dest section has contains the help text*/
-        {
-            ingredArray[destinationIndexPath.section].sectionObjects.remove(at:
-            ingredArray[destinationIndexPath.section].sectionObjects.index(of:
-            helpText)!) //remove help text
+        if ingredArray[destinationIndexPath.section].sectionName == "Selected ingredients" { /*something was dragged to 1st section*/
+            
+            ingredArray[destinationIndexPath.section].sectionPercentage.insert("0", at: destinationIndexPath.row)
+            
+            if( ingredArray[destinationIndexPath.section].sectionObjects.count >= 2) &&/*array of dest Strings contains 2 Strings or more */
+                (ingredArray[destinationIndexPath.section].sectionObjects.contains(helpText)) /*dest section contains the help text*/
+            {
+                ingredArray[destinationIndexPath.section].sectionObjects.remove(at:
+                    ingredArray[destinationIndexPath.section].sectionObjects.index(of:
+                        helpText)!) //remove help text
+            }
         }
+        
+        if ingredArray[destinationIndexPath.section].sectionName == "Available ingredients" //something was dragged to 2nd section
+        {
+            ingredArray[sourceIndexPath.section].sectionPercentage.remove(at: sourceIndexPath.row) //remove text from 1st section
+        }
+        
         if((ingredArray[sourceIndexPath.section].sectionName == "Selected ingredients") &&     /*something was dragged from 1st section*/ (ingredArray[sourceIndexPath.section].sectionObjects.isEmpty)) /*and 1st section is now empty*/
         {
             ingredArray[sourceIndexPath.section].sectionObjects.append(helpText) //show help text
         }
         
-        if((ingredArray[sourceIndexPath.section].sectionName == "Available ingredients") &&
-            ingredArray[sourceIndexPath.section].sectionObjects.isEmpty)
+        if((ingredArray[sourceIndexPath.section].sectionName == "Available ingredients") && /*something was dragged from 2nd section*/
+            ingredArray[sourceIndexPath.section].sectionObjects.isEmpty) /*and 2ND section is now empty*/
         {
             ingredArray[sourceIndexPath.section].sectionObjects.append(noMoreIngredientsText)
         }
         
-        updateTableviewTextfields(sourceIndexPath, destinationIndexPath: destinationIndexPath)
+        /*update texts, reconsider position of code*/
+        for i in 0...ingredArray[0].sectionPercentage.count-1 {
+            percenteges[i].text = ingredArray[0].sectionPercentage[i]
+        }
+        
+        updateTableviewTextfieldVisibility(sourceIndexPath, destinationIndexPath: destinationIndexPath)
         
         tableView.reloadData()
     }
