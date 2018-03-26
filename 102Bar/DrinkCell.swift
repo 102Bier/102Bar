@@ -9,6 +9,8 @@
 import UIKit
 class DrinkCell : UITableViewCell
 {
+   
+    
     @IBOutlet var drinkLabel: UILabel!
     @IBOutlet var percentageTextField: UITextField!
 }

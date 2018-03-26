@@ -7,7 +7,7 @@
 //
 
 import UIKit
-class AddDrinkController : UIViewController, UITableViewDataSource, UITableViewDelegate
+class AddDrinkController : UITableViewController
 {
     var drinkContent = AddDrinkTableContent();
     
@@ -20,9 +20,6 @@ class AddDrinkController : UIViewController, UITableViewDataSource, UITableViewD
         }
         percenteges.forEach { p in p.resignFirstResponder() }
     }*/
-    
-    @IBOutlet weak var tableView: UITableView!
-
     var cellHeight : CGFloat = 0
     var cons : CGFloat = 15
     
@@ -36,8 +33,12 @@ class AddDrinkController : UIViewController, UITableViewDataSource, UITableViewD
     
     
     override func viewDidLoad() {
+        
+        self.tableView.rowHeight = 60;
+        self.tableView.setEditing(true, animated: true)
+        print("\(isEditing)")
         super.viewDidLoad()
-        tableView.setEditing(true, animated: true)    }
+    }
     
     /*override func updateViewConstraints() {
         
@@ -49,11 +50,11 @@ class AddDrinkController : UIViewController, UITableViewDataSource, UITableViewD
         }
     }*/
 
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return drinkContent.ingredArray[section].sectionObjects.count
     }
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "DrinkCell", for: indexPath) as! DrinkCell
         
         cell.drinkLabel.text = drinkContent.ingredArray[indexPath.section].sectionObjects[indexPath.row]
@@ -62,13 +63,13 @@ class AddDrinkController : UIViewController, UITableViewDataSource, UITableViewD
         return cell
     }
     
-    func numberOfSections(in tableView: UITableView) -> Int {
+    override func numberOfSections(in tableView: UITableView) -> Int {
         return drinkContent.ingredArray.count;
     }
     
-    func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCellEditingStyle {
+    /*override func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCellEditingStyle {
         return UITableViewCellEditingStyle.none
-    }
+    }*/
     
     /*func updateTableviewTextfieldVisibility(_ sourceIndexPath: IndexPath, destinationIndexPath: IndexPath) {
         if ingredArray[destinationIndexPath.section].sectionName == "Selected ingredients" { //something was moved to 1st section
@@ -189,7 +190,7 @@ class AddDrinkController : UIViewController, UITableViewDataSource, UITableViewD
         tableView.reloadData()
     }*/
     
-    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         return drinkContent.ingredArray[section].sectionName
     }
     
