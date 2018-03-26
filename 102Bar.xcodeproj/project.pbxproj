@@ -24,6 +24,8 @@
 		8AB52C4020603C91003EA1BB /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A46A0EB206030CB004EDA94 /* Alamofire.framework */; };
 		8AB52C4120603C91003EA1BB /* Alamofire.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8A46A0EB206030CB004EDA94 /* Alamofire.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		C35A81C220617141002A3477 /* AddDrinkController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C35A81C120617141002A3477 /* AddDrinkController.swift */; };
+		C3EB45AA2069329C00F69F16 /* Percentages.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3EB45A92069329C00F69F16 /* Percentages.swift */; };
+		C3EB45B3206932AF00F69F16 /* DrinkCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3EB45B2206932AF00F69F16 /* DrinkCell.swift */; };
 		C3F1AAE52061452500FC39AC /* CustomDrinkView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3F1AAE42061452500FC39AC /* CustomDrinkView.swift */; };
 		C3F1AAE72061453500FC39AC /* DefaultDrinkView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3F1AAE62061453500FC39AC /* DefaultDrinkView.swift */; };
 /* End PBXBuildFile section */
@@ -145,6 +147,8 @@
 		8A46A0F8206030CC004EDA94 /* Source */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Source; sourceTree = "<group>"; };
 		8A46A0F9206030CC004EDA94 /* Alamofire.xcworkspace */ = {isa = PBXFileReference; lastKnownFileType = wrapper.workspace; path = Alamofire.xcworkspace; sourceTree = "<group>"; };
 		C35A81C120617141002A3477 /* AddDrinkController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddDrinkController.swift; sourceTree = "<group>"; };
+		C3EB45A92069329C00F69F16 /* Percentages.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Percentages.swift; sourceTree = "<group>"; };
+		C3EB45B2206932AF00F69F16 /* DrinkCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrinkCell.swift; sourceTree = "<group>"; };
 		C3F1AAE42061452500FC39AC /* CustomDrinkView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomDrinkView.swift; sourceTree = "<group>"; };
 		C3F1AAE62061453500FC39AC /* DefaultDrinkView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultDrinkView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -213,6 +217,8 @@
 				C3F1AAE42061452500FC39AC /* CustomDrinkView.swift */,
 				C3F1AAE62061453500FC39AC /* DefaultDrinkView.swift */,
 				C35A81C120617141002A3477 /* AddDrinkController.swift */,
+				C3EB45A92069329C00F69F16 /* Percentages.swift */,
+				C3EB45B2206932AF00F69F16 /* DrinkCell.swift */,
 			);
 			path = 102Bar;
 			sourceTree = "<group>";
@@ -472,8 +478,10 @@
 				C3F1AAE72061453500FC39AC /* DefaultDrinkView.swift in Sources */,
 				8A46A0DA206012CC004EDA94 /* DrinkController.swift in Sources */,
 				8A46A0D2205FE4F4004EDA94 /* LoginController.swift in Sources */,
+				C3EB45B3206932AF00F69F16 /* DrinkCell.swift in Sources */,
 				8A46A0DC20601362004EDA94 /* RegisterController.swift in Sources */,
 				8A41BA0A205FDD9900907669 /* AppDelegate.swift in Sources */,
+				C3EB45AA2069329C00F69F16 /* Percentages.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

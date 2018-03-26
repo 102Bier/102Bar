@@ -81,9 +81,9 @@ class AddDrinkController : UIViewController, UITableViewDataSource, UITableViewD
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "Custom drinks", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "DrinkCell", for: indexPath) as! DrinkCell
         
-        cell.textLabel?.text = ingredArray[indexPath.section].sectionObjects[indexPath.row]
+        cell.drinkLabel.text = ingredArray[indexPath.section].sectionObjects[indexPath.row]
         return cell
     }
     
