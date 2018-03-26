@@ -16,7 +16,11 @@ class AddDrinkController : UIViewController, UITableViewDataSource, UITableViewD
     
     @IBOutlet var percenteges: [UITextField]!
     @IBAction func dismissKeyboard(_ sender: UITapGestureRecognizer) {
-        percenteges.forEach { p in p.resignFirstResponder() }
+        
+        for i in 0...percenteges.count-1 {
+            texts[i] = (percenteges[i].text)!
+            percenteges[i].resignFirstResponder()
+        }
     }
     
     @IBOutlet weak var tableView: UITableView!
@@ -27,11 +31,13 @@ class AddDrinkController : UIViewController, UITableViewDataSource, UITableViewD
     struct SectionAndObjects {
         var sectionName : String!
         var sectionObjects : [String]!
+        var sectionPercentage : [String]! // percentage in text field maybe consider directly connecting with text field
     }
     
     var ingredArray = [SectionAndObjects]()
     let helpText = "Drag here to add stuff"
     let noMoreIngredientsText = "You greedy little bitch"
+    var texts : [String] = ["100", "100", "100", "100", "100", "100", "100", "100"]
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
@@ -48,7 +54,7 @@ class AddDrinkController : UIViewController, UITableViewDataSource, UITableViewD
         let selectedIngredients : [String] = [helpText]
         
         tableView.setEditing(true, animated: true)
-        ingredArray = [SectionAndObjects(sectionName: "Selected ingredients", sectionObjects: selectedIngredients), SectionAndObjects(sectionName: "Available ingredients", sectionObjects: availableIngredients)]
+        ingredArray = [SectionAndObjects(sectionName: "Selected ingredients", sectionObjects: selectedIngredients, sectionPercentage : texts), SectionAndObjects(sectionName: "Available ingredients", sectionObjects: availableIngredients, sectionPercentage : texts)] //reconsider sectionPercentages or mabye add count or something
     }
     
     override func updateViewConstraints() {
@@ -82,14 +88,17 @@ class AddDrinkController : UIViewController, UITableViewDataSource, UITableViewD
     
     func updateTableviewTextfields(_ sourceIndexPath: IndexPath, destinationIndexPath: IndexPath) {
         if ingredArray[destinationIndexPath.section].sectionName == "Selected ingredients" { //something was moved to 1st section
-            let countVisible = ingredArray[destinationIndexPath.section].sectionObjects.count-1
+            let countVisible = ingredArray[destinationIndexPath.section].sectionObjects.count-1 //number of visible text fields
             for i in 0...countVisible {
                 percenteges[i].isHidden = false
             }
+            if ingredArray[sourceIndexPath.section].sectionName == "Available ingredients" { // moved enterely in 1st section
+                //swap textfield texts accordingly
+            }
         }
-         if ingredArray[destinationIndexPath.section].sectionName == "Available ingredients" { //something was moved to 2st section
-            let countHidden = ingredArray[sourceIndexPath.section].sectionObjects.count
-            for i in countHidden...percenteges.count-1{
+            if ingredArray[destinationIndexPath.section].sectionName == "Available ingredients" { //something was moved to 2st section
+             let countHidden = ingredArray[sourceIndexPath.section].sectionObjects.count
+                for i in countHidden...percenteges.count-1{
                 percenteges[i].isHidden = true
             }
         }
