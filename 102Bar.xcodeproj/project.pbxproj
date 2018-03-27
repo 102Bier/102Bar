@@ -23,6 +23,7 @@
 		8A46A0FB206030CC004EDA94 /* Alamofire.xcworkspace in Resources */ = {isa = PBXBuildFile; fileRef = 8A46A0F9206030CC004EDA94 /* Alamofire.xcworkspace */; };
 		8AB52C4020603C91003EA1BB /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A46A0EB206030CB004EDA94 /* Alamofire.framework */; };
 		8AB52C4120603C91003EA1BB /* Alamofire.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8A46A0EB206030CB004EDA94 /* Alamofire.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		8AD76697206A30C200F61878 /* TestController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AD76696206A30C200F61878 /* TestController.swift */; };
 		C35A81C220617141002A3477 /* AddDrinkController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C35A81C120617141002A3477 /* AddDrinkController.swift */; };
 		C3EB45B3206932AF00F69F16 /* DrinkCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3EB45B2206932AF00F69F16 /* DrinkCell.swift */; };
 		C3EB45BD2069427900F69F16 /* AddDrinkTableContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3EB45BC2069427900F69F16 /* AddDrinkTableContent.swift */; };
@@ -146,6 +147,7 @@
 		8A46A0DF206030CB004EDA94 /* Alamofire.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; path = Alamofire.xcodeproj; sourceTree = "<group>"; };
 		8A46A0F8206030CC004EDA94 /* Source */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Source; sourceTree = "<group>"; };
 		8A46A0F9206030CC004EDA94 /* Alamofire.xcworkspace */ = {isa = PBXFileReference; lastKnownFileType = wrapper.workspace; path = Alamofire.xcworkspace; sourceTree = "<group>"; };
+		8AD76696206A30C200F61878 /* TestController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestController.swift; sourceTree = "<group>"; };
 		C35A81C120617141002A3477 /* AddDrinkController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddDrinkController.swift; sourceTree = "<group>"; };
 		C3EB45B2206932AF00F69F16 /* DrinkCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrinkCell.swift; sourceTree = "<group>"; };
 		C3EB45BC2069427900F69F16 /* AddDrinkTableContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddDrinkTableContent.swift; sourceTree = "<group>"; };
@@ -207,6 +209,7 @@
 				8A46A0D3205FE71E004EDA94 /* icon_256.png */,
 				8A46A0CF205FE337004EDA94 /* banner_853_480.png */,
 				8A41BA0D205FDD9900907669 /* Main.storyboard */,
+				8AD76696206A30C200F61878 /* TestController.swift */,
 				8A43A82D2063F81600E76C27 /* BarkeeperController.swift */,
 				8A46A0DB20601362004EDA94 /* RegisterController.swift */,
 				8A46A0D9206012CC004EDA94 /* DrinkController.swift */,
@@ -475,6 +478,7 @@
 				C35A81C220617141002A3477 /* AddDrinkController.swift in Sources */,
 				8A43A82E2063F81600E76C27 /* BarkeeperController.swift in Sources */,
 				C3F1AAE52061452500FC39AC /* CustomDrinkView.swift in Sources */,
+				8AD76697206A30C200F61878 /* TestController.swift in Sources */,
 				C3EB45BD2069427900F69F16 /* AddDrinkTableContent.swift in Sources */,
 				C3F1AAE72061453500FC39AC /* DefaultDrinkView.swift in Sources */,
 				8A46A0DA206012CC004EDA94 /* DrinkController.swift in Sources */,
