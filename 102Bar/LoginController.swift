@@ -15,12 +15,12 @@ class LoginController: UIViewController {
     
     let URL_USER_LOGIN = "http://102bier.de/102bar/login.php"
     
-    let defaultValues = UserDefaults.standard
+    let service = Service()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        if defaultValues.string(forKey: "username") != nil{
+        if UserDefaults.standard.string(forKey: "username") != nil{
             changeView()
         }
     }
@@ -39,46 +39,14 @@ class LoginController: UIViewController {
             self.labelMessage.isHidden = false
             return
         }
-        
-        let parameters: Parameters=[
-            "username":self._username.text!,
-            "password":self._password.text!
-        ]
-        
-        Alamofire.request(self.URL_USER_LOGIN, method: .post, parameters: parameters).responseJSON
-            {
-                response in
-                print(response)
-                if let result = response.result.value {
-                    let jsonData = result as! NSDictionary
-                    
-                    //if there is no error
-                    if(!(jsonData.value(forKey: "error") as! Bool)){
-                        
-                        //getting the user from response
-                        let user = jsonData.value(forKey: "user") as! NSDictionary
-                        
-                        //getting user values
-                        let userId = user.value(forKey: "id") as! Int
-                        let userName = user.value(forKey: "username") as! String
-                        let userFirstname = user.value(forKey: "firstname") as! String
-                        let userLastname = user.value(forKey: "lastname") as! String
-                        let userEmail = user.value(forKey: "email") as! String
-                        
-                        //saving user values to defaults
-                        self.defaultValues.set(userId, forKey: "userid")
-                        self.defaultValues.set(userName, forKey: "username")
-                        self.defaultValues.set(userEmail, forKey: "useremail")
-                        self.defaultValues.set(userFirstname, forKey: "userfirstname")
-                        self.defaultValues.set(userLastname, forKey: "userlastname")
-                        
-                        self.changeView()
-                    }else{
-                        //error message in case of invalid credential
-                        self.labelMessage.text = "Invalid username or password"
-                    }
-                }
+        if(self.service.login(username: _username.text!, password: _password.text!)){
+            self.changeView()
+        }else{
+            //error message in case of invalid credential
+            self.labelMessage.text = "Invalid username or password"
         }
+        
+        
     }
     
     @IBAction func LoginAsGuestButton(_ sender: Any) {
