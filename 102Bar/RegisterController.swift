@@ -16,9 +16,12 @@ class RegisterController: UIViewController {
     @IBAction func RegisterButton(_ sender: UIButton) {
         
         if(_firstname.text! == "" || _lastname.text! == "" || _username.text == "" || _email.text! == "" || _password.text! == "" || _confirmPassword.text! == ""){
+            labelMessage.text = "Fill in all fields!"
             return
         }
+        
         if(!_password.text!.elementsEqual(_confirmPassword.text!)){
+            labelMessage.text = "Passwords are not equal"
             return
         }
         
