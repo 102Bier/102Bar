@@ -35,5 +35,9 @@ class Service: NSObject {
     func getOrderedMixes(){
         
     }
+    
+    func orderMix(){
+        
+    }
 
 }
