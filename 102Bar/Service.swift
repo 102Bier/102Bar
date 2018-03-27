@@ -11,8 +11,6 @@ class Service: NSObject {
     
     let defaultValues = UserDefaults.standard
     
-    var loginOkVar = false
-    
     override init() {
         BASE_URL = "http://102bier.de/102bar/"
         URL_USER_LOGIN = BASE_URL + "login.php"
@@ -21,17 +19,17 @@ class Service: NSObject {
         URL_ORDERED_MIXES = BASE_URL + "orderedMixes.php"
     }
     
-    public func login(username:String, password:String) -> Bool{
+    public func login(loginController: LoginController, username:String, password:String){
         
         let parameters: Parameters=[
             "username": username,
             "password": password
         ]
         
-        Alamofire.request(self.URL_USER_LOGIN, method: .post, parameters: parameters).responseJSON
+        Alamofire.request(URL_USER_LOGIN, method: .post, parameters: parameters).responseJSON
             {
                 response in
-                print(response)
+                debugPrint(response)
                 if let result = response.result.value {
                     let jsonData = result as! NSDictionary
                     
@@ -55,21 +53,53 @@ class Service: NSObject {
                         self.defaultValues.set(userFirstname, forKey: "userfirstname")
                         self.defaultValues.set(userLastname, forKey: "userlastname")
                         
-                        self.loginOkVar = true
+                        loginController.changeView()
                     }else{
-                        self.loginOkVar = false
+                        //error message in case of invalid credential
+                        loginController.labelMessage.text = "Invalid username or password"
                     }
+                    
                 }
         }
-        return self.loginOkVar
     }
     
-    public func register(username:String, firstname:String, lastname:String, email:String, password:String, confirmPassword:String){
+    public func register(registerController: RegisterController,username:String, firstname:String, lastname:String, email:String, password:String){
         
+        let parameters: Parameters=[
+            "username": username,
+            "password": password,
+            "firstname": firstname,
+            "lastname": lastname,
+            "email": email
+        ]
+        
+        Alamofire.request(URL_USER_REGISTER, method: .post, parameters: parameters).responseJSON
+            {
+                response in
+                //printing response
+                print(response)
+                
+                //getting the json value from the server
+                if let result = response.result.value {
+                    
+                    //converting it as NSDictionary
+                    let jsonData = result as! NSDictionary
+                    
+                    //displaying the message in label
+                    registerController.labelMessage.text = jsonData.value(forKey: "message") as? String
+                }
+        }
     }
     
     public func getAvailableIngredients(){
-        
+        var availableIngredients: NSDictionary!
+        Alamofire.request(self.URL_AVAILABLE_INGREDIENTS).responseJSON
+            {
+                response in
+                if let result = response.result.value {
+                    availableIngredients = result as! NSDictionary
+                }
+        }
     }
     
     public func getAvailableMixes(){
@@ -77,7 +107,23 @@ class Service: NSObject {
     }
     
     public func getOrderedMixes(){
-        
+        Alamofire.request(self.URL_ORDERED_MIXES).responseJSON
+            {
+                response in
+                debugPrint(response)
+                if let result = response.result.value {
+                    let jsonData = result as! NSDictionary
+                    
+                    //if there is no error
+                    if(!(jsonData.value(forKey: "error") as! Bool)){
+                        let ingredients = jsonData.value(forKey: "ingredients") as! NSDictionary
+                        print(ingredients)
+                        
+                    }else{
+                        //error message in case of invalid credential
+                    }
+                }
+        }
     }
     
     public func orderMix(){

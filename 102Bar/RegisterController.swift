@@ -3,8 +3,6 @@ import Alamofire
 
 class RegisterController: UIViewController {
     
-    let URL_USER_REGISTER = "http://102bier.de/102bar/register.php"
-    
     @IBOutlet weak var _firstname: UITextField!
     @IBOutlet weak var _lastname: UITextField!
     @IBOutlet weak var _username: UITextField!
@@ -12,6 +10,8 @@ class RegisterController: UIViewController {
     @IBOutlet weak var _password: UITextField!
     @IBOutlet weak var _confirmPassword: UITextField!
     @IBOutlet weak var labelMessage: UILabel!
+    
+    let service = Service()
     
     @IBAction func RegisterButton(_ sender: UIButton) {
         
@@ -25,30 +25,7 @@ class RegisterController: UIViewController {
             return
         }
         
-        let parameters: Parameters=[
-            "username":_username.text!,
-            "password":_password.text!,
-            "firstname":_firstname.text!,
-            "lastname":_lastname.text!,
-            "email":_email.text!
-        ]
-        
-        Alamofire.request(URL_USER_REGISTER, method: .post, parameters: parameters).responseJSON(completionHandler:
-            {
-                response in
-                //printing response
-                print(response)
-                
-                //getting the json value from the server
-                if let result = response.result.value {
-                    
-                    //converting it as NSDictionary
-                    let jsonData = result as! NSDictionary
-                    
-                    //displaying the message in label
-                    self.labelMessage.text = jsonData.value(forKey: "message") as! String?
-                }
-        })
+        self.service.register(registerController: self,username: _username.text!, firstname: _firstname.text!, lastname: _lastname.text!, email: _email.text!, password: _password.text!)
     }
     
     @IBAction func CancelButton(_ sender: UIBarButtonItem) {

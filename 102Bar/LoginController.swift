@@ -3,8 +3,6 @@ import Alamofire
 
 class LoginController: UIViewController {
     
-    let dispatchGroup = DispatchGroup()
-    
     @IBOutlet weak var _username: UITextField!
     @IBOutlet weak var _password: UITextField!
     @IBOutlet weak var labelMessage: UILabel!
@@ -12,8 +10,6 @@ class LoginController: UIViewController {
     @IBOutlet weak var _login_button: UIButton!
     @IBOutlet weak var _login_as_guest_button: UIButton!
     @IBOutlet weak var _register_button: UIButton!
-    
-    let URL_USER_LOGIN = "http://102bier.de/102bar/login.php"
     
     let service = Service()
     
@@ -39,14 +35,7 @@ class LoginController: UIViewController {
             self.labelMessage.isHidden = false
             return
         }
-        if(self.service.login(username: _username.text!, password: _password.text!)){
-            self.changeView()
-        }else{
-            //error message in case of invalid credential
-            self.labelMessage.text = "Invalid username or password"
-        }
-        
-        
+        self.service.login(loginController: self, username: _username.text!, password: _password.text!)
     }
     
     @IBAction func LoginAsGuestButton(_ sender: Any) {
