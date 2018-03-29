@@ -14,7 +14,7 @@ class AddDrinkTableContent {
         var sectionObjects : [String]!
         var sectionPercentage : [String]!
     }
-    
+    //test comment 
     var ingredArray = [SectionAndObjects]()
     let helpText = "Drag here to add stuff"
     let noMoreIngredientsText = "You greedy little bitch"
