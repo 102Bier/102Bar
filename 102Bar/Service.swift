@@ -40,11 +40,12 @@ class Service: NSObject {
                         let user = jsonData.value(forKey: "user") as! NSDictionary
                         
                         //getting user values
-                        let userId = user.value(forKey: "id") as! Int
+                        let userId = user.value(forKey: "id") as! String
                         let userName = user.value(forKey: "username") as! String
                         let userFirstname = user.value(forKey: "firstname") as! String
                         let userLastname = user.value(forKey: "lastname") as! String
                         let userEmail = user.value(forKey: "email") as! String
+                        let userRights = user.value(forKey: "rights") as! Int
                         
                         //saving user values to defaults
                         self.defaultValues.set(userId, forKey: "userid")
@@ -52,6 +53,7 @@ class Service: NSObject {
                         self.defaultValues.set(userEmail, forKey: "useremail")
                         self.defaultValues.set(userFirstname, forKey: "userfirstname")
                         self.defaultValues.set(userLastname, forKey: "userlastname")
+                        self.defaultValues.set(userRights, forKey: "userrights")
                         
                         loginController.changeView()
                     }else{

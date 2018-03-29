@@ -15,6 +15,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var loginOk = false
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+        
+        /*let content = AddDrinkTableContent()
+        let addDrinkController = window!.rootViewController?.
+            as! AddDrinkController
+        addDrinkController.drinkContent = content // DI*/
+        
         // Override point for customization after application launch.
         return true
     }

@@ -7,19 +7,30 @@
 //
 
 import UIKit
-class AddDrinkController : UITableViewController
+class AddDrinkController : UITableViewController, UITextFieldDelegate
 {
-    var drinkContent = AddDrinkTableContent();
+    var drinkContent = AddDrinkTableContent()
     
-    /*@IBAction func dismissKeyboard(_ sender: UITapGestureRecognizer) {
-        if !ingredArray[0].sectionPercentage.isEmpty
-        {
-            for i in 0...ingredArray[0].sectionPercentage.count-1 {
-                ingredArray[0].sectionPercentage[i] = percenteges[i].text!
-            }
-        }
-        percenteges.forEach { p in p.resignFirstResponder() }
-    }*/
+    var cells : [DrinkCell] = []
+    @IBOutlet var drinkName: UITextField!
+    
+    
+    func dismissKeyboard(at indexPath: IndexPath) {
+        cells[indexPath.row].resignFirstResponder()
+    }
+    
+    func safeCellTextField(at indexPath : IndexPath) {
+        drinkContent.ingredArray[(indexPath.section)].sectionPercentage[(indexPath.row)] = cells[indexPath.row].percentageTextField.text!
+    }
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        let cell = textField.superview?.superview as! DrinkCell
+        let indexPath = tableView.indexPath(for: cell)
+        safeCellTextField(at: indexPath!)
+        print("Cell endet editing: \(String(describing: cell.percentageTextField.text))")
+    }
+    
+
     var cellHeight : CGFloat = 0
     var cons : CGFloat = 15
     
@@ -36,7 +47,10 @@ class AddDrinkController : UITableViewController
         
         self.tableView.rowHeight = 60;
         self.tableView.setEditing(true, animated: true)
-        print("\(isEditing)")
+        tableView.delegate = self
+        tableView.dataSource = self
+        tableView.allowsSelectionDuringEditing = true;
+        cells.forEach({c in c.percentageTextField.isUserInteractionEnabled = true})
         super.viewDidLoad()
     }
     
@@ -60,16 +74,24 @@ class AddDrinkController : UITableViewController
         cell.drinkLabel.text = drinkContent.ingredArray[indexPath.section].sectionObjects[indexPath.row]
         //ingredArray[indexPath.section].sectionObjects[indexPath.row]
         cell.percentageTextField.text = drinkContent.ingredArray[indexPath.section].sectionPercentage[indexPath.row]
+        cell.selectionStyle = .none
+        cells.append(cell)
         return cell
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        dismissKeyboard(at: indexPath)
+        
+        safeCellTextField(at: indexPath)
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int {
         return drinkContent.ingredArray.count;
     }
     
-    /*override func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCellEditingStyle {
+    override func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCellEditingStyle {
         return UITableViewCellEditingStyle.none
-    }*/
+    }
     
     /*func updateTableviewTextfieldVisibility(_ sourceIndexPath: IndexPath, destinationIndexPath: IndexPath) {
         if ingredArray[destinationIndexPath.section].sectionName == "Selected ingredients" { //something was moved to 1st section
@@ -92,9 +114,9 @@ class AddDrinkController : UITableViewController
     }*/
         
     
-    /*func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
+    override func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
         
-        let sourceIngredient = ingredArray[sourceIndexPath.section].sectionObjects[sourceIndexPath.row]
+        /*let sourceIngredient = ingredArray[sourceIndexPath.section].sectionObjects[sourceIndexPath.row]
         //let destinationIngredient = ingredArray[destinationIndexPath.section].sectionObjects[destinationIndexPath.row]
         
         if !ingredArray[destinationIndexPath.section].sectionObjects.contains(sourceIngredient) &&
@@ -148,32 +170,40 @@ class AddDrinkController : UITableViewController
         {
             ingredArray[sourceIndexPath.section].sectionObjects.append(noMoreIngredientsText)
         }
-        
-        if sourceIndexPath.section == 0
+        */
+        if sourceIndexPath.section == 0 //top
         {
-            if destinationIndexPath.section == 0
+            if destinationIndexPath.section == 0 //top
             {
-                ingredArray[sourceIndexPath.section].sectionPercentage.swapAt(sourceIndexPath.row, destinationIndexPath.row)
+                drinkContent.ingredArray[sourceIndexPath.section].sectionPercentage.swapAt(sourceIndexPath.row, destinationIndexPath.row)
+                drinkContent.ingredArray[sourceIndexPath.section].sectionObjects.swapAt(sourceIndexPath.row, destinationIndexPath.row)
+                
                 //swap
             }
-            else if destinationIndexPath.section == 1
+            else if destinationIndexPath.section == 1 //bottom
             {
-                ingredArray[sourceIndexPath.section].sectionPercentage.remove(at: sourceIndexPath.row)
+                drinkContent.ingredArray[sourceIndexPath.section].sectionPercentage.remove(at: sourceIndexPath.row)
+                drinkContent.ingredArray[sourceIndexPath.section].sectionObjects.remove(at: sourceIndexPath.row)
                 //remove
             }
         }
-        if sourceIndexPath.section == 1
+        if sourceIndexPath.section == 1 //bottom
         {
-            if destinationIndexPath.section == 0
+            if destinationIndexPath.section == 0 //top
             {
-                ingredArray[sourceIndexPath.section].sectionPercentage.insert("0", at: destinationIndexPath.row)
+                drinkContent.ingredArray[destinationIndexPath.section].sectionPercentage.insert("0", at: destinationIndexPath.row)
+                drinkContent.ingredArray[destinationIndexPath.section].sectionObjects.insert(drinkContent.ingredArray[sourceIndexPath.section].sectionObjects[sourceIndexPath.row], at: destinationIndexPath.row)
                 //insert
             }
-            else
+            else //bottom
             {
                 //nothing
             }
-        }*/
+        }
+        //safeCellTextField(at: sourceIndexPath)
+        print("\(drinkContent.ingredArray[0].sectionObjects)")
+        print("\(drinkContent.ingredArray[0].sectionPercentage)")
+    }
         
         
         
