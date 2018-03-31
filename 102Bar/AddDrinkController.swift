@@ -11,12 +11,24 @@ class AddDrinkController : UITableViewController, UITextFieldDelegate
 {
     var drinkContent = AddDrinkTableContent()
     
-    var cells : [DrinkCell] = []
     @IBOutlet var drinkName: UITextField!
     
+    @IBAction func viewTapped(_ sender: UITapGestureRecognizer)
+    {
+            // Delete selected Cell
+            let point = sender.location(in: self.tableView)
+            let indexPath = self.tableView?.indexPathForRow(at: point)
+            //        let cell = self.collectionView?.cellForItem(at: indexPath!)
+            if indexPath != nil
+            {
+                let cell  = tableView.cellForRow(at: indexPath!) as! DrinkCell
+                print("selectedCell : \(cell.drinkLabel.text ?? ("none"))")
+                dismissKeyboard()
+            }
+    }
     
-    func dismissKeyboard(at indexPath: IndexPath) {
-        cells[indexPath.row].resignFirstResponder()
+    func dismissKeyboard() {
+        view.endEditing(true)
     }
     
     func safeCellTextField(at indexPath : IndexPath, in cell : DrinkCell) {
@@ -31,31 +43,13 @@ class AddDrinkController : UITableViewController, UITextFieldDelegate
         print("Cell endet editing: \(String(describing: cell.percentageTextField.text))")
     }
     
-
-    var cellHeight : CGFloat = 0
-    var cons : CGFloat = 15
-    
-    
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        //cellHeight = tableView.visibleCells[0].bounds.height //returns height of first cell, represantative for all cells, just available when tableView (sub view) loaded
-        //cons = cellHeight - percenteges[0].frame.height //constant for contraints for accurate y-spacing of pI's
-        //updateViewConstraints()
-    }
-    
-    
     override func viewDidLoad() {
         
+        super.viewDidLoad()
         self.tableView.rowHeight = 60;
         self.tableView.setEditing(true, animated: true)
         tableView.delegate = self
         tableView.dataSource = self
-        tableView.allowsSelectionDuringEditing = true;
-        cells.forEach({c in c.percentageTextField.isUserInteractionEnabled = true})
-        
-        
-        
-        super.viewDidLoad()
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -66,18 +60,9 @@ class AddDrinkController : UITableViewController, UITextFieldDelegate
         let cell = tableView.dequeueReusableCell(withIdentifier: "DrinkCell", for: indexPath) as! DrinkCell
         
         cell.drinkLabel.text = drinkContent.ingredArray[indexPath.section].sectionObjects[indexPath.row]
-        //ingredArray[indexPath.section].sectionObjects[indexPath.row]
         cell.percentageTextField.text = drinkContent.ingredArray[indexPath.section].sectionPercentage[indexPath.row]
         cell.selectionStyle = .none
-        
-        cells.append(cell)
         return cell
-    }
-    
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        dismissKeyboard(at: indexPath)
-        
-        //safeCellTextField(at: indexPath)
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -136,8 +121,6 @@ class AddDrinkController : UITableViewController, UITextFieldDelegate
             }
             else if sourceIndexPath.section == 1  && destinationIndexPath.section == 0 //bottom to top
             {
-                
-                
                 drinkContent.ingredArray[destinationIndexPath.section].sectionPercentage.insert("0", at: destinationIndexPath.row) //insert % at destination
                 drinkContent.ingredArray[destinationIndexPath.section].sectionObjects.insert(drinkContent.ingredArray[sourceIndexPath.section].sectionObjects[sourceIndexPath.row], at: destinationIndexPath.row) //insert obj at destination
                 
@@ -159,6 +142,7 @@ class AddDrinkController : UITableViewController, UITextFieldDelegate
                 drinkContent.ingredArray[sourceIndexPath.section].sectionPercentage.append("0")
             }
         }
+        
         tableView.reloadData()
         let visibleCells = tableView.visibleCells
         
@@ -182,7 +166,6 @@ class AddDrinkController : UITableViewController, UITextFieldDelegate
                 cell.percentageTextField.isHidden = true;
             }
         }
-       
         
         /*for i in 0..<drinkContent.ingredArray[0].sectionObjects.count
         {

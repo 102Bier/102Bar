@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Q5U-zw-1Z3">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Q5U-zw-1Z3">
     <device id="retina5_9" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -187,6 +187,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <gestureRecognizers/>
                         <view key="tableHeaderView" contentMode="scaleToFill" id="eFm-Je-wiQ">
                             <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -213,6 +214,9 @@
                                 <constraint firstItem="T99-fA-2Qd" firstAttribute="top" secondItem="eFm-Je-wiQ" secondAttribute="top" constant="8" id="E73-49-bZt"/>
                                 <constraint firstItem="T99-fA-2Qd" firstAttribute="leading" secondItem="MM1-kF-3yN" secondAttribute="trailing" constant="21" id="XQw-fp-Hdn"/>
                             </constraints>
+                            <connections>
+                                <outletCollection property="gestureRecognizers" destination="S2K-Lm-VsV" appends="YES" id="De2-7s-iXK"/>
+                            </connections>
                         </view>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="DrinkCell" rowHeight="55" id="EyP-7U-rr8" customClass="DrinkCell" customModule="_02Bar" customModuleProvider="target">
@@ -223,19 +227,19 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <textField hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="100" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="0L3-7b-vAr">
-                                            <rect key="frame" x="314" y="10.333333333333336" width="45" height="34"/>
+                                            <rect key="frame" x="314" y="12" width="45" height="30"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="45" id="SNU-Qc-X43"/>
                                             </constraints>
                                             <nil key="textColor"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="25"/>
-                                            <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <textInputTraits key="textInputTraits" keyboardType="decimalPad" returnKeyType="done"/>
                                             <connections>
                                                 <outlet property="delegate" destination="svU-me-gCL" id="Xfc-oa-DrA"/>
                                             </connections>
                                         </textField>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0fF-At-TlZ">
-                                            <rect key="frame" x="19" y="12.666666666666666" width="59.333333333333343" height="26.333333333333336"/>
+                                            <rect key="frame" x="19" y="11.999999999999998" width="59.333333333333343" height="26.333333333333329"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="22"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
@@ -252,14 +256,13 @@
                                 <connections>
                                     <outlet property="drinkLabel" destination="0fF-At-TlZ" id="fix-vI-hqz"/>
                                     <outlet property="percentageTextField" destination="0L3-7b-vAr" id="y99-Mu-hRT"/>
-                                    <outletCollection property="gestureRecognizers" destination="rMP-di-agF" appends="YES" id="dS3-xS-rRx"/>
-                                    <outletCollection property="gestureRecognizers" destination="rMP-di-agF" appends="YES" id="fpA-7D-Hlc"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
                             <outlet property="dataSource" destination="svU-me-gCL" id="jt0-zh-4KU"/>
                             <outlet property="delegate" destination="svU-me-gCL" id="FBR-qa-Fl8"/>
+                            <outletCollection property="gestureRecognizers" destination="S2K-Lm-VsV" appends="YES" id="5cb-C8-gTf"/>
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="New Drink" id="3Lq-br-hBW">
@@ -271,10 +274,9 @@
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="unA-Hj-K3E" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <exit id="DXL-AU-olz" userLabel="Exit" sceneMemberID="exit"/>
-                <tapGestureRecognizer id="rMP-di-agF">
+                <tapGestureRecognizer id="S2K-Lm-VsV">
                     <connections>
-                        <action selector="cellTap:" destination="DXL-AU-olz" id="pAF-cR-vc3"/>
+                        <action selector="viewTapped:" destination="svU-me-gCL" id="liM-wI-K6J"/>
                     </connections>
                 </tapGestureRecognizer>
             </objects>
