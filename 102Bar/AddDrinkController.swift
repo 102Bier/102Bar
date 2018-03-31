@@ -60,7 +60,10 @@ class AddDrinkController : UITableViewController, UITextFieldDelegate
         let cell = tableView.dequeueReusableCell(withIdentifier: "DrinkCell", for: indexPath) as! DrinkCell
         
         cell.drinkLabel.text = drinkContent.ingredArray[indexPath.section].sectionObjects[indexPath.row]
-        cell.percentageTextField.text = drinkContent.ingredArray[indexPath.section].sectionPercentage[indexPath.row]
+        if(drinkContent.ingredArray[indexPath.section].sectionPercentage.count > 0)
+        {
+            cell.percentageTextField.text = drinkContent.ingredArray[indexPath.section].sectionPercentage[indexPath.row]
+        }
         cell.selectionStyle = .none
         return cell
     }
@@ -116,12 +119,18 @@ class AddDrinkController : UITableViewController, UITextFieldDelegate
                     drinkContent.ingredArray[sourceIndexPath.section].sectionObjects.append(drinkContent.helpText)
                     drinkContent.ingredArray[sourceIndexPath.section].sectionPercentage.append("0")
                 }
-                
-                
+                if (drinkContent.ingredArray[destinationIndexPath.section].sectionObjects.count > 1) &&
+                    (drinkContent.ingredArray[destinationIndexPath.section].sectionObjects.contains(drinkContent.noMoreIngredientsText))
+                {
+                    drinkContent.ingredArray[destinationIndexPath.section].sectionPercentage.remove(at: drinkContent.ingredArray[destinationIndexPath.section].sectionObjects.index(of: drinkContent.noMoreIngredientsText)!)
+                    
+                    drinkContent.ingredArray[destinationIndexPath.section].sectionObjects.remove(at: drinkContent.ingredArray[destinationIndexPath.section].sectionObjects.index(of: drinkContent.noMoreIngredientsText)!)
+                }
+                    
             }
             else if sourceIndexPath.section == 1  && destinationIndexPath.section == 0 //bottom to top
             {
-                drinkContent.ingredArray[destinationIndexPath.section].sectionPercentage.insert("0", at: destinationIndexPath.row) //insert % at destination
+                drinkContent.ingredArray[destinationIndexPath.section].sectionPercentage.insert(getDefaultPercentage(), at: destinationIndexPath.row) //insert smart % at destination
                 drinkContent.ingredArray[destinationIndexPath.section].sectionObjects.insert(drinkContent.ingredArray[sourceIndexPath.section].sectionObjects[sourceIndexPath.row], at: destinationIndexPath.row) //insert obj at destination
                 
                 print("inserted \(drinkContent.ingredArray[sourceIndexPath.section].sectionObjects[sourceIndexPath.row]) at row \(destinationIndexPath.row) in section \(destinationIndexPath.section)")
@@ -133,7 +142,10 @@ class AddDrinkController : UITableViewController, UITextFieldDelegate
             
             if(drinkContent.ingredArray[destinationIndexPath.section].sectionObjects.count > 1 && drinkContent.ingredArray[destinationIndexPath.section].sectionObjects.contains(drinkContent.helpText)) //if more than one elements is in top section and one of them is the helptext
             {
-                drinkContent.ingredArray[destinationIndexPath.section].sectionObjects.remove(at: drinkContent.ingredArray[0].sectionObjects.index(of: drinkContent.helpText)!) //remove help text
+                drinkContent.ingredArray[destinationIndexPath.section].sectionPercentage.removeLast() //remove help text row percenatge
+                
+                drinkContent.ingredArray[destinationIndexPath.section].sectionObjects.remove(at: drinkContent.ingredArray[0].sectionObjects.index(of: drinkContent.helpText)!)
+                //remove help text
             }
             
             if drinkContent.ingredArray[sourceIndexPath.section].sectionObjects.count == 0
@@ -189,6 +201,40 @@ class AddDrinkController : UITableViewController, UITextFieldDelegate
         {
             print(drinkContent.ingredArray[1].sectionObjects[i], drinkContent.ingredArray[1].sectionPercentage[i])
         }
+        print("\npercentages:")
+        for i in 0..<drinkContent.ingredArray[0].sectionPercentage.count
+        {
+            print("\(i): \(drinkContent.ingredArray[0].sectionPercentage[i])")
+        }
+        print("---------------------")
+        for i in 0..<drinkContent.ingredArray[1].sectionPercentage.count
+        {
+            print("\(i): \(drinkContent.ingredArray[1].sectionPercentage[i])")
+        }
+        
+    }
+    
+    func getDefaultPercentage() -> String
+    {
+        var percentageSum: Float = 0
+        var topSectionObjCount = drinkContent.ingredArray[0].sectionObjects.count
+        if drinkContent.ingredArray[0].sectionObjects.contains(drinkContent.helpText)
+        {
+            topSectionObjCount -= 1
+        }
+        let topSectionPercCount = drinkContent.ingredArray[0].sectionPercentage.count
+        for i in 0..<topSectionPercCount
+        {
+            percentageSum += Float(drinkContent.ingredArray[0].sectionPercentage[i])!
+        }
+        
+        if(percentageSum == 0)
+        {
+            return String(100)
+        }
+        let percentage = (100 - percentageSum)
+        
+        return percentage.truncatingRemainder(dividingBy: 1) == 0 ? String(format: "%.0f", percentage) : String(format: "%.2f", percentage)
     }
     
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {

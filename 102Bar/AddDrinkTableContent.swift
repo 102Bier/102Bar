@@ -26,7 +26,8 @@ class AddDrinkTableContent {
         let availableIngredients = ["Captain Morgan", "Gletscherwasser", "Wiskey", "Jägermeister", "Cola", "Fanta", "Organgensaft", "Red Bull"]
         let selectedIngredients : [String] = [helpText]
         percentages = ["0", "0", "0", "0", "0", "0", "0", "0"]
+        let initialPercentages : [String] = ["0"]
         
-        ingredArray = [SectionAndObjects(sectionName: "Selected ingredients", sectionObjects: selectedIngredients, sectionPercentage : percentages, isHidden: false), SectionAndObjects(sectionName: "Available ingredients", sectionObjects: availableIngredients, sectionPercentage : percentages, isHidden : true)]
+        ingredArray = [SectionAndObjects(sectionName: "Selected ingredients", sectionObjects: selectedIngredients, sectionPercentage : initialPercentages, isHidden: false), SectionAndObjects(sectionName: "Available ingredients", sectionObjects: availableIngredients, sectionPercentage : percentages, isHidden : true)]
     }
 }
