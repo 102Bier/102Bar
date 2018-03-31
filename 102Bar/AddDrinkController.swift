@@ -90,7 +90,9 @@ class AddDrinkController : UITableViewController, UITextFieldDelegate
     
     override func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath)
     {
-        if(sourceIndexPath.row != destinationIndexPath.row || sourceIndexPath.section != destinationIndexPath.section)
+        if((sourceIndexPath.row != destinationIndexPath.row || sourceIndexPath.section != destinationIndexPath.section)
+            && drinkContent.ingredArray[sourceIndexPath.section].sectionObjects[sourceIndexPath.row] != drinkContent.helpText
+            && drinkContent.ingredArray[sourceIndexPath.section].sectionObjects[sourceIndexPath.row] != drinkContent.noMoreIngredientsText)
         {
             if(sourceIndexPath.section == destinationIndexPath.section)
             {
@@ -127,6 +129,7 @@ class AddDrinkController : UITableViewController, UITextFieldDelegate
                 if(drinkContent.ingredArray[sourceIndexPath.section].sectionObjects.count == 0)
                 {
                     drinkContent.ingredArray[sourceIndexPath.section].sectionObjects.append(drinkContent.helpText)
+                    drinkContent.ingredArray[sourceIndexPath.section].sectionPercentage.append("0")
                 }
                 
                 
@@ -145,9 +148,15 @@ class AddDrinkController : UITableViewController, UITextFieldDelegate
                 drinkContent.ingredArray[sourceIndexPath.section].sectionObjects.remove(at: sourceIndexPath.row) //remove obj at source
             }
             
-            if(drinkContent.ingredArray[0].sectionObjects.count > 1 && drinkContent.ingredArray[0].sectionObjects.contains(drinkContent.helpText)) //if more than one elements is in top section and one of them is the helptext
+            if(drinkContent.ingredArray[destinationIndexPath.section].sectionObjects.count > 1 && drinkContent.ingredArray[destinationIndexPath.section].sectionObjects.contains(drinkContent.helpText)) //if more than one elements is in top section and one of them is the helptext
             {
-                drinkContent.ingredArray[0].sectionObjects.remove(at: drinkContent.ingredArray[0].sectionObjects.index(of: drinkContent.helpText)!)
+                drinkContent.ingredArray[destinationIndexPath.section].sectionObjects.remove(at: drinkContent.ingredArray[0].sectionObjects.index(of: drinkContent.helpText)!) //remove help text
+            }
+            
+            if drinkContent.ingredArray[sourceIndexPath.section].sectionObjects.count == 0
+            {
+                drinkContent.ingredArray[sourceIndexPath.section].sectionObjects.append(drinkContent.noMoreIngredientsText)
+                drinkContent.ingredArray[sourceIndexPath.section].sectionPercentage.append("0")
             }
         }
         tableView.reloadData()
