@@ -13,19 +13,20 @@ class AddDrinkTableContent {
         var sectionName : String!
         var sectionObjects : [String]!
         var sectionPercentage : [String]!
+        var isHidden : Bool
     }
     //test comment 
     var ingredArray = [SectionAndObjects]()
-    let helpText = "Drag here to add stuff"
+    let helpText = "Drag here to add"
     let noMoreIngredientsText = "You greedy little bitch"
     
     
     init()
     {
-        let availableIngredients = ["Wodka", "Gletscherwasser", "Wiskey", "Jägermeister", "Cola", "Fanta", "Organgensaft", "Red Bull"]
+        let availableIngredients = ["Captain Morgan", "Gletscherwasser", "Wiskey", "Jägermeister", "Cola", "Fanta", "Organgensaft", "Red Bull"]
         let selectedIngredients : [String] = [helpText]
         percentages = ["0", "0", "0", "0", "0", "0", "0", "0"]
         
-        ingredArray = [SectionAndObjects(sectionName: "Selected ingredients", sectionObjects: selectedIngredients, sectionPercentage : percentages), SectionAndObjects(sectionName: "Available ingredients", sectionObjects: availableIngredients, sectionPercentage : percentages)]
+        ingredArray = [SectionAndObjects(sectionName: "Selected ingredients", sectionObjects: selectedIngredients, sectionPercentage : percentages, isHidden: false), SectionAndObjects(sectionName: "Available ingredients", sectionObjects: availableIngredients, sectionPercentage : percentages, isHidden : true)]
     }
 }
