@@ -32,14 +32,156 @@ class AddDrinkController : UITableViewController, UITextFieldDelegate
     }
     
     func safeCellTextField(at indexPath : IndexPath, in cell : DrinkCell) {
-        drinkContent.ingredArray[indexPath.section].sectionPercentage[indexPath.row] = cell.percentageTextField.text!
+        if let percentage = cell.percentageTextField.text{
+           drinkContent.ingredArray[indexPath.section].sectionPercentage[indexPath.row] = percentage
+        }
+        else
+        {
+            drinkContent.ingredArray[indexPath.section].sectionPercentage[indexPath.row] = "0"
+        }
+        
         print("safed content of \(cell.drinkLabel.text ?? "none") (\(cell.percentageTextField.text ?? "N/A")%)")
+    }
+    
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        if string.count == 0 {
+            return true
+        }
+        let currentLocale = Locale.current
+        let decimalSeperator = currentLocale.decimalSeparator ?? "."
+        let existingTextHasDecimalSeperator = textField.text?.range(of: decimalSeperator) //check if existing text has a (or other region specific decimal seperator)
+        let replacementTextHasDecimalSeperator = string.range(of: decimalSeperator) //check if new text has a "." (or other region specific decimal seperator)
+        let allowedCharacters = CharacterSet.decimalDigits
+        var validCharacterCount : Int = 0
+        if let rangeOfCharactersAllowed = string.rangeOfCharacter(from: allowedCharacters) { // if replacementText contains just valid characters
+            validCharacterCount = string.characters.distance(from: rangeOfCharactersAllowed.lowerBound, to: rangeOfCharactersAllowed.upperBound)
+        }
+            
+        else if string != decimalSeperator {
+            return false
+        }
+        
+        if validCharacterCount != string.characters.count && string != decimalSeperator {
+            return false
+        }
+            
+        else if (existingTextHasDecimalSeperator != nil && replacementTextHasDecimalSeperator != nil) {
+            return false
+        }
+        
+        var percentageSum: Float = 0
+        var newString = NSString(string: textField.text!).replacingCharacters(in: range, with: string)
+        if newString.last == decimalSeperator.first
+        {
+            newString.removeLast()
+            newString.append(".0")
+        }
+        if NSString(string: newString).floatValue > 100
+        {
+            return false
+        }
+        let topSectionPercCount = drinkContent.ingredArray[0].sectionPercentage.count
+        if topSectionPercCount > 0
+        {
+            let cells = tableView.visibleCells
+            var currentRow : Int?
+            for i in 0..<cells.count
+            {
+                if (cells[i] as! DrinkCell).percentageTextField.isFirstResponder == true
+                {
+                    currentRow = i
+                    break
+                }
+            }
+            for i in 0..<topSectionPercCount
+            {
+                percentageSum += Float(drinkContent.ingredArray[0].sectionPercentage[i])!
+            }
+            
+            percentageSum -= Float(drinkContent.ingredArray[0].sectionPercentage[currentRow!])!
+            
+            
+            //percentageSum - was vorher drin stand im textfeld + current im textfeld
+            if var oldString = textField.text {
+                if oldString == ""
+                {
+                    oldString = "0"
+                }
+                if oldString.last == decimalSeperator.first
+                {
+                    oldString.removeLast()
+                    oldString.append(".0")
+                }
+                percentageSum += Float(newString)!
+                /*var difference : Float = 0
+                if Float(newString)! > Float(oldString)!
+                {
+                    difference = Float(newString)! - Float(oldString)!
+                    percentageSum -= difference
+                }
+                else
+                {
+                    difference = Float(oldString)! - Float(newString)!
+                    percentageSum -= difference
+                }*/
+                
+                if Float(newString)! <= Float(oldString)! || percentageSum <= 100
+                {
+                    return true
+                }
+            }
+            else {
+                return false
+            }
+        }
+        else
+        {
+            return true
+        }
+        return false
     }
     
     func textFieldDidEndEditing(_ textField: UITextField) {
         let cell = textField.superview?.superview as! DrinkCell
         let indexPath = tableView.indexPath(for: cell)
-        safeCellTextField(at: indexPath!, in: cell)
+        let currentLocale = Locale.current
+        let decimalSeperator = currentLocale.decimalSeparator ?? "."
+        var text = textField.text
+        if textField.text == ""
+        {
+            textField.text = "0"
+            drinkContent.ingredArray[0].sectionPercentage[(indexPath?.row)!] = "0"
+        }
+        if textField.text?.last == decimalSeperator.last
+        {
+            text?.removeLast()
+            text?.append(".0")
+        }
+        let number = NSString(string: text!).floatValue
+        var formattedNumber = "0"
+        if number.truncatingRemainder(dividingBy: 1) == 0
+        {
+            formattedNumber = String(format: "%.0f", number)
+        }
+        else{
+            formattedNumber = String(format: "%.2f", number)
+        }
+        textField.text = String(formattedNumber) //009.7 -> 9.7
+        var percentageSum: Float = 0
+        let topSectionPercCount = drinkContent.ingredArray[0].sectionPercentage.count
+        for i in 0..<topSectionPercCount
+        {
+            percentageSum += Float(drinkContent.ingredArray[0].sectionPercentage[i])!
+        }
+        if let newText = textField.text
+        {
+            percentageSum -= (Float(drinkContent.ingredArray[0].sectionPercentage[(indexPath?.row)!])! - Float(newText)!)
+        }
+       
+        if(percentageSum <= 100)
+        {
+            safeCellTextField(at: indexPath!, in: cell)
+        }
         print("Cell endet editing: \(String(describing: cell.percentageTextField.text))")
     }
     
@@ -156,6 +298,8 @@ class AddDrinkController : UITableViewController, UITextFieldDelegate
         }
         
         tableView.reloadData()
+        let cell = tableView.cellForRow(at: destinationIndexPath) as! DrinkCell
+        safeCellTextField(at: destinationIndexPath, in: cell)
         let visibleCells = tableView.visibleCells
         
         for i in 0..<visibleCells.count
@@ -227,7 +371,6 @@ class AddDrinkController : UITableViewController, UITextFieldDelegate
         {
             percentageSum += Float(drinkContent.ingredArray[0].sectionPercentage[i])!
         }
-        
         if(percentageSum == 0)
         {
             return String(100)
