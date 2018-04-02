@@ -32,8 +32,15 @@ class AddDrinkController : UITableViewController, UITextFieldDelegate
     }
     
     func safeCellTextField(at indexPath : IndexPath, in cell : DrinkCell) {
-        if let percentage = cell.percentageTextField.text{
-           drinkContent.ingredArray[indexPath.section].sectionPercentage[indexPath.row] = percentage
+        if var percentage = cell.percentageTextField.text
+        {
+            if(percentage.contains(","))
+            {
+                let index = percentage.index(of: ",")
+                percentage.remove(at: index!)
+                percentage.insert(".", at: index!)
+            }
+            drinkContent.ingredArray[indexPath.section].sectionPercentage[indexPath.row] = percentage
         }
         else
         {
@@ -112,6 +119,12 @@ class AddDrinkController : UITableViewController, UITextFieldDelegate
                     oldString.removeLast()
                     oldString.append(".0")
                 }
+                if(newString.contains(","))
+                {
+                    let index = newString.index(of: ",")
+                    newString.remove(at: index!)
+                    newString.insert(".", at: index!)
+                }
                 percentageSum += Float(newString)!
                 /*var difference : Float = 0
                 if Float(newString)! > Float(oldString)!
@@ -157,14 +170,34 @@ class AddDrinkController : UITableViewController, UITextFieldDelegate
             text?.removeLast()
             text?.append(".0")
         }
+        var comma = false
+        if(text?.contains(","))!
+        {
+            let index = text?.index(of: ",")
+            text?.remove(at: index!)
+            text?.insert(".", at: index!)
+            comma = true
+        }
         let number = NSString(string: text!).floatValue
         var formattedNumber = "0"
         if number.truncatingRemainder(dividingBy: 1) == 0
         {
             formattedNumber = String(format: "%.0f", number)
         }
-        else{
+        else if (number * 10).truncatingRemainder(dividingBy: 1) == 0
+        {
+            formattedNumber = String(format: "%.1f", number)
+        }
+        else
+        {
             formattedNumber = String(format: "%.2f", number)
+        }
+        if(formattedNumber.contains("."))
+        {
+            let index = formattedNumber.index(of: ".")
+            formattedNumber.remove(at: index!)
+            formattedNumber.insert(",", at: index!)
+            comma = true
         }
         textField.text = String(formattedNumber) //009.7 -> 9.7
         var percentageSum: Float = 0
@@ -173,10 +206,7 @@ class AddDrinkController : UITableViewController, UITextFieldDelegate
         {
             percentageSum += Float(drinkContent.ingredArray[0].sectionPercentage[i])!
         }
-        if let newText = textField.text
-        {
-            percentageSum -= (Float(drinkContent.ingredArray[0].sectionPercentage[(indexPath?.row)!])! - Float(newText)!)
-        }
+        percentageSum -= (Float(drinkContent.ingredArray[0].sectionPercentage[(indexPath?.row)!])! - Float(number))
        
         if(percentageSum <= 100)
         {
