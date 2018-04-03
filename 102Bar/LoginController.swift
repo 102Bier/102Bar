@@ -11,11 +11,15 @@ class LoginController: UIViewController {
     @IBOutlet weak var _login_as_guest_button: UIButton!
     @IBOutlet weak var _register_button: UIButton!
     
+    
+    
+    
     let service = Service()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+    
+       
         if UserDefaults.standard.string(forKey: "username") != nil{
             changeView()
         }
@@ -23,8 +27,8 @@ class LoginController: UIViewController {
     
     func changeView()
     {
-        let storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-        let vc: UIViewController = storyboard.instantiateViewController(withIdentifier: "TabBarController") as UIViewController
+       let storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        let vc: UIViewController = storyboard.instantiateViewController(withIdentifier: "TabBarController") as! UIViewController
         present(vc, animated: true, completion: nil)
     }
 

@@ -9,9 +9,11 @@
 import UIKit
 class AddDrinkController : UITableViewController, UITextFieldDelegate
 {
-    var drinkContent = AddDrinkTableContent()
+    var drinkContent : AddDrinkTableContent = AddDrinkTableContent()
+    var customDrinkModel : CustomDrinkModel = CustomDrinkModel()
     
     @IBOutlet var drinkName: UITextField!
+    @IBOutlet var totalPercentage: UILabel!
     
     @IBAction func viewTapped(_ sender: UITapGestureRecognizer)
     {
@@ -51,42 +53,8 @@ class AddDrinkController : UITableViewController, UITextFieldDelegate
     }
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        if string.count == 0 {
-            return true
-        }
-        let currentLocale = Locale.current
-        let decimalSeperator = currentLocale.decimalSeparator ?? "."
-        let existingTextHasDecimalSeperator = textField.text?.range(of: decimalSeperator) //check if existing text has a (or other region specific decimal seperator)
-        let replacementTextHasDecimalSeperator = string.range(of: decimalSeperator) //check if new text has a "." (or other region specific decimal seperator)
-        let allowedCharacters = CharacterSet.decimalDigits
-        var validCharacterCount : Int = 0
-        if let rangeOfCharactersAllowed = string.rangeOfCharacter(from: allowedCharacters) { // if replacementText contains just valid characters
-            validCharacterCount = string.characters.distance(from: rangeOfCharactersAllowed.lowerBound, to: rangeOfCharactersAllowed.upperBound)
-        }
-            
-        else if string != decimalSeperator {
-            return false
-        }
-        
-        if validCharacterCount != string.characters.count && string != decimalSeperator {
-            return false
-        }
-            
-        else if (existingTextHasDecimalSeperator != nil && replacementTextHasDecimalSeperator != nil) {
-            return false
-        }
         
         var percentageSum: Float = 0
-        var newString = NSString(string: textField.text!).replacingCharacters(in: range, with: string)
-        if newString.last == decimalSeperator.first
-        {
-            newString.removeLast()
-            newString.append(".0")
-        }
-        if NSString(string: newString).floatValue > 100
-        {
-            return false
-        }
         let topSectionPercCount = drinkContent.ingredArray[0].sectionPercentage.count
         if topSectionPercCount > 0
         {
@@ -106,6 +74,40 @@ class AddDrinkController : UITableViewController, UITextFieldDelegate
             }
             
             percentageSum -= Float(drinkContent.ingredArray[0].sectionPercentage[currentRow!])!
+        let currentLocale = Locale.current
+        let decimalSeperator = currentLocale.decimalSeparator ?? "."
+        let existingTextHasDecimalSeperator = textField.text?.range(of: decimalSeperator) //check if existing text has a (or other region specific decimal seperator)
+        let replacementTextHasDecimalSeperator = string.range(of: decimalSeperator) //check if new text has a "." (or other region specific decimal seperator)
+        let allowedCharacters = CharacterSet.decimalDigits
+        var validCharacterCount : Int = 0
+        if let rangeOfCharactersAllowed = string.rangeOfCharacter(from: allowedCharacters) { // if replacementText contains just valid characters
+            validCharacterCount = string.characters.distance(from: rangeOfCharactersAllowed.lowerBound, to: rangeOfCharactersAllowed.upperBound)
+        }
+            
+        else if string != decimalSeperator && string.count > 0{
+            return false
+        }
+        
+        if validCharacterCount != string.characters.count && string != decimalSeperator {
+            return false
+        }
+            
+        else if (existingTextHasDecimalSeperator != nil && replacementTextHasDecimalSeperator != nil) {
+            return false
+        }
+
+        var newString = NSString(string: textField.text!).replacingCharacters(in: range, with: string)
+        if newString.last == decimalSeperator.first
+        {
+            newString.removeLast()
+            newString.append(".0")
+        }
+        if NSString(string: newString).floatValue > 100
+        {
+            return false
+        }
+        
+        
             
             
             //percentageSum - was vorher drin stand im textfeld + current im textfeld
@@ -119,13 +121,24 @@ class AddDrinkController : UITableViewController, UITextFieldDelegate
                     oldString.removeLast()
                     oldString.append(".0")
                 }
+                if(oldString.contains(","))
+                {
+                    let index = oldString.index(of: ",")
+                    oldString.remove(at: index!)
+                    oldString.insert(".", at: index!)
+                }
                 if(newString.contains(","))
                 {
                     let index = newString.index(of: ",")
                     newString.remove(at: index!)
                     newString.insert(".", at: index!)
                 }
+                if(newString == "")
+                {
+                    newString = "0"
+                }
                 percentageSum += Float(newString)!
+                
                 /*var difference : Float = 0
                 if Float(newString)! > Float(oldString)!
                 {
@@ -138,8 +151,9 @@ class AddDrinkController : UITableViewController, UITextFieldDelegate
                     percentageSum -= difference
                 }*/
                 
-                if Float(newString)! <= Float(oldString)! || percentageSum <= 100
+                if Float(newString)! <= Float(oldString)! || percentageSum <= 100 || string.count == 0
                 {
+                    self.totalPercentage.text = String(percentageSum)
                     return true
                 }
             }
@@ -403,10 +417,12 @@ class AddDrinkController : UITableViewController, UITextFieldDelegate
         }
         if(percentageSum == 0)
         {
+            self.totalPercentage.text = String(100)
             return String(100)
         }
         let percentage = (100 - percentageSum)
-        
+        self.totalPercentage.text = String(percentageSum+percentage)
+
         return percentage.truncatingRemainder(dividingBy: 1) == 0 ? String(format: "%.0f", percentage) : String(format: "%.2f", percentage)
     }
     
@@ -420,5 +436,14 @@ class AddDrinkController : UITableViewController, UITextFieldDelegate
     
     @IBAction func SaveTapped(_ sender: UIBarButtonItem) {
         
+        var drinks : [Drink] = Array()
+        for i in 0..<drinkContent.ingredArray[0].sectionObjects.count
+        {
+            let drink = Drink(description: drinkContent.ingredArray[0].sectionObjects[i], percentage: Float(drinkContent.ingredArray[0].sectionPercentage[i])!)
+            drinks.append(drink)
+        }
+        
+        
+        customDrinkModel.addMix(mix: Mix(ingredients: drinks))
     }
 }
