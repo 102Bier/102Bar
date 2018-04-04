@@ -23,14 +23,14 @@ class DrinkController: UIViewController {
         present(vc, animated: true, completion: nil)
     }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    /*override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if(segue.identifier == "addDrink")
         {
             let content = AddDrinkTableContent()
             let target = segue.destination as! AddDrinkController
             target.drinkContent = content
         }
-    }
+    }*/
     
     @IBAction func switchView(_ sender: UISegmentedControl) {
         switch sender.selectedSegmentIndex {
