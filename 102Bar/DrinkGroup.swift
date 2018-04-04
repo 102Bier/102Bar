@@ -2,8 +2,14 @@ import Foundation
 
 class DrinkGroup: NSObject {
     
-    var drinkGroupId: Int = 0
+    var drinkGroup: String = ""
     var drinkGroupDescription: String = ""
     var alcoholic: Bool = false
+    
+    init(drinkGroup: String, drinkGroupDescription: String, alcoholic: Bool){
+        self.drinkGroup = drinkGroup
+        self.drinkGroupDescription = drinkGroupDescription
+        self.alcoholic = alcoholic
+    }
 
 }

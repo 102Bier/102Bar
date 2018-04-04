@@ -1,16 +1,17 @@
 import Foundation
 
 class Mix: NSObject {
-    var mixId: Int = 0
-    var root: Int = 0
+    var mix: String = ""
     var mixDescription: String = ""
-    var reference: Int = 0
-    var referenceType: String = ""
-    //var percentage: Int = 0
-    var AFO: Int = 0
-    var ingredients: [Drink] = Array()
+    var ingredients: [Drink]!
     
-    init(ingredients: [Drink]) {
+    init(mix: String, mixDescription: String, ingredients: [Drink]){
+        self.mix = mix
+        self.mixDescription = mixDescription
         self.ingredients = ingredients
+    }
+    
+    func clone() -> Mix{
+        return Mix(mix: self.mix, mixDescription: self.mixDescription, ingredients: self.ingredients)
     }
 }

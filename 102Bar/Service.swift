@@ -7,15 +7,20 @@ class Service: NSObject {
     let URL_USER_LOGIN: String
     let URL_USER_REGISTER: String
     let URL_AVAILABLE_INGREDIENTS: String
+    let URL_AVAILABLE_MIXES: String
     let URL_ORDERED_MIXES: String
     
     let defaultValues = UserDefaults.standard
+    
+    var availableIngredients: [Drink]!
+    var availableMixes: [Mix]!
     
     override init() {
         BASE_URL = "http://102bier.de/102bar/"
         URL_USER_LOGIN = BASE_URL + "login.php"
         URL_USER_REGISTER = BASE_URL + "register.php"
         URL_AVAILABLE_INGREDIENTS = BASE_URL + "availableIngredients.php"
+        URL_AVAILABLE_MIXES = BASE_URL + "availableMixes.php"
         URL_ORDERED_MIXES = BASE_URL + "orderedMixes.php"
     }
     
@@ -94,18 +99,23 @@ class Service: NSObject {
     }
     
     public func getAvailableIngredients(){
-        var availableIngredients: NSDictionary!
         Alamofire.request(self.URL_AVAILABLE_INGREDIENTS).responseJSON
             {
                 response in
                 if let result = response.result.value {
-                    availableIngredients = result as! NSDictionary
+                    
                 }
         }
     }
     
     public func getAvailableMixes(){
-        
+        Alamofire.request(self.URL_AVAILABLE_MIXES).responseJSON
+            {
+                response in
+                if let result = response.result.value {
+                    
+                }
+        }
     }
     
     public func getOrderedMixes(){
