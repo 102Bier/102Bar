@@ -10,7 +10,7 @@ import UIKit
 class AddDrinkController : UITableViewController, UITextFieldDelegate
 {
     var drinkContent : AddDrinkTableContent = AddDrinkTableContent()
-    var customDrinkModel : CustomDrinkModel = CustomDrinkModel()
+    
     
     @IBOutlet var drinkName: UITextField!
     @IBOutlet var totalPercentage: UILabel!

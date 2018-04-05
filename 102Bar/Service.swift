@@ -2,6 +2,8 @@ import UIKit
 import Alamofire
 
 class Service: NSObject {
+    static let shared = Service()
+    var customDrinkModel : CustomDrinkModel = CustomDrinkModel()
     
     let BASE_URL: String
     let URL_USER_LOGIN: String
