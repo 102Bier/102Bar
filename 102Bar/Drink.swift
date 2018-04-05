@@ -5,12 +5,8 @@ class Drink: NSObject {
     var drink: String = ""
     var drinkType: DrinkType!
     var drinkDescription: String = ""
-<<<<<<< HEAD
-    //var percentage = 0
-=======
     var percentage: Int = 0
     var AFO: Int = 0
->>>>>>> 5b7d5ab9d13d8aca61830664f7377cab77925035
     
     init(description: String, percentage: Int)
     {
