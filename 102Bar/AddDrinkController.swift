@@ -439,11 +439,11 @@ class AddDrinkController : UITableViewController, UITextFieldDelegate
         var drinks : [Drink] = Array()
         for i in 0..<drinkContent.ingredArray[0].sectionObjects.count
         {
-            let drink = Drink(description: drinkContent.ingredArray[0].sectionObjects[i], percentage: Float(drinkContent.ingredArray[0].sectionPercentage[i])!)
-            drinks.append(drink)
+          //  let drink = Drink(description: drinkContent.ingredArray[0].sectionObjects[i], percentage: Float(drinkContent.ingredArray[0].sectionPercentage[i])!)
+          //  drinks.append(drink)
         }
         
         
-        customDrinkModel.addMix(mix: Mix(ingredients: drinks))
+        //customDrinkModel.addMix(mix: Mix(ingredients: drinks))
     }
 }
