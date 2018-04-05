@@ -21,10 +21,10 @@
                value = "drinkContent.ingredArray[0].sectionObjects.index(of: drinkContent.helpText)">
             </PersistentString>
             <PersistentString
-               value = "drinkContent.ingredArray[1].sectionObjects">
+               value = "drinkContent.ingredArray[0].sectionObjects">
             </PersistentString>
             <PersistentString
-               value = "drinkContent.ingredArray[0].sectionObjects">
+               value = "drinkContent.ingredArray[1].sectionObjects">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -55,6 +55,14 @@
          <PersistentStrings>
             <PersistentString
                value = "addDrinkController">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "AddDrinkController.SaveTapped(_:):AddDrinkController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "Int(String((total?.removeLast())!))">
             </PersistentString>
          </PersistentStrings>
       </ContextState>

@@ -12,6 +12,7 @@ class Drink: NSObject {
     {
         self.drinkDescription = description
         self.percentage = percentage
+        //todo: get DrinkType and stuff 
     }
     
     init(drink: String, drinkType: DrinkType, drinkDescription: String, percentage: Int, AFO: Int){
@@ -20,6 +21,11 @@ class Drink: NSObject {
         self.drinkDescription = drinkDescription
         self.percentage = percentage
         self.AFO = AFO
+    }
+    
+    func addPercentage (percentage: Int)
+    {
+        self.percentage = percentage
     }
     
     func clone() -> Drink {

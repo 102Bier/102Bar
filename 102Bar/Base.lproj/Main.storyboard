@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Q5U-zw-1Z3">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina4_0" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -283,15 +283,19 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="New Drink" id="3Lq-br-hBW">
-                        <barButtonItem key="leftBarButtonItem" title="Cancel" id="ScA-Nv-ycF">
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="ScA-Nv-ycF">
                             <connections>
-                                <segue destination="EvZ-hq-23e" kind="show" id="4As-BD-0cc"/>
+                                <segue destination="EvZ-hq-23e" kind="show" identifier="Cancel" id="L0r-vh-kaU"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" title="Save" id="w7g-6p-hAE"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="w7g-6p-hAE">
+                            <connections>
+                                <segue destination="EvZ-hq-23e" kind="show" identifier="Save" id="ZZJ-Ax-zbT"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="drinkName" destination="T99-fA-2Qd" id="QSc-nn-qhE"/>
+                        <outlet property="mixNameTextField" destination="T99-fA-2Qd" id="dUy-FF-Oyu"/>
                         <outlet property="totalPercentage" destination="Aon-t8-27A" id="PRH-1O-NWr"/>
                     </connections>
                 </tableViewController>
@@ -650,6 +654,6 @@
         <image name="icon_256.png" width="256" height="256"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="4As-BD-0cc"/>
+        <segue reference="ZZJ-Ax-zbT"/>
     </inferredMetricsTieBreakers>
 </document>

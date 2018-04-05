@@ -10,9 +10,8 @@ import UIKit
 class AddDrinkController : UITableViewController, UITextFieldDelegate
 {
     var drinkContent : AddDrinkTableContent = AddDrinkTableContent()
-    
-    
-    @IBOutlet var drinkName: UITextField!
+
+    @IBOutlet var mixNameTextField: UITextField!
     @IBOutlet var totalPercentage: UILabel!
     
     @IBAction func viewTapped(_ sender: UITapGestureRecognizer)
@@ -36,12 +35,6 @@ class AddDrinkController : UITableViewController, UITextFieldDelegate
     func safeCellTextField(at indexPath : IndexPath, in cell : DrinkCell) {
         if var percentage = cell.percentageTextField.text
         {
-            if(percentage.contains(","))
-            {
-                let index = percentage.index(of: ",")
-                percentage.remove(at: index!)
-                percentage.insert(".", at: index!)
-            }
             drinkContent.ingredArray[indexPath.section].sectionPercentage[indexPath.row] = percentage
         }
         else
@@ -85,24 +78,16 @@ class AddDrinkController : UITableViewController, UITextFieldDelegate
             }
             
             percentageSum -= Int(drinkContent.ingredArray[0].sectionPercentage[currentRow!])!
+
+            var newString = NSString(string: textField.text!).replacingCharacters(in: range, with: string)
             
+            if NSString(string: newString).intValue > 100
+            {
+                return false
+            }
         
-            
-        
-        
-            
-        var newString = NSString(string: textField.text!).replacingCharacters(in: range, with: string)
-            
-        if NSString(string: newString).intValue > 100
-        {
-            return false
-        }
-        
-        
-            
-            
-           
-            if var oldString = textField.text {
+            if var oldString = textField.text
+            {
                 if oldString == ""
                 {
                     oldString = "0"
@@ -112,15 +97,15 @@ class AddDrinkController : UITableViewController, UITextFieldDelegate
                 {
                     newString = "0"
                 }
-                
                 percentageSum += Int(newString)!
                 if Int(newString)! <= Int(oldString)! || percentageSum <= 100 || string.count == 0
                 {
-                    self.totalPercentage.text = String(percentageSum)
+                    self.totalPercentage.text = String(percentageSum)+"%"
                     return true
                 }
             }
-            else {
+            else
+            {
                 return false
             }
         }
@@ -191,6 +176,8 @@ class AddDrinkController : UITableViewController, UITextFieldDelegate
     
     override func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath)
     {
+        var removeHelptext = false
+        
         if((sourceIndexPath.row != destinationIndexPath.row || sourceIndexPath.section != destinationIndexPath.section)
             && drinkContent.ingredArray[sourceIndexPath.section].sectionObjects[sourceIndexPath.row] != drinkContent.helpText
             && drinkContent.ingredArray[sourceIndexPath.section].sectionObjects[sourceIndexPath.row] != drinkContent.noMoreIngredientsText)
@@ -255,10 +242,7 @@ class AddDrinkController : UITableViewController, UITextFieldDelegate
             
             if(drinkContent.ingredArray[destinationIndexPath.section].sectionObjects.count > 1 && drinkContent.ingredArray[destinationIndexPath.section].sectionObjects.contains(drinkContent.helpText)) //if more than one elements is in top section and one of them is the helptext
             {
-                drinkContent.ingredArray[destinationIndexPath.section].sectionPercentage.removeLast() //remove help text row percenatge
-                
-                drinkContent.ingredArray[destinationIndexPath.section].sectionObjects.remove(at: drinkContent.ingredArray[0].sectionObjects.index(of: drinkContent.helpText)!)
-                //remove help text
+                removeHelptext = true
             }
             
             if drinkContent.ingredArray[sourceIndexPath.section].sectionObjects.count == 0
@@ -267,12 +251,19 @@ class AddDrinkController : UITableViewController, UITextFieldDelegate
                 drinkContent.ingredArray[sourceIndexPath.section].sectionPercentage.append("0")
             }
         }
-        
-        tableView.reloadData()
         let cell = tableView.cellForRow(at: destinationIndexPath) as! DrinkCell
+        
+        if(removeHelptext) //must be executed after let cell was set
+        {
+            drinkContent.ingredArray[destinationIndexPath.section].sectionPercentage.removeLast() //remove help text row percenatge
+            
+            drinkContent.ingredArray[destinationIndexPath.section].sectionObjects.remove(at: drinkContent.ingredArray[0].sectionObjects.index(of: drinkContent.helpText)!)
+            //remove help text
+        }
+        tableView.reloadData()
+        
         safeCellTextField(at: destinationIndexPath, in: cell)
         let visibleCells = tableView.visibleCells
-        
         for i in 0..<visibleCells.count
         {
             let cellIndex = tableView.indexPath(for: visibleCells[i])
@@ -293,17 +284,6 @@ class AddDrinkController : UITableViewController, UITextFieldDelegate
                 cell.percentageTextField.isHidden = true;
             }
         }
-        
-        /*for i in 0..<drinkContent.ingredArray[0].sectionObjects.count
-        {
-            let cell = tableView.cellForRow(at: IndexPath(row: i, section: 0)) as! DrinkCell
-            cell.percentageTextField.isHidden = false
-        }*/
-        /*for i in 0..<drinkContent.ingredArray[1].sectionObjects.count
-        {
-            let cell = tableView.cellForRow(at: IndexPath(row: i, section: 1))
-            //try((cell as! DrinkCell).percentageTextField.isHidden = true)
-        }*/
         
         /*debug*/
         print("\n")
@@ -344,11 +324,11 @@ class AddDrinkController : UITableViewController, UITextFieldDelegate
         }
         if(percentageSum == 0)
         {
-            self.totalPercentage.text = String(100)
+            self.totalPercentage.text = String(100)+"%"
             return String(100)
         }
         let percentage = (100 - percentageSum)
-        self.totalPercentage.text = String(percentageSum+percentage)
+        self.totalPercentage.text = String(percentageSum+percentage) + "%"
 
         return String(percentage)
     }
@@ -357,20 +337,57 @@ class AddDrinkController : UITableViewController, UITextFieldDelegate
         return drinkContent.ingredArray[section].sectionName
     }
     
-    @IBAction func CancelTapped(_ sender: UIBarButtonItem) {
-        self.dismiss(animated: true, completion: nil)
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "Save"
+        {
+            save()
+        }
+        else
+        {
+            self.presentingViewController?.dismiss(animated: true, completion: nil)
+        }
     }
     
-    @IBAction func SaveTapped(_ sender: UIBarButtonItem) {
+    func save(){
         
+        var mixName : String?
+        if(mixNameTextField.hasText)
+        {
+             mixName = mixNameTextField.text
+        }
+        else
+        {
+            let alert = UIAlertController(title: "Please name your drink", message: "To save, you must type in a name for your custom drink", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "Ok", style: .cancel, handler: nil))
+            self.present(alert, animated: true)
+            return
+        }
+
+        var txtFieldText = totalPercentage.text
+        txtFieldText?.removeLast()
+        if Int(txtFieldText!)! != 100
+        {
+            let alert = UIAlertController(title: "Invalid percentage", message: "To save, the total percentage must be 100", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "Ok", style: .cancel, handler: nil))
+            self.present(alert, animated: true)
+            return
+        }
         var drinks : [Drink] = Array()
         for i in 0..<drinkContent.ingredArray[0].sectionObjects.count
         {
-            //let drink = Drink(description: drinkContent.ingredArray[0].sectionObjects[i], percentage: Float(drinkContent.ingredArray[0].sectionPercentage[i])!)
-            //drinks.append(drink)
+            let description = drinkContent.ingredArray[0].sectionObjects[i]
+            let percentage = Int(drinkContent.ingredArray[0].sectionPercentage[i])!
+            if let drink = Service.shared.availableIngredients.first(where: {$0.description == description})
+            {
+                drink.addPercentage(percentage: percentage)
+                drinks.append(drink)
+            }
+            else {
+                //error
+                return
+            }
         }
-        
-        
-        //customDrinkModel.addMix(mix: Mix(ingredients: drinks))
+        Service.shared.customDrinkModel.addMix(mix: Mix(mix: "", mixDescription: mixName!, ingredients: drinks))
+        self.presentingViewController?.dismiss(animated: true, completion: nil)
     }
 }
