@@ -231,9 +231,11 @@ class AddDrinkController : UITableViewController, UITextFieldDelegate
             else if sourceIndexPath.section == 1  && destinationIndexPath.section == 0 //bottom to top
             {
                 drinkContent.ingredArray[destinationIndexPath.section].sectionPercentage.insert(getDefaultPercentage(), at: destinationIndexPath.row) //insert smart % at destination
+                
+                print("inserted \(drinkContent.ingredArray[destinationIndexPath.section].sectionPercentage[destinationIndexPath.row])%")
                 drinkContent.ingredArray[destinationIndexPath.section].sectionObjects.insert(drinkContent.ingredArray[sourceIndexPath.section].sectionObjects[sourceIndexPath.row], at: destinationIndexPath.row) //insert obj at destination
                 
-                print("inserted \(drinkContent.ingredArray[sourceIndexPath.section].sectionObjects[sourceIndexPath.row]) at row \(destinationIndexPath.row) in section \(destinationIndexPath.section)")
+                print("inserted \(drinkContent.ingredArray[destinationIndexPath.section].sectionObjects[destinationIndexPath.row]) at row \(destinationIndexPath.row) in section \(destinationIndexPath.section) with \(drinkContent.ingredArray[destinationIndexPath.section].sectionPercentage[destinationIndexPath.row]) %")
                 
                 drinkContent.ingredArray[sourceIndexPath.section].sectionPercentage.remove(at: sourceIndexPath.row) //remove % at source
                 
@@ -252,17 +254,20 @@ class AddDrinkController : UITableViewController, UITextFieldDelegate
             }
         }
         let cell = tableView.cellForRow(at: destinationIndexPath) as! DrinkCell
+        print("still \(drinkContent.ingredArray[destinationIndexPath.section].sectionPercentage[destinationIndexPath.row])%")
         
         if(removeHelptext) //must be executed after let cell was set
         {
-            drinkContent.ingredArray[destinationIndexPath.section].sectionPercentage.removeLast() //remove help text row percenatge
+            drinkContent.ingredArray[0].sectionPercentage.remove(at: drinkContent.ingredArray[0].sectionObjects.index(of: drinkContent.helpText)!)
+            //remove help text row percenatge
             
-            drinkContent.ingredArray[destinationIndexPath.section].sectionObjects.remove(at: drinkContent.ingredArray[0].sectionObjects.index(of: drinkContent.helpText)!)
+            drinkContent.ingredArray[0].sectionObjects.remove(at: drinkContent.ingredArray[0].sectionObjects.index(of: drinkContent.helpText)!)
             //remove help text
         }
+        
         tableView.reloadData()
         
-        safeCellTextField(at: destinationIndexPath, in: cell)
+        safeCellTextField(at: sourceIndexPath, in: cell)
         let visibleCells = tableView.visibleCells
         for i in 0..<visibleCells.count
         {
@@ -377,7 +382,7 @@ class AddDrinkController : UITableViewController, UITextFieldDelegate
         {
             let description = drinkContent.ingredArray[0].sectionObjects[i]
             let percentage = Int(drinkContent.ingredArray[0].sectionPercentage[i])!
-            if let drink = Service.shared.availableIngredients.first(where: {$0.description == description})
+            if let drink = Service.shared.availableIngredients.first(where: {$0.description == description}) //crashes right now
             {
                 drink.addPercentage(percentage: percentage)
                 drinks.append(drink)
