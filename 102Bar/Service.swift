@@ -2,13 +2,10 @@ import UIKit
 import Alamofire
 
 class Service: NSObject {
-<<<<<<< HEAD
-        
-=======
+
     static let shared = Service()
     var customDrinkModel : CustomDrinkModel = CustomDrinkModel()
     
->>>>>>> d3f72a785c5942234fe08715eee55869a10f6028
     let BASE_URL: String
     let URL_USER_LOGIN: String
     let URL_USER_REGISTER: String
@@ -34,11 +31,12 @@ class Service: NSObject {
         URL_ORDERED_MIXES = BASE_URL + "orderedMixes.php"
         URL_AVAILABLE_DRINK_TYPES = BASE_URL + "availableDrinkTypes.php"
         URL_AVAILABLE_DRINK_GROUPS = BASE_URL + "availableDrinkGroups.php"
-        /*standard.getAvailableDrinkGroups
+        super.init()
+        getAvailableDrinkGroups
             {
                 success in
-                standard.getAvailableDrinkTypes()
-        }*/
+                self.getAvailableDrinkTypes()
+        }
     }
     
     public func login(loginController: LoginController, username:String, password:String){
@@ -176,7 +174,6 @@ class Service: NSObject {
                     for tmp in drinkArray{
                         let tmpDictionary = tmp as! NSDictionary
                         let tmpDrink = tmpDictionary.object(forKey: "Drink") as! String
-                        //Add drinktype to php
                         let tmpDrinkType = self.availableDrinkTypes.first(where: {$0.drinkType == tmpDictionary.object(forKey: "DrinkType") as! String})!
                         let tmpDescription = tmpDictionary.object(forKey: "DrinkDesc") as! String
                         let drink = Drink(drink: tmpDrink, drinkType: tmpDrinkType, drinkDescription: tmpDescription)
@@ -201,13 +198,16 @@ class Service: NSObject {
                         let mixDictionary = root as! NSDictionary
                         let tmpMix = mixDictionary.object(forKey: "AvailableMix") as! String
                         let tmpDescription = mixDictionary.object(forKey: "Description") as! String
-                        let tmpIngredients = [Drink]()
+                        var tmpIngredients = [Drink]()
                         for ing in ingArray{
                             let ingDictionary = ing as! NSDictionary
-                            let referenceType = ingDictionary.object(forKey: "ReferenceType") as! String
-                            //if let drinkToAdd = self.availableIngredients.first(where: {$0.drink}){
-                                
-                            //}
+                            let reference = ingDictionary.object(forKey: "Reference") as! String
+                            let tmpDrinktoAdd = self.availableIngredients.first(where: {(ingDictionary.object(forKey: "Root") as! String) ==  tmpMix && $0.drink == reference})
+                            if let drinkToAdd = tmpDrinktoAdd?.clone(){
+                                drinkToAdd.percentage = ingDictionary.object(forKey: "Percentage") as! Int
+                                drinkToAdd.AFO = ingDictionary.object(forKey: "AFO") as! Int
+                                tmpIngredients.append(drinkToAdd)
+                            }
                         }
                         let mix = Mix(mix: tmpMix, mixDescription: tmpDescription, ingredients: tmpIngredients)
                         self.availableMixes.append(mix)
