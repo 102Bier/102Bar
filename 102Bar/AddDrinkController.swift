@@ -214,6 +214,20 @@ class AddDrinkController : UITableViewController, UITextFieldDelegate
             
                 drinkContent.ingredArray[sourceIndexPath.section].sectionObjects.remove(at: sourceIndexPath.row) //remove obj in source
                 
+                /****Update total percentage label****/
+                totalPercentage.text?.removeLast()
+                var totalPercentageNumber : Int = Int(totalPercentage.text!)!
+                if let tP = totalPercentage.text
+                {
+                    if let dCiAsP = Int(drinkContent.ingredArray[destinationIndexPath.section].sectionPercentage[destinationIndexPath.row]) {
+                        totalPercentageNumber = Int(tP)! - dCiAsP
+                    }
+                }
+                
+                totalPercentage.text = String(totalPercentageNumber) + "%"
+ 
+                
+                
                 if(drinkContent.ingredArray[sourceIndexPath.section].sectionObjects.count == 0)
                 {
                     drinkContent.ingredArray[sourceIndexPath.section].sectionObjects.append(drinkContent.helpText)

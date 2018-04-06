@@ -44,10 +44,16 @@ class Service: NSObject {
     
     public func login(loginController: LoginController, username:String, password:String){
         
-        let drinkType = availableDrinkTypes
+        /*** Create test availableDrinks Array*///
         let drink1 = Drink(drink: "", drinkType: availableDrinkTypes.first(where: {$0.drinkTypeDescription == "Süßer Sprudel"})!, drinkDescription: "Fanta")
         let drink2 = Drink(drink: "", drinkType: availableDrinkTypes.first(where: {$0.drinkTypeDescription == "Vodka"})!, drinkDescription: "Skyy")
-        Service.shared.testI = [drink1, drink2]
+        let drink3 = Drink(drink: "", drinkType: availableDrinkTypes.first(where: {$0.drinkTypeDescription == "Tequila"})!, drinkDescription: "Sierra Silver")
+        let drink4 = Drink(drink: "", drinkType: availableDrinkTypes.first(where: {$0.drinkTypeDescription == "Cola"})!, drinkDescription: "Coca Cola")
+        let drink5 = Drink(drink: "", drinkType: availableDrinkTypes.first(where: {$0.drinkTypeDescription == "Berentzen"})!, drinkDescription: "Berentzen Saurer Apfel")
+        let drink6 = Drink(drink: "", drinkType: availableDrinkTypes.first(where: {$0.drinkTypeDescription == "Energy"})!, drinkDescription: "Red Bull")
+        
+        Service.shared.testI = [drink1, drink2, drink3, drink4, drink5, drink6]
+        /***END***/
         
         let parameters: Parameters=[
             "username": username,

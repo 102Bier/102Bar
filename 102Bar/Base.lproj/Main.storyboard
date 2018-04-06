@@ -212,7 +212,7 @@
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="T99-fA-2Qd">
-                                    <rect key="frame" x="8" y="41" width="256.5" height="31"/>
+                                    <rect key="frame" x="8" y="41" width="252" height="31"/>
                                     <nil key="textColor"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="22"/>
                                     <textInputTraits key="textInputTraits"/>
@@ -221,11 +221,11 @@
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <gestureRecognizers/>
                             <constraints>
-                                <constraint firstItem="Aon-t8-27A" firstAttribute="leading" relation="lessThanOrEqual" secondItem="T99-fA-2Qd" secondAttribute="trailing" constant="21" id="0f7-ds-mlO"/>
                                 <constraint firstAttribute="trailing" secondItem="ndw-gV-cnJ" secondAttribute="trailing" constant="11" id="1f8-BI-VaQ"/>
                                 <constraint firstItem="MM1-kF-3yN" firstAttribute="leading" secondItem="eFm-Je-wiQ" secondAttribute="leading" constant="8" id="2f8-a8-QMy"/>
                                 <constraint firstItem="MM1-kF-3yN" firstAttribute="top" secondItem="eFm-Je-wiQ" secondAttribute="top" constant="12" id="8Em-gd-CcM"/>
                                 <constraint firstItem="T99-fA-2Qd" firstAttribute="top" secondItem="MM1-kF-3yN" secondAttribute="bottom" constant="8" id="Iys-zx-zht"/>
+                                <constraint firstAttribute="trailing" secondItem="T99-fA-2Qd" secondAttribute="trailing" constant="60" id="SBG-IT-LnR"/>
                                 <constraint firstItem="T99-fA-2Qd" firstAttribute="leading" secondItem="eFm-Je-wiQ" secondAttribute="leading" constant="8" id="VQY-Gf-FQX"/>
                                 <constraint firstAttribute="trailing" secondItem="Aon-t8-27A" secondAttribute="trailing" constant="10" id="mZ3-Uo-Bfv"/>
                                 <constraint firstItem="Aon-t8-27A" firstAttribute="top" secondItem="ndw-gV-cnJ" secondAttribute="bottom" constant="13" id="o8W-r3-ebk"/>
@@ -244,9 +244,9 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <textField hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="100" borderStyle="roundedRect" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="0L3-7b-vAr">
-                                            <rect key="frame" x="242" y="12" width="62" height="30"/>
+                                            <rect key="frame" x="257" y="12" width="47" height="30"/>
                                             <constraints>
-                                                <constraint firstAttribute="width" constant="62" id="SNU-Qc-X43"/>
+                                                <constraint firstAttribute="width" constant="47" id="SNU-Qc-X43"/>
                                             </constraints>
                                             <nil key="textColor"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -255,8 +255,8 @@
                                                 <outlet property="delegate" destination="svU-me-gCL" id="Xfc-oa-DrA"/>
                                             </connections>
                                         </textField>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0fF-At-TlZ">
-                                            <rect key="frame" x="19" y="12" width="59.333333333333343" height="26.5"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label was echt sehr lang is" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="14" translatesAutoresizingMaskIntoConstraints="NO" id="0fF-At-TlZ">
+                                            <rect key="frame" x="0.0" y="14" width="249" height="26"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="22"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
@@ -264,9 +264,11 @@
                                     </subviews>
                                     <gestureRecognizers/>
                                     <constraints>
-                                        <constraint firstItem="0fF-At-TlZ" firstAttribute="baseline" secondItem="0L3-7b-vAr" secondAttribute="baseline" id="he4-c6-rUG"/>
-                                        <constraint firstItem="0L3-7b-vAr" firstAttribute="centerY" secondItem="5lc-El-KaS" secondAttribute="centerY" id="i5o-dT-PBB"/>
-                                        <constraint firstAttribute="trailing" secondItem="0L3-7b-vAr" secondAttribute="trailing" constant="16" id="iRC-9u-tgh"/>
+                                        <constraint firstItem="0L3-7b-vAr" firstAttribute="leading" secondItem="0fF-At-TlZ" secondAttribute="trailing" constant="8" id="65Y-TK-5AU"/>
+                                        <constraint firstItem="0L3-7b-vAr" firstAttribute="top" secondItem="5lc-El-KaS" secondAttribute="top" constant="12" id="Qxj-fm-8CC"/>
+                                        <constraint firstItem="0fF-At-TlZ" firstAttribute="leading" secondItem="5lc-El-KaS" secondAttribute="leading" id="TQz-Vs-olj"/>
+                                        <constraint firstAttribute="trailing" secondItem="0L3-7b-vAr" secondAttribute="trailing" constant="16" id="YWb-gd-dbD"/>
+                                        <constraint firstItem="0fF-At-TlZ" firstAttribute="top" secondItem="5lc-El-KaS" secondAttribute="top" constant="14" id="ytv-pC-owi"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <gestureRecognizers/>
@@ -654,6 +656,6 @@
         <image name="icon_256.png" width="256" height="256"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="n1n-ep-ByN"/>
+        <segue reference="ZZJ-Ax-zbT"/>
     </inferredMetricsTieBreakers>
 </document>
