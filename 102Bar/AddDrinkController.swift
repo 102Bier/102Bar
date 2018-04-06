@@ -382,10 +382,11 @@ class AddDrinkController : UITableViewController, UITextFieldDelegate
         {
             let description = drinkContent.ingredArray[0].sectionObjects[i]
             let percentage = Int(drinkContent.ingredArray[0].sectionPercentage[i])!
-            if let drink = Service.shared.availableIngredients.first(where: {$0.description == description}) //crashes right now
+            if let ai = Service.shared.testI //crashes right now
             {
-                drink.addPercentage(percentage: percentage)
-                drinks.append(drink)
+                let drink = ai.first(where: {$0.drinkDescription == description})
+                drink?.addPercentage(percentage: percentage)
+                drinks.append(drink!)
             }
             else {
                 //error

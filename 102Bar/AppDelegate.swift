@@ -18,7 +18,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var nc : UINavigationController = UINavigationController()
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        
         //vc = window?.rootViewController?.storyboard?.instantiateViewController(withIdentifier: "TabBarController") as! UIViewController
         
         

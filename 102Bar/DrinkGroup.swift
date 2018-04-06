@@ -11,5 +11,4 @@ class DrinkGroup: NSObject {
         self.drinkGroupDescription = drinkGroupDescription
         self.alcoholic = alcoholic
     }
-
 }

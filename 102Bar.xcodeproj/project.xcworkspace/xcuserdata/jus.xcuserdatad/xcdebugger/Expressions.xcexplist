@@ -56,10 +56,10 @@
                value = "drinkContent.ingredArray[0].sectionObjects.index(of: drinkContent.helpText)">
             </PersistentString>
             <PersistentString
-               value = "drinkContent.ingredArray[1].sectionObjects">
+               value = "drinkContent.ingredArray[0].sectionObjects">
             </PersistentString>
             <PersistentString
-               value = "drinkContent.ingredArray[0].sectionObjects">
+               value = "drinkContent.ingredArray[1].sectionObjects">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -71,6 +71,25 @@
             </PersistentString>
             <PersistentString
                value = "vc">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "AddDrinkController.save():AddDrinkController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "Service.shared.availableIngredients">
+            </PersistentString>
+            <PersistentString
+               value = "Service.shared.customDrinkModel">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "AddDrinkTableContent.init():AddDrinkTableContent.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "Service.shared">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
