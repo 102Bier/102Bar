@@ -7,6 +7,7 @@ class Drink: NSObject {
     var drinkDescription: String = ""
     var percentage: Int = 0
     var AFO: Int = 0
+    var connection: Int = 0
     
     init(description: String, percentage: Int)
     {
@@ -14,7 +15,13 @@ class Drink: NSObject {
         self.percentage = percentage
     }
     
-    init(drink: String, drinkType: DrinkType, drinkDescription: String, percentage: Int, AFO: Int){
+    init(drink: String, drinkType: DrinkType, drinkDescription: String){
+        self.drink = drink
+        self.drinkType = drinkType
+        self.drinkDescription = drinkDescription
+    }
+    
+    init(drink: String, drinkType: DrinkType, drinkDescription: String, percentage: Int, AFO: Int, connection: Int){
         self.drink = drink
         self.drinkType = drinkType
         self.drinkDescription = drinkDescription
@@ -23,7 +30,7 @@ class Drink: NSObject {
     }
     
     func clone() -> Drink {
-        return Drink(drink: self.drink, drinkType: self.drinkType, drinkDescription: self.drinkDescription, percentage: self.percentage, AFO: self.AFO)
+        return Drink(drink: self.drink, drinkType: self.drinkType, drinkDescription: self.drinkDescription, percentage: self.percentage, AFO: self.AFO, connection: self.connection)
     }
     
 }
