@@ -2,7 +2,13 @@ import UIKit
 import Alamofire
 
 class Service: NSObject {
+<<<<<<< HEAD
         
+=======
+    static let shared = Service()
+    var customDrinkModel : CustomDrinkModel = CustomDrinkModel()
+    
+>>>>>>> d3f72a785c5942234fe08715eee55869a10f6028
     let BASE_URL: String
     let URL_USER_LOGIN: String
     let URL_USER_REGISTER: String

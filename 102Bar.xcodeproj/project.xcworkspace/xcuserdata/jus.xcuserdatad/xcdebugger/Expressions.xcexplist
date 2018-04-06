@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<VariablesViewState
+   version = "1.0">
+   <ContextStates>
+      <ContextState
+         contextName = "LoginController.changeView():LoginController.swift">
+      </ContextState>
+      <ContextState
+         contextName = "main:AppDelegate.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "addDrinkController">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "AddDrinkController.SaveTapped(_:):AddDrinkController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "Int(String((total?.removeLast())!))">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "AddDrinkController.safeCellTextField(at:in:):AddDrinkController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "drinkContent.ingredArray[indexPath.section].sectionPercentage">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "AddDrinkController.getDefaultPercentage():AddDrinkController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "drinkContent.ingredArray[0].sectionPercentage">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "AddDrinkController.tableView(_:moveRowAt:to:):AddDrinkController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "cells">
+            </PersistentString>
+            <PersistentString
+               value = "i">
+            </PersistentString>
+            <PersistentString
+               value = "visibleCells[0] as! DrinkCell).drinkLabel.text">
+            </PersistentString>
+            <PersistentString
+               value = "drinkContent.ingredArray[destinationIndexPath.section].sectionPercentage">
+            </PersistentString>
+            <PersistentString
+               value = "drinkContent.ingredArray[0].sectionObjects.index(of: drinkContent.helpText)">
+            </PersistentString>
+            <PersistentString
+               value = "drinkContent.ingredArray[1].sectionObjects">
+            </PersistentString>
+            <PersistentString
+               value = "drinkContent.ingredArray[0].sectionObjects">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "AppDelegate.application(_:didFinishLaunchingWithOptions:):AppDelegate.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "addDrinkController">
+            </PersistentString>
+            <PersistentString
+               value = "vc">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+   </ContextStates>
+</VariablesViewState>

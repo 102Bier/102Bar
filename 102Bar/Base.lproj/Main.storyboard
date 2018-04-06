@@ -1,11 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<<<<<<< HEAD
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+=======
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+>>>>>>> d3f72a785c5942234fe08715eee55869a10f6028
     <device id="retina4_0" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -200,19 +204,19 @@
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="total:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ndw-gV-cnJ">
-                                    <rect key="frame" x="270" y="12" width="39" height="21"/>
+                                    <rect key="frame" x="550" y="12" width="39" height="21"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0%" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Aon-t8-27A">
-                                    <rect key="frame" x="286.5" y="46" width="23.5" height="21"/>
+                                    <rect key="frame" x="565.5" y="46" width="24.5" height="21"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="T99-fA-2Qd">
-                                    <rect key="frame" x="8" y="41" width="257.5" height="31"/>
+                                    <rect key="frame" x="8" y="41" width="536.5" height="31"/>
                                     <nil key="textColor"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="22"/>
                                     <textInputTraits key="textInputTraits"/>
@@ -244,13 +248,13 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <textField hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="100" borderStyle="roundedRect" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="0L3-7b-vAr">
-                                            <rect key="frame" x="242" y="12" width="62" height="30"/>
+                                            <rect key="frame" x="522" y="12" width="62" height="30"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="62" id="SNU-Qc-X43"/>
                                             </constraints>
                                             <nil key="textColor"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <textInputTraits key="textInputTraits" keyboardType="decimalPad" returnKeyType="done"/>
+                                            <textInputTraits key="textInputTraits" keyboardType="numberPad" returnKeyType="done"/>
                                             <connections>
                                                 <outlet property="delegate" destination="svU-me-gCL" id="Xfc-oa-DrA"/>
                                             </connections>
@@ -283,15 +287,19 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="New Drink" id="3Lq-br-hBW">
-                        <barButtonItem key="leftBarButtonItem" title="Cancel" id="ScA-Nv-ycF">
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="ScA-Nv-ycF">
                             <connections>
-                                <segue destination="EvZ-hq-23e" kind="show" id="4As-BD-0cc"/>
+                                <segue destination="EvZ-hq-23e" kind="show" identifier="Cancel" id="L0r-vh-kaU"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" title="Save" id="w7g-6p-hAE"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="w7g-6p-hAE">
+                            <connections>
+                                <segue destination="EvZ-hq-23e" kind="show" identifier="Save" id="ZZJ-Ax-zbT"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="drinkName" destination="T99-fA-2Qd" id="QSc-nn-qhE"/>
+                        <outlet property="mixNameTextField" destination="T99-fA-2Qd" id="dUy-FF-Oyu"/>
                         <outlet property="totalPercentage" destination="Aon-t8-27A" id="PRH-1O-NWr"/>
                     </connections>
                 </tableViewController>
@@ -507,7 +515,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <navigationBar contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pKQ-iy-iUq">
-                                <rect key="frame" x="0.0" y="-34" width="320" height="44"/>
+                                <rect key="frame" x="0.0" y="-2" width="320" height="44"/>
                                 <items>
                                     <navigationItem title="Register" id="xNG-VT-JE0">
                                         <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="pcf-ef-iyL">
@@ -519,7 +527,7 @@
                                 </items>
                             </navigationBar>
                             <textField opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Firstname" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="PJh-Ka-UME">
-                                <rect key="frame" x="10" y="26" width="300" height="30"/>
+                                <rect key="frame" x="10" y="58" width="300" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="pYT-VZ-oJV"/>
                                 </constraints>
@@ -528,7 +536,7 @@
                                 <textInputTraits key="textInputTraits" textContentType="name"/>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Lastname" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="nc3-nK-hEq">
-                                <rect key="frame" x="10" y="64" width="300" height="30"/>
+                                <rect key="frame" x="10" y="96" width="300" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="eGA-b0-Yeh"/>
                                 </constraints>
@@ -537,7 +545,7 @@
                                 <textInputTraits key="textInputTraits" textContentType="family-name"/>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Username" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="CAC-N3-D5b">
-                                <rect key="frame" x="10" y="102" width="300" height="30"/>
+                                <rect key="frame" x="10" y="134" width="300" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="wqa-Sg-GBk"/>
                                 </constraints>
@@ -546,7 +554,7 @@
                                 <textInputTraits key="textInputTraits" textContentType="username"/>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="E-Mail" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="VsZ-MN-roF">
-                                <rect key="frame" x="10" y="140" width="300" height="30"/>
+                                <rect key="frame" x="10" y="172" width="300" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="XTU-iK-HGo"/>
                                 </constraints>
@@ -555,7 +563,7 @@
                                 <textInputTraits key="textInputTraits" textContentType="email"/>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Ub8-Z8-XeH">
-                                <rect key="frame" x="10" y="178" width="300" height="30"/>
+                                <rect key="frame" x="10" y="210" width="300" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="mxz-GV-2WN"/>
                                 </constraints>
@@ -564,7 +572,7 @@
                                 <textInputTraits key="textInputTraits" secureTextEntry="YES" textContentType="password"/>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Confirm Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="uRV-sK-cge">
-                                <rect key="frame" x="10" y="216" width="300" height="30"/>
+                                <rect key="frame" x="10" y="248" width="300" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="31g-vQ-ANm"/>
                                 </constraints>
@@ -573,7 +581,7 @@
                                 <textInputTraits key="textInputTraits" secureTextEntry="YES" textContentType="password"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tho-HH-qCo">
-                                <rect key="frame" x="131.5" y="258" width="57" height="30"/>
+                                <rect key="frame" x="131.5" y="290" width="57" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="Yb2-4p-5D7"/>
                                 </constraints>
@@ -650,6 +658,6 @@
         <image name="icon_256.png" width="256" height="256"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="n1n-ep-ByN"/>
+        <segue reference="ZZJ-Ax-zbT"/>
     </inferredMetricsTieBreakers>
 </document>
