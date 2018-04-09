@@ -41,25 +41,28 @@
          contextName = "AddDrinkController.tableView(_:moveRowAt:to:):AddDrinkController.swift">
          <PersistentStrings>
             <PersistentString
-               value = "cells">
-            </PersistentString>
-            <PersistentString
-               value = "i">
-            </PersistentString>
-            <PersistentString
                value = "visibleCells[0] as! DrinkCell).drinkLabel.text">
-            </PersistentString>
-            <PersistentString
-               value = "drinkContent.ingredArray[destinationIndexPath.section].sectionPercentage">
-            </PersistentString>
-            <PersistentString
-               value = "drinkContent.ingredArray[0].sectionObjects.index(of: drinkContent.helpText)">
             </PersistentString>
             <PersistentString
                value = "drinkContent.ingredArray[1].sectionObjects">
             </PersistentString>
             <PersistentString
+               value = "i">
+            </PersistentString>
+            <PersistentString
                value = "drinkContent.ingredArray[0].sectionObjects">
+            </PersistentString>
+            <PersistentString
+               value = "totalPercentage.text">
+            </PersistentString>
+            <PersistentString
+               value = "drinkContent.ingredArray[destinationIndexPath.section].sectionPercentage">
+            </PersistentString>
+            <PersistentString
+               value = "cells">
+            </PersistentString>
+            <PersistentString
+               value = "drinkContent.ingredArray[0].sectionObjects.index(of: drinkContent.helpText)">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -71,6 +74,22 @@
             </PersistentString>
             <PersistentString
                value = "vc">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "AddDrinkController.save():AddDrinkController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "Service.shared.availableIngredients">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "AddDrinkTableContent.init():AddDrinkTableContent.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "Service.shared">
             </PersistentString>
          </PersistentStrings>
       </ContextState>

@@ -21,6 +21,9 @@ class Service: NSObject {
     var availableDrinkTypes: [DrinkType]!
     var availableIngredients: [Drink]!
     var availableMixes: [Mix]!
+    public var testI: [Drink]!
+    
+    
     
     override init() {
         BASE_URL = "http://102bier.de/102bar/"
@@ -40,6 +43,17 @@ class Service: NSObject {
     }
     
     public func login(loginController: LoginController, username:String, password:String){
+        
+        /*** Create test availableDrinks Array*///
+        let drink1 = Drink(drink: "", drinkType: availableDrinkTypes.first(where: {$0.drinkTypeDescription == "Süßer Sprudel"})!, drinkDescription: "Fanta")
+        let drink2 = Drink(drink: "", drinkType: availableDrinkTypes.first(where: {$0.drinkTypeDescription == "Vodka"})!, drinkDescription: "Skyy")
+        let drink3 = Drink(drink: "", drinkType: availableDrinkTypes.first(where: {$0.drinkTypeDescription == "Tequila"})!, drinkDescription: "Sierra Silver")
+        let drink4 = Drink(drink: "", drinkType: availableDrinkTypes.first(where: {$0.drinkTypeDescription == "Cola"})!, drinkDescription: "Coca Cola")
+        let drink5 = Drink(drink: "", drinkType: availableDrinkTypes.first(where: {$0.drinkTypeDescription == "Berentzen"})!, drinkDescription: "Berentzen Saurer Apfel")
+        let drink6 = Drink(drink: "", drinkType: availableDrinkTypes.first(where: {$0.drinkTypeDescription == "Energy"})!, drinkDescription: "Red Bull")
+        
+        Service.shared.testI = [drink1, drink2, drink3, drink4, drink5, drink6]
+        /***END***/
         
         let parameters: Parameters=[
             "username": username,
