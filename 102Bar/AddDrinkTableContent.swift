@@ -26,7 +26,7 @@ class AddDrinkTableContent {
         /****** When object <--> DB works*/
          var availableIngredients : [String]! = Array()
         print (Service.shared.testI)
-        Service.shared.testI.forEach({availableIngredients.append($0.drinkDescription)})
+        //Service.shared.testI.forEach({availableIngredients.append($0.drinkDescription)})
         /*******/
         //let availableIngredients = ["Captain Morgan", "Gletscherwasser", "Wiskey", "Jägermeister", "Cola", "Fanta", "Organgensaft", "Red Bull"]
         let selectedIngredients : [String] = [helpText]

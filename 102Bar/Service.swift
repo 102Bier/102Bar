@@ -1,5 +1,6 @@
 import UIKit
 import Alamofire
+import SwiftyJSON
 
 class Service: NSObject {
 
@@ -9,7 +10,8 @@ class Service: NSObject {
     let BASE_URL: String
     let URL_USER_LOGIN: String
     let URL_USER_REGISTER: String
-    let URL_AVAILABLE_INGREDIENTS: String
+    let URL_AVAILABLE_INGREDIENTS_TYPE: String
+    let URL_AVAILABLE_INGREDIENTS_DRINK: String
     let URL_AVAILABLE_MIXES: String
     let URL_AVAILABLE_DRINK_GROUPS: String
     let URL_AVAILABLE_DRINK_TYPES: String
@@ -29,7 +31,8 @@ class Service: NSObject {
         BASE_URL = "http://102bier.de/102bar/"
         URL_USER_LOGIN = BASE_URL + "login.php"
         URL_USER_REGISTER = BASE_URL + "register.php"
-        URL_AVAILABLE_INGREDIENTS = BASE_URL + "availableIngredients.php"
+        URL_AVAILABLE_INGREDIENTS_TYPE = BASE_URL + "availableIngredientsType.php"
+        URL_AVAILABLE_INGREDIENTS_DRINK = BASE_URL + "availableIngredientsDrink.php"
         URL_AVAILABLE_MIXES = BASE_URL + "availableMixes.php"
         URL_ORDERED_MIXES = BASE_URL + "orderedMixes.php"
         URL_AVAILABLE_DRINK_TYPES = BASE_URL + "availableDrinkTypes.php"
@@ -38,8 +41,14 @@ class Service: NSObject {
         getAvailableDrinkGroups
             {
                 success in
-                self.getAvailableDrinkTypes()
+                self.getAvailableDrinkTypes{
+                    success1 in
+                }
         }
+    }
+    
+    private func nextStep1(ding: Bool){
+        
     }
     
     public func login(loginController: LoginController, username:String, password:String){
@@ -138,7 +147,7 @@ class Service: NSObject {
                         let tmpDictionary = tmp as! NSDictionary
                         let tmpDrinkGroup: String = tmpDictionary.object(forKey: "DrinkGroup") as! String
                         let tmpDescription: String = tmpDictionary.object(forKey: "Description") as! String
-                        let tmpAlcoholic: Bool = (tmpDictionary.object(forKey: "Alcoholic") as? Int) == 1 ? true : false
+                        let tmpAlcoholic: Bool = (tmpDictionary.object(forKey: "Alcoholic") as! String) == "1" ? true : false
                         let drinkGroup = DrinkGroup(drinkGroup: tmpDrinkGroup, drinkGroupDescription: tmpDescription, alcoholic: tmpAlcoholic)
                         self.availableDrinkGroups.append(drinkGroup)
                     }
@@ -149,7 +158,7 @@ class Service: NSObject {
         }
     }
     
-    public func getAvailableDrinkTypes(){
+    public func getAvailableDrinkTypes(callback: @escaping (_ success: Bool?) -> Void){
         Alamofire.request(self.URL_AVAILABLE_DRINK_TYPES).responseJSON
             {
                 response in
@@ -158,47 +167,56 @@ class Service: NSObject {
                     let tmpArray = result as! NSArray
                     for tmp in tmpArray{
                         let tmpDictionary = tmp as! NSDictionary
-                        let tmpDrinkType: String = tmpDictionary.object(forKey: "DrinkGroup") as! String
+                        let tmpDrinkType: String = tmpDictionary.object(forKey: "DrinkType") as! String
                         let tmpDrinkGroup = self.availableDrinkGroups.first(where: {$0.drinkGroup == tmpDictionary.object(forKey: "DrinkGroup") as! String})!
                         let tmpDescription: String = tmpDictionary.object(forKey: "Description") as! String
                         let drinkType = DrinkType(drinkType: tmpDrinkType, drinkGroup: tmpDrinkGroup, drinkTypeDescription: tmpDescription)
                         self.availableDrinkTypes.append(drinkType)
                     }
+                    callback(true)
+                }else{
+                    callback(false)
                 }
         }
     }
     
-    public func getAvailableIngredients(){
-        Alamofire.request(self.URL_AVAILABLE_INGREDIENTS).responseJSON
+    public func getAvailableIngredients(callback: @escaping (_ success: Bool?) -> Void){
+        Alamofire.request(self.URL_AVAILABLE_INGREDIENTS_TYPE).responseJSON
             {
                 response in
                 if let result = response.result.value {
                     self.availableIngredients = Array()
-                    let typeDrinkDic = result as! NSDictionary
-                    let typeArray = typeDrinkDic.object(forKey: "types") as! NSArray
-                    let drinkArray = typeDrinkDic.object(forKey: "drinks") as! NSArray
+                    let typeArray = result as! NSArray
                     for tmp in typeArray{
                         let tmpDictionary = tmp as! NSDictionary
                         let tmpDrink = tmpDictionary.object(forKey: "DrinkType") as! String
-                        let tmpDrinkType = self.availableDrinkTypes.first(where: {$0.drinkType == tmpDictionary.object(forKey: "DrinkType") as! String})!
+                        let tmpDrinkType = self.availableDrinkTypes.first(where: {$0.drinkType == tmpDrink})
                         let tmpDescription = tmpDictionary.object(forKey: "DrinkTypeDesc") as! String
-                        let drink = Drink(drink: tmpDrink, drinkType: tmpDrinkType, drinkDescription: tmpDescription)
+                        let drink = Drink(drink: tmpDrink, drinkType: tmpDrinkType!, drinkDescription: tmpDescription)
                         self.availableIngredients.append(drink)
                     }
-                    for tmp in drinkArray{
-                        let tmpDictionary = tmp as! NSDictionary
-                        let tmpDrink = tmpDictionary.object(forKey: "Drink") as! String
-                        let tmpDrinkType = self.availableDrinkTypes.first(where: {$0.drinkType == tmpDictionary.object(forKey: "DrinkType") as! String})!
-                        let tmpDescription = tmpDictionary.object(forKey: "DrinkDesc") as! String
-                        let drink = Drink(drink: tmpDrink, drinkType: tmpDrinkType, drinkDescription: tmpDescription)
-                        self.availableIngredients.append(drink)
+                    Alamofire.request(self.URL_AVAILABLE_INGREDIENTS_DRINK).responseJSON{
+                        response1 in
+                        if let result1 = response1.result.value{
+                            let drinkArray = result1 as! NSArray
+                            for tmp in drinkArray{
+                                let tmpDictionary = tmp as! NSDictionary
+                                let tmpDrink = tmpDictionary.object(forKey: "Drink") as! String
+                                let tmpDrinkType = self.availableDrinkTypes.first(where: {$0.drinkType == tmpDictionary.object(forKey: "DrinkType") as! String})!
+                                let tmpDescription = tmpDictionary.object(forKey: "DrinkDesc") as! String
+                                let drink = Drink(drink: tmpDrink, drinkType: tmpDrinkType, drinkDescription: tmpDescription)
+                                self.availableIngredients.append(drink)
+                            }
+                            callback(true)
+                        }else{
+                            callback(false)
+                        }
                     }
-                    
                 }
         }
     }
     
-    public func getAvailableMixes(){
+    public func getAvailableMixes(callback: @escaping (_ success: Bool?) -> Void){
         Alamofire.request(self.URL_AVAILABLE_MIXES).responseJSON
             {
                 response in
@@ -206,7 +224,6 @@ class Service: NSObject {
                     self.availableMixes = Array()
                     let mixesDic = result as! NSDictionary
                     let rootArray = mixesDic.object(forKey: "Root") as! NSArray
-                    //TODO change sql
                     let ingArray = mixesDic.object(forKey: "Ing") as! NSArray
                     for root in rootArray{
                         let mixDictionary = root as! NSDictionary
@@ -226,11 +243,14 @@ class Service: NSObject {
                         let mix = Mix(mix: tmpMix, mixDescription: tmpDescription, ingredients: tmpIngredients)
                         self.availableMixes.append(mix)
                     }
+                    callback(true)
+                }else{
+                    callback(false)
                 }
         }
     }
     
-    public func getOrderedMixes(){
+    public func getOrderedMixes(callback: @escaping (_ success: Bool?) -> Void){
         Alamofire.request(self.URL_ORDERED_MIXES).responseJSON
             {
                 response in
@@ -246,6 +266,9 @@ class Service: NSObject {
                     }else{
                         //error message in case of invalid credential
                     }
+                    callback(true)
+                }else{
+                    callback(false)
                 }
         }
     }

@@ -193,6 +193,13 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		8A2EF96A207B91D4003067B6 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		8A41B9FD205FDD9900907669 = {
 			isa = PBXGroup;
 			children = (
@@ -200,6 +207,7 @@
 				8A41BA1D205FDD9900907669 /* 102BarTests */,
 				8A41BA28205FDD9900907669 /* 102BarUITests */,
 				8A41BA07205FDD9900907669 /* Products */,
+				8A2EF96A207B91D4003067B6 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -690,7 +698,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = F57P2RGF3M;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = 102Bar/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "de.102bier.-02Bar";
@@ -706,7 +714,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = F57P2RGF3M;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = 102Bar/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "de.102bier.-02Bar";
