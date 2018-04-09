@@ -39,4 +39,8 @@ class Drink: NSObject {
         return Drink(drink: self.drink, drinkType: self.drinkType, drinkDescription: self.drinkDescription, percentage: self.percentage, AFO: self.AFO, connection: self.connection)
     }
     
+    func toString() -> String {
+        return drinkDescription == drinkType.drinkTypeDescription ? drinkDescription : "\(drinkType.drinkTypeDescription) (\(drinkDescription)"
+    }
+    
 }
