@@ -1,15 +1,17 @@
 import UIKit
 
-class DrinkController: UIViewController {
+class DrinkController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
-    var customDrinkController: UIView!
-    var defaultDrinkController: UIView!
+//    var customDrinkController: UIView!
+//    var defaultDrinkController: UIView!
+    
+    @IBOutlet var CustomDrinkTable: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        customDrinkController = CustomDrinkController().view
-        defaultDrinkController = DefaultDrinkController().view
+        //customDrinkController = CustomDrinkController().view
+        //defaultDrinkController = DefaultDrinkController().view
     }
 
     
@@ -35,9 +37,9 @@ class DrinkController: UIViewController {
     @IBAction func switchView(_ sender: UISegmentedControl) {
         switch sender.selectedSegmentIndex {
         case 0:
-            view.bringSubview(toFront: defaultDrinkController)
+            //view.bringSubview(toFront: defaultDrinkController)
         case 1:
-            view.bringSubview(toFront: customDrinkController)
+            //view.bringSubview(toFront: customDrinkController)
         default:
             break
         }
