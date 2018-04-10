@@ -3,10 +3,18 @@ import UIKit
 
 class OrderedMixesController : UITableViewController{
     
-    let orderedMixes = Service.shared.orderedMixes
+    var orderedMixes: [Mix] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        Service.shared.getOrderedMixes{
+            success in
+            self.orderedMixes = Service.shared.orderedMixes
+            super.viewWillAppear(animated)
+        }
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

@@ -307,7 +307,7 @@ class Service: NSObject {
         }
     }
     
-    public func orderMix(mixToOrder: Mix, callback: @escaping (_ success: String?) -> Void){
+    public func orderMix(mixToOrder: Mix, add: Bool, callback: @escaping (_ success: String?) -> Void){
         var ingredients: String = ""
         guard let data = try? JSONSerialization.data(withJSONObject: mixToOrder.ingredients, options: []) else {
             callback("Error to Parse")
@@ -318,7 +318,9 @@ class Service: NSObject {
         let parameters: Parameters=[
             "Mix": mixToOrder.mix,
             "Description": mixToOrder.mixDescription,
-            "Ingredients": ingredients
+            "Ingredients": ingredients,
+            "User": defaultValues.object(forKey: "userid") as! String,
+            "Add": add ? "1" : "0"
         ]
         
         Alamofire.request(URL_ORDER_MIX, method: .post, parameters: parameters).responseJSON

@@ -17,10 +17,14 @@ class OrderedMixTableViewCell: UITableViewCell{
     }
     
     @IBAction func AcceptButton(_ sender: Any) {
-        
+        Service.shared.orderMix(mixToOrder: orderedMix!, add: false){
+            message in
+        }
     }
     
     @IBAction func DeclineButton(_ sender: Any) {
-        
+        Service.shared.orderMix(mixToOrder: orderedMix!, add: false){
+            message in
+        }
     }
 }
