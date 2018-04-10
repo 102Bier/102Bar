@@ -40,7 +40,7 @@ class Drink: NSObject {
     }
     
     func toString() -> String {
-        return drinkDescription == drinkType.drinkTypeDescription ? drinkDescription : "\(drinkType.drinkTypeDescription) (\(drinkDescription)"
+        return drinkDescription == drinkType.drinkTypeDescription ? drinkDescription : "\(drinkType.drinkTypeDescription) (\(drinkDescription))"
     }
     
 }
