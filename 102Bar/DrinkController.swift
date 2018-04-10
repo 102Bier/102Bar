@@ -1,9 +1,6 @@
 import UIKit
 
 class DrinkController: UIViewController, UITableViewDelegate, UITableViewDataSource {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return Service.shared.customDrinkModel.customMixes.count
-    }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ingredCell") as! ingredCell
@@ -14,6 +11,21 @@ class DrinkController: UIViewController, UITableViewDelegate, UITableViewDataSou
             cell.ingredLabels[i].text = Service.shared.customDrinkModel.customMixes[indexPath.row].ingredients[i].drinkDescription
         }
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return Service.shared.customDrinkModel.customMixes.count
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "addCustomDrink"
+        {
+            Service.shared.getAvailableIngredients() {
+                sucess in
+                let dest = segue.destination.childViewControllers[0] as! AddDrinkController
+                dest.reinitDrinkContent()
+            }
+        }
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

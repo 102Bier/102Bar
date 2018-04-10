@@ -32,12 +32,18 @@ class AddDrinkController : UITableViewController, UITextFieldDelegate
         view.endEditing(true)
     }
     
-    override func viewWillAppear(_ animated: Bool) {
+    func reinitDrinkContent()
+    {
+        drinkContent = AddDrinkTableContent()
+        tableView.reloadData()
+    }
+    
+    /*override func viewWillAppear(_ animated: Bool) {
        Service.shared.getAvailableIngredients() {
             sucess in super.viewWillAppear(animated)
             self.tableView.reloadData()
         }
-    }
+    }*/
     
     func safeCellTextField(at indexPath : IndexPath, in cell : DrinkCell) {
         if let percentage = cell.percentageTextField.text
