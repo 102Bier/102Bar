@@ -6,19 +6,17 @@ class OrderedMixesController : UITableViewController{
     var orderedMixes: [Mix] = []
     
     override func viewDidLoad() {
+        self.refresh()
         super.viewDidLoad()
     }
     
-    override init(style: UITableViewStyle) {
-        super.init(style: style)
+    func refresh(){
         Service.shared.getOrderedMixes{
             success in
             self.orderedMixes = Service.shared.orderedMixes
+            self.tableView.reloadData()
+            self.refreshControl?.endRefreshing()
         }
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
