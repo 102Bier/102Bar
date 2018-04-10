@@ -579,9 +579,7 @@
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="kmm-sM-CT8">
                             <connections>
-                                <segue destination="Q5U-zw-1Z3" kind="popoverPresentation" popoverAnchorBarButtonItem="kmm-sM-CT8" id="BO2-xK-XJp">
-                                    <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
-                                </segue>
+                                <segue destination="Q5U-zw-1Z3" kind="show" identifier="addCustomDrink" id="BO2-xK-XJp"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -853,6 +851,7 @@
         <image name="icon_256.png" width="256" height="256"/>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="BO2-xK-XJp"/>
         <segue reference="L0r-vh-kaU"/>
     </inferredMetricsTieBreakers>
 </document>
