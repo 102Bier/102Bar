@@ -9,12 +9,16 @@ class OrderedMixesController : UITableViewController{
         super.viewDidLoad()
     }
     
-    override func viewWillAppear(_ animated: Bool) {
+    override init(style: UITableViewStyle) {
+        super.init(style: style)
         Service.shared.getOrderedMixes{
             success in
             self.orderedMixes = Service.shared.orderedMixes
-            super.viewWillAppear(animated)
         }
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

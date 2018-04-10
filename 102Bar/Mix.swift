@@ -4,6 +4,7 @@ class Mix: NSObject {
     var mix: String = ""
     var mixDescription: String = ""
     var ingredients: [Drink]!
+    var orderedByUser: String = ""
     
     init(mix: String, mixDescription: String, ingredients: [Drink]){
         self.mix = mix
