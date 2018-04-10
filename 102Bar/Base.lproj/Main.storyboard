@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -111,22 +112,6 @@
             </objects>
             <point key="canvasLocation" x="117.59999999999999" y="118.22660098522168"/>
         </scene>
-        <!--Ordered Drinks-->
-        <scene sceneID="cSR-et-iOo">
-            <objects>
-                <viewController storyboardIdentifier="BarkeeperController" id="pXP-w4-5gA" customClass="BarkeeperController" customModule="_02Bar" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="Eye-xg-XV2">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <viewLayoutGuide key="safeArea" id="vyV-tb-stl"/>
-                    </view>
-                    <tabBarItem key="tabBarItem" title="Ordered Drinks" id="qik-Sa-pA5"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="4Nz-1a-xNh" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2050" y="1265"/>
-        </scene>
         <!--TabBarFirst-->
         <scene sceneID="kbI-vQ-uhB">
             <objects>
@@ -138,7 +123,7 @@
                     </tabBar>
                     <connections>
                         <segue destination="EvZ-hq-23e" kind="relationship" relationship="viewControllers" id="n1n-ep-ByN"/>
-                        <segue destination="pXP-w4-5gA" kind="relationship" relationship="viewControllers" id="YAu-7K-Vc8"/>
+                        <segue destination="392-t8-KVp" kind="relationship" relationship="viewControllers" id="YAu-7K-Vc8"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4nL-SM-P5A" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -149,7 +134,7 @@
         <scene sceneID="ho3-XM-geV">
             <objects>
                 <navigationController title="NavDrinks" id="EvZ-hq-23e" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Drinks" id="wjp-eu-Euq"/>
+                    <tabBarItem key="tabBarItem" title="Mixes" id="wjp-eu-Euq"/>
                     <navigationItem key="navigationItem" id="Ut0-G1-F4I"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="4Y6-j9-Yyo">
                         <rect key="frame" x="0.0" y="20" width="320" height="44"/>
@@ -178,7 +163,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="S1E-xe-xn3" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2049" y="-766"/>
+            <point key="canvasLocation" x="3021" y="-698"/>
         </scene>
         <!--AddDrinksTable-->
         <scene sceneID="pwv-Tp-quE">
@@ -308,7 +293,7 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="2857.5" y="-692.95774647887322"/>
+            <point key="canvasLocation" x="2048" y="-698"/>
         </scene>
         <!--New Drink-->
         <scene sceneID="hP0-o5-8xj">
@@ -485,7 +470,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="6Gz-qc-nVO"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Drinks" id="Oc1-MF-wl3">
+                    <navigationItem key="navigationItem" title="Mixes" id="Oc1-MF-wl3">
                         <barButtonItem key="leftBarButtonItem" title="Logout" id="Bpd-Wf-5dx">
                             <connections>
                                 <action selector="LogoutTapped:" destination="obu-ir-aFC" id="wY5-Xe-QxZ"/>
@@ -502,7 +487,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2BR-jZ-Exx" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3022" y="265"/>
+            <point key="canvasLocation" x="3021" y="117"/>
         </scene>
         <!--Register Controller-->
         <scene sceneID="PVf-ZE-7eE">
@@ -651,11 +636,119 @@
             </objects>
             <point key="canvasLocation" x="118" y="-791"/>
         </scene>
+        <!--Ordered Mixes-->
+        <scene sceneID="l1L-Fg-Qq4">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="392-t8-KVp" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Ordered Mixes" id="qik-Sa-pA5"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="OnR-53-dYP">
+                        <rect key="frame" x="0.0" y="20" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="fJH-MV-rbc" kind="show" id="4N9-7k-rxt"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="G3Y-RJ-2Jn" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1042.5" y="945.42253521126759"/>
+        </scene>
+        <!--Ordered Mixes Controller-->
+        <scene sceneID="WhO-0w-gzz">
+            <objects>
+                <tableViewController storyboardIdentifier="OrderedMixesController" id="fJH-MV-rbc" customClass="OrderedMixesController" customModule="_02Bar" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="sMG-dg-XTE">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="115" id="x7l-i1-g9H" customClass="OrderedMixTableViewCell" customModule="_02Bar" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="320" height="115"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="x7l-i1-g9H" id="SKN-W5-JmT">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="114.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="MixDescription" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NSc-NS-5tO">
+                                            <rect key="frame" x="24" y="19" width="240" height="20"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="20" id="HXe-tj-5TB"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RH1-YU-svk">
+                                            <rect key="frame" x="272" y="67" width="40" height="40"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="40" id="3Ih-U9-yar"/>
+                                            </constraints>
+                                            <state key="normal" image="iconDelete.png"/>
+                                            <connections>
+                                                <action selector="DeclineButton:" destination="x7l-i1-g9H" eventType="touchUpInside" id="Zyj-EJ-4d4"/>
+                                            </connections>
+                                        </button>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EO7-YP-uMu">
+                                            <rect key="frame" x="272" y="19" width="40" height="40"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="40" id="mzZ-UJ-geX"/>
+                                            </constraints>
+                                            <state key="normal" image="iconOk.png"/>
+                                            <connections>
+                                                <action selector="AcceptButton:" destination="x7l-i1-g9H" eventType="touchUpInside" id="J2O-PC-707"/>
+                                            </connections>
+                                        </button>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TkM-q2-UJ2">
+                                            <rect key="frame" x="24" y="47" width="240" height="57"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="57" id="kUg-Dz-CL4"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="TkM-q2-UJ2" firstAttribute="leading" secondItem="NSc-NS-5tO" secondAttribute="leading" id="3D6-G1-tOu"/>
+                                        <constraint firstItem="NSc-NS-5tO" firstAttribute="leading" secondItem="SKN-W5-JmT" secondAttribute="leadingMargin" constant="8" id="B7r-XI-Wz9"/>
+                                        <constraint firstItem="TkM-q2-UJ2" firstAttribute="bottom" secondItem="SKN-W5-JmT" secondAttribute="bottomMargin" id="DMD-3a-lJ2"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="RH1-YU-svk" secondAttribute="bottom" constant="-3" id="Id9-Mk-vwC"/>
+                                        <constraint firstItem="EO7-YP-uMu" firstAttribute="leading" secondItem="RH1-YU-svk" secondAttribute="leading" id="PT7-G4-2rT"/>
+                                        <constraint firstItem="NSc-NS-5tO" firstAttribute="top" secondItem="EO7-YP-uMu" secondAttribute="top" id="XQP-x0-r8G"/>
+                                        <constraint firstItem="TkM-q2-UJ2" firstAttribute="top" secondItem="NSc-NS-5tO" secondAttribute="bottom" constant="8" symbolic="YES" id="dMO-9L-rmt"/>
+                                        <constraint firstItem="EO7-YP-uMu" firstAttribute="trailing" secondItem="RH1-YU-svk" secondAttribute="trailing" id="eMc-Hy-ibs"/>
+                                        <constraint firstItem="EO7-YP-uMu" firstAttribute="leading" secondItem="NSc-NS-5tO" secondAttribute="trailing" constant="8" symbolic="YES" id="hhO-Z0-MVu"/>
+                                        <constraint firstItem="RH1-YU-svk" firstAttribute="top" secondItem="EO7-YP-uMu" secondAttribute="bottom" constant="8" symbolic="YES" id="kz5-db-MOj"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="EO7-YP-uMu" secondAttribute="trailing" constant="-8" id="l4J-Yz-c1r"/>
+                                        <constraint firstItem="EO7-YP-uMu" firstAttribute="leading" secondItem="TkM-q2-UJ2" secondAttribute="trailing" constant="8" symbolic="YES" id="lOK-Sl-HVI"/>
+                                        <constraint firstItem="NSc-NS-5tO" firstAttribute="top" secondItem="SKN-W5-JmT" secondAttribute="topMargin" constant="8" id="o3U-Uy-6yH"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="IngredientsLabel" destination="TkM-q2-UJ2" id="SpZ-gX-Xom"/>
+                                    <outlet property="MixDescriptionLabel" destination="NSc-NS-5tO" id="IPc-hc-QZW"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="fJH-MV-rbc" id="CYm-QF-qSI"/>
+                            <outlet property="delegate" destination="fJH-MV-rbc" id="E4b-o1-tLv"/>
+                        </connections>
+                    </tableView>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ZfD-MH-7Cv" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2047.5" y="944.36619718309862"/>
+        </scene>
     </scenes>
     <resources>
+        <image name="iconDelete.png" width="50" height="50"/>
+        <image name="iconOk.png" width="50" height="50"/>
         <image name="icon_256.png" width="256" height="256"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="n1n-ep-ByN"/>
+        <segue reference="L0r-vh-kaU"/>
     </inferredMetricsTieBreakers>
 </document>

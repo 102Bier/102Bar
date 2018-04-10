@@ -13,7 +13,7 @@
 		8A41BA14205FDD9900907669 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8A41BA12205FDD9900907669 /* LaunchScreen.storyboard */; };
 		8A41BA1F205FDD9900907669 /* _02BarTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A41BA1E205FDD9900907669 /* _02BarTests.swift */; };
 		8A41BA2A205FDD9900907669 /* _02BarUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A41BA29205FDD9900907669 /* _02BarUITests.swift */; };
-		8A43A82E2063F81600E76C27 /* BarkeeperController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A43A82D2063F81600E76C27 /* BarkeeperController.swift */; };
+		8A43A82E2063F81600E76C27 /* OrderedMixesController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A43A82D2063F81600E76C27 /* OrderedMixesController.swift */; };
 		8A46A0D0205FE337004EDA94 /* banner_853_480.png in Resources */ = {isa = PBXBuildFile; fileRef = 8A46A0CF205FE337004EDA94 /* banner_853_480.png */; };
 		8A46A0D2205FE4F4004EDA94 /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A46A0D1205FE4F4004EDA94 /* LoginController.swift */; };
 		8A46A0D4205FE71E004EDA94 /* icon_256.png in Resources */ = {isa = PBXBuildFile; fileRef = 8A46A0D3205FE71E004EDA94 /* icon_256.png */; };
@@ -26,9 +26,12 @@
 		8A5FA713206A5ADA00161D86 /* DrinkGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A5FA712206A5ADA00161D86 /* DrinkGroup.swift */; };
 		8A5FA715206A5AE900161D86 /* Drink.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A5FA714206A5AE900161D86 /* Drink.swift */; };
 		8A5FA717206A5AF800161D86 /* Mix.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A5FA716206A5AF800161D86 /* Mix.swift */; };
+		8A6609E6207C989300BC37D1 /* OrderedMixTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A6609E5207C989300BC37D1 /* OrderedMixTableViewCell.swift */; };
 		8AB52C4020603C91003EA1BB /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A46A0EB206030CB004EDA94 /* Alamofire.framework */; };
 		8AB52C4120603C91003EA1BB /* Alamofire.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8A46A0EB206030CB004EDA94 /* Alamofire.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		8AD76697206A30C200F61878 /* TestController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AD76696206A30C200F61878 /* TestController.swift */; };
+		8AE72D10207C9D8500F049F3 /* iconDelete.png in Resources */ = {isa = PBXBuildFile; fileRef = 8AE72D07207C9D8300F049F3 /* iconDelete.png */; };
+		8AE72D11207C9D8500F049F3 /* iconOk.png in Resources */ = {isa = PBXBuildFile; fileRef = 8AE72D0F207C9D8400F049F3 /* iconOk.png */; };
 		C35A81C220617141002A3477 /* AddDrinkController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C35A81C120617141002A3477 /* AddDrinkController.swift */; };
 		C35E17972072945400613897 /* CustomDrinkModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C35E17962072945400613897 /* CustomDrinkModel.swift */; };
 		C3EB45B3206932AF00F69F16 /* DrinkCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3EB45B2206932AF00F69F16 /* DrinkCell.swift */; };
@@ -144,7 +147,7 @@
 		8A41BA25205FDD9900907669 /* 102BarUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = 102BarUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		8A41BA29205FDD9900907669 /* _02BarUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = _02BarUITests.swift; sourceTree = "<group>"; };
 		8A41BA2B205FDD9900907669 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		8A43A82D2063F81600E76C27 /* BarkeeperController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarkeeperController.swift; sourceTree = "<group>"; };
+		8A43A82D2063F81600E76C27 /* OrderedMixesController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderedMixesController.swift; sourceTree = "<group>"; };
 		8A46A0CF205FE337004EDA94 /* banner_853_480.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = banner_853_480.png; sourceTree = "<group>"; };
 		8A46A0D1205FE4F4004EDA94 /* LoginController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
 		8A46A0D3205FE71E004EDA94 /* icon_256.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_256.png; sourceTree = "<group>"; };
@@ -158,7 +161,10 @@
 		8A5FA712206A5ADA00161D86 /* DrinkGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrinkGroup.swift; sourceTree = "<group>"; };
 		8A5FA714206A5AE900161D86 /* Drink.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Drink.swift; sourceTree = "<group>"; };
 		8A5FA716206A5AF800161D86 /* Mix.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mix.swift; sourceTree = "<group>"; };
+		8A6609E5207C989300BC37D1 /* OrderedMixTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderedMixTableViewCell.swift; sourceTree = "<group>"; };
 		8AD76696206A30C200F61878 /* TestController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestController.swift; sourceTree = "<group>"; };
+		8AE72D07207C9D8300F049F3 /* iconDelete.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = iconDelete.png; sourceTree = "<group>"; };
+		8AE72D0F207C9D8400F049F3 /* iconOk.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = iconOk.png; sourceTree = "<group>"; };
 		C35A81C120617141002A3477 /* AddDrinkController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddDrinkController.swift; sourceTree = "<group>"; };
 		C35E17962072945400613897 /* CustomDrinkModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomDrinkModel.swift; sourceTree = "<group>"; };
 		C3EB45B2206932AF00F69F16 /* DrinkCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrinkCell.swift; sourceTree = "<group>"; };
@@ -224,13 +230,16 @@
 		8A41BA08205FDD9900907669 /* 102Bar */ = {
 			isa = PBXGroup;
 			children = (
+				8AE72D07207C9D8300F049F3 /* iconDelete.png */,
+				8AE72D0F207C9D8400F049F3 /* iconOk.png */,
 				8A46A0DD20603030004EDA94 /* Libraries */,
 				8A41BA09205FDD9900907669 /* AppDelegate.swift */,
 				8A46A0D3205FE71E004EDA94 /* icon_256.png */,
 				8A46A0CF205FE337004EDA94 /* banner_853_480.png */,
 				8A41BA0D205FDD9900907669 /* Main.storyboard */,
+				8A6609E5207C989300BC37D1 /* OrderedMixTableViewCell.swift */,
 				8AD76696206A30C200F61878 /* TestController.swift */,
-				8A43A82D2063F81600E76C27 /* BarkeeperController.swift */,
+				8A43A82D2063F81600E76C27 /* OrderedMixesController.swift */,
 				8A46A0DB20601362004EDA94 /* RegisterController.swift */,
 				8A46A0D9206012CC004EDA94 /* DrinkController.swift */,
 				C35A81C120617141002A3477 /* AddDrinkController.swift */,
@@ -475,9 +484,11 @@
 			files = (
 				8A41BA14205FDD9900907669 /* LaunchScreen.storyboard in Resources */,
 				8A46A0D4205FE71E004EDA94 /* icon_256.png in Resources */,
+				8AE72D11207C9D8500F049F3 /* iconOk.png in Resources */,
 				8A46A0D0205FE337004EDA94 /* banner_853_480.png in Resources */,
 				8A46A0FA206030CC004EDA94 /* Source in Resources */,
 				8A46A0FB206030CC004EDA94 /* Alamofire.xcworkspace in Resources */,
+				8AE72D10207C9D8500F049F3 /* iconDelete.png in Resources */,
 				8A41BA11205FDD9900907669 /* Assets.xcassets in Resources */,
 				8A41BA0F205FDD9900907669 /* Main.storyboard in Resources */,
 			);
@@ -505,11 +516,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				C35A81C220617141002A3477 /* AddDrinkController.swift in Sources */,
-				8A43A82E2063F81600E76C27 /* BarkeeperController.swift in Sources */,
+				8A43A82E2063F81600E76C27 /* OrderedMixesController.swift in Sources */,
 				8A5FA717206A5AF800161D86 /* Mix.swift in Sources */,
 				C3F1AAE52061452500FC39AC /* CustomDrinkView.swift in Sources */,
 				8AD76697206A30C200F61878 /* TestController.swift in Sources */,
 				C3EB45BD2069427900F69F16 /* AddDrinkTableContent.swift in Sources */,
+				8A6609E6207C989300BC37D1 /* OrderedMixTableViewCell.swift in Sources */,
 				C35E17972072945400613897 /* CustomDrinkModel.swift in Sources */,
 				8A5FA708206A51F600161D86 /* Service.swift in Sources */,
 				C3F1AAE72061453500FC39AC /* DefaultDrinkView.swift in Sources */,

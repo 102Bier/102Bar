@@ -11,15 +11,10 @@ class LoginController: UIViewController {
     @IBOutlet weak var _login_as_guest_button: UIButton!
     @IBOutlet weak var _register_button: UIButton!
     
-    
-    
-    
-    let service = Service()
+    let defaultValues = UserDefaults.standard
     
     override func viewDidLoad() {
         super.viewDidLoad()
-    
-       
         if UserDefaults.standard.string(forKey: "username") != nil{
             changeView()
         }
@@ -28,7 +23,7 @@ class LoginController: UIViewController {
     func changeView()
     {
        let storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-        let vc: UIViewController = storyboard.instantiateViewController(withIdentifier: "TabBarController") as! UIViewController
+        let vc: UIViewController = storyboard.instantiateViewController(withIdentifier: "TabBarController")
         present(vc, animated: true, completion: nil)
     }
 
@@ -39,11 +34,11 @@ class LoginController: UIViewController {
             self.labelMessage.isHidden = false
             return
         }
-        self.service.login(loginController: self, username: _username.text!, password: _password.text!)
+        Service.shared.login(loginController: self, username: _username.text!, password: _password.text!)
     }
     
     @IBAction func LoginAsGuestButton(_ sender: Any) {
-        
+        Service.shared.loginAsGuest(loginController: self)
     }
     
     @IBAction func RegisterButton(_ sender: Any) {

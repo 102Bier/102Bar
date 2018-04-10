@@ -17,14 +17,16 @@ class Service: NSObject {
     let URL_AVAILABLE_DRINK_GROUPS: String
     let URL_AVAILABLE_DRINK_TYPES: String
     let URL_ORDER_MIX: String
-    let URL_ORDERED_MIXES: String
+    let URL_ORDERED_MIXES_ING: String
+    let URL_ORDERED_MIXES_ROOT: String
     
     let defaultValues = UserDefaults.standard
     
-    var availableDrinkGroups: [DrinkGroup]!
-    var availableDrinkTypes: [DrinkType]!
-    var availableIngredients: [Drink]!
-    var availableMixes: [Mix]!
+    var availableDrinkGroups = [DrinkGroup]()
+    var availableDrinkTypes = [DrinkType]()
+    var availableIngredients = [Drink]()
+    var availableMixes = [Mix]()
+    var orderedMixes = [Mix]()
     public var testI: [Drink]!
     
     
@@ -37,7 +39,8 @@ class Service: NSObject {
         URL_AVAILABLE_INGREDIENTS_DRINK = BASE_URL + "availableIngredientsDrink.php"
         URL_AVAILABLE_MIXES_ROOT = BASE_URL + "availableMixesRoot.php"
         URL_AVAILABLE_MIXES_ING = BASE_URL + "availableMixesIng.php"
-        URL_ORDERED_MIXES = BASE_URL + "orderedMixes.php"
+        URL_ORDERED_MIXES_ROOT = BASE_URL + "orderedMixesRoot.php"
+        URL_ORDERED_MIXES_ING = BASE_URL + "orderedMixesIng.php"
         URL_ORDER_MIX = BASE_URL + "orderMix.php"
         URL_AVAILABLE_DRINK_TYPES = BASE_URL + "availableDrinkTypes.php"
         URL_AVAILABLE_DRINK_GROUPS = BASE_URL + "availableDrinkGroups.php"
@@ -110,6 +113,16 @@ class Service: NSObject {
                     
                 }
         }
+    }
+    
+    public func loginAsGuest(loginController: LoginController){
+        self.defaultValues.set("-1", forKey: "userid")
+        self.defaultValues.set("Guest", forKey: "username")
+        self.defaultValues.set("Guest", forKey: "useremail")
+        self.defaultValues.set("Guest", forKey: "userfirstname")
+        self.defaultValues.set("", forKey: "userlastname")
+        self.defaultValues.set(1, forKey: "userrights")
+        loginController.changeView()
     }
     
     public func register(registerController: RegisterController,username:String, firstname:String, lastname:String, email:String, password:String){
