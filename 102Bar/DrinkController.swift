@@ -1,15 +1,36 @@
 import UIKit
 
-class DrinkController: UIViewController {
+class DrinkController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return Service.shared.customDrinkModel.customMixes.count
+    }
     
-    var customDrinkController: UIView!
-    var defaultDrinkController: UIView!
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "ingredCell") as! ingredCell
+        cell.mixTitle.text = Service.shared.customDrinkModel.customMixes[indexPath.row].mixDescription
+        
+        for i in 0..<Service.shared.customDrinkModel.customMixes[indexPath.row].ingredients.count
+        {
+            cell.ingredLabels[i].text = Service.shared.customDrinkModel.customMixes[indexPath.row].ingredients[i].drinkDescription
+        }
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return CGFloat(35 + Service.shared.customDrinkModel.customMixes[indexPath.row].ingredients.count * 20)
+    }
+    
+    
+//    var customDrinkController: UIView!
+//    var defaultDrinkController: UIView!
+    
+    @IBOutlet var CustomDrinkTable: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        customDrinkController = CustomDrinkController().view
-        defaultDrinkController = DefaultDrinkController().view
+        //customDrinkController = CustomDrinkController().view
+        //defaultDrinkController = DefaultDrinkController().view
     }
 
     
@@ -32,14 +53,14 @@ class DrinkController: UIViewController {
         }
     }*/
     
-    @IBAction func switchView(_ sender: UISegmentedControl) {
+    /*@IBAction func switchView(_ sender: UISegmentedControl) {
         switch sender.selectedSegmentIndex {
         case 0:
-            view.bringSubview(toFront: defaultDrinkController)
+            //view.bringSubview(toFront: defaultDrinkController)
         case 1:
-            view.bringSubview(toFront: customDrinkController)
+            //view.bringSubview(toFront: customDrinkController)
         default:
             break
         }
-    }
+    }*/
 }

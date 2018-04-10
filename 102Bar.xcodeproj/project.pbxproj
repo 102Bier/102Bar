@@ -34,6 +34,7 @@
 		8AE72D11207C9D8500F049F3 /* iconOk.png in Resources */ = {isa = PBXBuildFile; fileRef = 8AE72D0F207C9D8400F049F3 /* iconOk.png */; };
 		C35A81C220617141002A3477 /* AddDrinkController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C35A81C120617141002A3477 /* AddDrinkController.swift */; };
 		C35E17972072945400613897 /* CustomDrinkModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C35E17962072945400613897 /* CustomDrinkModel.swift */; };
+		C3B66DF6207CC3DF00C26328 /* ingredCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3B66DF5207CC3DF00C26328 /* ingredCell.swift */; };
 		C3EB45B3206932AF00F69F16 /* DrinkCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3EB45B2206932AF00F69F16 /* DrinkCell.swift */; };
 		C3EB45BD2069427900F69F16 /* AddDrinkTableContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3EB45BC2069427900F69F16 /* AddDrinkTableContent.swift */; };
 		C3F1AAE52061452500FC39AC /* CustomDrinkView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3F1AAE42061452500FC39AC /* CustomDrinkView.swift */; };
@@ -167,6 +168,7 @@
 		8AE72D0F207C9D8400F049F3 /* iconOk.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = iconOk.png; sourceTree = "<group>"; };
 		C35A81C120617141002A3477 /* AddDrinkController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddDrinkController.swift; sourceTree = "<group>"; };
 		C35E17962072945400613897 /* CustomDrinkModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomDrinkModel.swift; sourceTree = "<group>"; };
+		C3B66DF5207CC3DF00C26328 /* ingredCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ingredCell.swift; sourceTree = "<group>"; };
 		C3EB45B2206932AF00F69F16 /* DrinkCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrinkCell.swift; sourceTree = "<group>"; };
 		C3EB45BC2069427900F69F16 /* AddDrinkTableContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddDrinkTableContent.swift; sourceTree = "<group>"; };
 		C3F1AAE42061452500FC39AC /* CustomDrinkView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomDrinkView.swift; sourceTree = "<group>"; };
@@ -209,6 +211,7 @@
 		8A41B9FD205FDD9900907669 = {
 			isa = PBXGroup;
 			children = (
+				C3B66DF5207CC3DF00C26328 /* ingredCell.swift */,
 				8A41BA08205FDD9900907669 /* 102Bar */,
 				8A41BA1D205FDD9900907669 /* 102BarTests */,
 				8A41BA28205FDD9900907669 /* 102BarUITests */,
@@ -524,6 +527,7 @@
 				8A6609E6207C989300BC37D1 /* OrderedMixTableViewCell.swift in Sources */,
 				C35E17972072945400613897 /* CustomDrinkModel.swift in Sources */,
 				8A5FA708206A51F600161D86 /* Service.swift in Sources */,
+				C3B66DF6207CC3DF00C26328 /* ingredCell.swift in Sources */,
 				C3F1AAE72061453500FC39AC /* DefaultDrinkView.swift in Sources */,
 				8A5FA711206A5AC800161D86 /* DrinkType.swift in Sources */,
 				8A5FA713206A5ADA00161D86 /* DrinkGroup.swift in Sources */,

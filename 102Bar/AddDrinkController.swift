@@ -32,8 +32,15 @@ class AddDrinkController : UITableViewController, UITextFieldDelegate
         view.endEditing(true)
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+       Service.shared.getAvailableIngredients() {
+            sucess in super.viewWillAppear(animated)
+            self.tableView.reloadData()
+        }
+    }
+    
     func safeCellTextField(at indexPath : IndexPath, in cell : DrinkCell) {
-        if var percentage = cell.percentageTextField.text
+        if let percentage = cell.percentageTextField.text
         {
             drinkContent.ingredArray[indexPath.section].sectionPercentage[indexPath.row] = percentage
         }
@@ -363,6 +370,8 @@ class AddDrinkController : UITableViewController, UITextFieldDelegate
         }
         else
         {
+            Service.shared.getAvailableMixes {
+                succsess in}
             self.presentingViewController?.dismiss(animated: true, completion: nil)
         }
     }
@@ -396,7 +405,8 @@ class AddDrinkController : UITableViewController, UITextFieldDelegate
         {
             let description = drinkContent.ingredArray[0].sectionObjects[i]
             let percentage = Int(drinkContent.ingredArray[0].sectionPercentage[i])!
-            if let ai = Service.shared.testI //crashes right now
+            let ai = Service.shared.availableIngredients //crashes right now
+            if(ai.count > 0)
             {
                 let drink = ai.first(where: {$0.drinkDescription == description})
                 drink?.addPercentage(percentage: percentage)
@@ -408,6 +418,7 @@ class AddDrinkController : UITableViewController, UITextFieldDelegate
             }
         }
         Service.shared.customDrinkModel.addMix(mix: Mix(mix: "", mixDescription: mixName!, ingredients: drinks))
+        Service.shared.getAvailableMixes{ok in }
         self.presentingViewController?.dismiss(animated: true, completion: nil)
     }
 }
