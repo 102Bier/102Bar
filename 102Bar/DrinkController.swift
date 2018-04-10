@@ -1,6 +1,25 @@
 import UIKit
 
 class DrinkController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return Service.shared.customDrinkModel.customMixes.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "ingredCell") as! ingredCell
+        cell.mixTitle.text = Service.shared.customDrinkModel.customMixes[indexPath.row].mixDescription
+        
+        for i in 0..<Service.shared.customDrinkModel.customMixes[indexPath.row].ingredients.count
+        {
+            cell.ingredLabels[i].text = Service.shared.customDrinkModel.customMixes[indexPath.row].ingredients[i].drinkDescription
+        }
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return CGFloat(35 + Service.shared.customDrinkModel.customMixes[indexPath.row].ingredients.count * 20)
+    }
+    
     
 //    var customDrinkController: UIView!
 //    var defaultDrinkController: UIView!
@@ -34,7 +53,7 @@ class DrinkController: UIViewController, UITableViewDelegate, UITableViewDataSou
         }
     }*/
     
-    @IBAction func switchView(_ sender: UISegmentedControl) {
+    /*@IBAction func switchView(_ sender: UISegmentedControl) {
         switch sender.selectedSegmentIndex {
         case 0:
             //view.bringSubview(toFront: defaultDrinkController)
@@ -43,5 +62,5 @@ class DrinkController: UIViewController, UITableViewDelegate, UITableViewDataSou
         default:
             break
         }
-    }
+    }*/
 }

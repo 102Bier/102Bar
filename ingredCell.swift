@@ -9,4 +9,8 @@
 import UIKit
 class ingredCell : UITableViewCell {
     
+    @IBOutlet var ingredLabels: [UILabel]!
+    @IBOutlet var mixTitle: UILabel!
+    
+    
 }
