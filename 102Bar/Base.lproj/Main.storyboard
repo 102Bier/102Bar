@@ -20,7 +20,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Username" textAlignment="natural" minimumFontSize="17" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="hWv-5w-0ag">
-                                <rect key="frame" x="60" y="128" width="200" height="30"/>
+                                <rect key="frame" x="60" y="355" width="200" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="200" id="VPo-or-YKz"/>
                                     <constraint firstAttribute="height" constant="30" id="nET-Rj-J6q"/>
@@ -30,7 +30,7 @@
                                 <textInputTraits key="textInputTraits" keyboardType="emailAddress" textContentType="username"/>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="17" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="Im3-mX-rV4">
-                                <rect key="frame" x="60" y="181" width="200" height="30"/>
+                                <rect key="frame" x="60" y="408" width="200" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="200" id="UFu-2h-Ldk"/>
                                     <constraint firstAttribute="height" constant="30" id="q0R-LY-XNo"/>
@@ -40,7 +40,7 @@
                                 <textInputTraits key="textInputTraits" secureTextEntry="YES" textContentType="password"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Iv8-cP-5UX">
-                                <rect key="frame" x="141" y="231" width="38" height="30"/>
+                                <rect key="frame" x="141" y="458" width="38" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="V5O-WQ-obi"/>
                                 </constraints>
@@ -50,7 +50,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2hc-hN-jsH">
-                                <rect key="frame" x="109" y="282" width="102" height="30"/>
+                                <rect key="frame" x="109" y="509" width="102" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="dp8-0O-JwL"/>
                                 </constraints>
@@ -60,10 +60,10 @@
                                 </connections>
                             </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_256.png" translatesAutoresizingMaskIntoConstraints="NO" id="nPe-PY-M2p">
-                                <rect key="frame" x="32" y="58" width="256" height="29"/>
+                                <rect key="frame" x="32" y="58" width="256" height="256"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="f9G-sD-ei9">
-                                <rect key="frame" x="132" y="340" width="57" height="30"/>
+                                <rect key="frame" x="132" y="567" width="57" height="30"/>
                                 <state key="normal" title="Register"/>
                                 <connections>
                                     <action selector="RegisterButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="2e7-yh-X6M"/>
@@ -465,7 +465,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="55.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="very long Drink Title" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="23" translatesAutoresizingMaskIntoConstraints="NO" id="BNc-pY-1fY">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="very long Drink Title" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="22" translatesAutoresizingMaskIntoConstraints="NO" id="BNc-pY-1fY">
                                                     <rect key="frame" x="15" y="11" width="290" height="36"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="30"/>
                                                     <color key="textColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -497,6 +497,9 @@
                                     <segment title="Default Drinks"/>
                                     <segment title="Custom Drinks"/>
                                 </segments>
+                                <connections>
+                                    <action selector="segSwitched:" destination="obu-ir-aFC" eventType="valueChanged" id="AkO-0J-Jab"/>
+                                </connections>
                             </segmentedControl>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -524,6 +527,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="CustomDrinkTable" destination="otY-Qa-xWE" id="bvK-ka-3af"/>
+                        <outlet property="segControl" destination="Aqv-WV-NL7" id="3MC-Hy-hHO"/>
                         <outlet property="tableView" destination="otY-Qa-xWE" id="d7l-qP-JrB"/>
                     </connections>
                 </viewController>
