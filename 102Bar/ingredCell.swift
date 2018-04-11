@@ -15,7 +15,7 @@ class ingredCell : UITableViewCell {
         var labels : [UILabel] = Array()
         for i in 0..<self.subviews.count
         {
-            if self.subviews[i] is UILabel
+            if self.subviews[i] is UILabel // get all UILabel
             {
                 labels.append(self.subviews[i] as! UILabel)
             }
@@ -26,14 +26,14 @@ class ingredCell : UITableViewCell {
         
         for i in 0..<labels.count
         {
-            if labels[i].frame.origin == labelRect.origin
+            if labels[i].frame.origin == labelRect.origin //look if at this point already exists a UILabel
             {
-                labels[i].text = ingredient
+                labels[i].text = ingredient //if yes, just update its text
                 return
             }
         }
         
-        let label = UILabel(frame: labelRect)
+        let label = UILabel(frame: labelRect) //if not, put a UILabel there
         label.text = ingredient
         self.addSubview(label)
     }

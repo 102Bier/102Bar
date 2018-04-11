@@ -72,6 +72,17 @@ class DrinkController: UIViewController, UITableViewDelegate, UITableViewDataSou
         }
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        var mix : Mix;
+        switch segControl.selectedSegmentIndex
+        {
+        case 0: mix = Service.shared.availableMixes[indexPath.row]
+        case 1: mix = Service.shared.customDrinkModel.customMixes[indexPath.row]
+        default: return
+        }
+        //Service.shared.orderMix(mixToOrder: mix, add: true) {_ in }
+    }
+    
     override func viewWillAppear(_ animated: Bool) {
         tableView.reloadData()
         super.viewWillAppear(animated)
