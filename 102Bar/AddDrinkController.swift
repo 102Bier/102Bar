@@ -376,8 +376,6 @@ class AddDrinkController : UITableViewController, UITextFieldDelegate
         }
         else
         {
-            Service.shared.getAvailableMixes {
-                succsess in}
             self.presentingViewController?.dismiss(animated: true, completion: nil)
         }
     }
@@ -424,7 +422,7 @@ class AddDrinkController : UITableViewController, UITextFieldDelegate
             }
         }
         Service.shared.customDrinkModel.addMix(mix: Mix(mix: "", mixDescription: mixName!, ingredients: drinks))
-        Service.shared.getAvailableMixes{ok in }
+        //Service.shared.getAvailableMixes{ok in }
         self.presentingViewController?.dismiss(animated: true, completion: nil)
     }
 }

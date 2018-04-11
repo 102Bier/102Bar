@@ -213,7 +213,6 @@
 		8A41B9FD205FDD9900907669 = {
 			isa = PBXGroup;
 			children = (
-				C3B66DF5207CC3DF00C26328 /* ingredCell.swift */,
 				8A41BA08205FDD9900907669 /* 102Bar */,
 				8A41BA1D205FDD9900907669 /* 102BarTests */,
 				8A41BA28205FDD9900907669 /* 102BarUITests */,
@@ -262,6 +261,7 @@
 				8A6609E5207C989300BC37D1 /* OrderedMixTableViewCell.swift */,
 				8A46A0DB20601362004EDA94 /* RegisterController.swift */,
 				8A5FA707206A51F600161D86 /* Service.swift */,
+				C3B66DF5207CC3DF00C26328 /* ingredCell.swift */,
 				8AD76696206A30C200F61878 /* TestController.swift */,
 			);
 			path = 102Bar;

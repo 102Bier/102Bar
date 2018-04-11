@@ -83,6 +83,9 @@
             <PersistentString
                value = "Service.shared.availableIngredients">
             </PersistentString>
+            <PersistentString
+               value = "Service.shared.customDrinkModel">
+            </PersistentString>
          </PersistentStrings>
       </ContextState>
       <ContextState

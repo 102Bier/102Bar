@@ -2,6 +2,7 @@ import UIKit
 
 class DrinkController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
+    @IBOutlet var tableView: UITableView!
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ingredCell") as! ingredCell
         cell.mixTitle.text = Service.shared.customDrinkModel.customMixes[indexPath.row].mixDescription
@@ -11,6 +12,11 @@ class DrinkController: UIViewController, UITableViewDelegate, UITableViewDataSou
             cell.ingredLabels[i].text = Service.shared.customDrinkModel.customMixes[indexPath.row].ingredients[i].drinkDescription
         }
         return cell
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        tableView.reloadData()
+        super.viewWillAppear(animated)
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
