@@ -6,6 +6,8 @@ class DrinkController: UIViewController, UITableViewDelegate, UITableViewDataSou
     @IBOutlet var segControl: UISegmentedControl!
     
     @IBAction func segSwitched(_ sender: UISegmentedControl) {
+        if sender.selectedSegmentIndex == 0 {
+        }
         tableView.reloadData()
     }
     
@@ -25,6 +27,16 @@ class DrinkController: UIViewController, UITableViewDelegate, UITableViewDataSou
         super.viewDidLoad()
     }
     
+    func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCellEditingStyle {
+        if segControl.selectedSegmentIndex == 0 {
+            return .none
+        }
+        else
+        {
+            return .delete
+        }
+    }
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ingredCell") as! ingredCell
         switch(segControl.selectedSegmentIndex)
@@ -33,7 +45,7 @@ class DrinkController: UIViewController, UITableViewDelegate, UITableViewDataSou
             cell.mixTitle.text = Service.shared.availableMixes[indexPath.row].mixDescription
             for i in 0..<Service.shared.availableMixes[indexPath.row].ingredients.count
             {
-                cell.addLabel(ingredient: Service.shared.availableMixes[indexPath.row].ingredients[i].drinkDescription, yPos: i)
+                cell.addOrReplaceLabel(ingredient: Service.shared.availableMixes[indexPath.row].ingredients[i].drinkDescription, yPos: i)
             }
             return cell
             
@@ -42,7 +54,7 @@ class DrinkController: UIViewController, UITableViewDelegate, UITableViewDataSou
             
             for i in 0..<Service.shared.customDrinkModel.customMixes[indexPath.row].ingredients.count
             {
-                cell.addLabel(ingredient: Service.shared.customDrinkModel.customMixes[indexPath.row].ingredients[i].drinkDescription, yPos: i)
+                cell.addOrReplaceLabel(ingredient: Service.shared.customDrinkModel.customMixes[indexPath.row].ingredients[i].drinkDescription, yPos: i)
             }
             return cell
             
@@ -52,7 +64,7 @@ class DrinkController: UIViewController, UITableViewDelegate, UITableViewDataSou
     }
     
     func tableView(_: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
+        if segControl.selectedSegmentIndex == 1 && editingStyle == .delete {
             //remove ingred from data model
             Service.shared.customDrinkModel.customMixes.remove(at: indexPath.row)
             // delete the table view row
