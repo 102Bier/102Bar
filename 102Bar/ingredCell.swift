@@ -12,24 +12,29 @@ class ingredCell : UITableViewCell {
     
     func addOrReplaceLabel(ingredient: String, yPos: Int)
     {
-        var lableCount = -1 //to ignore the Mix Title Lable
+        var labels : [UILabel] = Array()
         for i in 0..<self.subviews.count
         {
             if self.subviews[i] is UILabel
             {
-                lableCount += 1
+                labels.append(self.subviews[i] as! UILabel)
             }
         }
-        if(lableCount <= yPos && self.subviews[yPos] is UILabel)
+        
+        let safeAreaWidth = safeAreaLayoutGuide.layoutFrame.size.width
+        let labelRect = CGRect(x: 15, y: 30 + (25 * (yPos+1)), width: Int(safeAreaWidth - 25), height: 25)
+        
+        for i in 0..<labels.count
         {
-            (self.subviews[yPos] as! UILabel).text = ingredient
+            if labels[i].frame.origin == labelRect.origin
+            {
+                labels[i].text = ingredient
+                return
+            }
         }
-        else
-        {
-            let safeAreaWidth = safeAreaLayoutGuide.layoutFrame.size.width
-            let label = UILabel(frame: CGRect(x: 15, y: 30 + (25 * (yPos+1)), width: Int(safeAreaWidth - 25), height: 25))
-            label.text = ingredient
-            self.addSubview(label)
-        }
+        
+        let label = UILabel(frame: labelRect)
+        label.text = ingredient
+        self.addSubview(label)
     }
 }

@@ -28,12 +28,12 @@ class DrinkController: UIViewController, UITableViewDelegate, UITableViewDataSou
     }
     
     func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCellEditingStyle {
-        if segControl.selectedSegmentIndex == 0 {
-            return .none
+        if segControl.selectedSegmentIndex == 1 {
+            return .delete
         }
         else
         {
-            return .delete
+            return .none
         }
     }
     
