@@ -18,6 +18,10 @@ class Service: NSObject {
     let URL_ORDER_MIX: String
     let URL_ORDERED_MIXES_ING: String
     let URL_ORDERED_MIXES_ROOT: String
+    let URL_GET_CUSTOM_MIXES_ROOT: String
+    let URL_GET_CUSTOM_MIXES_ING: String
+    let URL_ADD_CUSTOM_MIX: String
+    let URL_USER_INFO: String
     
     let defaultValues = UserDefaults.standard
     
@@ -34,6 +38,7 @@ class Service: NSObject {
         BASE_URL = "http://102bier.de/102bar/"
         URL_USER_LOGIN = BASE_URL + "login.php"
         URL_USER_REGISTER = BASE_URL + "register.php"
+        URL_USER_INFO = BASE_URL + "user.php"
         URL_AVAILABLE_INGREDIENTS_TYPE = BASE_URL + "availableIngredientsType.php"
         URL_AVAILABLE_INGREDIENTS_DRINK = BASE_URL + "availableIngredientsDrink.php"
         URL_AVAILABLE_MIXES_ROOT = BASE_URL + "availableMixesRoot.php"
@@ -43,6 +48,9 @@ class Service: NSObject {
         URL_ORDER_MIX = BASE_URL + "orderMix.php"
         URL_AVAILABLE_DRINK_TYPES = BASE_URL + "availableDrinkTypes.php"
         URL_AVAILABLE_DRINK_GROUPS = BASE_URL + "availableDrinkGroups.php"
+        URL_GET_CUSTOM_MIXES_ROOT = BASE_URL + "getCustomMixesRoot.php"
+        URL_GET_CUSTOM_MIXES_ING = BASE_URL + "getCustomMixesIng.php"
+        URL_ADD_CUSTOM_MIX = BASE_URL + "addCustomMix.php"
         super.init()
         getAvailableDrinkGroups
             {
@@ -266,22 +274,22 @@ class Service: NSObject {
     }
     
     public func getOrderedMixes(callback: @escaping (_ success: Bool?) -> Void){
-        //TODO write PHP and fix below code to fit
-        Alamofire.request(self.URL_AVAILABLE_MIXES_ROOT).responseJSON
+        //Do not empty array check if exists
+        Alamofire.request(self.URL_ORDERED_MIXES_ROOT).responseJSON
             {
                 response in
                 if let result = response.result.value {
-                    self.availableMixes = Array()
+                    self.orderedMixes = Array()
                     let rootArray = result as! NSArray
                     for root in rootArray{
                         let mixDictionary = root as! NSDictionary
-                        let tmpMix = mixDictionary.object(forKey: "AvailableMix") as! String
-                        let tmpDescription = mixDictionary.object(forKey: "Description") as! String
-                        let tmpIngredients = [Drink]()
-                        let mix = Mix(mix: tmpMix, mixDescription: tmpDescription, ingredients: tmpIngredients)
-                        self.availableMixes.append(mix)
+                        let tmpMix = mixDictionary.object(forKey: "OrderedMix") as! String
+                        let orderedMix = self.availableMixes.first(where: {$0.mix == tmpMix})
+                        let orderedMixToSave = orderedMix?.clone()
+                        orderedMixToSave?.orderedByUser = mixDictionary.object(forKey: "User") as! String
+                        self.orderedMixes.append(orderedMixToSave!)
                     }
-                    Alamofire.request(self.URL_AVAILABLE_MIXES_ING).responseJSON{
+                    Alamofire.request(self.URL_ORDERED_MIXES_ING).responseJSON{
                         response1 in
                         if let result1 = response1.result.value{
                             let ingArray = result1 as! NSArray
@@ -289,13 +297,10 @@ class Service: NSObject {
                                 let ingDic = ing as! NSDictionary
                                 let ingRoot = ingDic.object(forKey: "Root") as! String
                                 let ingGUID = ingDic.object(forKey: "Reference") as! String
-                                let ingPercentage = ingDic.object(forKey: "Percentage") as! Int
-                                let ingAFO = ingDic.object(forKey: "AFO") as! Int
-                                for rootToFill in self.availableMixes where rootToFill.mix == ingRoot{
-                                    let ingToAdd: Drink = (self.availableIngredients.first(where: {$0.drink == ingGUID})?.clone())!
-                                    ingToAdd.percentage = ingPercentage
-                                    ingToAdd.AFO = ingAFO
-                                    rootToFill.ingredients.append(ingToAdd)
+                                let ingPercentage = Int(ingDic.object(forKey: "Percentage") as! String)
+                                for rootToFill in self.orderedMixes where rootToFill.mix == ingRoot{
+                                    let ingToChange = rootToFill.ingredients.first(where: {$0.drink == ingGUID})
+                                    ingToChange?.percentage = ingPercentage!
                                 }
                             }
                             callback(true)
@@ -308,6 +313,7 @@ class Service: NSObject {
     }
     
     public func orderMix(mixToOrder: Mix, add: Bool, callback: @escaping (_ success: String?) -> Void){
+        //NOT TESTED AND NO PHP
         var ingredients: String = ""
         guard let data = try? JSONSerialization.data(withJSONObject: mixToOrder.ingredients, options: []) else {
             callback("Error to Parse")
@@ -330,6 +336,77 @@ class Service: NSObject {
                     let jsonData = result as! NSDictionary
                     callback(jsonData.value(forKey: "message") as? String)
                 }
-        }    }
+        }
+    }
+    
+    public func getCustomMixes(callback: @escaping (_ success: Bool?) -> Void){
+        //TODO
+        let parameters: Parameters=[
+            "user":"22"
+        ]
+        
+        Alamofire.request(URL_USER_LOGIN, method: .post, parameters: parameters).responseJSON
+            {
+                response in
+                debugPrint(response)
+                if let result = response.result.value {
+                    let jsonData = result as! NSDictionary
+                    
+                    //if there is no error
+                    if(!(jsonData.value(forKey: "error") as! Bool)){
+                        
+                        //getting the user from response
+                        let user = jsonData.value(forKey: "user") as! NSDictionary
+                        
+                        //getting user values
+                        let userId = user.value(forKey: "id") as! String
+                        let userName = user.value(forKey: "username") as! String
+                        let userFirstname = user.value(forKey: "firstname") as! String
+                        let userLastname = user.value(forKey: "lastname") as! String
+                        let userEmail = user.value(forKey: "email") as! String
+                        let userRights = user.value(forKey: "rights") as! Int
+                        
+                        //saving user values to defaults
+                        self.defaultValues.set(userId, forKey: "userid")
+                        self.defaultValues.set(userName, forKey: "username")
+                        self.defaultValues.set(userEmail, forKey: "useremail")
+                        self.defaultValues.set(userFirstname, forKey: "userfirstname")
+                        self.defaultValues.set(userLastname, forKey: "userlastname")
+                        self.defaultValues.set(userRights, forKey: "userrights")
+                        
+                    }else{
+                        //error message in case of invalid credential
+                    }
+                    
+                }
+        }
+    }
+    
+    public func addCustomMix(mixToAdd: Mix, add: Bool, callback: @escaping (_ success: String?) -> Void){
+        //TODO
+        var ingredients: String = ""
+        guard let data = try? JSONSerialization.data(withJSONObject: mixToAdd.ingredients, options: []) else {
+            callback("Error to Parse")
+            return
+        }
+        ingredients = String(data: data, encoding: String.Encoding.utf8)!
+        
+        let parameters: Parameters=[
+            "Mix": mixToAdd.mix,
+            "Description": mixToAdd.mixDescription,
+            "Ingredients": ingredients,
+            "User": defaultValues.object(forKey: "userid") as! String,
+            "Add": add ? "1" : "0"
+        ]
+        
+        Alamofire.request(URL_ORDER_MIX, method: .post, parameters: parameters).responseJSON
+            {
+                response in
+                if let result = response.result.value {
+                    let jsonData = result as! NSDictionary
+                    callback(jsonData.value(forKey: "message") as? String)
+                }
+        }
+    }
 
 }

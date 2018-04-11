@@ -6,14 +6,16 @@ class OrderedMixesController : UITableViewController{
     var orderedMixes: [Mix] = []
     
     override func viewDidLoad() {
+        self.refresh()
         super.viewDidLoad()
     }
     
-    override func viewWillAppear(_ animated: Bool) {
+    func refresh(){
         Service.shared.getOrderedMixes{
             success in
             self.orderedMixes = Service.shared.orderedMixes
-            super.viewWillAppear(animated)
+            self.tableView.reloadData()
+            self.refreshControl?.endRefreshing()
         }
     }
     
