@@ -11,7 +11,7 @@ class OrderedMixesController : UITableViewController{
     }
     
     func refresh(){
-        Service.shared.getOrderedMixes{
+        Service.shared.getOrderedMixes {
             success in
             self.orderedMixes = Service.shared.orderedMixes
             self.tableView.reloadData()

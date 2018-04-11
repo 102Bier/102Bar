@@ -7,10 +7,16 @@ class DrinkController: UIViewController, UITableViewDelegate, UITableViewDataSou
         let cell = tableView.dequeueReusableCell(withIdentifier: "ingredCell") as! ingredCell
         cell.mixTitle.text = Service.shared.customDrinkModel.customMixes[indexPath.row].mixDescription
         
-        for i in 0..<Service.shared.customDrinkModel.customMixes[indexPath.row].ingredients.count
+        /*for i in 0..<Service.shared.customDrinkModel.customMixes[indexPath.row].ingredients.count
         {
             cell.ingredLabels[i].text = Service.shared.customDrinkModel.customMixes[indexPath.row].ingredients[i].drinkDescription
+        }*/
+        
+        for i in 0..<Service.shared.customDrinkModel.customMixes[indexPath.row].ingredients.count
+        {
+            cell.addLabel(ingredient: Service.shared.customDrinkModel.customMixes[indexPath.row].ingredients[i].drinkDescription, yPos: i)
         }
+        
         return cell
     }
     
@@ -35,7 +41,8 @@ class DrinkController: UIViewController, UITableViewDelegate, UITableViewDataSou
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return CGFloat(35 + Service.shared.customDrinkModel.customMixes[indexPath.row].ingredients.count * 20)
+        
+        return CGFloat(50 + Service.shared.customDrinkModel.customMixes[indexPath.row].ingredients.count * 25)
     }
     
     
