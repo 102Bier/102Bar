@@ -42,7 +42,7 @@ class DrinkController: UIViewController, UITableViewDelegate, UITableViewDataSou
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         
-        return CGFloat(50 + Service.shared.customDrinkModel.customMixes[indexPath.row].ingredients.count * 25)
+        return CGFloat(60 + Service.shared.customDrinkModel.customMixes[indexPath.row].ingredients.count * 25)
     }
     
     
