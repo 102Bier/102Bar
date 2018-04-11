@@ -34,8 +34,12 @@ class LoginController: UIViewController {
             self.labelMessage.isHidden = false
             return
         }
-        Service.shared.login(loginController: self, username: _username.text!, password: _password.text!)
-    }
+        /*Service.shared.getAvailableDrinkTypes {succsess in
+            Service.shared.getAvailableMixes {succsess in */
+                Service.shared.login(loginController: self, username: self._username.text!, password: self._password.text!)
+            }
+        /*}
+    }*/
     
     @IBAction func LoginAsGuestButton(_ sender: Any) {
         Service.shared.loginAsGuest(loginController: self)
