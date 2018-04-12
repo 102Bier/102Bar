@@ -6,6 +6,7 @@ class OrderedMixTableViewCell: UITableViewCell{
     @IBOutlet weak var IngredientsLabel: UILabel!
     
     var orderedMix: Mix?
+    var orderedByUser: User?
     
     @IBAction func AcceptButton(_ sender: Any) {
         Service.shared.orderMix(mixToOrder: orderedMix!, add: false){
