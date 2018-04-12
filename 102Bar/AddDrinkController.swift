@@ -16,16 +16,16 @@ class AddDrinkController : UITableViewController, UITextFieldDelegate
     
     @IBAction func viewTapped(_ sender: UITapGestureRecognizer)
     {
-            // Delete selected Cell
-            let point = sender.location(in: self.tableView)
-            let indexPath = self.tableView?.indexPathForRow(at: point)
-            //        let cell = self.collectionView?.cellForItem(at: indexPath!)
-            if indexPath != nil
-            {
-                let cell  = tableView.cellForRow(at: indexPath!) as! DrinkCell
-                print("selectedCell : \(cell.drinkLabel.text ?? ("none"))")
-                dismissKeyboard()
-            }
+        // Delete selected Cell
+        let point = sender.location(in: self.tableView)
+        let indexPath = self.tableView?.indexPathForRow(at: point)
+        //        let cell = self.collectionView?.cellForItem(at: indexPath!)
+        if indexPath != nil
+        {
+            let cell  = tableView.cellForRow(at: indexPath!) as! DrinkCell
+            print("selectedCell : \(cell.drinkLabel.text ?? ("none"))")
+            dismissKeyboard()
+        }
     }
     
     func dismissKeyboard() {
@@ -376,8 +376,6 @@ class AddDrinkController : UITableViewController, UITextFieldDelegate
         }
         else
         {
-            Service.shared.getAvailableMixes {
-                succsess in}
             self.presentingViewController?.dismiss(animated: true, completion: nil)
         }
     }
@@ -424,7 +422,7 @@ class AddDrinkController : UITableViewController, UITextFieldDelegate
             }
         }
         Service.shared.customDrinkModel.addMix(mix: Mix(mix: "", mixDescription: mixName!, ingredients: drinks))
-        Service.shared.getAvailableMixes{ok in }
+        //Service.shared.getAvailableMixes{ok in }
         self.presentingViewController?.dismiss(animated: true, completion: nil)
     }
 }
