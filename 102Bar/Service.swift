@@ -20,7 +20,7 @@ class Service: NSObject {
     let URL_ORDERED_MIXES_ROOT: String
     let URL_GET_CUSTOM_MIXES_ROOT: String
     let URL_GET_CUSTOM_MIXES_ING: String
-    let URL_ADD_CUSTOM_MIX: String
+    let URL_CUSTOM_MIX: String
     let URL_USER_INFO: String
     
     let defaultValues = UserDefaults.standard
@@ -50,7 +50,7 @@ class Service: NSObject {
         URL_AVAILABLE_DRINK_GROUPS = BASE_URL + "availableDrinkGroups.php"
         URL_GET_CUSTOM_MIXES_ROOT = BASE_URL + "getCustomMixesRoot.php"
         URL_GET_CUSTOM_MIXES_ING = BASE_URL + "getCustomMixesIng.php"
-        URL_ADD_CUSTOM_MIX = BASE_URL + "addCustomMix.php"
+        URL_CUSTOM_MIX = BASE_URL + "customMix.php"
         super.init()
         getAvailableDrinkGroups
             {
@@ -314,13 +314,10 @@ class Service: NSObject {
     
     public func orderMix(mixToOrder: Mix, add: Bool, callback: @escaping (_ success: String?) -> Void){
         //NOT TESTED AND NO PHP
-        var ingredients: String = ""
-        guard let data = try? JSONSerialization.data(withJSONObject: mixToOrder.ingredients, options: []) else {
-            callback("Error to Parse")
-            return
-        }
-        ingredients = String(data: data, encoding: String.Encoding.utf8)!
-    
+        let ingredientsJSON: String = JSONSerializer.toJson(mixToOrder.ingredients)
+        let index = ingredientsJSON.index(ingredientsJSON.startIndex, offsetBy: 8)
+        let ingredients = ingredientsJSON[index...]
+        
         let parameters: Parameters=[
             "Mix": mixToOrder.mix,
             "Description": mixToOrder.mixDescription,
@@ -329,7 +326,7 @@ class Service: NSObject {
             "Add": add ? "1" : "0"
         ]
         
-        Alamofire.request(URL_ORDER_MIX, method: .post, parameters: parameters).responseJSON
+        Alamofire.request(URL_CUSTOM_MIX, method: .post, parameters: parameters).responseJSON
             {
                 response in
                 if let result = response.result.value {
@@ -382,15 +379,11 @@ class Service: NSObject {
         }
     }
     
-    public func addCustomMix(mixToAdd: Mix, add: Bool, callback: @escaping (_ success: String?) -> Void){
-        //TODO
-        var ingredients: String = ""
-        guard let data = try? JSONSerialization.data(withJSONObject: mixToAdd.ingredients, options: []) else {
-            callback("Error to Parse")
-            return
-        }
-        ingredients = String(data: data, encoding: String.Encoding.utf8)!
-        
+    public func customMix(mixToAdd: Mix, add: Bool, callback: @escaping (_ success: String?) -> Void){
+        let ingredientsJSON: String = JSONSerializer.toJson(mixToAdd.ingredients)
+        let index = ingredientsJSON.index(ingredientsJSON.startIndex, offsetBy: 8)
+        let ingredients = ingredientsJSON[index...]
+
         let parameters: Parameters=[
             "Mix": mixToAdd.mix,
             "Description": mixToAdd.mixDescription,
@@ -399,7 +392,7 @@ class Service: NSObject {
             "Add": add ? "1" : "0"
         ]
         
-        Alamofire.request(URL_ORDER_MIX, method: .post, parameters: parameters).responseJSON
+        Alamofire.request(URL_CUSTOM_MIX, method: .post, parameters: parameters).responseJSON
             {
                 response in
                 if let result = response.result.value {
@@ -407,6 +400,10 @@ class Service: NSObject {
                     callback(jsonData.value(forKey: "message") as? String)
                 }
         }
+    }
+    
+    public func getNewGUID() -> String{
+        return UUID.init().uuidString.lowercased()
     }
 
 }

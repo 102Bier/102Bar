@@ -33,6 +33,7 @@
 		8AE72D10207C9D8500F049F3 /* iconDelete.png in Resources */ = {isa = PBXBuildFile; fileRef = 8AE72D07207C9D8300F049F3 /* iconDelete.png */; };
 		8AE72D11207C9D8500F049F3 /* iconOk.png in Resources */ = {isa = PBXBuildFile; fileRef = 8AE72D0F207C9D8400F049F3 /* iconOk.png */; };
 		8AE72D1B207CDB3D00F049F3 /* TestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AE72D1A207CDB3D00F049F3 /* TestViewController.swift */; };
+		8AEFB087207F45EB00F534A5 /* JSONSerializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AEFB086207F45EB00F534A5 /* JSONSerializer.swift */; };
 		C35A81C220617141002A3477 /* AddDrinkController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C35A81C120617141002A3477 /* AddDrinkController.swift */; };
 		C35E17972072945400613897 /* CustomDrinkModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C35E17962072945400613897 /* CustomDrinkModel.swift */; };
 		C3B66DF6207CC3DF00C26328 /* ingredCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3B66DF5207CC3DF00C26328 /* ingredCell.swift */; };
@@ -168,6 +169,7 @@
 		8AE72D07207C9D8300F049F3 /* iconDelete.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = iconDelete.png; sourceTree = "<group>"; };
 		8AE72D0F207C9D8400F049F3 /* iconOk.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = iconOk.png; sourceTree = "<group>"; };
 		8AE72D1A207CDB3D00F049F3 /* TestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestViewController.swift; sourceTree = "<group>"; };
+		8AEFB086207F45EB00F534A5 /* JSONSerializer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONSerializer.swift; sourceTree = "<group>"; };
 		C35A81C120617141002A3477 /* AddDrinkController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddDrinkController.swift; sourceTree = "<group>"; };
 		C35E17962072945400613897 /* CustomDrinkModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomDrinkModel.swift; sourceTree = "<group>"; };
 		C3B66DF5207CC3DF00C26328 /* ingredCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ingredCell.swift; sourceTree = "<group>"; };
@@ -247,6 +249,7 @@
 				8A46A0D9206012CC004EDA94 /* DrinkController.swift */,
 				8A5FA712206A5ADA00161D86 /* DrinkGroup.swift */,
 				8A5FA710206A5AC800161D86 /* DrinkType.swift */,
+				8AEFB086207F45EB00F534A5 /* JSONSerializer.swift */,
 				8A46A0D3205FE71E004EDA94 /* icon_256.png */,
 				8AE72D07207C9D8300F049F3 /* iconDelete.png */,
 				8AE72D0F207C9D8400F049F3 /* iconOk.png */,
@@ -537,6 +540,7 @@
 				8A5FA713206A5ADA00161D86 /* DrinkGroup.swift in Sources */,
 				8A46A0DA206012CC004EDA94 /* DrinkController.swift in Sources */,
 				8A46A0D2205FE4F4004EDA94 /* LoginController.swift in Sources */,
+				8AEFB087207F45EB00F534A5 /* JSONSerializer.swift in Sources */,
 				C3EB45B3206932AF00F69F16 /* DrinkCell.swift in Sources */,
 				8A46A0DC20601362004EDA94 /* RegisterController.swift in Sources */,
 				8A5FA715206A5AE900161D86 /* Drink.swift in Sources */,

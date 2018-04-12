@@ -1,6 +1,6 @@
 import Foundation
 
-class DrinkType: NSObject {
+class DrinkType {
     
     var drinkType: String = ""
     var drinkGroup: DrinkGroup!

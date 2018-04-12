@@ -9,13 +9,6 @@ class Drink: NSObject {
     var AFO: Int = 0
     var connection: Int = 0
     
-    init(description: String, percentage: Int)
-    {
-        self.drinkDescription = description
-        self.percentage = percentage
-        //todo: get DrinkType and stuff 
-    }
-    
     init(drink: String, drinkType: DrinkType, drinkDescription: String){
         self.drink = drink
         self.drinkType = drinkType

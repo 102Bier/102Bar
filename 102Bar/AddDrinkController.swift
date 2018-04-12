@@ -412,7 +412,7 @@ class AddDrinkController : UITableViewController, UITextFieldDelegate
             let ai = Service.shared.availableIngredients //crashes right now
             if(ai.count > 0)
             {
-                let drink = ai.first(where: {$0.drinkDescription == description})
+                let drink = ai.first(where: {$0.drinkDescription == description})?.clone()
                 drink?.addPercentage(percentage: percentage)
                 drinks.append(drink!)
             }
@@ -421,8 +421,9 @@ class AddDrinkController : UITableViewController, UITextFieldDelegate
                 return
             }
         }
-        Service.shared.customDrinkModel.addMix(mix: Mix(mix: "", mixDescription: mixName!, ingredients: drinks))
-        //Service.shared.getAvailableMixes{ok in }
-        self.presentingViewController?.dismiss(animated: true, completion: nil)
+        Service.shared.customMix(mixToAdd: Mix(mix: Service.shared.getNewGUID(), mixDescription: mixName!, ingredients: drinks), add: true){
+            success in
+            self.presentingViewController?.dismiss(animated: true, completion: nil)
+        }
     }
 }
