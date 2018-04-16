@@ -11,6 +11,7 @@ class DrinkController: UIViewController, UITableViewDelegate, UITableViewDataSou
         tableView.reloadData()
     }
     
+    
     @IBOutlet var CustomDrinkTable: UITableView!
     
     @IBAction func LogoutTapped(_ sender: Any) {
@@ -23,8 +24,40 @@ class DrinkController: UIViewController, UITableViewDelegate, UITableViewDataSou
         present(vc, animated: true, completion: nil)
     }
     
+    private let refreshControl = UIRefreshControl()
+    
     override func viewDidLoad() {
+        // Add Refresh Control to Table View
+        if #available(iOS 10.0, *) {
+            tableView.refreshControl = refreshControl
+        } else {
+            tableView.addSubview(refreshControl)
+        }
+        refreshControl.addTarget(self, action: #selector(refreshTable(_:)), for: .valueChanged)
         super.viewDidLoad()
+    }
+    
+    @objc private func refreshTable(_ sender: Any) {
+        // Fetch Weather Data
+        fetchDrinkData()
+    }
+    
+    func fetchDrinkData()
+    {
+        switch(segControl.selectedSegmentIndex)
+        {
+        case 0: Service.shared.getAvailableMixes {
+            succsess in self.tableView.reloadData()
+            self.refreshControl.endRefreshing()
+            //self.activityIndicatorView.stopAnimating()
+        }
+        case 1: Service.shared.getCustomMixes {
+            succsess in self.tableView.reloadData()
+            self.refreshControl.endRefreshing()
+            //self.activityIndicatorView.stopAnimating()
+            }
+        default: break
+        }
     }
     
     func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCellEditingStyle {
