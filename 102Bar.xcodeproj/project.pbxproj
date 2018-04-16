@@ -35,6 +35,7 @@
 		8AE72D1B207CDB3D00F049F3 /* TestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AE72D1A207CDB3D00F049F3 /* TestViewController.swift */; };
 		8AEFB087207F45EB00F534A5 /* JSONSerializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AEFB086207F45EB00F534A5 /* JSONSerializer.swift */; };
 		8AEFB089207FC42500F534A5 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AEFB088207FC42500F534A5 /* User.swift */; };
+		C34442AC2084CC28005C8AFA /* OrderDrinkController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C34442AB2084CC28005C8AFA /* OrderDrinkController.swift */; };
 		C35A81C220617141002A3477 /* AddDrinkController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C35A81C120617141002A3477 /* AddDrinkController.swift */; };
 		C35E17972072945400613897 /* CustomDrinkModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C35E17962072945400613897 /* CustomDrinkModel.swift */; };
 		C3B66DF6207CC3DF00C26328 /* ingredCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3B66DF5207CC3DF00C26328 /* ingredCell.swift */; };
@@ -172,6 +173,7 @@
 		8AE72D1A207CDB3D00F049F3 /* TestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestViewController.swift; sourceTree = "<group>"; };
 		8AEFB086207F45EB00F534A5 /* JSONSerializer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONSerializer.swift; sourceTree = "<group>"; };
 		8AEFB088207FC42500F534A5 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		C34442AB2084CC28005C8AFA /* OrderDrinkController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderDrinkController.swift; sourceTree = "<group>"; };
 		C35A81C120617141002A3477 /* AddDrinkController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddDrinkController.swift; sourceTree = "<group>"; };
 		C35E17962072945400613897 /* CustomDrinkModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomDrinkModel.swift; sourceTree = "<group>"; };
 		C3B66DF5207CC3DF00C26328 /* ingredCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ingredCell.swift; sourceTree = "<group>"; };
@@ -269,6 +271,7 @@
 				8A5FA707206A51F600161D86 /* Service.swift */,
 				C3B66DF5207CC3DF00C26328 /* ingredCell.swift */,
 				8AD76696206A30C200F61878 /* TestController.swift */,
+				C34442AB2084CC28005C8AFA /* OrderDrinkController.swift */,
 			);
 			path = 102Bar;
 			sourceTree = "<group>";
@@ -548,6 +551,7 @@
 				C3EB45B3206932AF00F69F16 /* DrinkCell.swift in Sources */,
 				8A46A0DC20601362004EDA94 /* RegisterController.swift in Sources */,
 				8A5FA715206A5AE900161D86 /* Drink.swift in Sources */,
+				C34442AC2084CC28005C8AFA /* OrderDrinkController.swift in Sources */,
 				8A41BA0A205FDD9900907669 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
