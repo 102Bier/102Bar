@@ -34,6 +34,10 @@ class DrinkController: UIViewController, UITableViewDelegate, UITableViewDataSou
             tableView.addSubview(refreshControl)
         }
         refreshControl.addTarget(self, action: #selector(refreshTable(_:)), for: .valueChanged)
+        Service.shared.getCustomMixes {
+            success in
+            self.tableView.reloadData()
+        }
         super.viewDidLoad()
     }
     
@@ -99,6 +103,9 @@ class DrinkController: UIViewController, UITableViewDelegate, UITableViewDataSou
     func tableView(_: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if segControl.selectedSegmentIndex == 1 && editingStyle == .delete {
             //remove ingred from data model
+            Service.shared.customMix(mixToAdd: Service.shared.customMixes[indexPath.row], add: false){
+                success in
+            }
             Service.shared.customMixes.remove(at: indexPath.row)
             // delete the table view row
             tableView.deleteRows(at: [indexPath], with: .fade)
