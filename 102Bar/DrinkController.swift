@@ -24,6 +24,11 @@ class DrinkController: UIViewController, UITableViewDelegate, UITableViewDataSou
         present(vc, animated: true, completion: nil)
     }
     
+    
+    @IBAction func viewTapped(_ sender: UITapGestureRecognizer) {
+        print("lol")
+    }
+    
     private let refreshControl = UIRefreshControl()
     
     override func viewDidLoad() {
@@ -120,6 +125,9 @@ class DrinkController: UIViewController, UITableViewDelegate, UITableViewDataSou
         case 1: mix = Service.shared.customMixes[indexPath.row]
         default: return
         }
+        let vc: UIViewController = storyboard!.instantiateViewController(withIdentifier: "orderMix")
+        (vc as! orderMixController).mixToOrder = mix
+        navigationController?.pushViewController(vc, animated: true)
         //Service.shared.orderMix(mixToOrder: mix, add: true) {_ in }
     }
     
