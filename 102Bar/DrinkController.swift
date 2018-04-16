@@ -50,11 +50,11 @@ class DrinkController: UIViewController, UITableViewDelegate, UITableViewDataSou
             return cell
             
         case 1: //Custom Drinks
-            cell.mixTitle.text = Service.shared.customDrinkModel.customMixes[indexPath.row].mixDescription
+            cell.mixTitle.text = Service.shared.customMixes[indexPath.row].mixDescription
             
-            for i in 0..<Service.shared.customDrinkModel.customMixes[indexPath.row].ingredients.count
+            for i in 0..<Service.shared.customMixes[indexPath.row].ingredients.count
             {
-                cell.addOrReplaceLabel(ingredient: Service.shared.customDrinkModel.customMixes[indexPath.row].ingredients[i].drinkDescription, yPos: i)
+                cell.addOrReplaceLabel(ingredient: Service.shared.customMixes[indexPath.row].ingredients[i].drinkDescription, yPos: i)
             }
             return cell
             
@@ -66,7 +66,7 @@ class DrinkController: UIViewController, UITableViewDelegate, UITableViewDataSou
     func tableView(_: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if segControl.selectedSegmentIndex == 1 && editingStyle == .delete {
             //remove ingred from data model
-            Service.shared.customDrinkModel.customMixes.remove(at: indexPath.row)
+            Service.shared.customMixes.remove(at: indexPath.row)
             // delete the table view row
             tableView.deleteRows(at: [indexPath], with: .fade)
         }
@@ -77,7 +77,7 @@ class DrinkController: UIViewController, UITableViewDelegate, UITableViewDataSou
         switch segControl.selectedSegmentIndex
         {
         case 0: mix = Service.shared.availableMixes[indexPath.row]
-        case 1: mix = Service.shared.customDrinkModel.customMixes[indexPath.row]
+        case 1: mix = Service.shared.customMixes[indexPath.row]
         default: return
         }
         //Service.shared.orderMix(mixToOrder: mix, add: true) {_ in }
@@ -94,7 +94,7 @@ class DrinkController: UIViewController, UITableViewDelegate, UITableViewDataSou
         case 0: //available
             return Service.shared.availableMixes.count
         case 1: //custom
-            return Service.shared.customDrinkModel.customMixes.count
+            return Service.shared.customMixes.count
         default: return 0
         }
     }
@@ -116,7 +116,7 @@ class DrinkController: UIViewController, UITableViewDelegate, UITableViewDataSou
         case 0:
             return CGFloat(60 + Service.shared.availableMixes[indexPath.row].ingredients.count * 25)
         case 1:
-            return CGFloat(60 + Service.shared.customDrinkModel.customMixes[indexPath.row].ingredients.count * 25)
+            return CGFloat(60 + Service.shared.customMixes[indexPath.row].ingredients.count * 25)
         default: return 25
         }
     }

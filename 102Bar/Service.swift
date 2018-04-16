@@ -30,6 +30,7 @@ class Service: NSObject {
     var availableIngredients = [Drink]()
     var availableMixes = [Mix]()
     var orderedMixes = [Mix]()
+    var customMixes = [Mix]()
     public var testI: [Drink]!
     
     
@@ -65,18 +66,7 @@ class Service: NSObject {
         
     }
     
-    public func login(loginController: LoginController, username:String, password:String){
-        
-        /*** Create test availableDrinks Array*///
-        let drink1 = Drink(drink: "", drinkType: availableDrinkTypes.first(where: {$0.drinkTypeDescription == "Süßer Sprudel"})!, drinkDescription: "Fanta")
-        let drink2 = Drink(drink: "", drinkType: availableDrinkTypes.first(where: {$0.drinkTypeDescription == "Vodka"})!, drinkDescription: "Skyy")
-        let drink3 = Drink(drink: "", drinkType: availableDrinkTypes.first(where: {$0.drinkTypeDescription == "Tequila"})!, drinkDescription: "Sierra Silver")
-        let drink4 = Drink(drink: "", drinkType: availableDrinkTypes.first(where: {$0.drinkTypeDescription == "Cola"})!, drinkDescription: "Coca Cola")
-        let drink5 = Drink(drink: "", drinkType: availableDrinkTypes.first(where: {$0.drinkTypeDescription == "Berentzen"})!, drinkDescription: "Berentzen Saurer Apfel")
-        let drink6 = Drink(drink: "", drinkType: availableDrinkTypes.first(where: {$0.drinkTypeDescription == "Energy"})!, drinkDescription: "Red Bull")
-        
-        Service.shared.testI = [drink1, drink2, drink3, drink4, drink5, drink6]
-        /***END***/
+    public func login(username:String, password:String, callback: @escaping (_ success: Bool?) -> Void){
         
         let parameters: Parameters=[
             "username": username,
@@ -112,10 +102,10 @@ class Service: NSObject {
                         self.defaultValues.set(userLastname, forKey: "userlastname")
                         self.defaultValues.set(userRights, forKey: "userrights")
                         
-                        loginController.changeView()
+                        callback(true)
                     }else{
                         //error message in case of invalid credential
-                        loginController.labelMessage.text = "Invalid username or password"
+                       callback(false)
                     }
                     
                 }
@@ -274,7 +264,6 @@ class Service: NSObject {
     }
     
     public func getOrderedMixes(callback: @escaping (_ success: Bool?) -> Void){
-        //Do not empty array check if exists
         Alamofire.request(self.URL_ORDERED_MIXES_ROOT).responseJSON
             {
                 response in
@@ -341,39 +330,45 @@ class Service: NSObject {
             "user":defaultValues.object(forKey: "userid") as! String
         ]
         
-        Alamofire.request(URL_USER_LOGIN, method: .post, parameters: parameters).responseJSON
+        print(defaultValues.object(forKey: "userid") as! String)
+        
+        Alamofire.request(self.URL_GET_CUSTOM_MIXES_ROOT, method: .post, parameters: parameters).responseJSON
             {
                 response in
-                debugPrint(response)
                 if let result = response.result.value {
-                    let jsonData = result as! NSDictionary
-                    
-                    //if there is no error
-                    if(!(jsonData.value(forKey: "error") as! Bool)){
-                        
-                        //getting the user from response
-                        let user = jsonData.value(forKey: "user") as! NSDictionary
-                        
-                        //getting user values
-                        let userId = user.value(forKey: "id") as! String
-                        let userName = user.value(forKey: "username") as! String
-                        let userFirstname = user.value(forKey: "firstname") as! String
-                        let userLastname = user.value(forKey: "lastname") as! String
-                        let userEmail = user.value(forKey: "email") as! String
-                        let userRights = user.value(forKey: "rights") as! Int
-                        
-                        //saving user values to defaults
-                        self.defaultValues.set(userId, forKey: "userid")
-                        self.defaultValues.set(userName, forKey: "username")
-                        self.defaultValues.set(userEmail, forKey: "useremail")
-                        self.defaultValues.set(userFirstname, forKey: "userfirstname")
-                        self.defaultValues.set(userLastname, forKey: "userlastname")
-                        self.defaultValues.set(userRights, forKey: "userrights")
-                        
-                    }else{
-                        //error message in case of invalid credential
+                    self.customMixes = Array()
+                    print(result)
+                    let rootArray = result as! NSArray
+                    for root in rootArray{
+                        let mixDictionary = root as! NSDictionary
+                        let tmpMix = mixDictionary.object(forKey: "CustomMix") as! String
+                        let tmpMixDescription = mixDictionary.object(forKey: "Description") as! String
+                        let tmpCustomMix = Mix(mix: tmpMix, mixDescription: tmpMixDescription, ingredients: [Drink]())
+                        self.customMixes.append(tmpCustomMix)
                     }
-                    
+                    Alamofire.request(self.URL_GET_CUSTOM_MIXES_ING, method: .post, parameters: parameters).responseJSON{
+                        response1 in
+                        if let result1 = response1.result.value{
+                            print(result1)
+                            let ingArray = result1 as! NSArray
+                            for ing in ingArray{
+                                let ingDic = ing as! NSDictionary
+                                let ingRoot = ingDic.object(forKey: "Root") as! String
+                                let ingGUID = ingDic.object(forKey: "Reference") as! String
+                                let ingPercentage = Int(ingDic.object(forKey: "Percentage") as! String)
+                                let ingAFO = Int(ingDic.object(forKey: "AFO") as! String)
+                                for rootToFill in self.customMixes where rootToFill.mix == ingRoot{
+                                    let ingToChange = self.availableIngredients.first(where: {$0.drink == ingGUID})?.clone()
+                                    ingToChange?.percentage = ingPercentage!
+                                    ingToChange?.AFO = ingAFO!
+                                    rootToFill.ingredients.append(ingToChange!)
+                                }
+                            }
+                            callback(true)
+                        }else{
+                            callback(false)
+                        }
+                    }
                 }
         }
     }

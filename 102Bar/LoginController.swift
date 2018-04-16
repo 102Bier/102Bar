@@ -34,11 +34,21 @@ class LoginController: UIViewController {
             self.labelMessage.isHidden = false
             return
         }
-        Service.shared.getAvailableIngredients {succsess in
-            Service.shared.getAvailableMixes {succsess in
-                Service.shared.login(loginController: self, username: self._username.text!, password: self._password.text!)
+        Service.shared.login(username: self._username.text!, password: self._password.text!){
+            success in
+            if success!{
+                Service.shared.getAvailableIngredients {succsess in
+                    Service.shared.getAvailableMixes {succsess in
+                        Service.shared.getCustomMixes{success in
+                            self.changeView()
+                        }
+                    }
+                }
+            }else{
+                 self.labelMessage.text = "Invalid username or password"
             }
         }
+        
     }
     
     @IBAction func LoginAsGuestButton(_ sender: Any) {
