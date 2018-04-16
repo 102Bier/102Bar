@@ -337,9 +337,8 @@ class Service: NSObject {
     }
     
     public func getCustomMixes(callback: @escaping (_ success: Bool?) -> Void){
-        //TODO
         let parameters: Parameters=[
-            "user":"22"
+            "user":defaultValues.object(forKey: "userid") as! String
         ]
         
         Alamofire.request(URL_USER_LOGIN, method: .post, parameters: parameters).responseJSON
