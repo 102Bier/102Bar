@@ -53,6 +53,13 @@ class LoginController: UIViewController {
     
     @IBAction func LoginAsGuestButton(_ sender: Any) {
         Service.shared.loginAsGuest(loginController: self)
+        Service.shared.getAvailableIngredients {succsess in
+            Service.shared.getAvailableMixes {succsess in
+                Service.shared.getCustomMixes{success in
+                    self.changeView()
+                }
+            }
+        }
     }
     
     @IBAction func RegisterButton(_ sender: Any) {

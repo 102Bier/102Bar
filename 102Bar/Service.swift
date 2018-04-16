@@ -302,7 +302,6 @@ class Service: NSObject {
     }
     
     public func orderMix(mixToOrder: Mix, add: Bool, callback: @escaping (_ success: String?) -> Void){
-        //NOT TESTED AND NO PHP
         let ingredientsJSON: String = JSONSerializer.toJson(mixToOrder.ingredients)
         let index = ingredientsJSON.index(ingredientsJSON.startIndex, offsetBy: 8)
         let ingredients = ingredientsJSON[index...]
@@ -315,7 +314,7 @@ class Service: NSObject {
             "Add": add ? "1" : "0"
         ]
         
-        Alamofire.request(URL_CUSTOM_MIX, method: .post, parameters: parameters).responseJSON
+        Alamofire.request(URL_ORDER_MIX, method: .post, parameters: parameters).responseJSON
             {
                 response in
                 if let result = response.result.value {
