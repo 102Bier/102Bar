@@ -27,6 +27,8 @@
 		8A5FA715206A5AE900161D86 /* Drink.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A5FA714206A5AE900161D86 /* Drink.swift */; };
 		8A5FA717206A5AF800161D86 /* Mix.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A5FA716206A5AF800161D86 /* Mix.swift */; };
 		8A6609E6207C989300BC37D1 /* OrderedMixTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A6609E5207C989300BC37D1 /* OrderedMixTableViewCell.swift */; };
+		8AB0AAFE2084D25200C7B994 /* iconDecline.png in Resources */ = {isa = PBXBuildFile; fileRef = 8AB0AAF52084D24E00C7B994 /* iconDecline.png */; };
+		8AB0AAFF2084D25200C7B994 /* iconAccept.png in Resources */ = {isa = PBXBuildFile; fileRef = 8AB0AAFD2084D25100C7B994 /* iconAccept.png */; };
 		8AB52C4020603C91003EA1BB /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A46A0EB206030CB004EDA94 /* Alamofire.framework */; };
 		8AB52C4120603C91003EA1BB /* Alamofire.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8A46A0EB206030CB004EDA94 /* Alamofire.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		8AD76697206A30C200F61878 /* TestController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AD76696206A30C200F61878 /* TestController.swift */; };
@@ -166,6 +168,8 @@
 		8A5FA714206A5AE900161D86 /* Drink.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Drink.swift; sourceTree = "<group>"; };
 		8A5FA716206A5AF800161D86 /* Mix.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mix.swift; sourceTree = "<group>"; };
 		8A6609E5207C989300BC37D1 /* OrderedMixTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderedMixTableViewCell.swift; sourceTree = "<group>"; };
+		8AB0AAF52084D24E00C7B994 /* iconDecline.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = iconDecline.png; sourceTree = "<group>"; };
+		8AB0AAFD2084D25100C7B994 /* iconAccept.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = iconAccept.png; sourceTree = "<group>"; };
 		8AD76696206A30C200F61878 /* TestController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestController.swift; sourceTree = "<group>"; };
 		8AE72D07207C9D8300F049F3 /* iconDelete.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = iconDelete.png; sourceTree = "<group>"; };
 		8AE72D0F207C9D8400F049F3 /* iconOk.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = iconOk.png; sourceTree = "<group>"; };
@@ -238,6 +242,8 @@
 		8A41BA08205FDD9900907669 /* 102Bar */ = {
 			isa = PBXGroup;
 			children = (
+				8AB0AAFD2084D25100C7B994 /* iconAccept.png */,
+				8AB0AAF52084D24E00C7B994 /* iconDecline.png */,
 				C35A81C120617141002A3477 /* AddDrinkController.swift */,
 				C3EB45BC2069427900F69F16 /* AddDrinkTableContent.swift */,
 				8A41BA09205FDD9900907669 /* AppDelegate.swift */,
@@ -494,6 +500,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8AB0AAFF2084D25200C7B994 /* iconAccept.png in Resources */,
 				8A41BA14205FDD9900907669 /* LaunchScreen.storyboard in Resources */,
 				8A46A0D4205FE71E004EDA94 /* icon_256.png in Resources */,
 				8AE72D11207C9D8500F049F3 /* iconOk.png in Resources */,
@@ -501,6 +508,7 @@
 				8A46A0FA206030CC004EDA94 /* Source in Resources */,
 				8A46A0FB206030CC004EDA94 /* Alamofire.xcworkspace in Resources */,
 				8AE72D10207C9D8500F049F3 /* iconDelete.png in Resources */,
+				8AB0AAFE2084D25200C7B994 /* iconDecline.png in Resources */,
 				8A41BA11205FDD9900907669 /* Assets.xcassets in Resources */,
 				8A41BA0F205FDD9900907669 /* Main.storyboard in Resources */,
 			);
