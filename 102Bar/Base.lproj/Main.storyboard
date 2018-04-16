@@ -537,10 +537,10 @@
             </objects>
             <point key="canvasLocation" x="3020.625" y="116.19718309859155"/>
         </scene>
-        <!--Ordered Mixes Controller-->
+        <!--Order Mix Controller-->
         <scene sceneID="5WQ-gA-9mj">
             <objects>
-                <viewController storyboardIdentifier="orderMix" useStoryboardIdentifierAsRestorationIdentifier="YES" id="ErE-Vj-rtu" customClass="OrderedMixesController" customModule="_02Bar" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="orderMix" useStoryboardIdentifierAsRestorationIdentifier="YES" id="ErE-Vj-rtu" customClass="orderMixController" customModule="_02Bar" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="VwX-ls-0yE">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -549,7 +549,7 @@
                                 <rect key="frame" x="0.0" y="189" width="320" height="379"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="DrinkCell" rowHeight="55" id="LbX-FE-LyE" customClass="DrinkCell" customModule="_02Bar" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="orderIngred" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="orderIngred" rowHeight="55" id="LbX-FE-LyE" customClass="DrinkCell" customModule="_02Bar" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="320" height="55"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="LbX-FE-LyE" id="hzj-dl-XI8">

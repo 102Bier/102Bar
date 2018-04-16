@@ -126,7 +126,7 @@ class DrinkController: UIViewController, UITableViewDelegate, UITableViewDataSou
         default: return
         }
         let vc: UIViewController = storyboard!.instantiateViewController(withIdentifier: "orderMix")
-        (vc as! orderDrinkController).mixToOrder = mix
+        (vc as! orderMixController).mixToOrder = mix
         navigationController?.pushViewController(vc, animated: true)
         //Service.shared.orderMix(mixToOrder: mix, add: true) {_ in }
     }
