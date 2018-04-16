@@ -70,6 +70,12 @@ class DrinkController: UIViewController, UITableViewDelegate, UITableViewDataSou
         }
     }
     
+    func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
+        let vc: UIViewController = storyboard!.instantiateViewController(withIdentifier: "orderDrink")
+        navigationController?.pushViewController(vc, animated: true)
+        //present(vc, animated: true, completion: nil)
+    }
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ingredCell") as! ingredCell
         switch(segControl.selectedSegmentIndex)
