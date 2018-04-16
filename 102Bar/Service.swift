@@ -31,9 +31,7 @@ class Service: NSObject {
     var availableMixes = [Mix]()
     var orderedMixes = [Mix]()
     var customMixes = [Mix]()
-    public var testI: [Drink]!
-    
-    
+    var users = [User]()
     
     override init() {
         BASE_URL = "http://102bier.de/102bar/"
@@ -301,7 +299,7 @@ class Service: NSObject {
         }
     }
     
-    public func orderMix(mixToOrder: Mix, add: Bool, callback: @escaping (_ success: String?) -> Void){
+    public func orderMix(mixToOrder: Mix, glasssize: Int, add: Bool, callback: @escaping (_ success: String?) -> Void){
         let ingredientsJSON: String = JSONSerializer.toJson(mixToOrder.ingredients)
         let index = ingredientsJSON.index(ingredientsJSON.startIndex, offsetBy: 8)
         let ingredients = ingredientsJSON[index...]
@@ -311,6 +309,7 @@ class Service: NSObject {
             "Description": mixToOrder.mixDescription,
             "Ingredients": ingredients,
             "User": defaultValues.object(forKey: "userid") as! String,
+            "GlassSize": glasssize,
             "Add": add ? "1" : "0"
         ]
         
@@ -392,6 +391,29 @@ class Service: NSObject {
                     let jsonData = result as! NSDictionary
                     callback(jsonData.value(forKey: "message") as? String)
                 }
+        }
+    }
+    
+    public func getUseres(callback: @escaping (_ success: Bool?) -> Void){
+        Alamofire.request(URL_USER_INFO).responseJSON{
+            response in
+            if let result = response.result.value{
+                self.users = Array()
+                let jsonData = result as! NSArray
+                for user in jsonData{
+                    let userDic = user as! NSDictionary
+                    let tmpUser = userDic.object(forKey: "User") as! String
+                    let tmpUsername = userDic.object(forKey: "Username") as! String
+                    let tmpFirstname = userDic.object(forKey: "Firstname") as! String
+                    let tmpLastname = userDic.object(forKey: "Lastname") as! String
+                    let tmpEmail = userDic.object(forKey: "Email") as! String
+                    let tmpRights = Int(userDic.object(forKey: "Rights") as! String)
+                    self.users.append(User(user: tmpUser, username: tmpUsername, firstname: tmpFirstname, lastname: tmpLastname, email: tmpEmail, rights: tmpRights!))
+                }
+                callback(true)
+            }else{
+                callback(false)
+            }
         }
     }
     

@@ -11,11 +11,14 @@ class OrderedMixesController : UITableViewController{
     }
     
     func refresh(){
-        Service.shared.getOrderedMixes {
+        Service.shared.getUseres{
             success in
-            self.orderedMixes = Service.shared.orderedMixes
-            self.tableView.reloadData()
-            self.refreshControl?.endRefreshing()
+            Service.shared.getOrderedMixes {
+                success in
+                self.orderedMixes = Service.shared.orderedMixes
+                self.tableView.reloadData()
+                self.refreshControl?.endRefreshing()
+            }
         }
     }
     
@@ -31,12 +34,20 @@ class OrderedMixesController : UITableViewController{
         for ing in orderedMix.ingredients{
             ingredients += "\n\(ing.toString())"
         }
-        cell.IngredientsLabel.text = ingredients
+        if let user = Service.shared.users.first(where: {$0.user == orderedMixes[indexPath.row].orderedByUser}){
+            cell.UsernameLabel.text = "Ordered by: " + user.username
+        }else{
+            cell.UsernameLabel.text = "Ordered by: Guest"
+        }
         return cell
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
+    }
+    
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 140
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
