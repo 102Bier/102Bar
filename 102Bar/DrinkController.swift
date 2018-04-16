@@ -24,6 +24,11 @@ class DrinkController: UIViewController, UITableViewDelegate, UITableViewDataSou
         present(vc, animated: true, completion: nil)
     }
     
+    
+    @IBAction func viewTapped(_ sender: UITapGestureRecognizer) {
+        print("lol")
+    }
+    
     private let refreshControl = UIRefreshControl()
     
     override func viewDidLoad() {
@@ -74,12 +79,6 @@ class DrinkController: UIViewController, UITableViewDelegate, UITableViewDataSou
         }
     }
     
-    func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
-        let vc: UIViewController = storyboard!.instantiateViewController(withIdentifier: "orderDrink")
-        navigationController?.pushViewController(vc, animated: true)
-        //present(vc, animated: true, completion: nil)
-    }
-    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ingredCell") as! ingredCell
         switch(segControl.selectedSegmentIndex)
@@ -126,6 +125,8 @@ class DrinkController: UIViewController, UITableViewDelegate, UITableViewDataSou
         case 1: mix = Service.shared.customMixes[indexPath.row]
         default: return
         }
+        let vc: UIViewController = storyboard!.instantiateViewController(withIdentifier: "orderDrink")
+        navigationController?.pushViewController(vc, animated: true)
         //Service.shared.orderMix(mixToOrder: mix, add: true) {_ in }
     }
     

@@ -531,7 +531,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2BR-jZ-Exx" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <tapGestureRecognizer id="MYR-DR-fZ8">
                     <connections>
-                        <action selector="viewTapped:" destination="obu-ir-aFC" id="wrL-b3-PWl"/>
+                        <action selector="viewTapped:" destination="obu-ir-aFC" id="42Z-Xs-MCr"/>
                     </connections>
                 </tapGestureRecognizer>
             </objects>
