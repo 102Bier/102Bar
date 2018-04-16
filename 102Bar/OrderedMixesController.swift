@@ -27,6 +27,7 @@ class OrderedMixesController : UITableViewController{
         guard let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as? OrderedMixTableViewCell  else {
             fatalError("The dequeued cell is not an instance of OrderedMixTableViewCell.")
         }
+        cell.controller = self
         let orderedMix = orderedMixes[indexPath.row]
         cell.MixDescriptionLabel.text = orderedMix.mixDescription
         cell.orderedMix = orderedMix
