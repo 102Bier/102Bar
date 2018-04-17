@@ -126,9 +126,17 @@ class DrinkController: UIViewController, UITableViewDelegate, UITableViewDataSou
         default: return
         }
         let vc: UIViewController = storyboard!.instantiateViewController(withIdentifier: "orderMix")
+        
+        let order = UIBarButtonItem(title: "Order", style: .plain, target: self, action: #selector(orderTapped))
+        vc.navigationItem.rightBarButtonItem = order
+        vc.navigationItem.title = "Order Mix"
         (vc as! orderMixController).mixToOrder = mix
         navigationController?.pushViewController(vc, animated: true)
         //Service.shared.orderMix(mixToOrder: mix, add: true) {_ in }
+    }
+    
+    @objc func orderTapped() {
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
