@@ -7,6 +7,7 @@ class OrderedMixesController : UITableViewController{
     
     override func viewDidLoad() {
         self.refresh()
+        tableView.allowsSelection = false
         super.viewDidLoad()
     }
     
