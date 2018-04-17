@@ -7,36 +7,19 @@
 //
 
 import UIKit
+import UserNotifications
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-    var loginOk = false
-    var customDrinkModel = CustomDrinkModel()
-    var vc : UIViewController = UIViewController()
-    var nc : UINavigationController = UINavigationController()
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .badge, .sound]){
+            (granted, error) in
+            print("granted: \(granted)")
+        }
         _ = Service.shared
-        //vc = window?.rootViewController?.storyboard?.instantiateViewController(withIdentifier: "TabBarController") as! UIViewController
-        
-        
-        
-        //nc = window?.rootViewController?.storyboard?.instantiateViewController(withIdentifier: "NavControllerAddDrink") as! UINavigationController
-        
-        
-        //window?.rootViewController?.addChildViewController(vc)
-        
-        //(window?.rootViewController as! LoginController).vc = vc
-        //(window?.rootViewController?.childViewControllers as! LoginController).vc = vc
-        
-        //print(self.hashValue)
-    //window?.rootViewController?.childViewControllers[0].childViewControllers[0].childViewControllers[0].navigationController?.childViewControllers[0].addChildViewController(nc)
-        //let addDrinkController = nc.childViewControllers[0] as! AddDrinkController
-        //addDrinkController.customDrinkModel = customDrinkModel //DI
-        
-        // Override point for customization after application launch.
         return true
     }
 
