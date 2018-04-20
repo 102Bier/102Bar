@@ -27,10 +27,7 @@
 		8A5FA715206A5AE900161D86 /* Drink.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A5FA714206A5AE900161D86 /* Drink.swift */; };
 		8A5FA717206A5AF800161D86 /* Mix.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A5FA716206A5AF800161D86 /* Mix.swift */; };
 		8A6609E6207C989300BC37D1 /* OrderedMixTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A6609E5207C989300BC37D1 /* OrderedMixTableViewCell.swift */; };
-		8A7BB58D2085E961001E3CF9 /* Sources in Resources */ = {isa = PBXBuildFile; fileRef = 8A7BB58B2085E961001E3CF9 /* Sources */; };
-		8A7BB58E2085E961001E3CF9 /* BlueSocket.xcworkspace in Resources */ = {isa = PBXBuildFile; fileRef = 8A7BB58C2085E961001E3CF9 /* BlueSocket.xcworkspace */; };
-		8A7BB5912085EA05001E3CF9 /* Socket.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A7BB5862085E961001E3CF9 /* Socket.framework */; };
-		8A7BB5922085EA05001E3CF9 /* Socket.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8A7BB5862085E961001E3CF9 /* Socket.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		8A7BB598208A2F6D001E3CF9 /* PushNotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A7BB597208A2F6D001E3CF9 /* PushNotificationService.swift */; };
 		8AB0AAFE2084D25200C7B994 /* iconDecline.png in Resources */ = {isa = PBXBuildFile; fileRef = 8AB0AAF52084D24E00C7B994 /* iconDecline.png */; };
 		8AB0AAFF2084D25200C7B994 /* iconAccept.png in Resources */ = {isa = PBXBuildFile; fileRef = 8AB0AAFD2084D25100C7B994 /* iconAccept.png */; };
 		8AB52C4020603C91003EA1BB /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A46A0EB206030CB004EDA94 /* Alamofire.framework */; };
@@ -101,48 +98,6 @@
 			remoteGlobalIDString = F8111E3219A95C8B0040E7D1;
 			remoteInfo = "Alamofire iOS";
 		};
-		8A7BB5832085E961001E3CF9 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 8A7BB57C2085E961001E3CF9 /* BlueSocket.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 8C0F4BF61C4E84CC008B2B0A;
-			remoteInfo = Socket;
-		};
-		8A7BB5852085E961001E3CF9 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 8A7BB57C2085E961001E3CF9 /* BlueSocket.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 8CC36E021C4EA1BE00BAA659;
-			remoteInfo = "Socket-iOS";
-		};
-		8A7BB5872085E961001E3CF9 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 8A7BB57C2085E961001E3CF9 /* BlueSocket.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 8C5FEE9B1FC319F7002F4CAA;
-			remoteInfo = "Socket-tvOS";
-		};
-		8A7BB5892085E961001E3CF9 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 8A7BB57C2085E961001E3CF9 /* BlueSocket.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 8CA9B1631C98A00400E607FB;
-			remoteInfo = SocketTests;
-		};
-		8A7BB58F2085E9A4001E3CF9 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 8A7BB57C2085E961001E3CF9 /* BlueSocket.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 8CC36DF61C4EA1BE00BAA659;
-			remoteInfo = "Socket-iOS";
-		};
-		8A7BB5932085EA05001E3CF9 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 8A7BB57C2085E961001E3CF9 /* BlueSocket.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 8CC36DF61C4EA1BE00BAA659;
-			remoteInfo = "Socket-iOS";
-		};
 		8AB52C4220603C91003EA1BB /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 8A46A0DF206030CB004EDA94 /* Alamofire.xcodeproj */;
@@ -181,7 +136,6 @@
 			dstSubfolderSpec = 10;
 			files = (
 				8AB52C4120603C91003EA1BB /* Alamofire.framework in Embed Frameworks */,
-				8A7BB5922085EA05001E3CF9 /* Socket.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -216,9 +170,7 @@
 		8A5FA714206A5AE900161D86 /* Drink.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Drink.swift; sourceTree = "<group>"; };
 		8A5FA716206A5AF800161D86 /* Mix.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mix.swift; sourceTree = "<group>"; };
 		8A6609E5207C989300BC37D1 /* OrderedMixTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderedMixTableViewCell.swift; sourceTree = "<group>"; };
-		8A7BB57C2085E961001E3CF9 /* BlueSocket.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; path = BlueSocket.xcodeproj; sourceTree = "<group>"; };
-		8A7BB58B2085E961001E3CF9 /* Sources */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Sources; sourceTree = "<group>"; };
-		8A7BB58C2085E961001E3CF9 /* BlueSocket.xcworkspace */ = {isa = PBXFileReference; lastKnownFileType = wrapper.workspace; path = BlueSocket.xcworkspace; sourceTree = "<group>"; };
+		8A7BB597208A2F6D001E3CF9 /* PushNotificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushNotificationService.swift; sourceTree = "<group>"; };
 		8AB0AAF52084D24E00C7B994 /* iconDecline.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = iconDecline.png; sourceTree = "<group>"; };
 		8AB0AAFD2084D25100C7B994 /* iconAccept.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = iconAccept.png; sourceTree = "<group>"; };
 		8AD76696206A30C200F61878 /* TestController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestController.swift; sourceTree = "<group>"; };
@@ -243,7 +195,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				8AB52C4020603C91003EA1BB /* Alamofire.framework in Frameworks */,
-				8A7BB5912085EA05001E3CF9 /* Socket.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -295,8 +246,6 @@
 		8A41BA08205FDD9900907669 /* 102Bar */ = {
 			isa = PBXGroup;
 			children = (
-				8AB0AAFD2084D25100C7B994 /* iconAccept.png */,
-				8AB0AAF52084D24E00C7B994 /* iconDecline.png */,
 				C35A81C120617141002A3477 /* AddDrinkController.swift */,
 				C3EB45BC2069427900F69F16 /* AddDrinkTableContent.swift */,
 				8A41BA09205FDD9900907669 /* AppDelegate.swift */,
@@ -310,25 +259,28 @@
 				8A46A0D9206012CC004EDA94 /* DrinkController.swift */,
 				8A5FA712206A5ADA00161D86 /* DrinkGroup.swift */,
 				8A5FA710206A5AC800161D86 /* DrinkType.swift */,
-				8AEFB086207F45EB00F534A5 /* JSONSerializer.swift */,
 				8A46A0D3205FE71E004EDA94 /* icon_256.png */,
+				8AB0AAFD2084D25100C7B994 /* iconAccept.png */,
+				8AB0AAF52084D24E00C7B994 /* iconDecline.png */,
 				8AE72D07207C9D8300F049F3 /* iconDelete.png */,
 				8AE72D0F207C9D8400F049F3 /* iconOk.png */,
 				8A41BA15205FDD9900907669 /* Info.plist */,
+				C3B66DF5207CC3DF00C26328 /* ingredCell.swift */,
+				8AEFB086207F45EB00F534A5 /* JSONSerializer.swift */,
 				8A41BA12205FDD9900907669 /* LaunchScreen.storyboard */,
 				8A46A0DD20603030004EDA94 /* Libraries */,
 				8A46A0D1205FE4F4004EDA94 /* LoginController.swift */,
-				8AE72D1A207CDB3D00F049F3 /* TestViewController.swift */,
 				8A41BA0D205FDD9900907669 /* Main.storyboard */,
 				8A5FA716206A5AF800161D86 /* Mix.swift */,
 				8A43A82D2063F81600E76C27 /* OrderedMixesController.swift */,
 				8A6609E5207C989300BC37D1 /* OrderedMixTableViewCell.swift */,
-				8AEFB088207FC42500F534A5 /* User.swift */,
+				C34442B42084D74F005C8AFA /* orderMixController.swift */,
+				8A7BB597208A2F6D001E3CF9 /* PushNotificationService.swift */,
 				8A46A0DB20601362004EDA94 /* RegisterController.swift */,
 				8A5FA707206A51F600161D86 /* Service.swift */,
-				C3B66DF5207CC3DF00C26328 /* ingredCell.swift */,
 				8AD76696206A30C200F61878 /* TestController.swift */,
-				C34442B42084D74F005C8AFA /* orderMixController.swift */,
+				8AE72D1A207CDB3D00F049F3 /* TestViewController.swift */,
+				8AEFB088207FC42500F534A5 /* User.swift */,
 			);
 			path = 102Bar;
 			sourceTree = "<group>";
@@ -354,7 +306,6 @@
 		8A46A0DD20603030004EDA94 /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
-				8A7BB57B2085E926001E3CF9 /* BlueSocket */,
 				8A46A0DE20603040004EDA94 /* Alamofire */,
 			);
 			path = Libraries;
@@ -384,27 +335,6 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		8A7BB57B2085E926001E3CF9 /* BlueSocket */ = {
-			isa = PBXGroup;
-			children = (
-				8A7BB57C2085E961001E3CF9 /* BlueSocket.xcodeproj */,
-				8A7BB58C2085E961001E3CF9 /* BlueSocket.xcworkspace */,
-				8A7BB58B2085E961001E3CF9 /* Sources */,
-			);
-			path = BlueSocket;
-			sourceTree = "<group>";
-		};
-		8A7BB57D2085E961001E3CF9 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				8A7BB5842085E961001E3CF9 /* Socket.framework */,
-				8A7BB5862085E961001E3CF9 /* Socket.framework */,
-				8A7BB5882085E961001E3CF9 /* Socket.framework */,
-				8A7BB58A2085E961001E3CF9 /* SocketTests.xctest */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -420,10 +350,8 @@
 			buildRules = (
 			);
 			dependencies = (
-				8A7BB5902085E9A4001E3CF9 /* PBXTargetDependency */,
 				8A46A0FD2060318A004EDA94 /* PBXTargetDependency */,
 				8AB52C4320603C91003EA1BB /* PBXTargetDependency */,
-				8A7BB5942085EA05001E3CF9 /* PBXTargetDependency */,
 			);
 			name = 102Bar;
 			productName = 102Bar;
@@ -511,10 +439,6 @@
 					ProductGroup = 8A46A0E0206030CB004EDA94 /* Products */;
 					ProjectRef = 8A46A0DF206030CB004EDA94 /* Alamofire.xcodeproj */;
 				},
-				{
-					ProductGroup = 8A7BB57D2085E961001E3CF9 /* Products */;
-					ProjectRef = 8A7BB57C2085E961001E3CF9 /* BlueSocket.xcodeproj */;
-				},
 			);
 			projectRoot = "";
 			targets = (
@@ -554,34 +478,6 @@
 			remoteRef = 8A46A0F6206030CB004EDA94 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		8A7BB5842085E961001E3CF9 /* Socket.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = Socket.framework;
-			remoteRef = 8A7BB5832085E961001E3CF9 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		8A7BB5862085E961001E3CF9 /* Socket.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = Socket.framework;
-			remoteRef = 8A7BB5852085E961001E3CF9 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		8A7BB5882085E961001E3CF9 /* Socket.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = Socket.framework;
-			remoteRef = 8A7BB5872085E961001E3CF9 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		8A7BB58A2085E961001E3CF9 /* SocketTests.xctest */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = SocketTests.xctest;
-			remoteRef = 8A7BB5892085E961001E3CF9 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
 		C3F1AADF206133D400FC39AC /* Alamofire iOS Tests.xctest */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.cfbundle;
@@ -613,12 +509,10 @@
 				8AB0AAFF2084D25200C7B994 /* iconAccept.png in Resources */,
 				8A41BA14205FDD9900907669 /* LaunchScreen.storyboard in Resources */,
 				8A46A0D4205FE71E004EDA94 /* icon_256.png in Resources */,
-				8A7BB58D2085E961001E3CF9 /* Sources in Resources */,
 				8AE72D11207C9D8500F049F3 /* iconOk.png in Resources */,
 				8A46A0D0205FE337004EDA94 /* banner_853_480.png in Resources */,
 				8A46A0FA206030CC004EDA94 /* Source in Resources */,
 				8A46A0FB206030CC004EDA94 /* Alamofire.xcworkspace in Resources */,
-				8A7BB58E2085E961001E3CF9 /* BlueSocket.xcworkspace in Resources */,
 				8AE72D10207C9D8500F049F3 /* iconDelete.png in Resources */,
 				8AB0AAFE2084D25200C7B994 /* iconDecline.png in Resources */,
 				8A41BA11205FDD9900907669 /* Assets.xcassets in Resources */,
@@ -647,6 +541,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8A7BB598208A2F6D001E3CF9 /* PushNotificationService.swift in Sources */,
 				C35A81C220617141002A3477 /* AddDrinkController.swift in Sources */,
 				8A43A82E2063F81600E76C27 /* OrderedMixesController.swift in Sources */,
 				C34442B52084D74F005C8AFA /* orderMixController.swift in Sources */,
@@ -706,16 +601,6 @@
 			isa = PBXTargetDependency;
 			name = "Alamofire iOS";
 			targetProxy = 8A46A0FC2060318A004EDA94 /* PBXContainerItemProxy */;
-		};
-		8A7BB5902085E9A4001E3CF9 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = "Socket-iOS";
-			targetProxy = 8A7BB58F2085E9A4001E3CF9 /* PBXContainerItemProxy */;
-		};
-		8A7BB5942085EA05001E3CF9 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = "Socket-iOS";
-			targetProxy = 8A7BB5932085EA05001E3CF9 /* PBXContainerItemProxy */;
 		};
 		8AB52C4320603C91003EA1BB /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
