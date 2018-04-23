@@ -1,5 +1,6 @@
 import UIKit
 import Alamofire
+import UserNotifications
 
 class Service: NSObject {
 
@@ -21,8 +22,11 @@ class Service: NSObject {
     let URL_GET_CUSTOM_MIXES_ING: String
     let URL_CUSTOM_MIX: String
     let URL_USER_INFO: String
+    let URL_CHECK_NOTIFICATIONS: String
     
     let defaultValues = UserDefaults.standard
+    var timer = Timer()
+    
     
     var availableDrinkGroups = [DrinkGroup]()
     var availableDrinkTypes = [DrinkType]()
@@ -43,12 +47,13 @@ class Service: NSObject {
         URL_AVAILABLE_MIXES_ING = BASE_URL + "availableMixesIng.php"
         URL_ORDERED_MIXES_ROOT = BASE_URL + "orderedMixesRoot.php"
         URL_ORDERED_MIXES_ING = BASE_URL + "orderedMixesIng.php"
-        URL_ORDER_MIX = BASE_URL + "orderMix.php"
+        URL_ORDER_MIX = BASE_URL + "orderedMix.php"
         URL_AVAILABLE_DRINK_TYPES = BASE_URL + "availableDrinkTypes.php"
         URL_AVAILABLE_DRINK_GROUPS = BASE_URL + "availableDrinkGroups.php"
         URL_GET_CUSTOM_MIXES_ROOT = BASE_URL + "getCustomMixesRoot.php"
         URL_GET_CUSTOM_MIXES_ING = BASE_URL + "getCustomMixesIng.php"
         URL_CUSTOM_MIX = BASE_URL + "customMix.php"
+        URL_CHECK_NOTIFICATIONS = BASE_URL + "checkNoifications.php"
         super.init()
         getAvailableDrinkGroups
             {
@@ -56,6 +61,48 @@ class Service: NSObject {
                 self.getAvailableDrinkTypes{
                     success1 in
                 }
+        }
+    }
+    
+    deinit {
+        self.stopTimer()
+    }
+    
+    public func initTimer(){
+        timer = Timer.scheduledTimer(timeInterval: 10, target: self, selector: #selector(self.checkNotifications), userInfo: nil, repeats: true)
+    }
+    
+    public func stopTimer(){
+        timer.invalidate()
+    }
+    
+    @objc public func checkNotifications(){
+        let parameters: Parameters=[
+            "User": defaultValues.object(forKey: "userid") as! String
+        ]
+        
+        Alamofire.request(URL_CHECK_NOTIFICATIONS, method: .post, parameters: parameters).responseJSON
+        {
+            response in
+            if let result = response.result.value {
+                let jsonData = result as! NSArray
+                
+                for notifictaion in jsonData{
+                    let notificationInfo = notifictaion as! NSDictionary
+                    let pushNotification = UNMutableNotificationContent()
+                    pushNotification.title = notificationInfo.object(forKey: "Title") as! String
+                    pushNotification.body = notificationInfo.object(forKey: "Message") as! String
+                    pushNotification.sound = UNNotificationSound.default()
+                    let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 1, repeats: false)
+                    let identifier = "UserNotification"
+                    let request = UNNotificationRequest(identifier: identifier, content: pushNotification, trigger: trigger)
+                    UNUserNotificationCenter.current().add(request, withCompletionHandler: { (error) in
+                        if let error = error {
+                            print(error)
+                        }
+                    })
+                }
+            }
         }
     }
     
@@ -69,7 +116,6 @@ class Service: NSObject {
         Alamofire.request(URL_USER_LOGIN, method: .post, parameters: parameters).responseJSON
             {
                 response in
-                debugPrint(response)
                 if let result = response.result.value {
                     let jsonData = result as! NSDictionary
                     
@@ -95,6 +141,8 @@ class Service: NSObject {
                         self.defaultValues.set(userLastname, forKey: "userlastname")
                         self.defaultValues.set(userRights, forKey: "userrights")
                         
+                        self.initTimer()
+                        
                         callback(true)
                     }else{
                         //error message in case of invalid credential
@@ -112,6 +160,7 @@ class Service: NSObject {
         self.defaultValues.set("Guest", forKey: "userfirstname")
         self.defaultValues.set("", forKey: "userlastname")
         self.defaultValues.set(1, forKey: "userrights")
+        self.initTimer()
         loginController.changeView()
     }
     
@@ -323,14 +372,11 @@ class Service: NSObject {
             "user":defaultValues.object(forKey: "userid") as! String
         ]
         
-        print(defaultValues.object(forKey: "userid") as! String)
-        
         Alamofire.request(self.URL_GET_CUSTOM_MIXES_ROOT, method: .post, parameters: parameters).responseJSON
             {
                 response in
                 if let result = response.result.value {
                     self.customMixes = Array()
-                    print(result)
                     let rootArray = result as! NSArray
                     for root in rootArray{
                         let mixDictionary = root as! NSDictionary
@@ -342,7 +388,6 @@ class Service: NSObject {
                     Alamofire.request(self.URL_GET_CUSTOM_MIXES_ING, method: .post, parameters: parameters).responseJSON{
                         response1 in
                         if let result1 = response1.result.value{
-                            print(result1)
                             let ingArray = result1 as! NSArray
                             for ing in ingArray{
                                 let ingDic = ing as! NSDictionary

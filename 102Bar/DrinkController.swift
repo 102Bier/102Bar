@@ -18,6 +18,8 @@ class DrinkController: UIViewController, UITableViewDelegate, UITableViewDataSou
         UserDefaults.standard.removePersistentDomain(forName: Bundle.main.bundleIdentifier!)
         UserDefaults.standard.synchronize()
         
+        Service.shared.stopTimer()
+        
         //switching to login screen
         let storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
         let vc: UIViewController = storyboard.instantiateViewController(withIdentifier: "LoginController") as UIViewController
