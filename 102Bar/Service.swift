@@ -4,7 +4,6 @@ import Alamofire
 class Service: NSObject {
 
     static let shared = Service()
-    var customDrinkModel : CustomDrinkModel = CustomDrinkModel()
     
     let BASE_URL: String
     let URL_USER_LOGIN: String
@@ -58,10 +57,6 @@ class Service: NSObject {
                     success1 in
                 }
         }
-    }
-    
-    private func nextStep1(ding: Bool){
-        
     }
     
     public func login(username:String, password:String, callback: @escaping (_ success: Bool?) -> Void){

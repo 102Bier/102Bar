@@ -27,6 +27,7 @@
 		8A5FA715206A5AE900161D86 /* Drink.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A5FA714206A5AE900161D86 /* Drink.swift */; };
 		8A5FA717206A5AF800161D86 /* Mix.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A5FA716206A5AF800161D86 /* Mix.swift */; };
 		8A6609E6207C989300BC37D1 /* OrderedMixTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A6609E5207C989300BC37D1 /* OrderedMixTableViewCell.swift */; };
+		8A7BB598208A2F6D001E3CF9 /* PushNotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A7BB597208A2F6D001E3CF9 /* PushNotificationService.swift */; };
 		8AB0AAFE2084D25200C7B994 /* iconDecline.png in Resources */ = {isa = PBXBuildFile; fileRef = 8AB0AAF52084D24E00C7B994 /* iconDecline.png */; };
 		8AB0AAFF2084D25200C7B994 /* iconAccept.png in Resources */ = {isa = PBXBuildFile; fileRef = 8AB0AAFD2084D25100C7B994 /* iconAccept.png */; };
 		8AB52C4020603C91003EA1BB /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A46A0EB206030CB004EDA94 /* Alamofire.framework */; };
@@ -169,6 +170,7 @@
 		8A5FA714206A5AE900161D86 /* Drink.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Drink.swift; sourceTree = "<group>"; };
 		8A5FA716206A5AF800161D86 /* Mix.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mix.swift; sourceTree = "<group>"; };
 		8A6609E5207C989300BC37D1 /* OrderedMixTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderedMixTableViewCell.swift; sourceTree = "<group>"; };
+		8A7BB597208A2F6D001E3CF9 /* PushNotificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushNotificationService.swift; sourceTree = "<group>"; };
 		8AB0AAF52084D24E00C7B994 /* iconDecline.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = iconDecline.png; sourceTree = "<group>"; };
 		8AB0AAFD2084D25100C7B994 /* iconAccept.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = iconAccept.png; sourceTree = "<group>"; };
 		8AD76696206A30C200F61878 /* TestController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestController.swift; sourceTree = "<group>"; };
@@ -244,8 +246,6 @@
 		8A41BA08205FDD9900907669 /* 102Bar */ = {
 			isa = PBXGroup;
 			children = (
-				8AB0AAFD2084D25100C7B994 /* iconAccept.png */,
-				8AB0AAF52084D24E00C7B994 /* iconDecline.png */,
 				C35A81C120617141002A3477 /* AddDrinkController.swift */,
 				C3EB45BC2069427900F69F16 /* AddDrinkTableContent.swift */,
 				8A41BA09205FDD9900907669 /* AppDelegate.swift */,
@@ -259,25 +259,28 @@
 				8A46A0D9206012CC004EDA94 /* DrinkController.swift */,
 				8A5FA712206A5ADA00161D86 /* DrinkGroup.swift */,
 				8A5FA710206A5AC800161D86 /* DrinkType.swift */,
-				8AEFB086207F45EB00F534A5 /* JSONSerializer.swift */,
 				8A46A0D3205FE71E004EDA94 /* icon_256.png */,
+				8AB0AAFD2084D25100C7B994 /* iconAccept.png */,
+				8AB0AAF52084D24E00C7B994 /* iconDecline.png */,
 				8AE72D07207C9D8300F049F3 /* iconDelete.png */,
 				8AE72D0F207C9D8400F049F3 /* iconOk.png */,
 				8A41BA15205FDD9900907669 /* Info.plist */,
+				C3B66DF5207CC3DF00C26328 /* ingredCell.swift */,
+				8AEFB086207F45EB00F534A5 /* JSONSerializer.swift */,
 				8A41BA12205FDD9900907669 /* LaunchScreen.storyboard */,
 				8A46A0DD20603030004EDA94 /* Libraries */,
 				8A46A0D1205FE4F4004EDA94 /* LoginController.swift */,
-				8AE72D1A207CDB3D00F049F3 /* TestViewController.swift */,
 				8A41BA0D205FDD9900907669 /* Main.storyboard */,
 				8A5FA716206A5AF800161D86 /* Mix.swift */,
 				8A43A82D2063F81600E76C27 /* OrderedMixesController.swift */,
 				8A6609E5207C989300BC37D1 /* OrderedMixTableViewCell.swift */,
-				8AEFB088207FC42500F534A5 /* User.swift */,
+				C34442B42084D74F005C8AFA /* orderMixController.swift */,
+				8A7BB597208A2F6D001E3CF9 /* PushNotificationService.swift */,
 				8A46A0DB20601362004EDA94 /* RegisterController.swift */,
 				8A5FA707206A51F600161D86 /* Service.swift */,
-				C3B66DF5207CC3DF00C26328 /* ingredCell.swift */,
 				8AD76696206A30C200F61878 /* TestController.swift */,
-				C34442B42084D74F005C8AFA /* orderMixController.swift */,
+				8AE72D1A207CDB3D00F049F3 /* TestViewController.swift */,
+				8AEFB088207FC42500F534A5 /* User.swift */,
 			);
 			path = 102Bar;
 			sourceTree = "<group>";
@@ -538,6 +541,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8A7BB598208A2F6D001E3CF9 /* PushNotificationService.swift in Sources */,
 				C35A81C220617141002A3477 /* AddDrinkController.swift in Sources */,
 				8A43A82E2063F81600E76C27 /* OrderedMixesController.swift in Sources */,
 				C34442B52084D74F005C8AFA /* orderMixController.swift in Sources */,
@@ -741,7 +745,7 @@
 				DEVELOPMENT_TEAM = F57P2RGF3M;
 				INFOPLIST_FILE = 102Bar/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "de.102bier.-02Bar";
+				PRODUCT_BUNDLE_IDENTIFIER = de.102bier.102Bar;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -757,7 +761,7 @@
 				DEVELOPMENT_TEAM = F57P2RGF3M;
 				INFOPLIST_FILE = 102Bar/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "de.102bier.-02Bar";
+				PRODUCT_BUNDLE_IDENTIFIER = de.102bier.102Bar;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
