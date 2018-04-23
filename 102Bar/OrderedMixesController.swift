@@ -4,14 +4,21 @@ import UIKit
 class OrderedMixesController : UITableViewController{
     
     var orderedMixes: [Mix] = []
+    let reloadControl = UIRefreshControl()
     
     override func viewDidLoad() {
-        self.refresh()
+        self.refresh(nil)
         tableView.allowsSelection = false
+        if #available(iOS 10.0, *) {
+            tableView.refreshControl = reloadControl
+        } else {
+            tableView.addSubview(reloadControl)
+        }
+        reloadControl.addTarget(self, action: #selector(refresh(_:)), for: .valueChanged)
         super.viewDidLoad()
     }
     
-    func refresh(){
+    @objc func refresh(_ sender: Any?){
         Service.shared.getUseres{
             success in
             Service.shared.getOrderedMixes {

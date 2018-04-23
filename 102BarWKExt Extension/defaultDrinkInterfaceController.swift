@@ -12,7 +12,7 @@ import Foundation
 class defaultDrinkInterfaceController: WKInterfaceController {
 
     @IBOutlet var tableView: WKInterfaceTable!
-    //let availableMixes = Service.shared.availableMixes
+    let availableMixes = Service.shared.availableMixes
     
     override func awake(withContext context: Any?) {
         super.awake(withContext: context)
@@ -31,11 +31,11 @@ class defaultDrinkInterfaceController: WKInterfaceController {
     }
     
     func loadTableData() {
-        //tableView.setNumberOfRows(availableMixes.count, withRowType: "defaultRowController")
+        tableView.setNumberOfRows(availableMixes.count, withRowType: "defaultRowController")
         
-        //for (index, rowModel) in availableMixes.enumerated() {
+        for (index, rowModel) in availableMixes.enumerated() {
             
-        //}
+        }
     }
 
 }
