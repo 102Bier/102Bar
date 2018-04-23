@@ -9,11 +9,11 @@
 import UIKit
 class orderMixController : UIViewController, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate
 {
+    @IBOutlet var tableView: UITableView!
     @IBOutlet var drinkNameLabel: UILabel!
     @IBOutlet var glassSizeSlider: UISlider!
     @IBOutlet var glassSizeField: UITextField!
     @IBOutlet var totalPercentageLabel: UILabel!
-    
     
     @IBAction func tableViewTapped(_ sender: UITapGestureRecognizer) {
         view.endEditing(true)
@@ -36,8 +36,25 @@ class orderMixController : UIViewController, UITableViewDelegate, UITableViewDat
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         
+        var newString = NSString(string: textField.text!).replacingCharacters(in: range, with: string)
+        
         if(string.count < 1) {
-            return true
+            var totalPercentage : Int = Int(NSString(string: totalPercentageLabel.text!).intValue)
+            if(newString == "")
+            {
+                newString = "0"
+            }
+            if var oldString = textField.text
+            {
+                if oldString == ""
+                {
+                    oldString = "0"
+                }
+                totalPercentage -= Int(oldString)!
+                totalPercentage += Int(newString)!
+                totalPercentageLabel.text = String(totalPercentage) + "%"
+                return true
+            }
         }
         
         let allowedCharacters = CharacterSet.decimalDigits
@@ -50,8 +67,6 @@ class orderMixController : UIViewController, UITableViewDelegate, UITableViewDat
         {
             return false
         }
-    
-        var newString = NSString(string: textField.text!).replacingCharacters(in: range, with: string)
         
         if(textField.tag == 0) //glassSize
         {
@@ -66,7 +81,38 @@ class orderMixController : UIViewController, UITableViewDelegate, UITableViewDat
         }
         else if(textField.tag == 1) //percentage
         {
-            return false
+            var percentageSum: Int = 0
+            let topSectionPercCount = mixToOrder.ingredients.count
+            if topSectionPercCount > 0
+            {
+                let cells = tableView.visibleCells
+                var currentRow : Int?
+                for i in 0..<cells.count
+                {
+                    if (cells[i] as! DrinkCell).percentageTextField.isFirstResponder == true
+                    {
+                        currentRow = i
+                        break
+                    }
+                }
+                for i in 0..<topSectionPercCount
+                {
+                    percentageSum += Int(mixToOrder.ingredients[i].percentage)
+                }
+                
+                percentageSum -= Int(mixToOrder.ingredients[currentRow!].percentage)
+                percentageSum += Int(newString)!
+                
+                if(percentageSum > 100 || percentageSum < 0)
+                {
+                    return false
+                }
+                else
+                {
+                    totalPercentageLabel.text = String(percentageSum) + "%"
+                    return true
+                }
+            }
         }
         return false
     }
@@ -74,13 +120,34 @@ class orderMixController : UIViewController, UITableViewDelegate, UITableViewDat
     func textFieldDidEndEditing(_ textField: UITextField) {
         if textField.tag == 0 //glassSize
         {
-            var test = glassSizeSlider.value
             if let text = textField.text
             {
                 let value = (Float(text)! / 480) - (20 / 480)
                 glassSizeSlider.setValue(value,  animated: true)
-                test = glassSizeSlider.value
             }
+        }
+        else if textField.tag == 1 //percentage
+        {
+            if let text = textField.text
+            {
+                //totalPercentageLabel.text = text + "%"
+            }
+        }
+    }
+    
+    func orderTapped() -> Void
+    {
+        var txtFieldText = totalPercentageLabel.text
+        txtFieldText?.removeLast()
+        if Int(txtFieldText!)! != 100
+        {
+            let alert = UIAlertController(title: "Invalid percentage", message: "To order, the total percentage must be 100", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "Ok", style: .cancel, handler: nil))
+            self.present(alert, animated: true)
+            return
+        }
+        else{
+            Service.shared.orderMix(mixToOrder: mixToOrder, glasssize: Int(glassSizeField.text!)!, add: true) {_ in }
         }
     }
     

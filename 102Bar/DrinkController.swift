@@ -132,10 +132,13 @@ class DrinkController: UIViewController, UITableViewDelegate, UITableViewDataSou
         vc.navigationItem.title = "Order Mix"
         (vc as! orderMixController).mixToOrder = mix
         navigationController?.pushViewController(vc, animated: true)
-        //Service.shared.orderMix(mixToOrder: mix, add: true) {_ in }
     }
     
     @objc func orderTapped() {
+        if let vc = navigationController?.topViewController
+        {
+            (vc as! orderMixController).orderTapped()
+        }
         navigationController?.popViewController(animated: true)
     }
     

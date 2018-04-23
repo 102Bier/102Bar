@@ -536,6 +536,7 @@
                         <outlet property="drinkNameLabel" destination="U2B-IO-Iga" id="1dm-9M-rON"/>
                         <outlet property="glassSizeField" destination="DGF-ot-afX" id="Sle-kw-GDO"/>
                         <outlet property="glassSizeSlider" destination="JPu-Zf-FOV" id="0rY-XQ-iKr"/>
+                        <outlet property="tableView" destination="47F-N2-VEe" id="pFv-Ie-9CP"/>
                         <outlet property="totalPercentageLabel" destination="k7o-n5-xg8" id="09L-iT-M1c"/>
                     </connections>
                 </viewController>
