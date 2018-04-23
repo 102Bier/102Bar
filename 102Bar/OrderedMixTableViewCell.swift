@@ -25,7 +25,7 @@ class OrderedMixTableViewCell: UITableViewCell{
                 let confirmAction = UIAlertAction(title: "Enter", style: .default) { (_) in
             
             //getting the input values from user
-            let name = alertController.textFields?[0].text
+                    _ = alertController.textFields?[0].text
             
             //self.labelMessage.text = "Name: " + name! + "Email: " + email!
             
@@ -36,7 +36,7 @@ class OrderedMixTableViewCell: UITableViewCell{
         
         //adding textfields to our dialog box
         alertController.addTextField { (textField) in
-            textField.placeholder = "Enter Name"
+            textField.placeholder = "Enter Reason"
         }
         
         //adding the action to dialogbox

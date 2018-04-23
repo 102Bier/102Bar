@@ -25,7 +25,10 @@ class RegisterController: UIViewController {
             return
         }
         
-        self.service.register(registerController: self,username: _username.text!, firstname: _firstname.text!, lastname: _lastname.text!, email: _email.text!, password: _password.text!)
+        self.service.register(username: _username.text!, firstname: _firstname.text!, lastname: _lastname.text!, email: _email.text!, password: _password.text!){
+            success in
+            self.labelMessage.text = success
+        }
     }
     
     @IBAction func CancelButton(_ sender: UIBarButtonItem) {

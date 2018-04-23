@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "102Bar/Service.swift"
-            timestampString = "546176166.127877"
+            timestampString = "546181930.01783"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "101"
-            endingLineNumber = "101"
+            startingLineNumber = "110"
+            endingLineNumber = "110"
             landmarkName = "checkNotifications()"
             landmarkType = "7">
          </BreakpointContent>

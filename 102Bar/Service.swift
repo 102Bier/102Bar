@@ -27,6 +27,7 @@ class Service: NSObject {
     let defaultValues = UserDefaults.standard
     var timer = Timer()
     
+    var alamoFireManager : SessionManager = SessionManager.default
     
     var availableDrinkGroups = [DrinkGroup]()
     var availableDrinkTypes = [DrinkType]()
@@ -55,6 +56,10 @@ class Service: NSObject {
         URL_CUSTOM_MIX = BASE_URL + "customMix.php"
         URL_CHECK_NOTIFICATIONS = BASE_URL + "checkNoifications.php"
         super.init()
+        let configuration = URLSessionConfiguration.default
+        configuration.timeoutIntervalForRequest = 4 // seconds
+        configuration.timeoutIntervalForResource = 4
+        alamoFireManager = Alamofire.SessionManager(configuration: configuration)
         getAvailableDrinkGroups
             {
                 success in
@@ -66,6 +71,10 @@ class Service: NSObject {
     
     deinit {
         self.stopTimer()
+    }
+    
+    public func isConnectedToInternet() ->Bool {
+        return NetworkReachabilityManager()!.isReachable
     }
     
     public func initTimer(){
@@ -81,7 +90,7 @@ class Service: NSObject {
             "User": defaultValues.object(forKey: "userid") as! String
         ]
         
-        Alamofire.request(URL_CHECK_NOTIFICATIONS, method: .post, parameters: parameters).responseJSON
+        alamoFireManager.request(URL_CHECK_NOTIFICATIONS, method: .post, parameters: parameters).responseJSON
         {
             response in
             if let result = response.result.value {
@@ -113,7 +122,7 @@ class Service: NSObject {
             "password": password
         ]
         
-        Alamofire.request(URL_USER_LOGIN, method: .post, parameters: parameters).responseJSON
+        alamoFireManager.request(URL_USER_LOGIN, method: .post, parameters: parameters).responseJSON
             {
                 response in
                 if let result = response.result.value {
@@ -153,7 +162,7 @@ class Service: NSObject {
         }
     }
     
-    public func loginAsGuest(loginController: LoginController){
+    public func loginAsGuest(callback: @escaping (_ success: Bool?) -> Void){
         self.defaultValues.set("-1", forKey: "userid")
         self.defaultValues.set("Guest", forKey: "username")
         self.defaultValues.set("Guest", forKey: "useremail")
@@ -161,10 +170,10 @@ class Service: NSObject {
         self.defaultValues.set("", forKey: "userlastname")
         self.defaultValues.set(1, forKey: "userrights")
         self.initTimer()
-        loginController.changeView()
+        callback(true)
     }
     
-    public func register(registerController: RegisterController,username:String, firstname:String, lastname:String, email:String, password:String){
+    public func register(username:String, firstname:String, lastname:String, email:String, password:String, callback: @escaping (_ success: String?) -> Void){
         
         let parameters: Parameters=[
             "username": username,
@@ -174,18 +183,21 @@ class Service: NSObject {
             "email": email
         ]
         
-        Alamofire.request(URL_USER_REGISTER, method: .post, parameters: parameters).responseJSON
+        alamoFireManager.request(URL_USER_REGISTER, method: .post, parameters: parameters).responseJSON
             {
                 response in
                 if let result = response.result.value {
                     let jsonData = result as! NSDictionary
-                    registerController.labelMessage.text = jsonData.value(forKey: "message") as? String
+                    let retMessage = jsonData.value(forKey: "message") as? String
+                    callback(retMessage)
+                }else{
+                    callback("ERROR")
                 }
         }
     }
     
     public func getAvailableDrinkGroups(callback: @escaping (_ success: Bool?) -> Void){
-        Alamofire.request(self.URL_AVAILABLE_DRINK_GROUPS).responseJSON
+        alamoFireManager.request(self.URL_AVAILABLE_DRINK_GROUPS).responseJSON
             {
                 response in
                 if let result = response.result.value {
@@ -207,7 +219,7 @@ class Service: NSObject {
     }
     
     public func getAvailableDrinkTypes(callback: @escaping (_ success: Bool?) -> Void){
-        Alamofire.request(self.URL_AVAILABLE_DRINK_TYPES).responseJSON
+        alamoFireManager.request(self.URL_AVAILABLE_DRINK_TYPES).responseJSON
             {
                 response in
                 if let result = response.result.value {
@@ -229,7 +241,7 @@ class Service: NSObject {
     }
     
     public func getAvailableIngredients(callback: @escaping (_ success: Bool?) -> Void){
-        Alamofire.request(self.URL_AVAILABLE_INGREDIENTS_TYPE).responseJSON
+        alamoFireManager.request(self.URL_AVAILABLE_INGREDIENTS_TYPE).responseJSON
             {
                 response in
                 if let result = response.result.value {
@@ -243,7 +255,7 @@ class Service: NSObject {
                         let drink = Drink(drink: tmpDrink, drinkType: tmpDrinkType!, drinkDescription: tmpDescription)
                         self.availableIngredients.append(drink)
                     }
-                    Alamofire.request(self.URL_AVAILABLE_INGREDIENTS_DRINK).responseJSON{
+                    self.alamoFireManager.request(self.URL_AVAILABLE_INGREDIENTS_DRINK).responseJSON{
                         response1 in
                         if let result1 = response1.result.value{
                             let drinkArray = result1 as! NSArray
@@ -265,7 +277,7 @@ class Service: NSObject {
     }
     
     public func getAvailableMixes(callback: @escaping (_ success: Bool?) -> Void){
-        Alamofire.request(self.URL_AVAILABLE_MIXES_ROOT).responseJSON
+        alamoFireManager.request(self.URL_AVAILABLE_MIXES_ROOT).responseJSON
             {
                 response in
                 if let result = response.result.value {
@@ -279,7 +291,7 @@ class Service: NSObject {
                         let mix = Mix(mix: tmpMix, mixDescription: tmpDescription, ingredients: tmpIngredients)
                         self.availableMixes.append(mix)
                     }
-                    Alamofire.request(self.URL_AVAILABLE_MIXES_ING).responseJSON{
+                    self.alamoFireManager.request(self.URL_AVAILABLE_MIXES_ING).responseJSON{
                         response1 in
                         if let result1 = response1.result.value{
                             let ingArray = result1 as! NSArray
@@ -306,7 +318,7 @@ class Service: NSObject {
     }
     
     public func getOrderedMixes(callback: @escaping (_ success: Bool?) -> Void){
-        Alamofire.request(self.URL_ORDERED_MIXES_ROOT).responseJSON
+        alamoFireManager.request(self.URL_ORDERED_MIXES_ROOT).responseJSON
             {
                 response in
                 if let result = response.result.value {
@@ -314,13 +326,13 @@ class Service: NSObject {
                     let rootArray = result as! NSArray
                     for root in rootArray{
                         let mixDictionary = root as! NSDictionary
-                        let tmpMix = mixDictionary.object(forKey: "OrderedMix") as! String
+                        let tmpMix = mixDictionary.object(forKey: "Mix") as! String
                         let orderedMix = self.availableMixes.first(where: {$0.mix == tmpMix})
                         let orderedMixToSave = orderedMix?.clone()
                         orderedMixToSave?.orderedByUser = mixDictionary.object(forKey: "User") as! String
                         self.orderedMixes.append(orderedMixToSave!)
                     }
-                    Alamofire.request(self.URL_ORDERED_MIXES_ING).responseJSON{
+                    self.alamoFireManager.request(self.URL_ORDERED_MIXES_ING).responseJSON{
                         response1 in
                         if let result1 = response1.result.value{
                             let ingArray = result1 as! NSArray
@@ -362,6 +374,7 @@ class Service: NSObject {
                 response in
                 if let result = response.result.value {
                     let jsonData = result as! NSDictionary
+                    print(jsonData.value(forKey: "message") as? String ?? "as")
                     callback(jsonData.value(forKey: "message") as? String)
                 }
         }
@@ -372,7 +385,7 @@ class Service: NSObject {
             "user":defaultValues.object(forKey: "userid") as! String
         ]
         
-        Alamofire.request(self.URL_GET_CUSTOM_MIXES_ROOT, method: .post, parameters: parameters).responseJSON
+        alamoFireManager.request(self.URL_GET_CUSTOM_MIXES_ROOT, method: .post, parameters: parameters).responseJSON
             {
                 response in
                 if let result = response.result.value {
@@ -385,7 +398,7 @@ class Service: NSObject {
                         let tmpCustomMix = Mix(mix: tmpMix, mixDescription: tmpMixDescription, ingredients: [Drink]())
                         self.customMixes.append(tmpCustomMix)
                     }
-                    Alamofire.request(self.URL_GET_CUSTOM_MIXES_ING, method: .post, parameters: parameters).responseJSON{
+                    self.alamoFireManager.request(self.URL_GET_CUSTOM_MIXES_ING, method: .post, parameters: parameters).responseJSON{
                         response1 in
                         if let result1 = response1.result.value{
                             let ingArray = result1 as! NSArray
@@ -424,7 +437,7 @@ class Service: NSObject {
             "Add": add ? "1" : "0"
         ]
         
-        Alamofire.request(URL_CUSTOM_MIX, method: .post, parameters: parameters).responseJSON
+        alamoFireManager.request(URL_CUSTOM_MIX, method: .post, parameters: parameters).responseJSON
             {
                 response in
                 if let result = response.result.value {
@@ -435,7 +448,7 @@ class Service: NSObject {
     }
     
     public func getUseres(callback: @escaping (_ success: Bool?) -> Void){
-        Alamofire.request(URL_USER_INFO).responseJSON{
+        alamoFireManager.request(URL_USER_INFO).responseJSON{
             response in
             if let result = response.result.value{
                 self.users = Array()

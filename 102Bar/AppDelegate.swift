@@ -19,6 +19,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             (granted, error) in
             print("Access granted: \(granted)")
         }
+        
         _ = Service.shared
         return true
     }
