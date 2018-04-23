@@ -9,6 +9,21 @@
 			<key>orderHint</key>
 			<integer>5</integer>
 		</dict>
+		<key>102BarWKExt (Complication).xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>8</integer>
+		</dict>
+		<key>102BarWKExt (Notification).xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>7</integer>
+		</dict>
+		<key>102BarWKExt.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>6</integer>
+		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
