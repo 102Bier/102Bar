@@ -136,7 +136,7 @@ class DrinkController: UIViewController, UITableViewDelegate, UITableViewDataSou
     }
     
     @objc func orderTapped() {
-        
+        navigationController?.popViewController(animated: true)
     }
     
     override func viewWillAppear(_ animated: Bool) {
