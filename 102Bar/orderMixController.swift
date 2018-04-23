@@ -9,9 +9,21 @@
 import UIKit
 class orderMixController : UIViewController, UITableViewDelegate, UITableViewDataSource
 {
+    @IBOutlet var drinkNameLabel: UILabel!
+    @IBOutlet var glassSizeSlider: UISlider!
+    @IBOutlet var glassSizeField: UITextField!
+    @IBOutlet var totalPercentageLabel: UILabel!
+    
+    @IBAction func glassSizeSliderChanged(_ sender: UISlider) {
+        
+    }
+    
     var mixToOrder: Mix = Mix(mix: "", mixDescription: "", ingredients: Array())
     
-    
+    override func viewDidLoad() {
+        drinkNameLabel.text = mixToOrder.mixDescription
+        super.viewDidLoad()
+    }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return mixToOrder.ingredients.count
@@ -22,11 +34,5 @@ class orderMixController : UIViewController, UITableViewDelegate, UITableViewDat
         cell.drinkLabel.text = mixToOrder.ingredients[indexPath.row].drinkDescription
         cell.percentageTextField.text = String( mixToOrder.ingredients[indexPath.row].percentage)
         return cell
-    }
-    
-    
-    
-    
-    
-    
+    }  
 }

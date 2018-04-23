@@ -49,6 +49,20 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
+         contextName = "orderMixController.tableView(_:cellForRowAt:):orderMixController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "cell.percentageTextField.text">
+            </PersistentString>
+            <PersistentString
+               value = "cell.drinkLabel.text">
+            </PersistentString>
+            <PersistentString
+               value = "mixToOrder.ingredients[indexPath.row]">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "AddDrinkController.tableView(_:moveRowAt:to:):AddDrinkController.swift">
          <PersistentStrings>
             <PersistentString
