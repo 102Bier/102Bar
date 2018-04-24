@@ -2,7 +2,7 @@ import UIKit
 import Alamofire
 import UserNotifications
 
-class Service: NSObject {
+class Service: NSObject, UNUserNotificationCenterDelegate {
 
     static let shared = Service()
     
@@ -163,11 +163,11 @@ class Service: NSObject {
     }
     
     public func loginAsGuest(callback: @escaping (_ success: Bool?) -> Void){
-        self.defaultValues.set("-1", forKey: "userid")
+        self.defaultValues.set("00000000-0000-0000-0000-000000000000", forKey: "userid")
         self.defaultValues.set("Guest", forKey: "username")
-        self.defaultValues.set("Guest", forKey: "useremail")
+        self.defaultValues.set("", forKey: "useremail")
         self.defaultValues.set("Guest", forKey: "userfirstname")
-        self.defaultValues.set("", forKey: "userlastname")
+        self.defaultValues.set("Guest", forKey: "userlastname")
         self.defaultValues.set(1, forKey: "userrights")
         self.initTimer()
         callback(true)
@@ -327,10 +327,15 @@ class Service: NSObject {
                     for root in rootArray{
                         let mixDictionary = root as! NSDictionary
                         let tmpMix = mixDictionary.object(forKey: "Mix") as! String
-                        let orderedMix = self.availableMixes.first(where: {$0.mix == tmpMix})
-                        let orderedMixToSave = orderedMix?.clone()
-                        orderedMixToSave?.orderedByUser = mixDictionary.object(forKey: "User") as! String
-                        self.orderedMixes.append(orderedMixToSave!)
+                        let tmpOrderedByUser = mixDictionary.object(forKey: "User") as! String
+                        if let orderedMix = self.availableMixes.first(where: {$0.mix == tmpMix}){
+                            let orderedMixToSave = orderedMix.clone()
+                            orderedMixToSave.orderedByUser = tmpOrderedByUser
+                            self.orderedMixes.append(orderedMixToSave)
+                        }else{
+                            let tmpMixDescription = mixDictionary.object(forKey: "Description") as! String
+                            self.orderedMixes.append(Mix(mix: tmpMix, mixDescription: tmpMixDescription, ingredients: [Drink](), orderedByUser: tmpOrderedByUser))
+                        }
                     }
                     self.alamoFireManager.request(self.URL_ORDERED_MIXES_ING).responseJSON{
                         response1 in
