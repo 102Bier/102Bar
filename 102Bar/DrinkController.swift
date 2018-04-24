@@ -31,7 +31,7 @@ class DrinkController: UIViewController, UITableViewDelegate, UITableViewDataSou
         print("lol")
     }
     
-    private let refreshControl = UIRefreshControl()
+    let refreshControl = UIRefreshControl()
     
     override func viewDidLoad() {
         // Add Refresh Control to Table View

@@ -42,6 +42,12 @@
 		C3381530208DD8AF00FB7D57 /* Drink.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A5FA714206A5AE900161D86 /* Drink.swift */; };
 		C3381531208DD8BD00FB7D57 /* DrinkType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A5FA710206A5AC800161D86 /* DrinkType.swift */; };
 		C3381532208DD8C800FB7D57 /* DrinkGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A5FA712206A5ADA00161D86 /* DrinkGroup.swift */; };
+		C341C865208E1555007B0E8E /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A46A0EB206030CB004EDA94 /* Alamofire.framework */; };
+		C341C866208E1555007B0E8E /* Alamofire.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8A46A0EB206030CB004EDA94 /* Alamofire.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		C341C86B208E1599007B0E8E /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A5FA707206A51F600161D86 /* Service.swift */; };
+		C341C86C208E1667007B0E8E /* JSONSerializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AEFB086207F45EB00F534A5 /* JSONSerializer.swift */; };
+		C341C86D208E16EB007B0E8E /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A46A0F7206030CB004EDA94 /* Alamofire.framework */; };
+		C341C86E208E16EB007B0E8E /* Alamofire.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8A46A0F7206030CB004EDA94 /* Alamofire.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		C34442B52084D74F005C8AFA /* orderMixController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C34442B42084D74F005C8AFA /* orderMixController.swift */; };
 		C34442C7208DCA61005C8AFA /* Interface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C34442C5208DCA61005C8AFA /* Interface.storyboard */; };
 		C34442C9208DCA63005C8AFA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C34442C8208DCA63005C8AFA /* Assets.xcassets */; };
@@ -122,6 +128,20 @@
 			remoteGlobalIDString = F8111E3219A95C8B0040E7D1;
 			remoteInfo = "Alamofire iOS";
 		};
+		C341C867208E1556007B0E8E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 8A46A0DF206030CB004EDA94 /* Alamofire.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = F8111E3219A95C8B0040E7D1;
+			remoteInfo = "Alamofire iOS";
+		};
+		C341C86F208E16EB007B0E8E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 8A46A0DF206030CB004EDA94 /* Alamofire.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = E4202FCD1B667AA100C997FB;
+			remoteInfo = "Alamofire watchOS";
+		};
 		C34442D1208DCA63005C8AFA /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 8A41B9FE205FDD9900907669 /* Project object */;
@@ -167,6 +187,18 @@
 			dstSubfolderSpec = 10;
 			files = (
 				8AB52C4120603C91003EA1BB /* Alamofire.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C341C869208E1556007B0E8E /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				C341C866208E1555007B0E8E /* Alamofire.framework in Embed Frameworks */,
+				C341C86E208E16EB007B0E8E /* Alamofire.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -284,6 +316,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C341C865208E1555007B0E8E /* Alamofire.framework in Frameworks */,
+				C341C86D208E16EB007B0E8E /* Alamofire.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -526,10 +560,13 @@
 				C34442CB208DCA63005C8AFA /* Sources */,
 				C34442CC208DCA63005C8AFA /* Frameworks */,
 				C34442CD208DCA63005C8AFA /* Resources */,
+				C341C869208E1556007B0E8E /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				C341C868208E1556007B0E8E /* PBXTargetDependency */,
+				C341C870208E16EB007B0E8E /* PBXTargetDependency */,
 			);
 			name = "102BarWKExt Extension";
 			productName = "102BarWKExt Extension";
@@ -757,6 +794,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C34442F0208DD46D005C8AFA /* defaultRowController.swift in Sources */,
+				C341C86B208E1599007B0E8E /* Service.swift in Sources */,
 				C34442D9208DCA63005C8AFA /* NotificationController.swift in Sources */,
 				C34442F2208DD4B3005C8AFA /* defaultDrinkInterfaceController.swift in Sources */,
 				C34442DB208DCA63005C8AFA /* ComplicationController.swift in Sources */,
@@ -765,6 +803,7 @@
 				C3381531208DD8BD00FB7D57 /* DrinkType.swift in Sources */,
 				C3381532208DD8C800FB7D57 /* DrinkGroup.swift in Sources */,
 				C34442EC208DD1C5005C8AFA /* customDrinksInterfaceController.swift in Sources */,
+				C341C86C208E1667007B0E8E /* JSONSerializer.swift in Sources */,
 				C338152A208DD7E900FB7D57 /* User.swift in Sources */,
 				C34442D5208DCA63005C8AFA /* InterfaceController.swift in Sources */,
 				C3381530208DD8AF00FB7D57 /* Drink.swift in Sources */,
@@ -794,6 +833,16 @@
 			isa = PBXTargetDependency;
 			name = "Alamofire iOS";
 			targetProxy = 8AB52C4220603C91003EA1BB /* PBXContainerItemProxy */;
+		};
+		C341C868208E1556007B0E8E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "Alamofire iOS";
+			targetProxy = C341C867208E1556007B0E8E /* PBXContainerItemProxy */;
+		};
+		C341C870208E16EB007B0E8E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "Alamofire watchOS";
+			targetProxy = C341C86F208E16EB007B0E8E /* PBXContainerItemProxy */;
 		};
 		C34442D2208DCA63005C8AFA /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -948,7 +997,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = F57P2RGF3M;
 				INFOPLIST_FILE = 102Bar/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -965,7 +1014,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = F57P2RGF3M;
 				INFOPLIST_FILE = 102Bar/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

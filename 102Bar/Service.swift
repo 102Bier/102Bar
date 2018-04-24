@@ -73,10 +73,6 @@ class Service: NSObject, UNUserNotificationCenterDelegate {
         self.stopTimer()
     }
     
-    public func isConnectedToInternet() ->Bool {
-        return NetworkReachabilityManager()!.isReachable
-    }
-    
     public func initTimer(){
         timer = Timer.scheduledTimer(timeInterval: 10, target: self, selector: #selector(self.checkNotifications), userInfo: nil, repeats: true)
     }
