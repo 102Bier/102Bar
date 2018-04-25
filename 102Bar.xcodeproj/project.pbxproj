@@ -19,13 +19,15 @@
 		8A46A0D4205FE71E004EDA94 /* icon_256.png in Resources */ = {isa = PBXBuildFile; fileRef = 8A46A0D3205FE71E004EDA94 /* icon_256.png */; };
 		8A46A0DA206012CC004EDA94 /* DrinkController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A46A0D9206012CC004EDA94 /* DrinkController.swift */; };
 		8A46A0DC20601362004EDA94 /* RegisterController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A46A0DB20601362004EDA94 /* RegisterController.swift */; };
-		8A46A0FA206030CC004EDA94 /* Source in Resources */ = {isa = PBXBuildFile; fileRef = 8A46A0F8206030CC004EDA94 /* Source */; };
-		8A46A0FB206030CC004EDA94 /* Alamofire.xcworkspace in Resources */ = {isa = PBXBuildFile; fileRef = 8A46A0F9206030CC004EDA94 /* Alamofire.xcworkspace */; };
 		8A5FA708206A51F600161D86 /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A5FA707206A51F600161D86 /* Service.swift */; };
 		8A5FA711206A5AC800161D86 /* DrinkType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A5FA710206A5AC800161D86 /* DrinkType.swift */; };
 		8A5FA713206A5ADA00161D86 /* DrinkGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A5FA712206A5ADA00161D86 /* DrinkGroup.swift */; };
 		8A5FA715206A5AE900161D86 /* Drink.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A5FA714206A5AE900161D86 /* Drink.swift */; };
 		8A5FA717206A5AF800161D86 /* Mix.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A5FA716206A5AF800161D86 /* Mix.swift */; };
+		8A611D64208F5AC40076BF19 /* Alamofire.xcworkspace in Resources */ = {isa = PBXBuildFile; fileRef = 8A46A0F9206030CC004EDA94 /* Alamofire.xcworkspace */; };
+		8A611D65208F5AC40076BF19 /* Source in Resources */ = {isa = PBXBuildFile; fileRef = 8A46A0F8206030CC004EDA94 /* Source */; };
+		8A611D6B209053790076BF19 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A46A0F7206030CB004EDA94 /* Alamofire.framework */; };
+		8A611D6C209053790076BF19 /* Alamofire.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8A46A0F7206030CB004EDA94 /* Alamofire.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		8A6609E6207C989300BC37D1 /* OrderedMixTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A6609E5207C989300BC37D1 /* OrderedMixTableViewCell.swift */; };
 		8AB0AAFE2084D25200C7B994 /* iconDecline.png in Resources */ = {isa = PBXBuildFile; fileRef = 8AB0AAF52084D24E00C7B994 /* iconDecline.png */; };
 		8AB0AAFF2084D25200C7B994 /* iconAccept.png in Resources */ = {isa = PBXBuildFile; fileRef = 8AB0AAFD2084D25100C7B994 /* iconAccept.png */; };
@@ -42,12 +44,8 @@
 		C3381530208DD8AF00FB7D57 /* Drink.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A5FA714206A5AE900161D86 /* Drink.swift */; };
 		C3381531208DD8BD00FB7D57 /* DrinkType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A5FA710206A5AC800161D86 /* DrinkType.swift */; };
 		C3381532208DD8C800FB7D57 /* DrinkGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A5FA712206A5ADA00161D86 /* DrinkGroup.swift */; };
-		C341C865208E1555007B0E8E /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A46A0EB206030CB004EDA94 /* Alamofire.framework */; };
-		C341C866208E1555007B0E8E /* Alamofire.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8A46A0EB206030CB004EDA94 /* Alamofire.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		C341C86B208E1599007B0E8E /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A5FA707206A51F600161D86 /* Service.swift */; };
 		C341C86C208E1667007B0E8E /* JSONSerializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AEFB086207F45EB00F534A5 /* JSONSerializer.swift */; };
-		C341C86D208E16EB007B0E8E /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A46A0F7206030CB004EDA94 /* Alamofire.framework */; };
-		C341C86E208E16EB007B0E8E /* Alamofire.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8A46A0F7206030CB004EDA94 /* Alamofire.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		C34442B52084D74F005C8AFA /* orderMixController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C34442B42084D74F005C8AFA /* orderMixController.swift */; };
 		C34442C7208DCA61005C8AFA /* Interface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C34442C5208DCA61005C8AFA /* Interface.storyboard */; };
 		C34442C9208DCA63005C8AFA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C34442C8208DCA63005C8AFA /* Assets.xcassets */; };
@@ -121,6 +119,20 @@
 			remoteGlobalIDString = F8111E3219A95C8B0040E7D1;
 			remoteInfo = "Alamofire iOS";
 		};
+		8A611D6D209053790076BF19 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 8A46A0DF206030CB004EDA94 /* Alamofire.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = E4202FCD1B667AA100C997FB;
+			remoteInfo = "Alamofire watchOS";
+		};
+		8A8E157A208F586C00F03030 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 8A41B9FE205FDD9900907669 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = C34442C2208DCA61005C8AFA;
+			remoteInfo = 102BarWKExt;
+		};
 		8AB52C4220603C91003EA1BB /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 8A46A0DF206030CB004EDA94 /* Alamofire.xcodeproj */;
@@ -128,33 +140,12 @@
 			remoteGlobalIDString = F8111E3219A95C8B0040E7D1;
 			remoteInfo = "Alamofire iOS";
 		};
-		C341C867208E1556007B0E8E /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 8A46A0DF206030CB004EDA94 /* Alamofire.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = F8111E3219A95C8B0040E7D1;
-			remoteInfo = "Alamofire iOS";
-		};
-		C341C86F208E16EB007B0E8E /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 8A46A0DF206030CB004EDA94 /* Alamofire.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = E4202FCD1B667AA100C997FB;
-			remoteInfo = "Alamofire watchOS";
-		};
 		C34442D1208DCA63005C8AFA /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 8A41B9FE205FDD9900907669 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = C34442CE208DCA63005C8AFA;
 			remoteInfo = "102BarWKExt Extension";
-		};
-		C34442E0208DCA65005C8AFA /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 8A41B9FE205FDD9900907669 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = C34442C2208DCA61005C8AFA;
-			remoteInfo = 102BarWKExt;
 		};
 		C3F1AADE206133D400FC39AC /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -180,6 +171,17 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
+		8A611D6F209053790076BF19 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				8A611D6C209053790076BF19 /* Alamofire.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		8AB52C4420603C91003EA1BB /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -187,18 +189,6 @@
 			dstSubfolderSpec = 10;
 			files = (
 				8AB52C4120603C91003EA1BB /* Alamofire.framework in Embed Frameworks */,
-			);
-			name = "Embed Frameworks";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		C341C869208E1556007B0E8E /* Embed Frameworks */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				C341C866208E1555007B0E8E /* Alamofire.framework in Embed Frameworks */,
-				C341C86E208E16EB007B0E8E /* Alamofire.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -316,8 +306,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C341C865208E1555007B0E8E /* Alamofire.framework in Frameworks */,
-				C341C86D208E16EB007B0E8E /* Alamofire.framework in Frameworks */,
+				8A611D6B209053790076BF19 /* Alamofire.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -491,9 +480,9 @@
 			buildRules = (
 			);
 			dependencies = (
+				8A8E157B208F586C00F03030 /* PBXTargetDependency */,
 				8A46A0FD2060318A004EDA94 /* PBXTargetDependency */,
 				8AB52C4320603C91003EA1BB /* PBXTargetDependency */,
-				C34442E1208DCA65005C8AFA /* PBXTargetDependency */,
 			);
 			name = 102Bar;
 			productName = 102Bar;
@@ -560,13 +549,12 @@
 				C34442CB208DCA63005C8AFA /* Sources */,
 				C34442CC208DCA63005C8AFA /* Frameworks */,
 				C34442CD208DCA63005C8AFA /* Resources */,
-				C341C869208E1556007B0E8E /* Embed Frameworks */,
+				8A611D6F209053790076BF19 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				C341C868208E1556007B0E8E /* PBXTargetDependency */,
-				C341C870208E16EB007B0E8E /* PBXTargetDependency */,
+				8A611D6E209053790076BF19 /* PBXTargetDependency */,
 			);
 			name = "102BarWKExt Extension";
 			productName = "102BarWKExt Extension";
@@ -695,13 +683,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8A611D64208F5AC40076BF19 /* Alamofire.xcworkspace in Resources */,
+				8A611D65208F5AC40076BF19 /* Source in Resources */,
 				8AB0AAFF2084D25200C7B994 /* iconAccept.png in Resources */,
 				8A41BA14205FDD9900907669 /* LaunchScreen.storyboard in Resources */,
 				8A46A0D4205FE71E004EDA94 /* icon_256.png in Resources */,
 				8AE72D11207C9D8500F049F3 /* iconOk.png in Resources */,
 				8A46A0D0205FE337004EDA94 /* banner_853_480.png in Resources */,
-				8A46A0FA206030CC004EDA94 /* Source in Resources */,
-				8A46A0FB206030CC004EDA94 /* Alamofire.xcworkspace in Resources */,
 				8AE72D10207C9D8500F049F3 /* iconDelete.png in Resources */,
 				8AB0AAFE2084D25200C7B994 /* iconDecline.png in Resources */,
 				8A41BA11205FDD9900907669 /* Assets.xcassets in Resources */,
@@ -829,30 +817,25 @@
 			name = "Alamofire iOS";
 			targetProxy = 8A46A0FC2060318A004EDA94 /* PBXContainerItemProxy */;
 		};
+		8A611D6E209053790076BF19 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "Alamofire watchOS";
+			targetProxy = 8A611D6D209053790076BF19 /* PBXContainerItemProxy */;
+		};
+		8A8E157B208F586C00F03030 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = C34442C2208DCA61005C8AFA /* 102BarWKExt */;
+			targetProxy = 8A8E157A208F586C00F03030 /* PBXContainerItemProxy */;
+		};
 		8AB52C4320603C91003EA1BB /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = "Alamofire iOS";
 			targetProxy = 8AB52C4220603C91003EA1BB /* PBXContainerItemProxy */;
 		};
-		C341C868208E1556007B0E8E /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = "Alamofire iOS";
-			targetProxy = C341C867208E1556007B0E8E /* PBXContainerItemProxy */;
-		};
-		C341C870208E16EB007B0E8E /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = "Alamofire watchOS";
-			targetProxy = C341C86F208E16EB007B0E8E /* PBXContainerItemProxy */;
-		};
 		C34442D2208DCA63005C8AFA /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = C34442CE208DCA63005C8AFA /* 102BarWKExt Extension */;
 			targetProxy = C34442D1208DCA63005C8AFA /* PBXContainerItemProxy */;
-		};
-		C34442E1208DCA65005C8AFA /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = C34442C2208DCA61005C8AFA /* 102BarWKExt */;
-			targetProxy = C34442E0208DCA65005C8AFA /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -996,6 +979,8 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = F57P2RGF3M;
 				INFOPLIST_FILE = 102Bar/Info.plist;
@@ -1003,6 +988,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = de.102bier.102Bar.lol;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -1013,6 +999,8 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = F57P2RGF3M;
 				INFOPLIST_FILE = 102Bar/Info.plist;
@@ -1020,6 +1008,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = de.102bier.102Bar.lol;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -1094,6 +1083,7 @@
 				CLANG_ENABLE_OBJC_WEAK = YES;
 				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = F57P2RGF3M;
 				INFOPLIST_FILE = "102BarWKExt Extension/Info.plist";
@@ -1115,6 +1105,7 @@
 				CLANG_ENABLE_OBJC_WEAK = YES;
 				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = F57P2RGF3M;
 				INFOPLIST_FILE = "102BarWKExt Extension/Info.plist";
@@ -1138,7 +1129,7 @@
 				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = F57P2RGF3M;
+				DEVELOPMENT_TEAM = D2332J9CA6;
 				IBSC_MODULE = _02BarWKExt_Extension;
 				INFOPLIST_FILE = 102BarWKExt/Info.plist;
 				PRODUCT_BUNDLE_IDENTIFIER = de.102bier.102Bar.lol.watchkitapp;
@@ -1147,7 +1138,7 @@
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = 4;
-				WATCHOS_DEPLOYMENT_TARGET = 4.3;
+				WATCHOS_DEPLOYMENT_TARGET = 4.2;
 			};
 			name = Debug;
 		};
@@ -1160,7 +1151,7 @@
 				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = F57P2RGF3M;
+				DEVELOPMENT_TEAM = D2332J9CA6;
 				IBSC_MODULE = _02BarWKExt_Extension;
 				INFOPLIST_FILE = 102BarWKExt/Info.plist;
 				PRODUCT_BUNDLE_IDENTIFIER = de.102bier.102Bar.lol.watchkitapp;
@@ -1169,7 +1160,7 @@
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = 4;
-				WATCHOS_DEPLOYMENT_TARGET = 4.3;
+				WATCHOS_DEPLOYMENT_TARGET = 4.2;
 			};
 			name = Release;
 		};

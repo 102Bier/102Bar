@@ -62,4 +62,15 @@ class OrderedMixesController : UITableViewController{
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return orderedMixes.count
     }
+    
+    @IBAction func LogoutButton(_ sender: Any) {
+        UserDefaults.standard.removePersistentDomain(forName: Bundle.main.bundleIdentifier!)
+        
+        Service.shared.stopTimer()
+        
+        //switching to login screen
+        let storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        let vc: UIViewController = storyboard.instantiateViewController(withIdentifier: "LoginController") as UIViewController
+        present(vc, animated: true, completion: nil)
+    }
 }
