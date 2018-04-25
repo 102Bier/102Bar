@@ -63,6 +63,8 @@
 		C35A81C220617141002A3477 /* AddDrinkController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C35A81C120617141002A3477 /* AddDrinkController.swift */; };
 		C35E17972072945400613897 /* CustomDrinkModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C35E17962072945400613897 /* CustomDrinkModel.swift */; };
 		C3B66DF6207CC3DF00C26328 /* ingredCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3B66DF5207CC3DF00C26328 /* ingredCell.swift */; };
+		C3E19269208E71EF000122E0 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A46A0F7206030CB004EDA94 /* Alamofire.framework */; };
+		C3E1926A208E71EF000122E0 /* Alamofire.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8A46A0F7206030CB004EDA94 /* Alamofire.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		C3EB45B3206932AF00F69F16 /* DrinkCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3EB45B2206932AF00F69F16 /* DrinkCell.swift */; };
 		C3EB45BD2069427900F69F16 /* AddDrinkTableContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3EB45BC2069427900F69F16 /* AddDrinkTableContent.swift */; };
 		C3F1AAE52061452500FC39AC /* CustomDrinkView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3F1AAE42061452500FC39AC /* CustomDrinkView.swift */; };
@@ -213,6 +215,17 @@
 				C34442E2208DCA65005C8AFA /* 102BarWKExt.app in Embed Watch Content */,
 			);
 			name = "Embed Watch Content";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C3E1926D208E71EF000122E0 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				C3E1926A208E71EF000122E0 /* Alamofire.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
@@ -915,7 +928,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -966,7 +979,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
@@ -984,7 +997,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = F57P2RGF3M;
 				INFOPLIST_FILE = 102Bar/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = de.102bier.102Bar.lol;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1004,7 +1017,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = F57P2RGF3M;
 				INFOPLIST_FILE = 102Bar/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = de.102bier.102Bar.lol;
 				PRODUCT_NAME = "$(TARGET_NAME)";

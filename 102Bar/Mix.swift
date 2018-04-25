@@ -1,6 +1,20 @@
 import Foundation
 
-class Mix: NSObject {
+class Mix: NSObject, NSCoding {
+    func encode(with aCoder: NSCoder) {
+        aCoder.encode(mix, forKey: "mix")
+        aCoder.encode(mixDescription, forKey: "mixDescription")
+        aCoder.encode(ingredients, forKey: "ingredients")
+        aCoder.encode(orderedByUser, forKey: "orderedByUser")
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        mix = aDecoder.decodeObject(forKey: "mix") as! String
+        mixDescription = aDecoder.decodeObject(forKey: "mixDescription") as! String
+        ingredients = aDecoder.decodeObject(forKey: "ingredients") as! [Drink]?
+        orderedByUser = aDecoder.decodeObject(forKey: "orderedByUser") as! String
+    }
+    
     var mix: String = ""
     var mixDescription: String = ""
     var ingredients: [Drink]!

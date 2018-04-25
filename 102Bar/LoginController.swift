@@ -15,7 +15,7 @@ class LoginController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        if UserDefaults.standard.string(forKey: "username") != nil{
+        if UserDefaults.standard.string(forKey: "username") != nil{ //check if user is logged in
             changeView()
         }
     }
