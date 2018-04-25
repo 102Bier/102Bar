@@ -22,6 +22,17 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
+         contextName = "defaultDrinkInterfaceController.loadTableData():defaultDrinkInterfaceController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "availableMixes">
+            </PersistentString>
+            <PersistentString
+               value = "availableMixes.count">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "AddDrinkTableContent.init():AddDrinkTableContent.swift">
          <PersistentStrings>
             <PersistentString
@@ -119,13 +130,13 @@
          contextName = "orderMixController.tableView(_:cellForRowAt:):orderMixController.swift">
          <PersistentStrings>
             <PersistentString
-               value = "cell.percentageTextField.text">
+               value = "mixToOrder.ingredients[indexPath.row]">
             </PersistentString>
             <PersistentString
                value = "cell.drinkLabel.text">
             </PersistentString>
             <PersistentString
-               value = "mixToOrder.ingredients[indexPath.row]">
+               value = "cell.percentageTextField.text">
             </PersistentString>
          </PersistentStrings>
       </ContextState>

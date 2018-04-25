@@ -1,6 +1,7 @@
 import UIKit
 import Alamofire
 import UserNotifications
+import CoreData
 
 class Service: NSObject {
 
@@ -29,10 +30,21 @@ class Service: NSObject {
     
     var alamoFireManager : SessionManager = SessionManager.default
     
+    let availableMixesArchiveUrl = { () -> URL in
+        let documentsDirectories =
+            FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
+        let documentDirectory = documentsDirectories.first!
+        return documentDirectory.appendingPathComponent("availableMixes.archive")
+    }
+    
     var availableDrinkGroups = [DrinkGroup]()
     var availableDrinkTypes = [DrinkType]()
     var availableIngredients = [Drink]()
-    var availableMixes = [Mix]()
+    var availableMixes = [Mix]() {
+        didSet {
+            NSKeyedArchiver.archiveRootObject(availableMixes, toFile: availableMixesArchiveUrl().path) //save to file
+        }
+    }
     var orderedMixes = [Mix]()
     var customMixes = [Mix]()
     var users = [User]()

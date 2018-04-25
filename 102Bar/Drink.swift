@@ -1,6 +1,6 @@
 import Foundation
 
-class Drink: NSObject {
+class Drink: NSObject, NSCoding {
     
     var drink: String = ""
     var drinkType: DrinkType!
@@ -8,6 +8,24 @@ class Drink: NSObject {
     var percentage: Int = 0
     var AFO: Int = 0
     var connection: Int = 0
+    
+    func encode(with aCoder: NSCoder) {
+        aCoder.encode(drink, forKey: "drink")
+        aCoder.encode(drinkType, forKey: "drinkType")
+        aCoder.encode(drinkDescription, forKey: "drinkDescription")
+        aCoder.encode(percentage, forKey: "percentage")
+        aCoder.encode(AFO, forKey: "AFO")
+        aCoder.encode(connection, forKey: "connection")
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        drink = aDecoder.decodeObject(forKey: "drink") as! String
+        drinkType = aDecoder.decodeObject(forKey: "drinkType") as! DrinkType?
+        drinkDescription = aDecoder.decodeObject(forKey: "drinkDescription") as! String
+        percentage = aDecoder.decodeObject(forKey: "percentage") as! Int
+        AFO = aDecoder.decodeObject(forKey: "AFO") as! Int
+        connection = aDecoder.decodeObject(forKey: "connection") as! Int
+    }
     
     init(drink: String, drinkType: DrinkType, drinkDescription: String){
         self.drink = drink

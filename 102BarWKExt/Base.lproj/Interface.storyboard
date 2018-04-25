@@ -16,14 +16,15 @@
                     <items>
                         <label alignment="left" id="MwQ-dw-nso"/>
                         <button width="1" height="0.5" alignment="left" title="Default Drinks" id="LnV-dR-C1H">
-                            <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <color key="titleColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <fontDescription key="font" type="system" pointSize="18"/>
                             <connections>
                                 <segue destination="hh9-Gb-dzI" kind="push" id="vfB-T8-nm4"/>
                             </connections>
                         </button>
                         <button width="1" height="0.5" alignment="left" title="Custom Drinks" id="ono-1n-TYZ">
-                            <color key="backgroundColor" red="0.88235294119999996" green="0.34509803919999998" blue="0.16078431369999999" alpha="1" colorSpace="calibratedRGB"/>
+                            <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <fontDescription key="font" type="system" pointSize="18"/>
                             <connections>
                                 <segue destination="ENP-PW-ier" kind="push" id="Zqf-yM-eCD"/>
@@ -37,11 +38,11 @@
         <!--Default-->
         <scene sceneID="zJZ-wq-oZ7">
             <objects>
-                <controller title="Default" id="hh9-Gb-dzI" customClass="defaultDrinkInterfaceController" customModule="_02BarWKExt_Extension">
+                <controller identifier="defaultRowController" title="Default" id="hh9-Gb-dzI" customClass="defaultDrinkInterfaceController" customModule="_02BarWKExt_Extension">
                     <items>
                         <table alignment="left" id="Bz7-Ng-K84">
                             <items>
-                                <tableRow id="X7L-aT-sDd" customClass="defaultRowController" customModule="_02BarWKExt_Extension">
+                                <tableRow identifier="defaultRowController" id="X7L-aT-sDd" customClass="defaultRowController" customModule="_02BarWKExt_Extension">
                                     <group key="rootItem" width="1" alignment="left" id="ncO-hM-m9n">
                                         <items>
                                             <label alignment="left" text="Default Drink" id="hVp-eG-EE1"/>
@@ -64,11 +65,11 @@
         <!--Custom-->
         <scene sceneID="hua-PI-mht">
             <objects>
-                <controller title="Custom" id="ENP-PW-ier" customClass="customDrinksInterfaceController" customModule="_02BarWKExt_Extension">
+                <controller identifier="customRowController" title="Custom" id="ENP-PW-ier" customClass="customDrinksInterfaceController" customModule="_02BarWKExt_Extension">
                     <items>
                         <table alignment="left" id="B2z-nr-JpJ">
                             <items>
-                                <tableRow id="BLk-74-uUz" customClass="customRowController" customModule="_02BarWKExt_Extension">
+                                <tableRow identifier="customRowController" id="BLk-74-uUz" customClass="customRowController" customModule="_02BarWKExt_Extension">
                                     <group key="rootItem" width="1" alignment="left" id="ltU-1P-1al">
                                         <items>
                                             <label alignment="left" text="Custom Drink" id="zVA-kL-yLz"/>

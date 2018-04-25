@@ -42,12 +42,8 @@
 		C3381530208DD8AF00FB7D57 /* Drink.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A5FA714206A5AE900161D86 /* Drink.swift */; };
 		C3381531208DD8BD00FB7D57 /* DrinkType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A5FA710206A5AC800161D86 /* DrinkType.swift */; };
 		C3381532208DD8C800FB7D57 /* DrinkGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A5FA712206A5ADA00161D86 /* DrinkGroup.swift */; };
-		C341C865208E1555007B0E8E /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A46A0EB206030CB004EDA94 /* Alamofire.framework */; };
-		C341C866208E1555007B0E8E /* Alamofire.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8A46A0EB206030CB004EDA94 /* Alamofire.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		C341C86B208E1599007B0E8E /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A5FA707206A51F600161D86 /* Service.swift */; };
 		C341C86C208E1667007B0E8E /* JSONSerializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AEFB086207F45EB00F534A5 /* JSONSerializer.swift */; };
-		C341C86D208E16EB007B0E8E /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A46A0F7206030CB004EDA94 /* Alamofire.framework */; };
-		C341C86E208E16EB007B0E8E /* Alamofire.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8A46A0F7206030CB004EDA94 /* Alamofire.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		C34442B52084D74F005C8AFA /* orderMixController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C34442B42084D74F005C8AFA /* orderMixController.swift */; };
 		C34442C7208DCA61005C8AFA /* Interface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C34442C5208DCA61005C8AFA /* Interface.storyboard */; };
 		C34442C9208DCA63005C8AFA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C34442C8208DCA63005C8AFA /* Assets.xcassets */; };
@@ -65,6 +61,8 @@
 		C35A81C220617141002A3477 /* AddDrinkController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C35A81C120617141002A3477 /* AddDrinkController.swift */; };
 		C35E17972072945400613897 /* CustomDrinkModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C35E17962072945400613897 /* CustomDrinkModel.swift */; };
 		C3B66DF6207CC3DF00C26328 /* ingredCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3B66DF5207CC3DF00C26328 /* ingredCell.swift */; };
+		C3E19269208E71EF000122E0 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A46A0F7206030CB004EDA94 /* Alamofire.framework */; };
+		C3E1926A208E71EF000122E0 /* Alamofire.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8A46A0F7206030CB004EDA94 /* Alamofire.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		C3EB45B3206932AF00F69F16 /* DrinkCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3EB45B2206932AF00F69F16 /* DrinkCell.swift */; };
 		C3EB45BD2069427900F69F16 /* AddDrinkTableContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3EB45BC2069427900F69F16 /* AddDrinkTableContent.swift */; };
 		C3F1AAE52061452500FC39AC /* CustomDrinkView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3F1AAE42061452500FC39AC /* CustomDrinkView.swift */; };
@@ -128,20 +126,6 @@
 			remoteGlobalIDString = F8111E3219A95C8B0040E7D1;
 			remoteInfo = "Alamofire iOS";
 		};
-		C341C867208E1556007B0E8E /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 8A46A0DF206030CB004EDA94 /* Alamofire.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = F8111E3219A95C8B0040E7D1;
-			remoteInfo = "Alamofire iOS";
-		};
-		C341C86F208E16EB007B0E8E /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 8A46A0DF206030CB004EDA94 /* Alamofire.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = E4202FCD1B667AA100C997FB;
-			remoteInfo = "Alamofire watchOS";
-		};
 		C34442D1208DCA63005C8AFA /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 8A41B9FE205FDD9900907669 /* Project object */;
@@ -155,6 +139,13 @@
 			proxyType = 1;
 			remoteGlobalIDString = C34442C2208DCA61005C8AFA;
 			remoteInfo = 102BarWKExt;
+		};
+		C3E1926B208E71EF000122E0 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 8A46A0DF206030CB004EDA94 /* Alamofire.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = E4202FCD1B667AA100C997FB;
+			remoteInfo = "Alamofire watchOS";
 		};
 		C3F1AADE206133D400FC39AC /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -191,18 +182,6 @@
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		C341C869208E1556007B0E8E /* Embed Frameworks */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				C341C866208E1555007B0E8E /* Alamofire.framework in Embed Frameworks */,
-				C341C86E208E16EB007B0E8E /* Alamofire.framework in Embed Frameworks */,
-			);
-			name = "Embed Frameworks";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		C34442E6208DCA65005C8AFA /* Embed App Extensions */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -223,6 +202,17 @@
 				C34442E2208DCA65005C8AFA /* 102BarWKExt.app in Embed Watch Content */,
 			);
 			name = "Embed Watch Content";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C3E1926D208E71EF000122E0 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				C3E1926A208E71EF000122E0 /* Alamofire.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
@@ -316,8 +306,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C341C865208E1555007B0E8E /* Alamofire.framework in Frameworks */,
-				C341C86D208E16EB007B0E8E /* Alamofire.framework in Frameworks */,
+				C3E19269208E71EF000122E0 /* Alamofire.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -560,13 +549,12 @@
 				C34442CB208DCA63005C8AFA /* Sources */,
 				C34442CC208DCA63005C8AFA /* Frameworks */,
 				C34442CD208DCA63005C8AFA /* Resources */,
-				C341C869208E1556007B0E8E /* Embed Frameworks */,
+				C3E1926D208E71EF000122E0 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				C341C868208E1556007B0E8E /* PBXTargetDependency */,
-				C341C870208E16EB007B0E8E /* PBXTargetDependency */,
+				C3E1926C208E71EF000122E0 /* PBXTargetDependency */,
 			);
 			name = "102BarWKExt Extension";
 			productName = "102BarWKExt Extension";
@@ -834,16 +822,6 @@
 			name = "Alamofire iOS";
 			targetProxy = 8AB52C4220603C91003EA1BB /* PBXContainerItemProxy */;
 		};
-		C341C868208E1556007B0E8E /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = "Alamofire iOS";
-			targetProxy = C341C867208E1556007B0E8E /* PBXContainerItemProxy */;
-		};
-		C341C870208E16EB007B0E8E /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = "Alamofire watchOS";
-			targetProxy = C341C86F208E16EB007B0E8E /* PBXContainerItemProxy */;
-		};
 		C34442D2208DCA63005C8AFA /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = C34442CE208DCA63005C8AFA /* 102BarWKExt Extension */;
@@ -853,6 +831,11 @@
 			isa = PBXTargetDependency;
 			target = C34442C2208DCA61005C8AFA /* 102BarWKExt */;
 			targetProxy = C34442E0208DCA65005C8AFA /* PBXContainerItemProxy */;
+		};
+		C3E1926C208E71EF000122E0 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "Alamofire watchOS";
+			targetProxy = C3E1926B208E71EF000122E0 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -932,7 +915,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -983,7 +966,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
@@ -999,7 +982,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = F57P2RGF3M;
 				INFOPLIST_FILE = 102Bar/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = de.102bier.102Bar.lol;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1016,7 +999,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = F57P2RGF3M;
 				INFOPLIST_FILE = 102Bar/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = de.102bier.102Bar.lol;
 				PRODUCT_NAME = "$(TARGET_NAME)";
