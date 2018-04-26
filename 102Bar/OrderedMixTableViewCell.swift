@@ -11,24 +11,33 @@ class OrderedMixTableViewCell: UITableViewCell{
     @IBAction func AcceptButton(_ sender: Any) {
         let alert = UIAlertController(title: "Do you want to accept the Mix?", message: "The Mix (" + (orderedMix?.mixDescription)! + ") was ordered by " + (Service.shared.users.first(where: {$0.user == orderedMix?.orderedByUser})?.username)!, preferredStyle: .alert)
         
-        alert.addAction(UIAlertAction(title: "Yes", style: .default, handler: nil))
+        let confirmAction = UIAlertAction(title: "Yes", style: .default) { (_) in
+            Service.shared.removeOrderedMix(mixToRemove: self.orderedMix!,title: "Your Mix will be served", reason: "A Barkeeper accepted your mix and will serve it to you."){
+                success in
+                self.controller?.refresh(nil)
+            }
+        }
+        
+        alert.addAction(confirmAction)
         alert.addAction(UIAlertAction(title: "No", style: .cancel, handler: nil))
         
         controller?.present(alert, animated: true)
-        /*Service.shared.orderMix(mixToOrder: orderedMix!, add: false){
-            message in
-        }*/
     }
     
     @IBAction func DeclineButton(_ sender: Any) {
         let alertController = UIAlertController(title: "Do you want du decline the Mix?", message: "The Mix (" + (orderedMix?.mixDescription)! + ") was ordered by " + (Service.shared.users.first(where: {$0.user == orderedMix?.orderedByUser})?.username)! + "\nReason for decline:", preferredStyle: .alert)
-                let confirmAction = UIAlertAction(title: "Enter", style: .default) { (_) in
-            
-            //getting the input values from user
-                    _ = alertController.textFields?[0].text
-            
-            //self.labelMessage.text = "Name: " + name! + "Email: " + email!
-            
+        let confirmAction = UIAlertAction(title: "Enter", style: .default) { (_) in
+            if let reason = alertController.textFields?[0].text {
+                Service.shared.removeOrderedMix(mixToRemove: self.orderedMix!,title: "Your Mix was declined!", reason: reason){
+                    success in
+                    self.controller?.refresh(nil)
+                }
+            }else{
+                Service.shared.removeOrderedMix(mixToRemove: self.orderedMix!, title: "Your Mix was declined!", reason: "Your Mix was declined by a barkeeper!"){
+                    success in
+                    self.controller?.refresh(nil)
+                }
+            }
         }
         
         //the cancel action doing nothing
@@ -45,8 +54,5 @@ class OrderedMixTableViewCell: UITableViewCell{
         
         //finally presenting the dialog box
         controller?.present(alertController, animated: true, completion: nil)
-        /*Service.shared.orderMix(mixToOrder: orderedMix!, add: false){
-            message in
-        }*/
     }
 }

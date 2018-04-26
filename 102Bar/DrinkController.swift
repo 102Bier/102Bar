@@ -16,7 +16,6 @@ class DrinkController: UIViewController, UITableViewDelegate, UITableViewDataSou
     
     @IBAction func LogoutTapped(_ sender: Any) {
         UserDefaults.standard.removePersistentDomain(forName: Bundle.main.bundleIdentifier!)
-        UserDefaults.standard.synchronize()
         
         Service.shared.stopTimer()
         
