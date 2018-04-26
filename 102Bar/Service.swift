@@ -119,8 +119,7 @@ class Service: NSObject, UNUserNotificationCenterDelegate {
                     pushNotification.body = notificationInfo.object(forKey: "Message") as! String
                     pushNotification.sound = UNNotificationSound.default()
                     let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 1, repeats: false)
-                    let identifier = "UserNotification"
-                    let request = UNNotificationRequest(identifier: identifier, content: pushNotification, trigger: trigger)
+                    let request = UNNotificationRequest(identifier: self.getNewGUID(), content: pushNotification, trigger: trigger)
                     UNUserNotificationCenter.current().add(request, withCompletionHandler: { (error) in
                         if let error = error {
                             print(error)
