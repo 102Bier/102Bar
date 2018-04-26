@@ -12,7 +12,7 @@ class OrderedMixTableViewCell: UITableViewCell{
         let alert = UIAlertController(title: "Do you want to accept the Mix?", message: "The Mix (" + (orderedMix?.mixDescription)! + ") was ordered by " + (Service.shared.users.first(where: {$0.user == orderedMix?.orderedByUser})?.username)!, preferredStyle: .alert)
         
         let confirmAction = UIAlertAction(title: "Yes", style: .default) { (_) in
-            Service.shared.removeOrderedMix(mixToRemove: self.orderedMix!,title: "Your Mix will be served", reason: "A Barkeeper accepted yor mix and will serve it to you."){
+            Service.shared.removeOrderedMix(mixToRemove: self.orderedMix!,title: "Your Mix will be served", reason: "A Barkeeper accepted your mix and will serve it to you."){
                 success in
                 self.controller?.refresh(nil)
             }
