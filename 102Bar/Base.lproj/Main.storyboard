@@ -4,6 +4,7 @@
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -303,7 +304,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="otY-Qa-xWE">
-                                <rect key="frame" x="0.0" y="110" width="320" height="458"/>
+                                <rect key="frame" x="0.0" y="110" width="320" height="409"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="ingredCell" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ingredCell" rowHeight="56" id="e3j-5a-T0E" customClass="ingredCell" customModule="_02Bar" customModuleProvider="target">
@@ -719,7 +720,7 @@
             </objects>
             <point key="canvasLocation" x="1042.5" y="945.42253521126759"/>
         </scene>
-        <!--Title-->
+        <!--Ordered Mixes-->
         <scene sceneID="WhO-0w-gzz">
             <objects>
                 <tableViewController storyboardIdentifier="OrderedMixesController" id="fJH-MV-rbc" customClass="OrderedMixesController" customModule="_02Bar" customModuleProvider="target" sceneMemberID="viewController">
@@ -796,7 +797,7 @@
                             <outlet property="delegate" destination="fJH-MV-rbc" id="E4b-o1-tLv"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Title" id="Fil-TV-dMW">
+                    <navigationItem key="navigationItem" title="Ordered Mixes" id="Fil-TV-dMW">
                         <barButtonItem key="leftBarButtonItem" title="Logout" id="B4a-0p-2N3">
                             <connections>
                                 <action selector="LogoutButton:" destination="fJH-MV-rbc" id="zcY-eF-dhx"/>
@@ -819,7 +820,6 @@
         <image name="icon_256.png" width="256" height="256"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="BO2-xK-XJp"/>
-        <segue reference="ZZJ-Ax-zbT"/>
+        <segue reference="n1n-ep-ByN"/>
     </inferredMetricsTieBreakers>
 </document>

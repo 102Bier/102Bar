@@ -147,7 +147,7 @@ class orderMixController : UIViewController, UITableViewDelegate, UITableViewDat
             return
         }
         else{
-            Service.shared.orderMix(mixToOrder: mixToOrder, glasssize: Int(glassSizeField.text!)!, add: true) {_ in }
+            Service.shared.orderMix(mixToOrder: mixToOrder, glasssize: Int(glassSizeField.text!)!) {_ in }
         }
     }
     

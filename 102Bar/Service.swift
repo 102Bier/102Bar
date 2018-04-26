@@ -17,6 +17,7 @@ class Service: NSObject, UNUserNotificationCenterDelegate {
     let URL_AVAILABLE_DRINK_GROUPS: String
     let URL_AVAILABLE_DRINK_TYPES: String
     let URL_ORDER_MIX: String
+    let URL_REMOVE_ORDERED_MIX: String
     let URL_ORDERED_MIXES_ING: String
     let URL_ORDERED_MIXES_ROOT: String
     let URL_GET_CUSTOM_MIXES_ROOT: String
@@ -29,6 +30,12 @@ class Service: NSObject, UNUserNotificationCenterDelegate {
     var timer = Timer()
     
     var alamoFireManager : SessionManager = SessionManager.default
+    public enum Rights : Int{
+        case canLogin = 1       //darf sich anmelden
+        case canOrder = 2       //darf bestellen
+        case canCreateOwn = 4   //darf eigenes Getränk erstellen
+        case canOmit = 8        //darf Getränk auslassen
+    }
     
     let availableMixesArchiveUrl = { () -> URL in
         let documentsDirectories =
@@ -67,9 +74,10 @@ class Service: NSObject, UNUserNotificationCenterDelegate {
         URL_GET_CUSTOM_MIXES_ING = BASE_URL + "getCustomMixesIng.php"
         URL_CUSTOM_MIX = BASE_URL + "customMix.php"
         URL_CHECK_NOTIFICATIONS = BASE_URL + "checkNoifications.php"
+        URL_REMOVE_ORDERED_MIX = BASE_URL + "removeOrderedMix.php"
         super.init()
         let configuration = URLSessionConfiguration.default
-        configuration.timeoutIntervalForRequest = 4 // seconds
+        configuration.timeoutIntervalForRequest = 4
         configuration.timeoutIntervalForResource = 4
         alamoFireManager = Alamofire.SessionManager(configuration: configuration)
         getAvailableDrinkGroups
@@ -123,6 +131,8 @@ class Service: NSObject, UNUserNotificationCenterDelegate {
         }
     }
     
+    
+    
     public func login(username:String, password:String, callback: @escaping (_ success: Bool?) -> Void){
         
         let parameters: Parameters=[
@@ -158,6 +168,7 @@ class Service: NSObject, UNUserNotificationCenterDelegate {
                         self.defaultValues.set(userLastname, forKey: "userlastname")
                         self.defaultValues.set(userRights, forKey: "userrights")
                         
+                        self.checkNotifications()
                         self.initTimer()
                         
                         callback(true)
@@ -368,7 +379,7 @@ class Service: NSObject, UNUserNotificationCenterDelegate {
         }
     }
     
-    public func orderMix(mixToOrder: Mix, glasssize: Int, add: Bool, callback: @escaping (_ success: String?) -> Void){
+    public func orderMix(mixToOrder: Mix, glasssize: Int, callback: @escaping (_ success: String?) -> Void){
         let ingredientsJSON: String = JSONSerializer.toJson(mixToOrder.ingredients)
         let index = ingredientsJSON.index(ingredientsJSON.startIndex, offsetBy: 8)
         let ingredients = ingredientsJSON[index...]
@@ -378,11 +389,30 @@ class Service: NSObject, UNUserNotificationCenterDelegate {
             "Description": mixToOrder.mixDescription,
             "Ingredients": ingredients,
             "User": defaultValues.object(forKey: "userid") as! String,
-            "GlassSize": glasssize,
-            "Add": add ? "1" : "0"
+            "GlassSize": glasssize
         ]
         
         Alamofire.request(URL_ORDER_MIX, method: .post, parameters: parameters).responseJSON
+            {
+                response in
+                if let result = response.result.value {
+                    let jsonData = result as! NSDictionary
+                    print(jsonData.value(forKey: "message") as? String ?? "as")
+                    callback(jsonData.value(forKey: "message") as? String)
+                }
+        }
+    }
+    
+    public func removeOrderedMix(mixToRemove: Mix, title: String, reason: String, callback: @escaping (_ success: String?) -> Void){
+        
+        let parameters: Parameters=[
+            "Mix": mixToRemove.mix,
+            "Title": title,
+            "Reason": reason,
+            "OrderedByUser": mixToRemove.orderedByUser,
+        ]
+        
+        Alamofire.request(URL_REMOVE_ORDERED_MIX, method: .post, parameters: parameters).responseJSON
             {
                 response in
                 if let result = response.result.value {
