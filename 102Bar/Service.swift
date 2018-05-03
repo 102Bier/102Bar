@@ -2,8 +2,18 @@ import UIKit
 import Alamofire
 import UserNotifications
 import CoreData
+import WatchConnectivity
 
-class Service: NSObject, UNUserNotificationCenterDelegate {
+class Service: NSObject, UNUserNotificationCenterDelegate, WCSessionDelegate {
+    
+    func sessionDidBecomeInactive(_ session: WCSession) {
+        
+    }
+    
+    func sessionDidDeactivate(_ session: WCSession) {
+        
+    }
+    
 
     static let shared = Service()
     
@@ -28,6 +38,7 @@ class Service: NSObject, UNUserNotificationCenterDelegate {
     
     let defaultValues = UserDefaults.standard
     var timer = Timer()
+    var session : WCSession
     
     var alamoFireManager : SessionManager = SessionManager.default
     public enum Rights : Int{
@@ -50,6 +61,7 @@ class Service: NSObject, UNUserNotificationCenterDelegate {
     var availableMixes = [Mix]() {
         didSet {
             NSKeyedArchiver.archiveRootObject(availableMixes, toFile: availableMixesArchiveUrl().path) //save to file
+            
         }
     }
     var orderedMixes = [Mix]()
@@ -75,7 +87,13 @@ class Service: NSObject, UNUserNotificationCenterDelegate {
         URL_CUSTOM_MIX = BASE_URL + "customMix.php"
         URL_CHECK_NOTIFICATIONS = BASE_URL + "checkNoifications.php"
         URL_REMOVE_ORDERED_MIX = BASE_URL + "removeOrderedMix.php"
+        session = WCSession.default
+        session.activate()
         super.init()
+        session.delegate = self
+
+        
+        
         let configuration = URLSessionConfiguration.default
         configuration.timeoutIntervalForRequest = 4
         configuration.timeoutIntervalForResource = 4
@@ -92,6 +110,20 @@ class Service: NSObject, UNUserNotificationCenterDelegate {
     deinit {
         self.stopTimer()
     }
+    
+    func session(_ session: WCSession,
+                 activationDidCompleteWith activationState: WCSessionActivationState,
+                 error: Error?)
+    {
+    }
+    
+    /*func sessionDidBecomeInactive(_ session: WCSession) {
+     
+    }
+    
+    func sessionDidDeactivate(_ session: WCSession) {
+     
+    }*/
     
     public func initTimer(){
         timer = Timer.scheduledTimer(timeInterval: 10, target: self, selector: #selector(self.checkNotifications), userInfo: nil, repeats: true)

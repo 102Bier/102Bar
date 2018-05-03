@@ -5,12 +5,20 @@
 //  Created by Justin Busse on 23.04.18.
 //  Copyright © 2018 102 Bier. All rights reserved.
 //
-
 import WatchKit
 import Foundation
+import WatchConnectivity
 
-
-class InterfaceController: WKInterfaceController {
+class InterfaceController: WKInterfaceController, WCSessionDelegate{
+    
+    func session(_ session: WCSession, activationDidCompleteWith activationState: WCSessionActivationState, error: Error?) {
+        
+    }
+    
+    func session(_ session: WCSession, didReceiveMessage message: [String : Any]) {
+        <#code#>
+    }
+    
 
     override func awake(withContext context: Any?) {
         
@@ -22,7 +30,6 @@ class InterfaceController: WKInterfaceController {
     
     override func willActivate() {
         // This method is called when watch view controller is about to be visible to user
-        Service.shared.getAvailableMixes {_ in }
         super.willActivate()
     }
     

@@ -42,7 +42,6 @@
 		C3381530208DD8AF00FB7D57 /* Drink.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A5FA714206A5AE900161D86 /* Drink.swift */; };
 		C3381531208DD8BD00FB7D57 /* DrinkType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A5FA710206A5AC800161D86 /* DrinkType.swift */; };
 		C3381532208DD8C800FB7D57 /* DrinkGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A5FA712206A5ADA00161D86 /* DrinkGroup.swift */; };
-		C341C86B208E1599007B0E8E /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A5FA707206A51F600161D86 /* Service.swift */; };
 		C341C86C208E1667007B0E8E /* JSONSerializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AEFB086207F45EB00F534A5 /* JSONSerializer.swift */; };
 		C34442B52084D74F005C8AFA /* orderMixController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C34442B42084D74F005C8AFA /* orderMixController.swift */; };
 		C34442C7208DCA61005C8AFA /* Interface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C34442C5208DCA61005C8AFA /* Interface.storyboard */; };
@@ -782,7 +781,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				C34442F0208DD46D005C8AFA /* defaultRowController.swift in Sources */,
-				C341C86B208E1599007B0E8E /* Service.swift in Sources */,
 				C34442D9208DCA63005C8AFA /* NotificationController.swift in Sources */,
 				C34442F2208DD4B3005C8AFA /* defaultDrinkInterfaceController.swift in Sources */,
 				C34442DB208DCA63005C8AFA /* ComplicationController.swift in Sources */,
@@ -984,7 +982,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = F57P2RGF3M;
 				INFOPLIST_FILE = 102Bar/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = de.102bier.102Bar.lol;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1004,7 +1002,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = F57P2RGF3M;
 				INFOPLIST_FILE = 102Bar/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = de.102bier.102Bar.lol;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1094,11 +1092,12 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = de.102bier.102Bar.lol.watchkitapp.watchkitextension;
 				PRODUCT_NAME = "${TARGET_NAME}";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = 4;
-				WATCHOS_DEPLOYMENT_TARGET = 4.2;
+				WATCHOS_DEPLOYMENT_TARGET = 4.3;
 			};
 			name = Debug;
 		};
@@ -1116,11 +1115,12 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = de.102bier.102Bar.lol.watchkitapp.watchkitextension;
 				PRODUCT_NAME = "${TARGET_NAME}";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = 4;
-				WATCHOS_DEPLOYMENT_TARGET = 4.2;
+				WATCHOS_DEPLOYMENT_TARGET = 4.3;
 			};
 			name = Release;
 		};
@@ -1133,7 +1133,7 @@
 				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = D2332J9CA6;
+				DEVELOPMENT_TEAM = F57P2RGF3M;
 				IBSC_MODULE = _02BarWKExt_Extension;
 				INFOPLIST_FILE = 102BarWKExt/Info.plist;
 				PRODUCT_BUNDLE_IDENTIFIER = de.102bier.102Bar.lol.watchkitapp;
@@ -1142,7 +1142,7 @@
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = 4;
-				WATCHOS_DEPLOYMENT_TARGET = 4.2;
+				WATCHOS_DEPLOYMENT_TARGET = 4.3;
 			};
 			name = Debug;
 		};
@@ -1155,7 +1155,7 @@
 				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = D2332J9CA6;
+				DEVELOPMENT_TEAM = F57P2RGF3M;
 				IBSC_MODULE = _02BarWKExt_Extension;
 				INFOPLIST_FILE = 102BarWKExt/Info.plist;
 				PRODUCT_BUNDLE_IDENTIFIER = de.102bier.102Bar.lol.watchkitapp;
@@ -1164,7 +1164,7 @@
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = 4;
-				WATCHOS_DEPLOYMENT_TARGET = 4.2;
+				WATCHOS_DEPLOYMENT_TARGET = 4.3;
 			};
 			name = Release;
 		};

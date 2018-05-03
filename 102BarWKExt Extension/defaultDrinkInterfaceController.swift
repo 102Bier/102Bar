@@ -12,7 +12,7 @@ import Foundation
 class defaultDrinkInterfaceController: WKInterfaceController {
 
     @IBOutlet var tableView: WKInterfaceTable!
-    var availableMixes = Service.shared.availableMixes
+    var availableMixes : [Mix] = Array()
     
     override func awake(withContext context: Any?) {
         super.awake(withContext: context)
@@ -23,11 +23,6 @@ class defaultDrinkInterfaceController: WKInterfaceController {
 
     override func willActivate() {
         // This method is called when watch view controller is about to be visible to user
-//        Service.shared.getAvailableMixes {
-//            _ in
-//            self.availableMixes = Service.shared.availableMixes
-//            self.loadTableData()
-//        }
         self.loadTableData()
         super.willActivate()
         //loadTableData()
@@ -40,7 +35,6 @@ class defaultDrinkInterfaceController: WKInterfaceController {
     
     func loadTableData() {
         
-        availableMixes = Service.shared.availableMixes
         tableView.setNumberOfRows( availableMixes.count, withRowType: "defaultRowController")
         /*print("number of rows set: \(availableMixes.count)")*/
         /*if let defaultRowController = tableView.rowController(at: 0) as? defaultRowController
