@@ -38,7 +38,6 @@ class defaultDrinkInterfaceController: WKInterfaceController {
     
     func loadTableData() {
         tableView.setNumberOfRows( availableMixes.count, withRowType: "defaultRowController")
-        /*print("number of rows set: \(availableMixes.count)")*/
         for (index, rowModel) in availableMixes.enumerated() {
             
             if let defaultRowController = tableView.rowController(at: index) as? defaultRowController

@@ -37,12 +37,11 @@ class customDrinksInterfaceController: WKInterfaceController {
     
     func loadTableData() {
         tableView.setNumberOfRows( customMixes.count, withRowType: "customRowController")
-        /*print("number of rows set: \(availableMixes.count)")*/
         for (index, rowModel) in customMixes.enumerated() {
             
-            if let defaultRowController = tableView.rowController(at: index) as? defaultRowController
+            if let customRowController = tableView.rowController(at: index) as? customRowController
             {
-                defaultRowController.mixLabel.setText(rowModel.mixDescription)
+                customRowController.mixLabel.setText(rowModel.mixDescription)
                 //print("row set \(rowModel.mixDescription)")
             }
         }

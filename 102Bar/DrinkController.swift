@@ -92,7 +92,7 @@ class DrinkController: UIViewController, UITableViewDelegate, UITableViewDataSou
             }
             return cell
             
-        case 1: //Custom Drinks
+        case 1: //custom Drinks
             cell.mixTitle.text = Service.shared.customMixes[indexPath.row].mixDescription
             
             for i in 0..<Service.shared.customMixes[indexPath.row].ingredients.count
