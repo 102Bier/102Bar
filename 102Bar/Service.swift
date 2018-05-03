@@ -38,7 +38,7 @@ class Service: NSObject, UNUserNotificationCenterDelegate, WCSessionDelegate {
     
     let defaultValues = UserDefaults.standard
     var timer = Timer()
-    var session : WCSession
+    //var session : WCSession
     
     var alamoFireManager : SessionManager = SessionManager.default
     public enum Rights : Int{
@@ -61,7 +61,11 @@ class Service: NSObject, UNUserNotificationCenterDelegate, WCSessionDelegate {
     var availableMixes = [Mix]() {
         didSet {
             NSKeyedArchiver.archiveRootObject(availableMixes, toFile: availableMixesArchiveUrl().path) //save to file
-            
+            //let message = ["aD": availableMixes] as [String: Any]
+            let message = ["ad": "hallo"]
+            /*ssession.sendMessage(message, replyHandler: nil, errorHandler: { error in
+                print(error.localizedDescription)
+            } )*/
         }
     }
     var orderedMixes = [Mix]()
@@ -87,10 +91,10 @@ class Service: NSObject, UNUserNotificationCenterDelegate, WCSessionDelegate {
         URL_CUSTOM_MIX = BASE_URL + "customMix.php"
         URL_CHECK_NOTIFICATIONS = BASE_URL + "checkNoifications.php"
         URL_REMOVE_ORDERED_MIX = BASE_URL + "removeOrderedMix.php"
-        session = WCSession.default
-        session.activate()
+        //session = WCSession.default
+        //session.activate()
         super.init()
-        session.delegate = self
+        //session.delegate = self
 
         
         

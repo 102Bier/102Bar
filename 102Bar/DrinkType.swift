@@ -1,6 +1,6 @@
 import Foundation
 
-class DrinkType : NSCoding {
+class DrinkType : NSObject, NSCoding {
     
     var drinkType: String = ""
     var drinkGroup: DrinkGroup!
@@ -16,7 +16,8 @@ class DrinkType : NSCoding {
     required init?(coder aDecoder: NSCoder) {
         drinkType = aDecoder.decodeObject(forKey: "drinkType") as! String
         drinkGroup = aDecoder.decodeObject(forKey: "drinkGroup") as! DrinkGroup?
-        drinkTypeDescription = aDecoder.decodeObject(forKey: "drinkDescription") as! String
+        //drinkTypeDescription = aDecoder.decodeObject(forKey: "drinkDescription") as! String
+        drinkTypeDescription = "hallo"
     }
     
     init(drinkType: String, drinkGroup: DrinkGroup, drinkTypeDescription: String) {

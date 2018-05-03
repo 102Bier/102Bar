@@ -31,6 +31,10 @@
                             </connections>
                         </button>
                     </items>
+                    <connections>
+                        <outlet property="testLabel1" destination="LnV-dR-C1H" id="hHm-VU-fJM"/>
+                        <outlet property="testLabel2" destination="ono-1n-TYZ" id="yHB-lc-qqa"/>
+                    </connections>
                 </controller>
             </objects>
             <point key="canvasLocation" x="220" y="345"/>

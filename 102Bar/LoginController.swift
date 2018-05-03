@@ -1,7 +1,28 @@
 import UIKit
 import Alamofire
+import WatchConnectivity
 
-class LoginController: UIViewController {
+class LoginController: UIViewController, WCSessionDelegate {
+    
+    let availableMixesArchiveUrl = { () -> URL in
+        let documentsDirectories =
+            FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
+        let documentDirectory = documentsDirectories.first!
+        return documentDirectory.appendingPathComponent("availableMixes.archive")
+    }
+    
+    
+    func session(_ session: WCSession, activationDidCompleteWith activationState: WCSessionActivationState, error: Error?) {
+    }
+    
+    func sessionDidBecomeInactive(_ session: WCSession) {
+        
+    }
+    
+    func sessionDidDeactivate(_ session: WCSession) {
+        
+    }
+    
     
     @IBOutlet weak var _username: UITextField!
     @IBOutlet weak var _password: UITextField!
@@ -12,12 +33,15 @@ class LoginController: UIViewController {
     @IBOutlet weak var _register_button: UIButton!
     
     let defaultValues = UserDefaults.standard
+    var session : WCSession = WCSession.default
     
     override func viewDidLoad() {
         super.viewDidLoad()
         if UserDefaults.standard.string(forKey: "username") != nil{ //check if user is logged in
             changeView()
         }
+        session.delegate = self
+        session.activate()
     }
     
     func changeView()
@@ -39,7 +63,17 @@ class LoginController: UIViewController {
             if success!{
                 Service.shared.getAvailableIngredients {succsess in
                     Service.shared.getAvailableMixes {succsess in
+                        let aD = Service.shared.availableMixes
+                        NSKeyedArchiver.setClassName("Mix", for: Mix.self)
+                        NSKeyedArchiver.setClassName("Drink", for: Drink.self)
+                        NSKeyedArchiver.setClassName("DrinkType", for: DrinkType.self)
+                        NSKeyedArchiver.setClassName("DrinkGroup", for: DrinkGroup.self)
+                        NSKeyedArchiver.archiveRootObject(aD, toFile: self.availableMixesArchiveUrl().path) //save to file
+                        let data = NSKeyedArchiver.archivedData(withRootObject: aD)
+                        self.session.sendMessageData(data, replyHandler: nil, errorHandler: nil)
+                        //self.session.sendMessage(["aD" : aD], replyHandler: nil, errorHandler: nil)
                         Service.shared.getCustomMixes{success in
+                            self.session.sendMessage(["test2" : "tschüss"], replyHandler: nil, errorHandler: nil)
                             self.changeView()
                         }
                     }

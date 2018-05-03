@@ -15,7 +15,9 @@ class DrinkGroup: NSObject, NSCoding {
     required init?(coder aDecoder: NSCoder) {
         drinkGroup = aDecoder.decodeObject(forKey: "drinkGroup") as! String
         drinkGroupDescription = aDecoder.decodeObject(forKey: "drinkGroupDescription") as! String
-        alcoholic = aDecoder.decodeObject(forKey: "alcoholic") as! Bool
+        alcoholic = true
+        //alcoholic = aDecoder.decodeObject(forKey: "alcoholic") as! Bool
+        
     }
     
     init(drinkGroup: String, drinkGroupDescription: String, alcoholic: Bool){
