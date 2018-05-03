@@ -62,7 +62,7 @@ class Service: NSObject, UNUserNotificationCenterDelegate, WCSessionDelegate {
         didSet {
             NSKeyedArchiver.archiveRootObject(availableMixes, toFile: availableMixesArchiveUrl().path) //save to file
             //let message = ["aD": availableMixes] as [String: Any]
-            let message = ["ad": "hallo"]
+            //let message = ["ad": "hallo"]
             /*ssession.sendMessage(message, replyHandler: nil, errorHandler: { error in
                 print(error.localizedDescription)
             } )*/

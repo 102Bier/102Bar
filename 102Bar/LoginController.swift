@@ -11,6 +11,13 @@ class LoginController: UIViewController, WCSessionDelegate {
         return documentDirectory.appendingPathComponent("availableMixes.archive")
     }
     
+    let customMixesArchiveUrl = { () -> URL in
+        let documentsDirectories =
+            FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
+        let documentDirectory = documentsDirectories.first!
+        return documentDirectory.appendingPathComponent("customMixes.archive")
+    }
+    
     
     func session(_ session: WCSession, activationDidCompleteWith activationState: WCSessionActivationState, error: Error?) {
     }
@@ -42,6 +49,10 @@ class LoginController: UIViewController, WCSessionDelegate {
         }
         session.delegate = self
         session.activate()
+        NSKeyedArchiver.setClassName("Mix", for: Mix.self)
+        NSKeyedArchiver.setClassName("Drink", for: Drink.self)
+        NSKeyedArchiver.setClassName("DrinkType", for: DrinkType.self)
+        NSKeyedArchiver.setClassName("DrinkGroup", for: DrinkGroup.self)
     }
     
     func changeView()
@@ -63,17 +74,17 @@ class LoginController: UIViewController, WCSessionDelegate {
             if success!{
                 Service.shared.getAvailableIngredients {succsess in
                     Service.shared.getAvailableMixes {succsess in
-                        let aD = Service.shared.availableMixes
-                        NSKeyedArchiver.setClassName("Mix", for: Mix.self)
-                        NSKeyedArchiver.setClassName("Drink", for: Drink.self)
-                        NSKeyedArchiver.setClassName("DrinkType", for: DrinkType.self)
-                        NSKeyedArchiver.setClassName("DrinkGroup", for: DrinkGroup.self)
-                        NSKeyedArchiver.archiveRootObject(aD, toFile: self.availableMixesArchiveUrl().path) //save to file
-                        let data = NSKeyedArchiver.archivedData(withRootObject: aD)
+                        let aM = Service.shared.availableMixes
+                        NSKeyedArchiver.archiveRootObject(aM, toFile: self.availableMixesArchiveUrl().path) //save to file
+                        let data = NSKeyedArchiver.archivedData(withRootObject: aM)
                         self.session.sendMessageData(data, replyHandler: nil, errorHandler: nil)
-                        //self.session.sendMessage(["aD" : aD], replyHandler: nil, errorHandler: nil)
+                        self.session.sendMessage(["customOrDefault" : "default"], replyHandler: nil, errorHandler: nil)
                         Service.shared.getCustomMixes{success in
-                            self.session.sendMessage(["test2" : "tschüss"], replyHandler: nil, errorHandler: nil)
+                            let cM = Service.shared.customMixes
+                            NSKeyedArchiver.archiveRootObject(cM, toFile: self.customMixesArchiveUrl().path) //save to file
+                            let data = NSKeyedArchiver.archivedData(withRootObject: cM)
+                            self.session.sendMessageData(data, replyHandler: nil, errorHandler: nil)
+                            self.session.sendMessage(["customOrDefault" : "custom"], replyHandler: nil, errorHandler: nil)
                             self.changeView()
                         }
                     }
