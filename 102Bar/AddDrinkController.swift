@@ -421,7 +421,8 @@ class AddDrinkController : UITableViewController, UITextFieldDelegate
         }
         Service.shared.customMix(mixToAdd: Mix(mix: Service.shared.getNewGUID(), mixDescription: mixName!, ingredients: drinks), add: true){
             success in
-            self.presentingViewController?.dismiss(animated: true, completion: nil)
+            //self.presentingViewController?.dismiss(animated: true, completion: nil)
         }
+        self.presentingViewController?.dismiss(animated: true, completion: nil)
     }
 }

@@ -16,6 +16,7 @@ class Service: NSObject, UNUserNotificationCenterDelegate, WCSessionDelegate {
     
 
     static let shared = Service()
+    let session : WCSession
     
     let BASE_URL: String
     let URL_USER_LOGIN: String
@@ -38,7 +39,6 @@ class Service: NSObject, UNUserNotificationCenterDelegate, WCSessionDelegate {
     
     let defaultValues = UserDefaults.standard
     var timer = Timer()
-    //var session : WCSession
     
     var alamoFireManager : SessionManager = SessionManager.default
     public enum Rights : Int{
@@ -55,21 +55,33 @@ class Service: NSObject, UNUserNotificationCenterDelegate, WCSessionDelegate {
         return documentDirectory.appendingPathComponent("availableMixes.archive")
     }
     
+    let customMixesArchiveUrl = { () -> URL in
+        let documentsDirectories =
+            FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
+        let documentDirectory = documentsDirectories.first!
+        return documentDirectory.appendingPathComponent("customMixes.archive")
+    }
+    
     var availableDrinkGroups = [DrinkGroup]()
     var availableDrinkTypes = [DrinkType]()
     var availableIngredients = [Drink]()
     var availableMixes = [Mix]() {
         didSet {
-            NSKeyedArchiver.archiveRootObject(availableMixes, toFile: availableMixesArchiveUrl().path) //save to file
-            //let message = ["aD": availableMixes] as [String: Any]
-            //let message = ["ad": "hallo"]
-            /*ssession.sendMessage(message, replyHandler: nil, errorHandler: { error in
-                print(error.localizedDescription)
-            } )*/
+            NSKeyedArchiver.archiveRootObject(availableMixes, toFile: self.availableMixesArchiveUrl().path) //save to file
+            let data = NSKeyedArchiver.archivedData(withRootObject: availableMixes)
+            self.session.sendMessageData(data, replyHandler: nil, errorHandler: nil)
+            self.session.sendMessage(["customOrDefault" : "default"], replyHandler: nil, errorHandler: nil)
         }
     }
     var orderedMixes = [Mix]()
-    var customMixes = [Mix]()
+    var customMixes = [Mix]() {
+        didSet {
+            NSKeyedArchiver.archiveRootObject(customMixes, toFile: self.customMixesArchiveUrl().path) //save to file
+            let data = NSKeyedArchiver.archivedData(withRootObject: customMixes)
+            self.session.sendMessageData(data, replyHandler: nil, errorHandler: nil)
+            self.session.sendMessage(["customOrDefault" : "custom"], replyHandler: nil, errorHandler: nil)
+        }
+    }
     var users = [User]()
     
     override init() {
@@ -91,13 +103,19 @@ class Service: NSObject, UNUserNotificationCenterDelegate, WCSessionDelegate {
         URL_CUSTOM_MIX = BASE_URL + "customMix.php"
         URL_CHECK_NOTIFICATIONS = BASE_URL + "checkNoifications.php"
         URL_REMOVE_ORDERED_MIX = BASE_URL + "removeOrderedMix.php"
-        //session = WCSession.default
-        //session.activate()
+        
+        /*watch connectivity stuff*/
+        session = .default
         super.init()
-        //session.delegate = self
-
+        session.delegate = self
+        session.activate()
         
-        
+        /*core data stuff*/
+        NSKeyedArchiver.setClassName("Mix", for: Mix.self)
+        NSKeyedArchiver.setClassName("Drink", for: Drink.self)
+        NSKeyedArchiver.setClassName("DrinkType", for: DrinkType.self)
+        NSKeyedArchiver.setClassName("DrinkGroup", for: DrinkGroup.self)
+    
         let configuration = URLSessionConfiguration.default
         configuration.timeoutIntervalForRequest = 4
         configuration.timeoutIntervalForResource = 4

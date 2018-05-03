@@ -1,35 +1,7 @@
 import UIKit
 import Alamofire
-import WatchConnectivity
 
-class LoginController: UIViewController, WCSessionDelegate {
-    
-    let availableMixesArchiveUrl = { () -> URL in
-        let documentsDirectories =
-            FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
-        let documentDirectory = documentsDirectories.first!
-        return documentDirectory.appendingPathComponent("availableMixes.archive")
-    }
-    
-    let customMixesArchiveUrl = { () -> URL in
-        let documentsDirectories =
-            FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
-        let documentDirectory = documentsDirectories.first!
-        return documentDirectory.appendingPathComponent("customMixes.archive")
-    }
-    
-    
-    func session(_ session: WCSession, activationDidCompleteWith activationState: WCSessionActivationState, error: Error?) {
-    }
-    
-    func sessionDidBecomeInactive(_ session: WCSession) {
-        
-    }
-    
-    func sessionDidDeactivate(_ session: WCSession) {
-        
-    }
-    
+class LoginController: UIViewController {
     
     @IBOutlet weak var _username: UITextField!
     @IBOutlet weak var _password: UITextField!
@@ -40,19 +12,12 @@ class LoginController: UIViewController, WCSessionDelegate {
     @IBOutlet weak var _register_button: UIButton!
     
     let defaultValues = UserDefaults.standard
-    var session : WCSession = WCSession.default
     
     override func viewDidLoad() {
         super.viewDidLoad()
         if UserDefaults.standard.string(forKey: "username") != nil{ //check if user is logged in
             changeView()
         }
-        session.delegate = self
-        session.activate()
-        NSKeyedArchiver.setClassName("Mix", for: Mix.self)
-        NSKeyedArchiver.setClassName("Drink", for: Drink.self)
-        NSKeyedArchiver.setClassName("DrinkType", for: DrinkType.self)
-        NSKeyedArchiver.setClassName("DrinkGroup", for: DrinkGroup.self)
     }
     
     func changeView()
@@ -74,17 +39,7 @@ class LoginController: UIViewController, WCSessionDelegate {
             if success!{
                 Service.shared.getAvailableIngredients {succsess in
                     Service.shared.getAvailableMixes {succsess in
-                        let aM = Service.shared.availableMixes
-                        NSKeyedArchiver.archiveRootObject(aM, toFile: self.availableMixesArchiveUrl().path) //save to file
-                        let data = NSKeyedArchiver.archivedData(withRootObject: aM)
-                        self.session.sendMessageData(data, replyHandler: nil, errorHandler: nil)
-                        self.session.sendMessage(["customOrDefault" : "default"], replyHandler: nil, errorHandler: nil)
                         Service.shared.getCustomMixes{success in
-                            let cM = Service.shared.customMixes
-                            NSKeyedArchiver.archiveRootObject(cM, toFile: self.customMixesArchiveUrl().path) //save to file
-                            let data = NSKeyedArchiver.archivedData(withRootObject: cM)
-                            self.session.sendMessageData(data, replyHandler: nil, errorHandler: nil)
-                            self.session.sendMessage(["customOrDefault" : "custom"], replyHandler: nil, errorHandler: nil)
                             self.changeView()
                         }
                     }
