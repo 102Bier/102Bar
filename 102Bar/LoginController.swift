@@ -1,5 +1,6 @@
 import UIKit
 import Alamofire
+import LocalAuthentication
 
 class LoginController: UIViewController {
     
@@ -11,12 +12,108 @@ class LoginController: UIViewController {
     @IBOutlet weak var _login_as_guest_button: UIButton!
     @IBOutlet weak var _register_button: UIButton!
     
-    let defaultValues = UserDefaults.standard
+    @IBAction func biometricLogin(_ sender: UIButton) {
+        checkBiometricLogin()
+    }
+    
+    func checkBiometricLogin()
+    {
+        let context = LAContext()
+        if context.canEvaluatePolicy(LAPolicy.deviceOwnerAuthenticationWithBiometrics, error: nil)
+        {
+            self.evaulateBiometricAuthenticity(context: context)
+        }
+    }
+    
+    func evaulateBiometricAuthenticity(context: LAContext)
+    {
+        guard let username = UserDefaults.standard.string(forKey: "username") else { return }
+        context.evaluatePolicy(LAPolicy.deviceOwnerAuthenticationWithBiometrics, localizedReason: username) { (authSuccessful, authError) in
+            if authSuccessful {
+                guard !username.isEmpty else { return }
+                let passwordItem = KeychainPasswordItem(service:   KeychainConfiguration.serviceName, account: username, accessGroup: KeychainConfiguration.accessGroup)
+                do {
+                    let storedPassword = try passwordItem.readPassword()
+                    Service.shared.login(username: username, password: storedPassword){
+                        success in
+                        if success!{
+                            Service.shared.getAvailableIngredients {succsess in
+                                Service.shared.getAvailableMixes {succsess in
+                                    Service.shared.getCustomMixes{success in
+                                        self.changeView()
+                                    }
+                                }
+                            }
+                        }
+                    }
+                } catch KeychainPasswordItem.KeychainError.noPassword {
+                    print("No saved password")
+                } catch {
+                    print("Unhandled error")
+                }
+            } else {
+                if let error = authError as? LAError {
+                    self.showBiometricLoginError(error: error)
+                }
+            }
+        }
+    }
+    
+    func showBiometricLoginError(error: LAError) {
+        var message: String = ""
+        switch error.code {
+        case LAError.authenticationFailed:
+            message = "Authentication was not successful because the user failed to provide valid credentials. Please enter password to login."
+            break
+        case LAError.userCancel:
+            message = "Authentication was canceled by the user"
+            break
+        case LAError.userFallback:
+            message = "Authentication was canceled because the user tapped the fallback button"
+            break
+        case LAError.biometryNotEnrolled:
+            message = "Authentication could not start because biometry has no entity."
+            break
+        case LAError.passcodeNotSet:
+            message = "Passcode is not set on the device."
+            break
+        case LAError.systemCancel:
+            message = "Authentication was canceled by system"
+            break
+        default:
+            message = error.localizedDescription
+            break
+        }
+        //self.showPopupWithMessage(message)
+        self.labelMessage.text = message
+        print(message)
+    }
+    
+    func saveAccountDataToUserDefault(username : String, password : String)
+    {
+        UserDefaults.standard.set(username, forKey: "username")
+        do {
+            // This is a new account, create a new keychain item with the account name.
+            let passwordItem = KeychainPasswordItem(
+                service: KeychainConfiguration.serviceName,
+                account: username,
+                accessGroup: KeychainConfiguration.accessGroup)
+            // Save the password for the new item.
+            try passwordItem.savePassword(password)
+        } catch {
+            fatalError("Error updating keychain - \(error)")
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        if UserDefaults.standard.string(forKey: "username") != nil{ //check if user is logged in
-            changeView()
+        let context = LAContext()
+        if let loggedOut = UserDefaults.standard.object(forKey: "loggedOut")
+        {
+            if context.canEvaluatePolicy(LAPolicy.deviceOwnerAuthenticationWithBiometrics, error: nil) && (UserDefaults.standard.object(forKey: "hasData") as! Bool) && !(loggedOut as! Bool)
+            {
+                evaulateBiometricAuthenticity(context: context)
+            }
         }
     }
     
@@ -37,6 +134,12 @@ class LoginController: UIViewController {
         Service.shared.login(username: self._username.text!, password: self._password.text!){
             success in
             if success!{
+                
+                if !UserDefaults.standard.bool(forKey: "hasData") {
+                    self.saveAccountDataToUserDefault(username: self._username.text!, password: self._password.text!)
+                   UserDefaults.standard.set(true, forKey: "hasData")
+                }
+                
                 Service.shared.getAvailableIngredients {succsess in
                     Service.shared.getAvailableMixes {succsess in
                         Service.shared.getCustomMixes{success in
@@ -64,6 +167,7 @@ class LoginController: UIViewController {
     }
     
     @IBAction func RegisterButton(_ sender: Any) {
-        
+        saveAccountDataToUserDefault(username: _username.text!, password: _password.text!)
+        UserDefaults.standard.set(true, forKey: "hasData")
     }
 }

@@ -15,7 +15,13 @@ class DrinkController: UIViewController, UITableViewDelegate, UITableViewDataSou
     @IBOutlet var CustomDrinkTable: UITableView!
     
     @IBAction func LogoutTapped(_ sender: Any) {
+        
+        let username = UserDefaults.standard.string(forKey: "username")
+        let hasData = UserDefaults.standard.bool(forKey: "hasData")
         UserDefaults.standard.removePersistentDomain(forName: Bundle.main.bundleIdentifier!)
+        UserDefaults.standard.set(username, forKey: "username")
+        UserDefaults.standard.set(hasData, forKey: "hasData")
+        UserDefaults.standard.set(true, forKey: "loggedOut" )
         
         Service.shared.stopTimer()
         

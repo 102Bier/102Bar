@@ -16,6 +16,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate
     var window: UIWindow?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+        UserDefaults.standard.set(false, forKey: "loggedOut")
         UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .badge, .sound]){
             (granted, error) in
             print("Access granted: \(granted)")
@@ -37,6 +38,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate
     }
 
     func applicationWillEnterForeground(_ application: UIApplication) {
+        UserDefaults.standard.set(false, forKey: "loggedOut")
         // Called as part of the transition from the background to the active state; here you can undo many of the changes made on entering the background.
     }
 

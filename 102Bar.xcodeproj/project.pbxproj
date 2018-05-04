@@ -60,6 +60,7 @@
 		C35A81C220617141002A3477 /* AddDrinkController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C35A81C120617141002A3477 /* AddDrinkController.swift */; };
 		C35E17972072945400613897 /* CustomDrinkModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C35E17962072945400613897 /* CustomDrinkModel.swift */; };
 		C36F6E9C209B616C00920553 /* watchModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C36F6E9B209B616C00920553 /* watchModel.swift */; };
+		C36F6E9E209C8CC100920553 /* KeychainPasswordItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = C36F6E9D209C8CC000920553 /* KeychainPasswordItem.swift */; };
 		C3B66DF6207CC3DF00C26328 /* ingredCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3B66DF5207CC3DF00C26328 /* ingredCell.swift */; };
 		C3E19269208E71EF000122E0 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A46A0F7206030CB004EDA94 /* Alamofire.framework */; };
 		C3E1926A208E71EF000122E0 /* Alamofire.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8A46A0F7206030CB004EDA94 /* Alamofire.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -67,6 +68,7 @@
 		C3EB45BD2069427900F69F16 /* AddDrinkTableContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3EB45BC2069427900F69F16 /* AddDrinkTableContent.swift */; };
 		C3F1AAE52061452500FC39AC /* CustomDrinkView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3F1AAE42061452500FC39AC /* CustomDrinkView.swift */; };
 		C3F1AAE72061453500FC39AC /* DefaultDrinkView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3F1AAE62061453500FC39AC /* DefaultDrinkView.swift */; };
+		C3FAE6BB209C92A900DAAA63 /* LocalAuthentication.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C3FAE6B4209C92A800DAAA63 /* LocalAuthentication.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -273,11 +275,13 @@
 		C35A81C120617141002A3477 /* AddDrinkController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddDrinkController.swift; sourceTree = "<group>"; };
 		C35E17962072945400613897 /* CustomDrinkModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomDrinkModel.swift; sourceTree = "<group>"; };
 		C36F6E9B209B616C00920553 /* watchModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = watchModel.swift; sourceTree = "<group>"; };
+		C36F6E9D209C8CC000920553 /* KeychainPasswordItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeychainPasswordItem.swift; sourceTree = "<group>"; };
 		C3B66DF5207CC3DF00C26328 /* ingredCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ingredCell.swift; sourceTree = "<group>"; };
 		C3EB45B2206932AF00F69F16 /* DrinkCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrinkCell.swift; sourceTree = "<group>"; };
 		C3EB45BC2069427900F69F16 /* AddDrinkTableContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddDrinkTableContent.swift; sourceTree = "<group>"; };
 		C3F1AAE42061452500FC39AC /* CustomDrinkView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomDrinkView.swift; sourceTree = "<group>"; };
 		C3F1AAE62061453500FC39AC /* DefaultDrinkView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultDrinkView.swift; sourceTree = "<group>"; };
+		C3FAE6B4209C92A800DAAA63 /* LocalAuthentication.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = LocalAuthentication.framework; path = System/Library/Frameworks/LocalAuthentication.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -285,6 +289,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C3FAE6BB209C92A900DAAA63 /* LocalAuthentication.framework in Frameworks */,
 				8AB52C4020603C91003EA1BB /* Alamofire.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -317,6 +322,7 @@
 		8A2EF96A207B91D4003067B6 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				C3FAE6B4209C92A800DAAA63 /* LocalAuthentication.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -356,11 +362,12 @@
 				8A46A0CF205FE337004EDA94 /* banner_853_480.png */,
 				C35E17962072945400613897 /* CustomDrinkModel.swift */,
 				C3F1AAE42061452500FC39AC /* CustomDrinkView.swift */,
+				C3EB45B2206932AF00F69F16 /* DrinkCell.swift */,
 				C3F1AAE62061453500FC39AC /* DefaultDrinkView.swift */,
 				8A5FA714206A5AE900161D86 /* Drink.swift */,
-				C3EB45B2206932AF00F69F16 /* DrinkCell.swift */,
 				8A46A0D9206012CC004EDA94 /* DrinkController.swift */,
 				8A5FA712206A5ADA00161D86 /* DrinkGroup.swift */,
+				C36F6E9D209C8CC000920553 /* KeychainPasswordItem.swift */,
 				8A5FA710206A5AC800161D86 /* DrinkType.swift */,
 				8A46A0D3205FE71E004EDA94 /* icon_256.png */,
 				8AB0AAFD2084D25100C7B994 /* iconAccept.png */,
@@ -748,6 +755,7 @@
 				C35E17972072945400613897 /* CustomDrinkModel.swift in Sources */,
 				8A5FA708206A51F600161D86 /* Service.swift in Sources */,
 				C3B66DF6207CC3DF00C26328 /* ingredCell.swift in Sources */,
+				C36F6E9E209C8CC100920553 /* KeychainPasswordItem.swift in Sources */,
 				8AEFB089207FC42500F534A5 /* User.swift in Sources */,
 				8AE72D1B207CDB3D00F049F3 /* TestViewController.swift in Sources */,
 				C3F1AAE72061453500FC39AC /* DefaultDrinkView.swift in Sources */,

@@ -40,7 +40,7 @@
                                 <textInputTraits key="textInputTraits" secureTextEntry="YES" textContentType="password"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Iv8-cP-5UX">
-                                <rect key="frame" x="141" y="458" width="38" height="30"/>
+                                <rect key="frame" x="60" y="458" width="38" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="V5O-WQ-obi"/>
                                 </constraints>
@@ -76,22 +76,35 @@
                                 <color key="textColor" red="0.88235294119999996" green="0.34509803919999998" blue="0.16078431369999999" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WOt-Yj-lRw">
+                                <rect key="frame" x="153" y="458" width="107" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="Qlc-WY-uGv"/>
+                                </constraints>
+                                <state key="normal" title="Biometric Login"/>
+                                <connections>
+                                    <action selector="biometricLogin:" destination="BYZ-38-t0r" eventType="touchUpInside" id="bSt-5N-XA5"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="d5I-yo-eCC" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="59" id="5GY-ds-LgB"/>
                             <constraint firstItem="Im3-mX-rV4" firstAttribute="centerX" secondItem="nPe-PY-M2p" secondAttribute="centerX" id="9sO-gc-d58"/>
+                            <constraint firstItem="WOt-Yj-lRw" firstAttribute="leading" secondItem="Iv8-cP-5UX" secondAttribute="trailing" constant="55" id="AU6-ct-i8M"/>
                             <constraint firstItem="hWv-5w-0ag" firstAttribute="top" secondItem="nPe-PY-M2p" secondAttribute="bottom" constant="41" id="Air-YV-E0n"/>
                             <constraint firstItem="Im3-mX-rV4" firstAttribute="top" secondItem="hWv-5w-0ag" secondAttribute="bottom" constant="23" id="Eh7-3U-lpg"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="d5I-yo-eCC" secondAttribute="trailing" constant="31" id="GAm-GV-96h"/>
                             <constraint firstItem="f9G-sD-ei9" firstAttribute="top" secondItem="2hc-hN-jsH" secondAttribute="bottom" constant="28" id="Ha0-9S-TZB"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="WOt-Yj-lRw" secondAttribute="trailing" constant="60" id="Izt-DC-HLD"/>
                             <constraint firstItem="2hc-hN-jsH" firstAttribute="top" secondItem="Iv8-cP-5UX" secondAttribute="bottom" constant="21" id="Mgp-lc-I1x"/>
+                            <constraint firstItem="WOt-Yj-lRw" firstAttribute="top" secondItem="Im3-mX-rV4" secondAttribute="bottom" constant="20" id="NI5-il-wdX"/>
                             <constraint firstItem="d5I-yo-eCC" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="591" id="OrA-nz-ckR"/>
                             <constraint firstItem="Iv8-cP-5UX" firstAttribute="top" secondItem="Im3-mX-rV4" secondAttribute="bottom" constant="20" id="Rh9-K6-hGJ"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="2hc-hN-jsH" secondAttribute="bottom" constant="256" id="TkY-gK-taj"/>
                             <constraint firstItem="f9G-sD-ei9" firstAttribute="centerX" secondItem="2hc-hN-jsH" secondAttribute="centerX" id="TmZ-zA-Eub"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="d5I-yo-eCC" secondAttribute="bottom" id="WhM-Km-HgR"/>
-                            <constraint firstItem="Iv8-cP-5UX" firstAttribute="centerX" secondItem="nPe-PY-M2p" secondAttribute="centerX" id="dp6-Sy-G3g"/>
+                            <constraint firstItem="Iv8-cP-5UX" firstAttribute="centerX" secondItem="nPe-PY-M2p" secondAttribute="centerX" constant="-81" id="dp6-Sy-G3g"/>
                             <constraint firstItem="hWv-5w-0ag" firstAttribute="centerX" secondItem="nPe-PY-M2p" secondAttribute="centerX" id="o4f-6M-LzP"/>
                             <constraint firstItem="nPe-PY-M2p" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="plf-rZ-e0e"/>
                             <constraint firstItem="2hc-hN-jsH" firstAttribute="centerX" secondItem="nPe-PY-M2p" secondAttribute="centerX" id="wNN-fN-Fdb"/>

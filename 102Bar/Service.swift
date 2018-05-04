@@ -224,6 +224,8 @@ class Service: NSObject, UNUserNotificationCenterDelegate, WCSessionDelegate {
                         self.checkNotifications()
                         self.initTimer()
                         
+                        UserDefaults.standard.set(false, forKey: "loggedOut" )
+                        
                         callback(true)
                     }else{
                         //error message in case of invalid credential
@@ -242,6 +244,7 @@ class Service: NSObject, UNUserNotificationCenterDelegate, WCSessionDelegate {
         self.defaultValues.set("Guest", forKey: "userlastname")
         self.defaultValues.set(1, forKey: "userrights")
         self.initTimer()
+        UserDefaults.standard.set(false, forKey: "loggedOut" )
         callback(true)
     }
     
@@ -477,9 +480,11 @@ class Service: NSObject, UNUserNotificationCenterDelegate, WCSessionDelegate {
     }
     
     public func getCustomMixes(callback: @escaping (_ success: Bool?) -> Void){
-        let parameters: Parameters=[
-            "user":defaultValues.object(forKey: "userid") as! String
-        ]
+        if let userid = defaultValues.object(forKey: "userid")
+        {
+            let parameters: Parameters=[
+            "user" : userid as! String
+            ]
         
         alamoFireManager.request(self.URL_GET_CUSTOM_MIXES_ROOT, method: .post, parameters: parameters).responseJSON
             {
@@ -517,6 +522,7 @@ class Service: NSObject, UNUserNotificationCenterDelegate, WCSessionDelegate {
                         }
                     }
                 }
+            }
         }
     }
     
@@ -569,5 +575,4 @@ class Service: NSObject, UNUserNotificationCenterDelegate, WCSessionDelegate {
     public func getNewGUID() -> String{
         return UUID.init().uuidString.lowercased()
     }
-
 }
