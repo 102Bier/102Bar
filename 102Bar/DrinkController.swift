@@ -15,7 +15,13 @@ class DrinkController: UIViewController, UITableViewDelegate, UITableViewDataSou
     @IBOutlet var CustomDrinkTable: UITableView!
     
     @IBAction func LogoutTapped(_ sender: Any) {
+        
+        let username = UserDefaults.standard.string(forKey: "username")
+        let hasData = UserDefaults.standard.bool(forKey: "hasData")
         UserDefaults.standard.removePersistentDomain(forName: Bundle.main.bundleIdentifier!)
+        UserDefaults.standard.set(username, forKey: "username")
+        UserDefaults.standard.set(hasData, forKey: "hasData")
+        UserDefaults.standard.set(true, forKey: "loggedOut" )
         
         Service.shared.stopTimer()
         
@@ -27,7 +33,7 @@ class DrinkController: UIViewController, UITableViewDelegate, UITableViewDataSou
     
     
     @IBAction func viewTapped(_ sender: UITapGestureRecognizer) {
-        print("lol")
+        //print("lol")
     }
     
     let refreshControl = UIRefreshControl()
@@ -48,7 +54,6 @@ class DrinkController: UIViewController, UITableViewDelegate, UITableViewDataSou
     }
     
     @objc private func refreshTable(_ sender: Any) {
-        // Fetch Weather Data
         fetchDrinkData()
     }
     
@@ -92,7 +97,7 @@ class DrinkController: UIViewController, UITableViewDelegate, UITableViewDataSou
             }
             return cell
             
-        case 1: //Custom Drinks
+        case 1: //custom Drinks
             cell.mixTitle.text = Service.shared.customMixes[indexPath.row].mixDescription
             
             for i in 0..<Service.shared.customMixes[indexPath.row].ingredients.count
@@ -122,15 +127,15 @@ class DrinkController: UIViewController, UITableViewDelegate, UITableViewDataSou
         var mix : Mix;
         switch segControl.selectedSegmentIndex
         {
-        case 0: mix = Service.shared.availableMixes[indexPath.row]
-        case 1: mix = Service.shared.customMixes[indexPath.row]
-        default: return
+            case 0: mix = Service.shared.availableMixes[indexPath.row]
+            case 1: mix = Service.shared.customMixes[indexPath.row]
+            default: return
         }
         let vc: UIViewController = storyboard!.instantiateViewController(withIdentifier: "orderMix")
         
         let order = UIBarButtonItem(title: "Order", style: .plain, target: self, action: #selector(orderTapped))
         vc.navigationItem.rightBarButtonItem = order
-        vc.navigationItem.title = "Order Mix"
+        vc.navigationItem.title = "Order " + mix.mixDescription
         (vc as! orderMixController).mixToOrder = mix
         navigationController?.pushViewController(vc, animated: true)
     }

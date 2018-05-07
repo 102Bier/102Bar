@@ -28,9 +28,16 @@ class orderMixController : UIViewController, UITableViewDelegate, UITableViewDat
     }
     
     var mixToOrder: Mix = Mix(mix: "", mixDescription: "", ingredients: Array())
+    var orderMode = true
     
     override func viewDidLoad() {
         drinkNameLabel.text = mixToOrder.mixDescription
+        if(!orderMode)
+        {
+            glassSizeField.isEnabled = false
+            glassSizeSlider.isHidden = true
+            view.constraints.first(where: { $0.identifier == "tableViewTop" })?.constant -= (glassSizeSlider.frame.height) //adjust the top constraint of the tableView to the missing slider
+        }
         super.viewDidLoad()
     }
     

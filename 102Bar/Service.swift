@@ -2,10 +2,21 @@ import UIKit
 import Alamofire
 import UserNotifications
 import CoreData
+import WatchConnectivity
 
-class Service: NSObject, UNUserNotificationCenterDelegate {
+class Service: NSObject, UNUserNotificationCenterDelegate, WCSessionDelegate {
+    
+    func sessionDidBecomeInactive(_ session: WCSession) {
+        
+    }
+    
+    func sessionDidDeactivate(_ session: WCSession) {
+        
+    }
+    
 
     static let shared = Service()
+    let session : WCSession
     
     let BASE_URL: String
     let URL_USER_LOGIN: String
@@ -44,16 +55,33 @@ class Service: NSObject, UNUserNotificationCenterDelegate {
         return documentDirectory.appendingPathComponent("availableMixes.archive")
     }
     
+    let customMixesArchiveUrl = { () -> URL in
+        let documentsDirectories =
+            FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
+        let documentDirectory = documentsDirectories.first!
+        return documentDirectory.appendingPathComponent("customMixes.archive")
+    }
+    
     var availableDrinkGroups = [DrinkGroup]()
     var availableDrinkTypes = [DrinkType]()
     var availableIngredients = [Drink]()
     var availableMixes = [Mix]() {
         didSet {
-            NSKeyedArchiver.archiveRootObject(availableMixes, toFile: availableMixesArchiveUrl().path) //save to file
+            NSKeyedArchiver.archiveRootObject(availableMixes, toFile: self.availableMixesArchiveUrl().path) //save to file
+            let data = NSKeyedArchiver.archivedData(withRootObject: availableMixes)
+            self.session.sendMessageData(data, replyHandler: nil, errorHandler: nil)
+            self.session.sendMessage(["customOrDefault" : "default"], replyHandler: nil, errorHandler: nil)
         }
     }
     var orderedMixes = [Mix]()
-    var customMixes = [Mix]()
+    var customMixes = [Mix]() {
+        didSet {
+            NSKeyedArchiver.archiveRootObject(customMixes, toFile: self.customMixesArchiveUrl().path) //save to file
+            let data = NSKeyedArchiver.archivedData(withRootObject: customMixes)
+            self.session.sendMessageData(data, replyHandler: nil, errorHandler: nil)
+            self.session.sendMessage(["customOrDefault" : "custom"], replyHandler: nil, errorHandler: nil)
+        }
+    }
     var users = [User]()
     
     override init() {
@@ -75,7 +103,19 @@ class Service: NSObject, UNUserNotificationCenterDelegate {
         URL_CUSTOM_MIX = BASE_URL + "customMix.php"
         URL_CHECK_NOTIFICATIONS = BASE_URL + "checkNoifications.php"
         URL_REMOVE_ORDERED_MIX = BASE_URL + "removeOrderedMix.php"
+        
+        /*watch connectivity stuff*/
+        session = .default
         super.init()
+        session.delegate = self
+        session.activate()
+        
+        /*core data stuff*/
+        NSKeyedArchiver.setClassName("Mix", for: Mix.self)
+        NSKeyedArchiver.setClassName("Drink", for: Drink.self)
+        NSKeyedArchiver.setClassName("DrinkType", for: DrinkType.self)
+        NSKeyedArchiver.setClassName("DrinkGroup", for: DrinkGroup.self)
+    
         let configuration = URLSessionConfiguration.default
         configuration.timeoutIntervalForRequest = 4
         configuration.timeoutIntervalForResource = 4
@@ -92,6 +132,20 @@ class Service: NSObject, UNUserNotificationCenterDelegate {
     deinit {
         self.stopTimer()
     }
+    
+    func session(_ session: WCSession,
+                 activationDidCompleteWith activationState: WCSessionActivationState,
+                 error: Error?)
+    {
+    }
+    
+    /*func sessionDidBecomeInactive(_ session: WCSession) {
+     
+    }
+    
+    func sessionDidDeactivate(_ session: WCSession) {
+     
+    }*/
     
     public func initTimer(){
         timer = Timer.scheduledTimer(timeInterval: 10, target: self, selector: #selector(self.checkNotifications), userInfo: nil, repeats: true)
@@ -170,6 +224,8 @@ class Service: NSObject, UNUserNotificationCenterDelegate {
                         self.checkNotifications()
                         self.initTimer()
                         
+                        UserDefaults.standard.set(false, forKey: "loggedOut" )
+                        
                         callback(true)
                     }else{
                         //error message in case of invalid credential
@@ -188,6 +244,7 @@ class Service: NSObject, UNUserNotificationCenterDelegate {
         self.defaultValues.set("Guest", forKey: "userlastname")
         self.defaultValues.set(1, forKey: "userrights")
         self.initTimer()
+        UserDefaults.standard.set(false, forKey: "loggedOut" )
         callback(true)
     }
     
@@ -423,9 +480,11 @@ class Service: NSObject, UNUserNotificationCenterDelegate {
     }
     
     public func getCustomMixes(callback: @escaping (_ success: Bool?) -> Void){
-        let parameters: Parameters=[
-            "user":defaultValues.object(forKey: "userid") as! String
-        ]
+        if let userid = defaultValues.object(forKey: "userid")
+        {
+            let parameters: Parameters=[
+            "user" : userid as! String
+            ]
         
         alamoFireManager.request(self.URL_GET_CUSTOM_MIXES_ROOT, method: .post, parameters: parameters).responseJSON
             {
@@ -463,6 +522,7 @@ class Service: NSObject, UNUserNotificationCenterDelegate {
                         }
                     }
                 }
+            }
         }
     }
     
@@ -515,5 +575,4 @@ class Service: NSObject, UNUserNotificationCenterDelegate {
     public func getNewGUID() -> String{
         return UUID.init().uuidString.lowercased()
     }
-
 }
