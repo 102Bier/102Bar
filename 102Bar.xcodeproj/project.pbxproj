@@ -346,19 +346,19 @@
 		8A41BA08205FDD9900907669 /* 102Bar */ = {
 			isa = PBXGroup;
 			children = (
-				8ADF9F7B20A07E0E001D3C2E /* AvailableMix */,
-				8ADF9F7A20A07DDE001D3C2E /* OrderedMix */,
-				8ADF9F7920A07D9F001D3C2E /* NewMix */,
-				8ADF9F7820A07D2D001D3C2E /* Account */,
-				8ADF9F7720A07D02001D3C2E /* Services */,
-				8ADF9F7620A07CDC001D3C2E /* Entities */,
-				8ADF9F6F20A07CBE001D3C2E /* Images */,
+				8A41BA15205FDD9900907669 /* Info.plist */,
 				8A41BA09205FDD9900907669 /* AppDelegate.swift */,
 				8A41BA10205FDD9900907669 /* Assets.xcassets */,
-				8A41BA15205FDD9900907669 /* Info.plist */,
+				8ADF9F7820A07D2D001D3C2E /* Account */,
+				8ADF9F7B20A07E0E001D3C2E /* AvailableMix */,
+				8ADF9F7620A07CDC001D3C2E /* Entities */,
+				8ADF9F6F20A07CBE001D3C2E /* Images */,
 				8A41BA12205FDD9900907669 /* LaunchScreen.storyboard */,
 				8A46A0DD20603030004EDA94 /* Libraries */,
 				8A41BA0D205FDD9900907669 /* Main.storyboard */,
+				8ADF9F7920A07D9F001D3C2E /* NewMix */,
+				8ADF9F7A20A07DDE001D3C2E /* OrderedMix */,
+				8ADF9F7720A07D02001D3C2E /* Services */,
 			);
 			path = 102Bar;
 			sourceTree = "<group>";
