@@ -309,7 +309,7 @@
                             <outletCollection property="gestureRecognizers" destination="S2K-Lm-VsV" appends="YES" id="5cb-C8-gTf"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="New Drink" id="3Lq-br-hBW">
+                    <navigationItem key="navigationItem" title="New Mix" id="3Lq-br-hBW">
                         <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="ScA-Nv-ycF">
                             <connections>
                                 <segue destination="EvZ-hq-23e" kind="show" identifier="Cancel" id="L0r-vh-kaU"/>
@@ -344,10 +344,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="otY-Qa-xWE">
-                                <rect key="frame" x="0.0" y="110" width="320" height="409"/>
+                                <rect key="frame" x="0.0" y="110" width="320" height="458"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="ingredCell" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ingredCell" rowHeight="56" id="e3j-5a-T0E" customClass="ingredCell" customModule="_02Bar" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="mixCell" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="mixCell" rowHeight="56" id="e3j-5a-T0E" customClass="MixCell" customModule="_02Bar" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="320" height="56"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="e3j-5a-T0E" id="auU-8D-gXp">
@@ -432,7 +432,7 @@
         <!--Order Mix Controller-->
         <scene sceneID="5WQ-gA-9mj">
             <objects>
-                <viewController storyboardIdentifier="orderMix" useStoryboardIdentifierAsRestorationIdentifier="YES" id="ErE-Vj-rtu" customClass="orderMixController" customModule="_02Bar" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="orderMix" useStoryboardIdentifierAsRestorationIdentifier="YES" id="ErE-Vj-rtu" customClass="OrderMixController" customModule="_02Bar" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="VwX-ls-0yE">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -910,6 +910,6 @@
         <image name="icon_256.png" width="256" height="256"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="n1n-ep-ByN"/>
+        <segue reference="L0r-vh-kaU"/>
     </inferredMetricsTieBreakers>
 </document>

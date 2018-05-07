@@ -92,7 +92,7 @@ class DrinkController: UIViewController, UITableViewDelegate, UITableViewDataSou
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "ingredCell") as! ingredCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "mixCell") as! MixCell
         switch(segControl.selectedSegmentIndex)
         {
         case 0: //available Drinks
@@ -142,14 +142,14 @@ class DrinkController: UIViewController, UITableViewDelegate, UITableViewDataSou
         let order = UIBarButtonItem(title: "Order", style: .plain, target: self, action: #selector(orderTapped))
         vc.navigationItem.rightBarButtonItem = order
         vc.navigationItem.title = "Order " + mix.mixDescription
-        (vc as! orderMixController).mixToOrder = mix
+        (vc as! OrderMixController).mixToOrder = mix
         navigationController?.pushViewController(vc, animated: true)
     }
     
     @objc func orderTapped() {
         if let vc = navigationController?.topViewController
         {
-            (vc as! orderMixController).orderTapped()
+            (vc as! OrderMixController).orderTapped()
         }
         navigationController?.popViewController(animated: true)
     }

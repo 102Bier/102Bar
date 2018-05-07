@@ -7,7 +7,7 @@
 //
 
 import UIKit
-class orderMixController : UIViewController, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate
+class OrderMixController : UIViewController, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate
 {
     @IBOutlet var tableView: UITableView!
     @IBOutlet var drinkNameLabel: UILabel!

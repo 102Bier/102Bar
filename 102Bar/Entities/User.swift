@@ -17,5 +17,6 @@ class User: NSObject {
         self.email = email
         self.rights = rights
     }
-
+    
 }
+

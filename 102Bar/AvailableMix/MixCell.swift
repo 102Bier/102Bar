@@ -7,7 +7,7 @@
 //
 
 import UIKit
-class ingredCell : UITableViewCell {
+class MixCell : UITableViewCell {
     @IBOutlet var mixTitle: UILabel!
     
     func addOrReplaceLabel(ingredient: String, yPos: Int)

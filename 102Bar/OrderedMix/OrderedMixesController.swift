@@ -69,8 +69,8 @@ class OrderedMixesController : UITableViewController{
         let vc: UIViewController = storyboard!.instantiateViewController(withIdentifier: "orderMix")
         
         vc.navigationItem.title = mix.mixDescription
-        (vc as! orderMixController).mixToOrder = mix
-        (vc as! orderMixController).orderMode = false
+        (vc as! OrderMixController).mixToOrder = mix
+        (vc as! OrderMixController).orderMode = false
         navigationController?.pushViewController(vc, animated: true)
     }
     
