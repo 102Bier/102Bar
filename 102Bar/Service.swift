@@ -184,9 +184,11 @@ class Service: NSObject, UNUserNotificationCenterDelegate, WCSessionDelegate {
         }
     }
     
+    public func hasUserRight(right: Int) -> Bool{
+        return (UserDefaults.standard.integer(forKey: "userrights") & right) > 0
+    }
     
-    
-    public func login(username:String, password:String, callback: @escaping (_ success: Bool?) -> Void){
+    public func login(username:String, password:String, callback: @escaping (_ success: String?) -> Void){
         
         let parameters: Parameters=[
             "username": username,
@@ -221,15 +223,19 @@ class Service: NSObject, UNUserNotificationCenterDelegate, WCSessionDelegate {
                         self.defaultValues.set(userLastname, forKey: "userlastname")
                         self.defaultValues.set(userRights, forKey: "userrights")
                         
+                        if((userRights & Rights.canLogin.rawValue) <= 0){
+                            callback("You ar enot allowed to Login!")
+                        }
+                        
                         self.checkNotifications()
                         self.initTimer()
                         
                         UserDefaults.standard.set(false, forKey: "loggedOut" )
                         
-                        callback(true)
+                        callback("A")
                     }else{
                         //error message in case of invalid credential
-                       callback(false)
+                       callback("Wrong username or password")
                     }
                     
                 }

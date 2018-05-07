@@ -51,6 +51,12 @@ class DrinkController: UIViewController, UITableViewDelegate, UITableViewDataSou
             self.tableView.reloadData()
         }
         super.viewDidLoad()
+        if(!Service.shared.hasUserRight(right: Service.Rights.canCreateOwn.rawValue)){
+            self.navigationItem.setRightBarButton(nil, animated: true)
+            segControl.isHidden = true
+        }
+        tableView.allowsSelection = Service.shared.hasUserRight(right: Service.Rights.canOrder.rawValue)
+        
     }
     
     @objc private func refreshTable(_ sender: Any) {

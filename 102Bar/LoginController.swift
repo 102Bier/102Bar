@@ -44,7 +44,7 @@ class LoginController: UIViewController {
                     let storedPassword = try passwordItem.readPassword()
                     Service.shared.login(username: username, password: storedPassword){
                         success in
-                        if success!{
+                        if success == "A"{
                             Service.shared.getAvailableIngredients {succsess in
                                 Service.shared.getAvailableMixes {succsess in
                                     Service.shared.getCustomMixes{success in
@@ -149,7 +149,7 @@ class LoginController: UIViewController {
         }
         Service.shared.login(username: self._username.text!, password: self._password.text!){
             success in
-            if success!{
+            if success == "A"{
                 
                 if !UserDefaults.standard.bool(forKey: "hasData") {
                     self.saveAccountDataToUserDefault(username: self._username.text!, password: self._password.text!)
@@ -164,7 +164,7 @@ class LoginController: UIViewController {
                     }
                 }
             }else{
-                 self.labelMessage.text = "Invalid username or password"
+                 self.labelMessage.text = success
             }
         }
         

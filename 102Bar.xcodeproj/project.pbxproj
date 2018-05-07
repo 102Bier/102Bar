@@ -27,6 +27,7 @@
 		8A611D64208F5AC40076BF19 /* Alamofire.xcworkspace in Resources */ = {isa = PBXBuildFile; fileRef = 8A46A0F9206030CC004EDA94 /* Alamofire.xcworkspace */; };
 		8A611D65208F5AC40076BF19 /* Source in Resources */ = {isa = PBXBuildFile; fileRef = 8A46A0F8206030CC004EDA94 /* Source */; };
 		8A6609E6207C989300BC37D1 /* OrderedMixTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A6609E5207C989300BC37D1 /* OrderedMixTableViewCell.swift */; };
+		8A88781620A0641F00552BC0 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A88781520A0641F00552BC0 /* MainTabBarController.swift */; };
 		8AB0AAFE2084D25200C7B994 /* iconDecline.png in Resources */ = {isa = PBXBuildFile; fileRef = 8AB0AAF52084D24E00C7B994 /* iconDecline.png */; };
 		8AB0AAFF2084D25200C7B994 /* iconAccept.png in Resources */ = {isa = PBXBuildFile; fileRef = 8AB0AAFD2084D25100C7B994 /* iconAccept.png */; };
 		8AB52C4020603C91003EA1BB /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A46A0EB206030CB004EDA94 /* Alamofire.framework */; };
@@ -247,6 +248,7 @@
 		8A5FA714206A5AE900161D86 /* Drink.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Drink.swift; sourceTree = "<group>"; };
 		8A5FA716206A5AF800161D86 /* Mix.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mix.swift; sourceTree = "<group>"; };
 		8A6609E5207C989300BC37D1 /* OrderedMixTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderedMixTableViewCell.swift; sourceTree = "<group>"; };
+		8A88781520A0641F00552BC0 /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		8AB0AAF52084D24E00C7B994 /* iconDecline.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = iconDecline.png; sourceTree = "<group>"; };
 		8AB0AAFD2084D25100C7B994 /* iconAccept.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = iconAccept.png; sourceTree = "<group>"; };
 		8AD76696206A30C200F61878 /* TestController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestController.swift; sourceTree = "<group>"; };
@@ -381,6 +383,7 @@
 				8A46A0DD20603030004EDA94 /* Libraries */,
 				8A46A0D1205FE4F4004EDA94 /* LoginController.swift */,
 				8A41BA0D205FDD9900907669 /* Main.storyboard */,
+				8A88781520A0641F00552BC0 /* MainTabBarController.swift */,
 				8A5FA716206A5AF800161D86 /* Mix.swift */,
 				8A43A82D2063F81600E76C27 /* OrderedMixesController.swift */,
 				8A6609E5207C989300BC37D1 /* OrderedMixTableViewCell.swift */,
@@ -746,6 +749,7 @@
 			files = (
 				C35A81C220617141002A3477 /* AddDrinkController.swift in Sources */,
 				8A43A82E2063F81600E76C27 /* OrderedMixesController.swift in Sources */,
+				8A88781620A0641F00552BC0 /* MainTabBarController.swift in Sources */,
 				C34442B52084D74F005C8AFA /* orderMixController.swift in Sources */,
 				8A5FA717206A5AF800161D86 /* Mix.swift in Sources */,
 				C3F1AAE52061452500FC39AC /* CustomDrinkView.swift in Sources */,
@@ -994,7 +998,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = F57P2RGF3M;
 				INFOPLIST_FILE = 102Bar/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = de.102bier.102Bar.lol;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1014,7 +1018,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = F57P2RGF3M;
 				INFOPLIST_FILE = 102Bar/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = de.102bier.102Bar.lol;
 				PRODUCT_NAME = "$(TARGET_NAME)";
