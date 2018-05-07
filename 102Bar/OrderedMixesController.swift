@@ -8,7 +8,8 @@ class OrderedMixesController : UITableViewController{
     
     override func viewDidLoad() {
         self.refresh(nil)
-        tableView.allowsSelection = false
+        //tableView.isUserInteractionEnabled = false
+        tableView.allowsSelection = true
         if #available(iOS 10.0, *) {
             tableView.refreshControl = reloadControl
         } else {
@@ -63,8 +64,23 @@ class OrderedMixesController : UITableViewController{
         return orderedMixes.count
     }
     
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let mix = orderedMixes[indexPath.row]
+        let vc: UIViewController = storyboard!.instantiateViewController(withIdentifier: "orderMix")
+        
+        vc.navigationItem.title = mix.mixDescription
+        (vc as! orderMixController).mixToOrder = mix
+        (vc as! orderMixController).orderMode = false
+        navigationController?.pushViewController(vc, animated: true)
+    }
+    
     @IBAction func LogoutButton(_ sender: Any) {
+        let username = UserDefaults.standard.string(forKey: "username")
+        let hasData = UserDefaults.standard.bool(forKey: "hasData")
         UserDefaults.standard.removePersistentDomain(forName: Bundle.main.bundleIdentifier!)
+        UserDefaults.standard.set(username, forKey: "username")
+        UserDefaults.standard.set(hasData, forKey: "hasData")
+        UserDefaults.standard.set(true, forKey: "loggedOut" )
         
         Service.shared.stopTimer()
         

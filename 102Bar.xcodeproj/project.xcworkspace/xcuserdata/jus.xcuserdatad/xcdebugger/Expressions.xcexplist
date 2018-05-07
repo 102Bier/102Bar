@@ -41,14 +41,6 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "LoginController.viewDidLoad():LoginController.swift">
-         <PersistentStrings>
-            <PersistentString
-               value = "loggedOut as! Bool">
-            </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
          contextName = "AddDrinkController.getDefaultPercentage():AddDrinkController.swift">
          <PersistentStrings>
             <PersistentString
@@ -68,10 +60,26 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
+         contextName = "closure #1 in LoginController.evaulateTouchIdAuthenticity(context:):LoginController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "storedPassword">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "AddDrinkController.SaveTapped(_:):AddDrinkController.swift">
          <PersistentStrings>
             <PersistentString
                value = "Int(String((total?.removeLast())!))">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "orderMixController.viewDidLoad():orderMixController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "const?.constant">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -105,6 +113,14 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
+         contextName = "orderMixController.tableView(_:numberOfRowsInSection:):orderMixController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "mixToOrder">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "main:AppDelegate.swift">
          <PersistentStrings>
             <PersistentString
@@ -114,14 +130,6 @@
       </ContextState>
       <ContextState
          contextName = "LoginController.changeView():LoginController.swift">
-      </ContextState>
-      <ContextState
-         contextName = "LoginController.evaulateTouchIdAuthenticity(context:):LoginController.swift">
-         <PersistentStrings>
-            <PersistentString
-               value = "defaultValues.string(forKey: &quot;username&quot;)">
-            </PersistentString>
-         </PersistentStrings>
       </ContextState>
       <ContextState
          contextName = "ingredCell.addOrReplaceLabel(ingredient:yPos:):ingredCell.swift">
