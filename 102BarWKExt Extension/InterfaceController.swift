@@ -23,7 +23,6 @@ class InterfaceController: WKInterfaceController, WatchDataChangedDelegate{
         {
             customMixes = watchData.customMixes
         }
-        
     }
     
     override func awake(withContext context: Any?) {
