@@ -76,7 +76,8 @@ class Service: NSObject, UNUserNotificationCenterDelegate, WCSessionDelegate {
         }
     }
     var orderedMixes = [Mix]()
-    var customMixes = [Mix]() {
+    var customMixes = [Mix]()
+    var customUserMixes = [Mix]() {
         didSet {
             NSKeyedArchiver.archiveRootObject(customMixes, toFile: self.customMixesArchiveUrl().path) //save to file
             let data = NSKeyedArchiver.archivedData(withRootObject: customMixes)
@@ -417,8 +418,11 @@ class Service: NSObject, UNUserNotificationCenterDelegate, WCSessionDelegate {
                             orderedMixToSave.orderedByUser = tmpOrderedByUser
                             self.orderedMixes.append(orderedMixToSave)
                         }else{
-                            let tmpMixDescription = mixDictionary.object(forKey: "Description") as! String
-                            self.orderedMixes.append(Mix(mix: tmpMix, mixDescription: tmpMixDescription, ingredients: [Drink](), orderedByUser: tmpOrderedByUser))
+                            if let orderedCustomMix = self.customMixes.first(where: {$0.mix == tmpMix}){
+                                let orderedCustomMixToSave = orderedCustomMix.clone()
+                                orderedCustomMixToSave.orderedByUser = tmpOrderedByUser
+                                self.orderedMixes.append(orderedCustomMixToSave)
+                            }
                         }
                     }
                     self.alamoFireManager.request(self.URL_ORDERED_MIXES_ING).responseJSON{
@@ -489,13 +493,8 @@ class Service: NSObject, UNUserNotificationCenterDelegate, WCSessionDelegate {
     }
     
     public func getCustomMixes(callback: @escaping (_ success: Bool?) -> Void){
-        if let userid = defaultValues.object(forKey: "userid")
-        {
-            let parameters: Parameters=[
-            "user" : userid as! String
-            ]
         
-        alamoFireManager.request(self.URL_GET_CUSTOM_MIXES_ROOT, method: .post, parameters: parameters).responseJSON
+        alamoFireManager.request(self.URL_GET_CUSTOM_MIXES_ROOT).responseJSON
             {
                 response in
                 if let result = response.result.value {
@@ -505,10 +504,11 @@ class Service: NSObject, UNUserNotificationCenterDelegate, WCSessionDelegate {
                         let mixDictionary = root as! NSDictionary
                         let tmpMix = mixDictionary.object(forKey: "CustomMix") as! String
                         let tmpMixDescription = mixDictionary.object(forKey: "Description") as! String
-                        let tmpCustomMix = Mix(mix: tmpMix, mixDescription: tmpMixDescription, ingredients: [Drink]())
+                        let tmpOrderedByUser = mixDictionary.object(forKey: "User") as! String
+                        let tmpCustomMix = Mix(mix: tmpMix, mixDescription: tmpMixDescription, ingredients: [Drink](), orderedByUser: tmpOrderedByUser)
                         self.customMixes.append(tmpCustomMix)
                     }
-                    self.alamoFireManager.request(self.URL_GET_CUSTOM_MIXES_ING, method: .post, parameters: parameters).responseJSON{
+                    self.alamoFireManager.request(self.URL_GET_CUSTOM_MIXES_ING).responseJSON{
                         response1 in
                         if let result1 = response1.result.value{
                             let ingArray = result1 as! NSArray
@@ -525,6 +525,12 @@ class Service: NSObject, UNUserNotificationCenterDelegate, WCSessionDelegate {
                                     rootToFill.ingredients.append(ingToChange!)
                                 }
                             }
+                            self.customUserMixes = Array()
+                            for mix in self.customMixes{
+                                if(mix.orderedByUser == UserDefaults.standard.object(forKey: "userid") as! String){
+                                    self.customUserMixes.append(mix.clone())
+                                }
+                            }
                             callback(true)
                         }else{
                             callback(false)
@@ -532,7 +538,6 @@ class Service: NSObject, UNUserNotificationCenterDelegate, WCSessionDelegate {
                     }
                 }
             }
-        }
     }
     
     public func customMix(mixToAdd: Mix, add: Bool, callback: @escaping (_ success: String?) -> Void){
