@@ -166,6 +166,7 @@ class orderMixController : UIViewController, UITableViewDelegate, UITableViewDat
         let cell = tableView.dequeueReusableCell(withIdentifier: "orderIngred") as! DrinkCell
         cell.drinkLabel.text = mixToOrder.ingredients[indexPath.row].drinkDescription
         cell.percentageTextField.text = String( mixToOrder.ingredients[indexPath.row].percentage)
+        cell.percentageTextField.isEnabled = orderMode
         return cell
     }
 }
