@@ -31,7 +31,10 @@ class RegisterController: UIViewController {
         
         self.service.register(username: _username.text!, firstname: _firstname.text!, lastname: _lastname.text!, email: _email.text!, password: _password.text!){
             success in
+            self.saveAccountDataToUserDefault(username: self._username.text!, password: self._password.text!)
+            UserDefaults.standard.set(true, forKey: "hasData")
             self.labelMessage.text = success
+            self.dismiss(animated: true, completion: nil)
         }
     }
     
@@ -41,6 +44,22 @@ class RegisterController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+    }
+    
+    func saveAccountDataToUserDefault(username : String, password : String)
+    {
+        UserDefaults.standard.set(username, forKey: "username")
+        do {
+            // This is a new account, create a new keychain item with the account name.
+            let passwordItem = KeychainPasswordItem(
+                service: KeychainConfiguration.serviceName,
+                account: username,
+                accessGroup: KeychainConfiguration.accessGroup)
+            // Save the password for the new item.
+            try passwordItem.savePassword(password)
+        } catch {
+            fatalError("Error updating keychain - \(error)")
+        }
     }
 }
 

@@ -9,22 +9,25 @@
 import WatchKit
 import Foundation
 
-class customDrinksInterfaceController: WKInterfaceController {
-
+class customDrinksInterfaceController: WKInterfaceController, WatchDataChangedDelegate{
+    
     @IBOutlet var tableView: WKInterfaceTable!
     
     var customMixes : [Mix] = Array()
     
     override func awake(withContext context: Any?) {
-        if let checkContext = context
+        if context != nil
         {
-            customMixes = checkContext as! [Mix]
+            if (context as! [Mix]).count > 0 {
+                customMixes = context as! [Mix]
+            }
         }
+        WatchSessionManager.sharedManager.addWatchDataChangedDelegate(delegate: self)
         super.awake(withContext: context)
         loadTableData()
         // Configure interface objects here.
     }
-
+    
     override func willActivate() {
         // This method is called when watch view controller is about to be visible to user
         super.willActivate()
@@ -32,7 +35,13 @@ class customDrinksInterfaceController: WKInterfaceController {
 
     override func didDeactivate() {
         // This method is called when watch view controller is no longer visible
+        WatchSessionManager.sharedManager.removeWatchDataChangedDelegate(delegate: self)
         super.didDeactivate()
+    }
+    
+    func watchDataDidUpdate(watchData: WatchData) {
+        customMixes = watchData.customMixes
+        loadTableData()
     }
     
     func loadTableData() {
@@ -45,6 +54,10 @@ class customDrinksInterfaceController: WKInterfaceController {
                 //print("row set \(rowModel.mixDescription)")
             }
         }
+    }
+    
+    override func table(_ table: WKInterfaceTable, didSelectRowAt rowIndex: Int) {
+        
     }
 
 }

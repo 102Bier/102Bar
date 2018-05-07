@@ -48,8 +48,12 @@ class DrinkController: UIViewController, UITableViewDelegate, UITableViewDataSou
         refreshControl.addTarget(self, action: #selector(refreshTable(_:)), for: .valueChanged)
         Service.shared.getCustomMixes {
             success in
-            self.tableView.reloadData()
+            Service.shared.getAvailableMixes {
+                success in
+                 self.tableView.reloadData()
+            }
         }
+        
         super.viewDidLoad()
         if(!Service.shared.hasUserRight(right: Service.Rights.canCreateOwn.rawValue)){
             self.navigationItem.setRightBarButton(nil, animated: true)
