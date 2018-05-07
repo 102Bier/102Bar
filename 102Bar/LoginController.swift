@@ -28,9 +28,12 @@ class LoginController: UIViewController {
     func evaulateBiometricAuthenticity(context: LAContext)
     {
         guard let username = UserDefaults.standard.string(forKey: "username") else { return }
-        context.evaluatePolicy(LAPolicy.deviceOwnerAuthenticationWithBiometrics, localizedReason: username) { (authSuccessful, authError) in
+        guard !username.isEmpty else {
+            let error = LAError(.systemCancel)
+            showBiometricLoginError(error)
+            return }
+        context.evaluatePolicy(LAPolicy.deviceOwnerAuthenticationWithBiometrics, localizedReason: "For a faster login") { (authSuccessful, authError) in
             if authSuccessful {
-                guard !username.isEmpty else { return }
                 let passwordItem = KeychainPasswordItem(service:   KeychainConfiguration.serviceName, account: username, accessGroup: KeychainConfiguration.accessGroup)
                 do {
                     let storedPassword = try passwordItem.readPassword()
@@ -53,13 +56,13 @@ class LoginController: UIViewController {
                 }
             } else {
                 if let error = authError as? LAError {
-                    self.showBiometricLoginError(error: error)
+                    self.showBiometricLoginError(error)
                 }
             }
         }
     }
     
-    func showBiometricLoginError(error: LAError) {
+    func showBiometricLoginError(_ error : LAError) {
         var message: String = ""
         switch error.code {
         case LAError.authenticationFailed:
@@ -72,21 +75,25 @@ class LoginController: UIViewController {
             message = "Authentication was canceled because the user tapped the fallback button"
             break
         case LAError.biometryNotEnrolled:
-            message = "Authentication could not start because biometry has no entity."
+            message = "Authentication could not start because biometry is not enrolled"
             break
         case LAError.passcodeNotSet:
-            message = "Passcode is not set on the device."
+            message = "Passcode is not set on the device"
             break
         case LAError.systemCancel:
-            message = "Authentication was canceled by system"
+            message = "Authentication was canceled by system, maybe the username is not stored on your device"
             break
         default:
             message = error.localizedDescription
             break
         }
         //self.showPopupWithMessage(message)
-        self.labelMessage.text = message
+        self.setLabel(message)
         print(message)
+    }
+    
+    func setLabel (_ message : String) {
+       labelMessage.text = message
     }
     
     func saveAccountDataToUserDefault(username : String, password : String)
