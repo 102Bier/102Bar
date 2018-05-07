@@ -13,6 +13,10 @@ class RegisterController: UIViewController {
     
     let service = Service()
     
+    @IBAction func dismissKeyboard(_ sender: UITapGestureRecognizer) {
+        view.endEditing(true)
+    }
+    
     @IBAction func RegisterButton(_ sender: UIButton) {
         
         if(_firstname.text! == "" || _lastname.text! == "" || _username.text == "" || _email.text! == "" || _password.text! == "" || _confirmPassword.text! == ""){

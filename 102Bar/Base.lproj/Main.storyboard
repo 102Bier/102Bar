@@ -749,7 +749,7 @@
                     <navigationItem key="navigationItem" id="4ob-V1-RlW">
                         <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="N3S-xF-zVp">
                             <connections>
-                                <action selector="cancelTapped:" destination="hJZ-rO-IvN" id="vxe-PX-el5"/>
+                                <action selector="CancelButton:" destination="hJZ-rO-IvN" id="ife-KM-NW6"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -769,7 +769,7 @@
                 </navigationItem>
                 <tapGestureRecognizer id="3sF-v7-13T">
                     <connections>
-                        <action selector="dismissKeyboard:" destination="hJZ-rO-IvN" id="5Yf-Fu-a5v"/>
+                        <action selector="dismissKeyboard:" destination="hJZ-rO-IvN" id="NM8-eG-Ufh"/>
                     </connections>
                 </tapGestureRecognizer>
             </objects>
