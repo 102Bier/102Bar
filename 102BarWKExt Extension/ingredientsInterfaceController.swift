@@ -44,7 +44,7 @@ class IngredientsInterfaceController : WKInterfaceController {
             if let ingredientsRowController = tableView.rowController(at: index) as? IngredientRowController
             {
                 ingredientsRowController.ingredientLabel.setText(rowModel.drinkDescription)
-                ingredientsRowController.percentageLabel.setText(String(rowModel.percentage))
+                ingredientsRowController.percentageLabel.setText(String(rowModel.percentage)+"%")
             }
         }
     }

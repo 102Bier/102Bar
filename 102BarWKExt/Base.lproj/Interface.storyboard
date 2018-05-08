@@ -75,8 +75,8 @@
                                 <tableRow identifier="ingredientsRowController" id="vbX-W4-M4V" customClass="IngredientRowController" customModule="_02BarWKExt_Extension">
                                     <group key="rootItem" width="1" alignment="left" id="PQT-ye-hAk">
                                         <items>
-                                            <label width="77" alignment="left" text="ingredient" id="ENb-OK-5dg"/>
-                                            <label width="47" height="25" alignment="left" verticalAlignment="bottom" text="100%" textAlignment="right" id="JhV-Gf-RHq"/>
+                                            <label alignment="left" text="ingredient" textAlignment="left" id="ENb-OK-5dg"/>
+                                            <label alignment="right" verticalAlignment="bottom" text="100%" textAlignment="right" id="JhV-Gf-RHq"/>
                                         </items>
                                     </group>
                                     <connections>
@@ -92,7 +92,7 @@
                     </connections>
                 </controller>
             </objects>
-            <point key="canvasLocation" x="751" y="261"/>
+            <point key="canvasLocation" x="750" y="260"/>
         </scene>
         <!--Custom-->
         <scene sceneID="hua-PI-mht">
