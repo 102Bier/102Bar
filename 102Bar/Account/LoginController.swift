@@ -1,8 +1,9 @@
 import UIKit
-import Alamofire
 import LocalAuthentication
 
 class LoginController: UIViewController {
+    
+    // MARK: - Varibles
     
     @IBOutlet weak var _username: UITextField!
     @IBOutlet weak var _password: UITextField!
@@ -14,9 +15,26 @@ class LoginController: UIViewController {
     
     @IBOutlet var bier: UIImageView!
     
-    @IBAction func dismissKeyboard(_ sender: UITapGestureRecognizer) {
-        view.endEditing(true)    }
+    // MARK: - ViewDidLoad
     
+    override func viewDidLoad() {
+        bier.frame = CGRect(x: bier.frame.origin.x, y: bier.frame.origin.y, width: view.safeAreaLayoutGuide.layoutFrame.size.width * 0.5 , height: view.safeAreaLayoutGuide.layoutFrame.size.height * 0.25)
+        super.viewDidLoad()
+        let context = LAContext()
+        
+        
+        
+        if let loggedOut = UserDefaults.standard.object(forKey: "loggedOut")
+        {
+            if context.canEvaluatePolicy(LAPolicy.deviceOwnerAuthenticationWithBiometrics, error: nil) && (UserDefaults.standard.object(forKey: "hasData") as! Bool) && !(loggedOut as! Bool)
+            {
+                evaulateBiometricAuthenticity(context: context)
+            }
+        }
+    }
+    
+    // MARK: - Biometric Login Functions
+        
     @IBAction func biometricLogin(_ sender: UIButton) {
         checkBiometricLogin()
     }
@@ -117,21 +135,7 @@ class LoginController: UIViewController {
         }
     }
     
-    override func viewDidLoad() {
-        bier.frame = CGRect(x: bier.frame.origin.x, y: bier.frame.origin.y, width: view.safeAreaLayoutGuide.layoutFrame.size.width * 0.5 , height: view.safeAreaLayoutGuide.layoutFrame.size.height * 0.25)
-        super.viewDidLoad()
-        let context = LAContext()
-        
-        
-        
-        if let loggedOut = UserDefaults.standard.object(forKey: "loggedOut")
-        {
-            if context.canEvaluatePolicy(LAPolicy.deviceOwnerAuthenticationWithBiometrics, error: nil) && (UserDefaults.standard.object(forKey: "hasData") as! Bool) && !(loggedOut as! Bool)
-            {
-                evaulateBiometricAuthenticity(context: context)
-            }
-        }
-    }
+    // MARK: - Change View Function
     
     func changeView()
     {
@@ -139,6 +143,8 @@ class LoginController: UIViewController {
         let vc: UIViewController = storyboard.instantiateViewController(withIdentifier: "TabBarController")
         present(vc, animated: true, completion: nil)
     }
+    
+    // MARK: - Action Event Functions
 
     @IBAction func LoginButton(_ sender: Any) {
         
@@ -185,5 +191,11 @@ class LoginController: UIViewController {
     @IBAction func RegisterButton(_ sender: Any) {
         saveAccountDataToUserDefault(username: _username.text!, password: _password.text!)
         UserDefaults.standard.set(true, forKey: "hasData")
+    }
+    
+    // MARK: - Tap Gesture Recognizer
+    
+    @IBAction func dismissKeyboard(_ sender: UITapGestureRecognizer) {
+        view.endEditing(true)
     }
 }

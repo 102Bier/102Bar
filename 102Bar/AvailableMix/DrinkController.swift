@@ -2,41 +2,22 @@ import UIKit
 
 class DrinkController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
+    // MARK: - Variables
+    
     @IBOutlet var tableView: UITableView!
     @IBOutlet var segControl: UISegmentedControl!
-    
-    @IBAction func segSwitched(_ sender: UISegmentedControl) {
-        if sender.selectedSegmentIndex == 0 {
-        }
-        tableView.reloadData()
-    }
-    
-    
     @IBOutlet var CustomDrinkTable: UITableView!
     
-    @IBAction func LogoutTapped(_ sender: Any) {
-        
-        let username = UserDefaults.standard.string(forKey: "username")
-        let hasData = UserDefaults.standard.bool(forKey: "hasData")
-        UserDefaults.standard.removePersistentDomain(forName: Bundle.main.bundleIdentifier!)
-        UserDefaults.standard.set(username, forKey: "username")
-        UserDefaults.standard.set(hasData, forKey: "hasData")
-        UserDefaults.standard.set(true, forKey: "loggedOut" )
-        
-        Service.shared.stopTimer()
-        
-        //switching to login screen
-        let storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-        let vc: UIViewController = storyboard.instantiateViewController(withIdentifier: "LoginController") as UIViewController
-        present(vc, animated: true, completion: nil)
-    }
-    
-    
-    @IBAction func viewTapped(_ sender: UITapGestureRecognizer) {
-        //print("lol")
-    }
-    
     let refreshControl = UIRefreshControl()
+    
+    // MARK: - ViewWillAppear
+    
+    override func viewWillAppear(_ animated: Bool) {
+        tableView.reloadData()
+        super.viewWillAppear(animated)
+    }
+    
+    // MARK: - ViewDidLoad
     
     override func viewDidLoad() {
         // Add Refresh Control to Table View
@@ -56,8 +37,46 @@ class DrinkController: UIViewController, UITableViewDelegate, UITableViewDataSou
             segControl.isHidden = true
         }
         tableView.allowsSelection = Service.shared.hasUserRight(right: Service.Rights.canOrder.rawValue)
+    }
+    
+    // MARK: - Action Event Functions
+    
+    @IBAction func segSwitched(_ sender: UISegmentedControl) {
+        if sender.selectedSegmentIndex == 0 {
+        }
+        tableView.reloadData()
+    }
+    
+    @IBAction func LogoutTapped(_ sender: Any) {
+        
+        let username = UserDefaults.standard.string(forKey: "username")
+        let hasData = UserDefaults.standard.bool(forKey: "hasData")
+        UserDefaults.standard.removePersistentDomain(forName: Bundle.main.bundleIdentifier!)
+        UserDefaults.standard.set(username, forKey: "username")
+        UserDefaults.standard.set(hasData, forKey: "hasData")
+        UserDefaults.standard.set(true, forKey: "loggedOut" )
+        
+        Service.shared.stopTimer()
+        
+        //switching to login screen
+        let storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        let vc: UIViewController = storyboard.instantiateViewController(withIdentifier: "LoginController") as UIViewController
+        present(vc, animated: true, completion: nil)
+    }
+    
+    @objc func orderTapped() {
+        if let vc = navigationController?.topViewController
+        {
+            (vc as! OrderMixController).orderTapped()
+        }
+        navigationController?.popViewController(animated: true)
+    }
+    
+    @IBAction func viewTapped(_ sender: UITapGestureRecognizer) {
         
     }
+    
+    // MARK: - Refresh Table Functions
     
     @objc private func refreshTable(_ sender: Any) {
         fetchDrinkData()
@@ -80,6 +99,8 @@ class DrinkController: UIViewController, UITableViewDelegate, UITableViewDataSou
         default: break
         }
     }
+    
+    // MARK: - Init Table View Functions
     
     func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCellEditingStyle {
         if segControl.selectedSegmentIndex == 1 {
@@ -144,19 +165,6 @@ class DrinkController: UIViewController, UITableViewDelegate, UITableViewDataSou
         vc.navigationItem.title = "Order " + mix.mixDescription
         (vc as! OrderMixController).mixToOrder = mix
         navigationController?.pushViewController(vc, animated: true)
-    }
-    
-    @objc func orderTapped() {
-        if let vc = navigationController?.topViewController
-        {
-            (vc as! OrderMixController).orderTapped()
-        }
-        navigationController?.popViewController(animated: true)
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        tableView.reloadData()
-        super.viewWillAppear(animated)
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

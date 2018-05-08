@@ -1,27 +1,13 @@
 import Foundation
 
-/// Handles Convertion from instances of objects to JSON strings. Also helps with casting strings of JSON to Arrays or Dictionaries.
 class JSONSerializer {
     
-    /**
-     Errors that indicates failures of JSONSerialization
-     - JsonIsNotDictionary:    -
-     - JsonIsNotArray:            -
-     - JsonIsNotValid:            -
-     */
     public enum JSONSerializerError: Error {
         case jsonIsNotDictionary
         case jsonIsNotArray
         case jsonIsNotValid
     }
     
-    //http://stackoverflow.com/questions/30480672/how-to-convert-a-json-string-to-a-dictionary
-    /**
-     Tries to convert a JSON string to a NSDictionary. NSDictionary can be easier to work with, and supports string bracket referencing. E.g. personDictionary["name"].
-     - parameter jsonString:    JSON string to be converted to a NSDictionary.
-     - throws: Throws error of type JSONSerializerError. Either JsonIsNotValid or JsonIsNotDictionary. JsonIsNotDictionary will typically be thrown if you try to parse an array of JSON objects.
-     - returns: A NSDictionary representation of the JSON string.
-     */
     open static func toDictionary(_ jsonString: String) throws -> NSDictionary {
         if let dictionary = try jsonToAnyObject(jsonString) as? NSDictionary {
             return dictionary
@@ -30,12 +16,6 @@ class JSONSerializer {
         }
     }
     
-    /**
-     Tries to convert a JSON string to a NSArray. NSArrays can be iterated and each item in the array can be converted to a NSDictionary.
-     - parameter jsonString:    The JSON string to be converted to an NSArray
-     - throws: Throws error of type JSONSerializerError. Either JsonIsNotValid or JsonIsNotArray. JsonIsNotArray will typically be thrown if you try to parse a single JSON object.
-     - returns: NSArray representation of the JSON objects.
-     */
     open static func toArray(_ jsonString: String) throws -> NSArray {
         if let array = try jsonToAnyObject(jsonString) as? NSArray {
             return array
@@ -44,12 +24,6 @@ class JSONSerializer {
         }
     }
     
-    /**
-     Tries to convert a JSON string to AnyObject. AnyObject can then be casted to either NSDictionary or NSArray.
-     - parameter jsonString:    JSON string to be converted to AnyObject
-     - throws: Throws error of type JSONSerializerError.
-     - returns: Returns the JSON string as AnyObject
-     */
     fileprivate static func jsonToAnyObject(_ jsonString: String) throws -> Any? {
         var any: Any?
         
@@ -66,11 +40,6 @@ class JSONSerializer {
         return any
     }
     
-    /**
-     Generates the JSON representation given any custom object of any custom class. Inherited properties will also be represented.
-     - parameter object:    The instantiation of any custom class to be represented as JSON.
-     - returns: A string JSON representation of the object.
-     */
     open static func toJson(_ object: Any, prettify: Bool = false) -> String {
         var json = ""
         if (!(object is Array<Any>)) {
@@ -212,8 +181,6 @@ class JSONSerializer {
             else if property.displayStyle == Mirror.DisplayStyle.optional {
                 let str = String(describing: value)
                 if str != "nil" {
-                    // Some optional values cannot be unpacked if type is "Any"
-                    // We remove the "Optional(" and last ")" from the value by string manipulation
                     var d = String(str).dropFirst(9)
                     d = d.dropLast(1)
                     handledValue = String(d)
@@ -227,18 +194,14 @@ class JSONSerializer {
             
             if !skip {
                 
-                // if optional propertyName is populated we'll use it
                 if let propertyName = propertyName {
                     json += "\"\(propertyName)\": \(handledValue)" + (index < size-1 ? ", " : "")
                 }
-                    // if not then we have a member an array
                 else {
-                    // if it's the first member we need to prepend ]
                     if first {
                         json += "["
                         first = false
                     }
-                    // if it's not the last we need a comma. if it is the last we need to close ]
                     json += "\(handledValue)" + (index < size-1 ? ", " : "]")
                 }
                 

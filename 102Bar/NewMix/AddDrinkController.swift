@@ -1,18 +1,26 @@
-//
-//  AddDrinkController.swift
-//  102Bar
-//
-//  Created by Justin Busse on 20.03.18.
-//  Copyright © 2018 102 Bier. All rights reserved.
-//
-
 import UIKit
+
 class AddDrinkController : UITableViewController, UITextFieldDelegate
 {
+    
+    // MARK: - Variables
+    
     var drinkContent : AddDrinkTableContent = AddDrinkTableContent()
-
     @IBOutlet var mixNameTextField: UITextField!
     @IBOutlet var totalPercentage: UILabel!
+    
+    // MARK: - ViewDidLoad
+    
+    override func viewDidLoad() {
+        
+        super.viewDidLoad()
+        self.tableView.rowHeight = 60;
+        self.tableView.setEditing(true, animated: true)
+        tableView.delegate = self
+        tableView.dataSource = self
+    }
+    
+    // MARK: - Action Event Functions
     
     @IBAction func viewTapped(_ sender: UITapGestureRecognizer)
     {
@@ -36,13 +44,6 @@ class AddDrinkController : UITableViewController, UITextFieldDelegate
         tableView.reloadData()
     }
     
-    /*override func viewWillAppear(_ animated: Bool) {
-       Service.shared.getAvailableIngredients() {
-            sucess in super.viewWillAppear(animated)
-            self.tableView.reloadData()
-        }
-    }*/
-    
     func safeCellTextField(at indexPath : IndexPath, in cell : DrinkCell) {
         if let percentage = cell.percentageTextField.text
         {
@@ -55,6 +56,8 @@ class AddDrinkController : UITableViewController, UITextFieldDelegate
         
         print("safed content of \(cell.drinkLabel.text ?? "none") (\(cell.percentageTextField.text ?? "N/A")%)")
     }
+    
+    // MARK: - Initialize Table View
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         
@@ -150,15 +153,6 @@ class AddDrinkController : UITableViewController, UITextFieldDelegate
             safeCellTextField(at: indexPath!, in: cell)
         }
         print("Cell endet editing: \(String(describing: cell.percentageTextField.text))")
-    }
-    
-    override func viewDidLoad() {
-        
-        super.viewDidLoad()
-        self.tableView.rowHeight = 60;
-        self.tableView.setEditing(true, animated: true)
-        tableView.delegate = self
-        tableView.dataSource = self
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -411,7 +405,7 @@ class AddDrinkController : UITableViewController, UITextFieldDelegate
             if(ai.count > 0)
             {
                 let drink = ai.first(where: {$0.drinkDescription == description})?.clone()
-                drink?.addPercentage(percentage: percentage)
+                drink?.percentage = percentage
                 drinks.append(drink!)
             }
             else {
@@ -419,7 +413,7 @@ class AddDrinkController : UITableViewController, UITextFieldDelegate
                 return
             }
         }
-        Service.shared.customMix(mixToAdd: Mix(mix: Service.shared.getNewGUID(), mixDescription: mixName!, ingredients: drinks), add: true){
+        Service.shared.customMix(mixToAdd: Mix(mix: Service.shared.getNewUUID(), mixDescription: mixName!, ingredients: drinks), add: true){
             success in
             //self.presentingViewController?.dismiss(animated: true, completion: nil)
         }

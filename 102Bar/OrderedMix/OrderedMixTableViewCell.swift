@@ -2,11 +2,15 @@ import UIKit
 
 class OrderedMixTableViewCell: UITableViewCell{
     
+    // MARK: - Variables
+    
     @IBOutlet weak var MixDescriptionLabel: UILabel!
     @IBOutlet weak var UsernameLabel: UILabel!
     
     var orderedMix: Mix?
     var controller: OrderedMixesController?
+    
+    // MARK: - Action Event Functions
     
     @IBAction func AcceptButton(_ sender: Any) {
         let alert = UIAlertController(title: "Do you want to accept the Mix?", message: "The Mix (" + (orderedMix?.mixDescription)! + ") was ordered by " + (Service.shared.users.first(where: {$0.user == orderedMix?.orderedByUser})?.username)!, preferredStyle: .alert)
@@ -40,19 +44,15 @@ class OrderedMixTableViewCell: UITableViewCell{
             }
         }
         
-        //the cancel action doing nothing
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { (_) in }
         
-        //adding textfields to our dialog box
         alertController.addTextField { (textField) in
             textField.placeholder = "Enter Reason"
         }
         
-        //adding the action to dialogbox
         alertController.addAction(confirmAction)
         alertController.addAction(cancelAction)
         
-        //finally presenting the dialog box
         controller?.present(alertController, animated: true, completion: nil)
     }
 }

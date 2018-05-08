@@ -1,10 +1,13 @@
 import UIKit
 
-
 class OrderedMixesController : UITableViewController{
+    
+    // MARK: - Variables
     
     var orderedMixes: [Mix] = []
     let reloadControl = UIRefreshControl()
+    
+    // MARK: - ViewDidLoad
     
     override func viewDidLoad() {
         self.refresh(nil)
@@ -19,6 +22,8 @@ class OrderedMixesController : UITableViewController{
         super.viewDidLoad()
     }
     
+    // MARK: - Refresh Function
+    
     @objc func refresh(_ sender: Any?){
         Service.shared.getUseres{
             success in
@@ -30,6 +35,8 @@ class OrderedMixesController : UITableViewController{
             }
         }
     }
+    
+    // MARK: - Initialize Table View Functions
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cellIdentifier = "OrderedMixTableViewCell"
@@ -73,6 +80,8 @@ class OrderedMixesController : UITableViewController{
         (vc as! OrderMixController).orderMode = false
         navigationController?.pushViewController(vc, animated: true)
     }
+    
+    // MARK: - Action Event Functions
     
     @IBAction func LogoutButton(_ sender: Any) {
         let username = UserDefaults.standard.string(forKey: "username")
