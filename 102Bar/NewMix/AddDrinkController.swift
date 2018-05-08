@@ -44,6 +44,12 @@ class AddDrinkController : UITableViewController, UITextFieldDelegate
         tableView.reloadData()
     }
     
+    override func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
+        let header = view as! UITableViewHeaderFooterView
+        header.textLabel?.textColor = UIColor.black
+        //header.textLabel?.backgroundColor = UIColor.init(red: 0xFF, green: 0x96, blue: 0x3D, alpha: 1) TODO
+    }
+    
     func safeCellTextField(at indexPath : IndexPath, in cell : DrinkCell) {
         if let percentage = cell.percentageTextField.text
         {
