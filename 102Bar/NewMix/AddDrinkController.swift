@@ -64,10 +64,10 @@ class AddDrinkController : UITableViewController, UITextFieldDelegate
         let allowedCharacters = CharacterSet.decimalDigits
         var validCharacterCount : Int = 0
         if let rangeOfCharactersAllowed = string.rangeOfCharacter(from: allowedCharacters) { // if replacementText contains just valid characters
-            validCharacterCount = string.characters.distance(from: rangeOfCharactersAllowed.lowerBound, to: rangeOfCharactersAllowed.upperBound)
+            validCharacterCount = string.distance(from: rangeOfCharactersAllowed.lowerBound, to: rangeOfCharactersAllowed.upperBound)
         }
         
-        if validCharacterCount != string.characters.count
+        if validCharacterCount != string.count
         {
             return false
         }
