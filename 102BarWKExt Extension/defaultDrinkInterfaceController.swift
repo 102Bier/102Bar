@@ -7,8 +7,6 @@
 //
 
 import WatchKit
-import Foundation
-
 class defaultDrinkInterfaceController: WKInterfaceController, WatchDataChangedDelegate {
     
     @IBOutlet var tableView: WKInterfaceTable!
@@ -42,8 +40,11 @@ class defaultDrinkInterfaceController: WKInterfaceController, WatchDataChangedDe
     }
     
     func watchDataDidUpdate(watchData: WatchData) {
-        defaultMixes = watchData.defaultMixes
-        loadTableData()
+        if watchData.defaultMixes.count > 0
+        {
+            defaultMixes = watchData.defaultMixes
+            loadTableData()
+        }
     }
     
     func loadTableData() {
@@ -56,5 +57,13 @@ class defaultDrinkInterfaceController: WKInterfaceController, WatchDataChangedDe
                 //print("row set \(rowModel.mixDescription)")
             }
         }
+    }
+    
+    override func contextForSegue(withIdentifier segueIdentifier: String, in table: WKInterfaceTable, rowIndex: Int) -> Any? {
+        if segueIdentifier == "defaultRow"
+        {
+            return defaultMixes[rowIndex].ingredients
+        }
+        return nil
     }
 }

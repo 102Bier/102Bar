@@ -70,7 +70,7 @@ class Service: NSObject, UNUserNotificationCenterDelegate, WCSessionDelegate {
             NSKeyedArchiver.archiveRootObject(availableMixes, toFile: self.availableMixesArchiveUrl().path) //save to file
             let data = NSKeyedArchiver.archivedData(withRootObject: availableMixes)
             do { try self.session.updateApplicationContext(["default" : data]) }
-            catch{
+            catch {
             }
             
         }
@@ -82,8 +82,8 @@ class Service: NSObject, UNUserNotificationCenterDelegate, WCSessionDelegate {
             NSKeyedArchiver.archiveRootObject(customMixes, toFile: self.customMixesArchiveUrl().path) //save to file
             let data = NSKeyedArchiver.archivedData(withRootObject: customMixes)
             do { try self.session.updateApplicationContext(["custom" : data]) }
-            catch {}
-            
+            catch {
+            }
         }
     }
     var users = [User]()

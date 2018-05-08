@@ -7,8 +7,6 @@
 //
 
 import WatchKit
-import Foundation
-
 class customDrinksInterfaceController: WKInterfaceController, WatchDataChangedDelegate{
     
     @IBOutlet var tableView: WKInterfaceTable!
@@ -40,8 +38,11 @@ class customDrinksInterfaceController: WKInterfaceController, WatchDataChangedDe
     }
     
     func watchDataDidUpdate(watchData: WatchData) {
-        customMixes = watchData.customMixes
-        loadTableData()
+        if watchData.customMixes.count > 0
+        {
+            customMixes = watchData.customMixes
+            loadTableData()
+        }
     }
     
     func loadTableData() {
@@ -56,8 +57,17 @@ class customDrinksInterfaceController: WKInterfaceController, WatchDataChangedDe
         }
     }
     
-    override func table(_ table: WKInterfaceTable, didSelectRowAt rowIndex: Int) {
-        
+    override func contextForSegue(withIdentifier segueIdentifier: String, in table: WKInterfaceTable, rowIndex: Int) -> Any? {
+        if segueIdentifier == "customRow"
+        {
+            return customMixes[rowIndex].ingredients
+        }
+        return nil
     }
+    
+    /*override func table(_ table: WKInterfaceTable, didSelectRowAt rowIndex: Int) {
+        let mix = customMixes[rowIndex]
+ 
+    }*/
 
 }

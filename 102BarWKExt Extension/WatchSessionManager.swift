@@ -21,7 +21,9 @@ class WatchSessionManager: NSObject, WCSessionDelegate {
     }
     
     func session(_ session: WCSession, didReceiveApplicationContext applicationContext: [String : Any]) {
-            watchDataChangedDelegates.forEach { $0.watchDataDidUpdate(watchData: WatchData(data: applicationContext as [String : AnyObject]))}
+        DispatchQueue.main.async() { [weak self] in
+            self?.watchDataChangedDelegates.forEach { $0.watchDataDidUpdate(watchData: WatchData(data: applicationContext as [String : AnyObject]))}
+        }
     }
     
     private let session: WCSession? = WCSession.isSupported() ? WCSession.default : nil

@@ -5,7 +5,6 @@
 //  Created by Justin Busse on 07.05.18.
 //  Copyright © 2018 102 Bier. All rights reserved.
 //
-
 import Foundation
 class WatchData {
     

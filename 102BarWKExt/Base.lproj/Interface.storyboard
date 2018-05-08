@@ -47,6 +47,9 @@
                                         <items>
                                             <label alignment="left" text="Default Drink" id="hVp-eG-EE1"/>
                                         </items>
+                                        <connections>
+                                            <segue destination="kSD-5W-RCG" kind="push" identifier="defaultRow" id="EaH-nE-I3v"/>
+                                        </connections>
                                     </group>
                                     <connections>
                                         <outlet property="mixLabel" destination="hVp-eG-EE1" id="Kmi-6h-OSH"/>
@@ -62,6 +65,33 @@
             </objects>
             <point key="canvasLocation" x="468" y="49"/>
         </scene>
+        <!--ingredients-->
+        <scene sceneID="QyX-le-dmw">
+            <objects>
+                <controller identifier="ingredients" id="kSD-5W-RCG" customClass="IngredientsInterfaceController" customModule="_02BarWKExt_Extension">
+                    <items>
+                        <table alignment="left" id="RZF-U3-oAq">
+                            <items>
+                                <tableRow id="vbX-W4-M4V" customClass="IngredientsRowController" customModule="_02BarWKExt_Extension">
+                                    <group key="rootItem" width="1" alignment="left" id="PQT-ye-hAk">
+                                        <items>
+                                            <label alignment="left" text="ingredient" id="ENb-OK-5dg"/>
+                                        </items>
+                                    </group>
+                                    <connections>
+                                        <outlet property="ingredientLabel" destination="ENb-OK-5dg" id="qlm-YE-8qH"/>
+                                    </connections>
+                                </tableRow>
+                            </items>
+                        </table>
+                    </items>
+                    <connections>
+                        <outlet property="tableView" destination="RZF-U3-oAq" id="SIy-Ku-gRK"/>
+                    </connections>
+                </controller>
+            </objects>
+            <point key="canvasLocation" x="751" y="261"/>
+        </scene>
         <!--Custom-->
         <scene sceneID="hua-PI-mht">
             <objects>
@@ -74,6 +104,9 @@
                                         <items>
                                             <label alignment="left" text="Custom Drink" id="zVA-kL-yLz"/>
                                         </items>
+                                        <connections>
+                                            <segue destination="kSD-5W-RCG" kind="push" identifier="customRow" id="ePK-El-UAU"/>
+                                        </connections>
                                     </group>
                                     <connections>
                                         <outlet property="mixLabel" destination="zVA-kL-yLz" id="ZaT-EB-3fU"/>
@@ -113,5 +146,8 @@
             <point key="canvasLocation" x="468" y="811"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="EaH-nE-I3v"/>
+    </inferredMetricsTieBreakers>
     <color key="tintColor" red="1" green="0.7646420498703137" blue="0.017813189672004182" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
 </document>
