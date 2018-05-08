@@ -33,6 +33,7 @@ class MixCell : UITableViewCell {
         
         let label = UILabel(frame: labelRect)
         label.text = ingredient
+        label.textColor = UIColor.darkGray
         self.addSubview(label)
     }
 }

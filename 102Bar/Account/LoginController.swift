@@ -19,7 +19,7 @@ class LoginController: UIViewController {
     // MARK: - ViewDidLoad
     
     override func viewDidLoad() {
-        bier.frame = CGRect(x: bier.frame.origin.x, y: bier.frame.origin.y, width: view.safeAreaLayoutGuide.layoutFrame.size.width * 0.5 , height: view.safeAreaLayoutGuide.layoutFrame.size.height * 0.25)
+        /*bier.frame = CGRect(x: bier.frame.origin.x, y: bier.frame.origin.y, width: view.safeAreaLayoutGuide.layoutFrame.size.width * 0.5 , height: view.safeAreaLayoutGuide.layoutFrame.size.height * 0.25)*/
         super.viewDidLoad()
         let context = LAContext()
         

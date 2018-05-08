@@ -1610,13 +1610,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "102Bar/Account/LoginController.swift"
-            timestampString = "547403930.050179"
+            timestampString = "547507437.895027"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "37"
             endingLineNumber = "37"
-            landmarkName = "evaulateBiometricAuthenticity(context:)"
-            landmarkType = "7">
+            landmarkName = "LoginController"
+            landmarkType = "3">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -1626,12 +1626,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "102Bar/Account/LoginController.swift"
-            timestampString = "547403930.0513231"
+            timestampString = "547507437.8951499"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "44"
             endingLineNumber = "44"
-            landmarkName = "evaulateBiometricAuthenticity(context:)"
+            landmarkName = "checkBiometricLogin()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -1642,12 +1642,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "102Bar/Account/LoginController.swift"
-            timestampString = "547403930.0524909"
+            timestampString = "547507437.895201"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "116"
             endingLineNumber = "116"
-            landmarkName = "saveAccountDataToUserDefault(username:password:)"
+            landmarkName = "showBiometricLoginError(_:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -1658,7 +1658,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "102Bar/Account/LoginController.swift"
-            timestampString = "547403930.053722"
+            timestampString = "547507437.895243"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "163"
@@ -1706,7 +1706,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "102Bar/Account/LoginController.swift"
-            timestampString = "547403930.055454"
+            timestampString = "547507437.895308"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "100"
@@ -1722,12 +1722,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "102Bar/Account/LoginController.swift"
-            timestampString = "547403930.056145"
+            timestampString = "547507437.89535"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "106"
             endingLineNumber = "106"
-            landmarkName = "checkErrorMessage()"
+            landmarkName = "showBiometricLoginError(_:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -1738,7 +1738,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "102Bar/Services/Service.swift"
-            timestampString = "547491750.548653"
+            timestampString = "547507437.8953919"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "65"
@@ -1850,7 +1850,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "102BarWKExt Extension/ingredientsInterfaceController.swift"
-            timestampString = "547491750.549142"
+            timestampString = "547507437.895847"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "17"
@@ -2026,7 +2026,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "102BarWKExt Extension/ingredientsInterfaceController.swift"
-            timestampString = "547491750.550692"
+            timestampString = "547507437.89621"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "42"

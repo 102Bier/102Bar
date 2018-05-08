@@ -20,6 +20,8 @@ class DrinkController: UIViewController, UITableViewDelegate, UITableViewDataSou
     // MARK: - ViewDidLoad
     
     override func viewDidLoad() {
+        super.viewDidLoad()
+        
         // Add Refresh Control to Table View
         if #available(iOS 10.0, *) {
             tableView.refreshControl = refreshControl
@@ -31,12 +33,15 @@ class DrinkController: UIViewController, UITableViewDelegate, UITableViewDataSou
             success in
             self.tableView.reloadData()
         }
-        super.viewDidLoad()
+        
         if(!Service.shared.hasUserRight(right: Service.Rights.canCreateOwn.rawValue)){
             self.navigationItem.setRightBarButton(nil, animated: true)
             segControl.isHidden = true
         }
         tableView.allowsSelection = Service.shared.hasUserRight(right: Service.Rights.canOrder.rawValue)
+        
+        segControl.layer.borderWidth = 1
+        segControl.layer.cornerRadius = 4.0
     }
     
     // MARK: - Action Event Functions
@@ -161,6 +166,7 @@ class DrinkController: UIViewController, UITableViewDelegate, UITableViewDataSou
         let vc: UIViewController = storyboard!.instantiateViewController(withIdentifier: "orderMix")
         
         let order = UIBarButtonItem(title: "Order", style: .plain, target: self, action: #selector(orderTapped))
+        order.style = .done
         vc.navigationItem.rightBarButtonItem = order
         vc.navigationItem.title = "Order " + mix.mixDescription
         (vc as! OrderMixController).mixToOrder = mix

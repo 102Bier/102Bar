@@ -307,6 +307,7 @@ class AddDrinkController : UITableViewController, UITextFieldDelegate
             {
                 cell.percentageTextField.isHidden = true;
             }
+            cell.backgroundColor = UIColor.groupTableViewBackground
         }
         
         /*debug*/
