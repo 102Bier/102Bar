@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina4_0" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -47,7 +47,6 @@
                                 <rect key="frame" x="127" y="248" width="57" height="30"/>
                                 <state key="normal" title="Register"/>
                                 <connections>
-                                    <action selector="RegisterButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="2e7-yh-X6M"/>
                                     <segue destination="elX-yc-BWG" kind="show" identifier="register" id="w6T-g6-CKF"/>
                                 </connections>
                             </button>
@@ -231,7 +230,7 @@
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0%" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Aon-t8-27A">
-                                    <rect key="frame" x="286.5" y="46" width="23.5" height="21"/>
+                                    <rect key="frame" x="285.5" y="46" width="24.5" height="21"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
@@ -527,7 +526,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="100%" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="k7o-n5-xg8">
-                                <rect key="frame" x="262.5" y="79" width="41.5" height="21"/>
+                                <rect key="frame" x="261.5" y="79" width="42.5" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -602,16 +601,9 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ga4-c3-CkN">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ga4-c3-CkN">
                                 <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fyi-ZN-eiJ">
-                                        <rect key="frame" x="82" y="229" width="156" height="45"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Lastname" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="nc3-nK-hEq">
                                         <rect key="frame" x="28" y="170" width="240" height="30"/>
                                         <constraints>
@@ -706,6 +698,12 @@
                                             <action selector="RegisterButton:" destination="hJZ-rO-IvN" eventType="touchUpInside" id="ICp-1H-cow"/>
                                         </connections>
                                     </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fyi-ZN-eiJ">
+                                        <rect key="frame" x="28" y="373" width="238" height="0.0"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                 </subviews>
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="Ub8-Z8-XeH" secondAttribute="trailing" constant="50" id="0UD-SV-pDK"/>
@@ -715,11 +713,15 @@
                                     <constraint firstItem="yv8-oN-vrr" firstAttribute="leading" secondItem="tho-HH-qCo" secondAttribute="trailing" constant="80" id="HPk-Nt-R0i"/>
                                     <constraint firstItem="Ub8-Z8-XeH" firstAttribute="leading" secondItem="Ga4-c3-CkN" secondAttribute="leading" constant="28" id="QjH-Td-dIh"/>
                                     <constraint firstItem="tho-HH-qCo" firstAttribute="leading" secondItem="Ga4-c3-CkN" secondAttribute="leading" constant="24" id="RZr-B4-suq"/>
+                                    <constraint firstAttribute="trailing" secondItem="Fyi-ZN-eiJ" secondAttribute="trailing" constant="52" id="Tpt-AO-MqR"/>
+                                    <constraint firstItem="Fyi-ZN-eiJ" firstAttribute="top" secondItem="VsZ-MN-roF" secondAttribute="bottom" constant="18" id="VBa-od-4qi"/>
                                     <constraint firstAttribute="trailing" secondItem="CAC-N3-D5b" secondAttribute="trailing" constant="50" id="YsT-pz-egf"/>
+                                    <constraint firstAttribute="bottom" secondItem="Fyi-ZN-eiJ" secondAttribute="bottom" constant="39" id="alw-Ep-2lx"/>
                                     <constraint firstItem="PJh-Ka-UME" firstAttribute="leading" secondItem="Ga4-c3-CkN" secondAttribute="leading" constant="28" id="blA-dl-ogQ"/>
                                     <constraint firstAttribute="trailing" secondItem="nc3-nK-hEq" secondAttribute="trailing" constant="50" id="chZ-ZN-61Q"/>
                                     <constraint firstItem="nc3-nK-hEq" firstAttribute="top" secondItem="PJh-Ka-UME" secondAttribute="bottom" constant="8" id="djt-JC-1i7"/>
                                     <constraint firstAttribute="trailing" secondItem="uRV-sK-cge" secondAttribute="trailing" constant="50" id="eK3-fs-s4i"/>
+                                    <constraint firstItem="Fyi-ZN-eiJ" firstAttribute="leading" secondItem="Ga4-c3-CkN" secondAttribute="leading" constant="28" id="ezq-Zi-jnR"/>
                                     <constraint firstItem="uRV-sK-cge" firstAttribute="top" secondItem="Ub8-Z8-XeH" secondAttribute="bottom" constant="8" id="iuX-WX-ltZ"/>
                                     <constraint firstItem="uRV-sK-cge" firstAttribute="leading" secondItem="Ga4-c3-CkN" secondAttribute="leading" constant="28" id="lpt-NT-KnC"/>
                                     <constraint firstItem="CAC-N3-D5b" firstAttribute="leading" secondItem="Ga4-c3-CkN" secondAttribute="leading" constant="28" id="mnr-n3-FtL"/>

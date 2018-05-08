@@ -9,17 +9,21 @@
 import WatchKit
 import Foundation
 
-class defaultDrinkInterfaceController: WKInterfaceController {
-
+class defaultDrinkInterfaceController: WKInterfaceController, WatchDataChangedDelegate {
+    
     @IBOutlet var tableView: WKInterfaceTable!
     
-    var availableMixes : [Mix] = Array()
+    var defaultMixes : [Mix] = Array()
 
     override func awake(withContext context: Any?) {
-        if let checkContext = context
+        if context != nil
         {
-            availableMixes = checkContext as! [Mix]
+            if (context as! [Mix]).count > 0
+            {
+                defaultMixes = context as! [Mix]
+            }
         }
+        WatchSessionManager.sharedManager.addWatchDataChangedDelegate(delegate: self)
         super.awake(withContext: context)
         loadTableData()
         
@@ -33,12 +37,18 @@ class defaultDrinkInterfaceController: WKInterfaceController {
 
     override func didDeactivate() {
         // This method is called when watch view controller is no longer visible
+        WatchSessionManager.sharedManager.removeWatchDataChangedDelegate(delegate: self)
         super.didDeactivate()
     }
     
+    func watchDataDidUpdate(watchData: WatchData) {
+        defaultMixes = watchData.defaultMixes
+        loadTableData()
+    }
+    
     func loadTableData() {
-        tableView.setNumberOfRows( availableMixes.count, withRowType: "defaultRowController")
-        for (index, rowModel) in availableMixes.enumerated() {
+        tableView.setNumberOfRows( defaultMixes.count, withRowType: "defaultRowController")
+        for (index, rowModel) in defaultMixes.enumerated() {
             
             if let defaultRowController = tableView.rowController(at: index) as? defaultRowController
             {
@@ -47,5 +57,4 @@ class defaultDrinkInterfaceController: WKInterfaceController {
             }
         }
     }
-
 }

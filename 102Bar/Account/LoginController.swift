@@ -14,6 +14,7 @@ class LoginController: UIViewController {
     @IBOutlet weak var _register_button: UIButton!
     
     @IBOutlet var bier: UIImageView!
+    var errorMessage = ""
     
     // MARK: - ViewDidLoad
     
@@ -37,6 +38,7 @@ class LoginController: UIViewController {
         
     @IBAction func biometricLogin(_ sender: UIButton) {
         checkBiometricLogin()
+        checkErrorMessage()
     }
     
     func checkBiometricLogin()
@@ -73,7 +75,8 @@ class LoginController: UIViewController {
                         }
                     }
                 } catch KeychainPasswordItem.KeychainError.noPassword {
-                    print("No saved password")
+                    let error = LAError(.passcodeNotSet)
+                    self.showBiometricLoginError(error)
                 } catch {
                     print("Unhandled error")
                 }
@@ -81,6 +84,7 @@ class LoginController: UIViewController {
                 if let error = authError as? LAError {
                     self.showBiometricLoginError(error)
                 }
+                
             }
         }
     }
@@ -111,12 +115,17 @@ class LoginController: UIViewController {
             break
         }
         //self.showPopupWithMessage(message)
-        self.setLabel(message)
+        errorMessage = message
         print(message)
     }
     
-    func setLabel (_ message : String) {
-       labelMessage.text = message
+    func checkErrorMessage()
+    {
+        if(errorMessage != "")
+        {
+            labelMessage.text = errorMessage
+            errorMessage = ""
+        }
     }
     
     func saveAccountDataToUserDefault(username : String, password : String)

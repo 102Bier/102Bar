@@ -55,8 +55,10 @@ class Service: NSObject, UNUserNotificationCenterDelegate, WCSessionDelegate {
         didSet {
             NSKeyedArchiver.archiveRootObject(availableMixes, toFile: self.availableMixesArchiveUrl().path) //save to file
             let data = NSKeyedArchiver.archivedData(withRootObject: availableMixes)
-            self.session.sendMessageData(data, replyHandler: nil, errorHandler: nil)
-            self.session.sendMessage(["customOrDefault" : "default"], replyHandler: nil, errorHandler: nil)
+            do { try self.session.updateApplicationContext(["default" : data]) }
+            catch{
+            }
+            
         }
     }
     var orderedMixes = [Mix]()
@@ -65,8 +67,9 @@ class Service: NSObject, UNUserNotificationCenterDelegate, WCSessionDelegate {
         didSet {
             NSKeyedArchiver.archiveRootObject(customMixes, toFile: self.customMixesArchiveUrl().path) //save to file
             let data = NSKeyedArchiver.archivedData(withRootObject: customMixes)
-            self.session.sendMessageData(data, replyHandler: nil, errorHandler: nil)
-            self.session.sendMessage(["customOrDefault" : "custom"], replyHandler: nil, errorHandler: nil)
+            do { try self.session.updateApplicationContext(["custom" : data]) }
+            catch {}
+            
         }
     }
     var users = [User]()

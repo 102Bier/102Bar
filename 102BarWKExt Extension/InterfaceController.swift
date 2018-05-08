@@ -9,17 +9,25 @@ import WatchKit
 import Foundation
 import CoreData
 
-class InterfaceController: WKInterfaceController {
+class InterfaceController: WKInterfaceController, WatchDataChangedDelegate{
     
-    var data = watchModel()
+    var defaultMixes = [Mix]()
+    var customMixes = [Mix]()
     
-    override init()
-    {
-        super.init()
+    func watchDataDidUpdate(watchData: WatchData) {
+        if(watchData.defaultMixes.count > 0)
+        {
+            defaultMixes = watchData.defaultMixes
+        }
+        if watchData.customMixes.count > 0
+        {
+            customMixes = watchData.customMixes
+        }
     }
-
+    
     override func awake(withContext context: Any?) {
         super.awake(withContext: context)
+        WatchSessionManager.sharedManager.addWatchDataChangedDelegate(delegate: self)
         // Configure interface objects here.
     }
     
@@ -28,19 +36,23 @@ class InterfaceController: WKInterfaceController {
         super.willActivate()
     }
     
+    
     override func contextForSegue(withIdentifier segueIdentifier: String) -> Any? {
         if segueIdentifier == "default"
         {
-            return data.defaultDrinks
+            if defaultMixes.count > 0
+            {
+                return defaultMixes
+            }
         }
         if segueIdentifier == "custom"
         {
-            return data.customDrinks
+            if customMixes.count > 0
+            {
+                return customMixes
+            }
         }
-        else
-        {
-            return nil
-        }
+        return nil
     }
     
     override func didDeactivate() {

@@ -56,8 +56,9 @@
 		C34442F0208DD46D005C8AFA /* defaultRowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C34442EF208DD46D005C8AFA /* defaultRowController.swift */; };
 		C34442F2208DD4B3005C8AFA /* defaultDrinkInterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C34442F1208DD4B3005C8AFA /* defaultDrinkInterfaceController.swift */; };
 		C35A81C220617141002A3477 /* AddDrinkController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C35A81C120617141002A3477 /* AddDrinkController.swift */; };
-		C36F6E9C209B616C00920553 /* watchModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C36F6E9B209B616C00920553 /* watchModel.swift */; };
 		C36F6E9E209C8CC100920553 /* KeychainPasswordItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = C36F6E9D209C8CC000920553 /* KeychainPasswordItem.swift */; };
+		C37D0DC420A098910098CA67 /* WatchSessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C37D0DBC20A098570098CA67 /* WatchSessionManager.swift */; };
+		C37D0DC720A09CA70098CA67 /* watchData.swift in Sources */ = {isa = PBXBuildFile; fileRef = C37D0DC620A09CA70098CA67 /* watchData.swift */; };
 		C3B66DF6207CC3DF00C26328 /* MixCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3B66DF5207CC3DF00C26328 /* MixCell.swift */; };
 		C3E19269208E71EF000122E0 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A46A0F7206030CB004EDA94 /* Alamofire.framework */; };
 		C3E1926A208E71EF000122E0 /* Alamofire.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8A46A0F7206030CB004EDA94 /* Alamofire.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -267,8 +268,9 @@
 		C34442EF208DD46D005C8AFA /* defaultRowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = defaultRowController.swift; sourceTree = "<group>"; };
 		C34442F1208DD4B3005C8AFA /* defaultDrinkInterfaceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = defaultDrinkInterfaceController.swift; sourceTree = "<group>"; };
 		C35A81C120617141002A3477 /* AddDrinkController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddDrinkController.swift; sourceTree = "<group>"; };
-		C36F6E9B209B616C00920553 /* watchModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = watchModel.swift; sourceTree = "<group>"; };
 		C36F6E9D209C8CC000920553 /* KeychainPasswordItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeychainPasswordItem.swift; sourceTree = "<group>"; };
+		C37D0DBC20A098570098CA67 /* WatchSessionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchSessionManager.swift; sourceTree = "<group>"; };
+		C37D0DC620A09CA70098CA67 /* watchData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = watchData.swift; sourceTree = "<group>"; };
 		C3B66DF5207CC3DF00C26328 /* MixCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MixCell.swift; sourceTree = "<group>"; };
 		C3EB45B2206932AF00F69F16 /* DrinkCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrinkCell.swift; sourceTree = "<group>"; };
 		C3EB45BC2069427900F69F16 /* AddDrinkTableContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddDrinkTableContent.swift; sourceTree = "<group>"; };
@@ -491,6 +493,7 @@
 			isa = PBXGroup;
 			children = (
 				C34442C5208DCA61005C8AFA /* Interface.storyboard */,
+				C34442DF208DCA65005C8AFA /* PushNotificationPayload.apns */,
 				C34442C8208DCA63005C8AFA /* Assets.xcassets */,
 				C34442CA208DCA63005C8AFA /* Info.plist */,
 			);
@@ -506,12 +509,12 @@
 				C34442DA208DCA63005C8AFA /* ComplicationController.swift */,
 				C34442DC208DCA65005C8AFA /* Assets.xcassets */,
 				C34442DE208DCA65005C8AFA /* Info.plist */,
-				C34442DF208DCA65005C8AFA /* PushNotificationPayload.apns */,
 				C34442EB208DD1C5005C8AFA /* customDrinksInterfaceController.swift */,
 				C34442ED208DD3F7005C8AFA /* customRowController.swift */,
 				C34442EF208DD46D005C8AFA /* defaultRowController.swift */,
 				C34442F1208DD4B3005C8AFA /* defaultDrinkInterfaceController.swift */,
-				C36F6E9B209B616C00920553 /* watchModel.swift */,
+				C37D0DBC20A098570098CA67 /* WatchSessionManager.swift */,
+				C37D0DC620A09CA70098CA67 /* watchData.swift */,
 			);
 			path = "102BarWKExt Extension";
 			sourceTree = "<group>";
@@ -833,13 +836,14 @@
 				C34442F0208DD46D005C8AFA /* defaultRowController.swift in Sources */,
 				C34442D9208DCA63005C8AFA /* NotificationController.swift in Sources */,
 				C34442F2208DD4B3005C8AFA /* defaultDrinkInterfaceController.swift in Sources */,
-				C36F6E9C209B616C00920553 /* watchModel.swift in Sources */,
 				C34442DB208DCA63005C8AFA /* ComplicationController.swift in Sources */,
 				C34442D7208DCA63005C8AFA /* ExtensionDelegate.swift in Sources */,
 				8ADF9F7E20A0804A001D3C2E /* User.swift in Sources */,
 				C34442EE208DD3F7005C8AFA /* customRowController.swift in Sources */,
 				C3381531208DD8BD00FB7D57 /* DrinkType.swift in Sources */,
+				C37D0DC420A098910098CA67 /* WatchSessionManager.swift in Sources */,
 				C3381532208DD8C800FB7D57 /* DrinkGroup.swift in Sources */,
+				C37D0DC720A09CA70098CA67 /* watchData.swift in Sources */,
 				C34442EC208DD1C5005C8AFA /* customDrinksInterfaceController.swift in Sources */,
 				C34442D5208DCA63005C8AFA /* InterfaceController.swift in Sources */,
 				C3381530208DD8AF00FB7D57 /* Drink.swift in Sources */,

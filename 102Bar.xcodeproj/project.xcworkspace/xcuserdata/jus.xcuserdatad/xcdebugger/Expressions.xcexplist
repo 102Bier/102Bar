@@ -3,21 +3,21 @@
    version = "1.0">
    <ContextStates>
       <ContextState
-         contextName = "orderMixController.textFieldDidEndEditing(_:):orderMixController.swift">
+         contextName = "defaultDrinkInterfaceController.loadTableData():defaultDrinkInterfaceController.swift">
          <PersistentStrings>
             <PersistentString
-               value = "test">
+               value = "availableMixes">
+            </PersistentString>
+            <PersistentString
+               value = "availableMixes.count">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "defaultDrinkInterfaceController.loadTableData():defaultDrinkInterfaceController.swift">
+         contextName = "orderMixController.textFieldDidEndEditing(_:):orderMixController.swift">
          <PersistentStrings>
             <PersistentString
-               value = "availableMixes.count">
-            </PersistentString>
-            <PersistentString
-               value = "availableMixes">
+               value = "test">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -41,10 +41,26 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
+         contextName = "defaultDrinkInterfaceController.awake(withContext:):defaultDrinkInterfaceController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "availableMixes.count">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "AddDrinkController.getDefaultPercentage():AddDrinkController.swift">
          <PersistentStrings>
             <PersistentString
                value = "drinkContent.ingredArray[0].sectionPercentage">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "closure #1 in LoginController.evaulateTouchIdAuthenticity(context:):LoginController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "storedPassword">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -60,10 +76,10 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "closure #1 in LoginController.evaulateTouchIdAuthenticity(context:):LoginController.swift">
+         contextName = "orderMixController.viewDidLoad():orderMixController.swift">
          <PersistentStrings>
             <PersistentString
-               value = "storedPassword">
+               value = "const?.constant">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -72,14 +88,6 @@
          <PersistentStrings>
             <PersistentString
                value = "Int(String((total?.removeLast())!))">
-            </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
-         contextName = "orderMixController.viewDidLoad():orderMixController.swift">
-         <PersistentStrings>
-            <PersistentString
-               value = "const?.constant">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -154,13 +162,13 @@
          contextName = "orderMixController.tableView(_:cellForRowAt:):orderMixController.swift">
          <PersistentStrings>
             <PersistentString
-               value = "cell.percentageTextField.text">
+               value = "mixToOrder.ingredients[indexPath.row]">
             </PersistentString>
             <PersistentString
                value = "cell.drinkLabel.text">
             </PersistentString>
             <PersistentString
-               value = "mixToOrder.ingredients[indexPath.row]">
+               value = "cell.percentageTextField.text">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
