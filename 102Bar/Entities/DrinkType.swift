@@ -22,7 +22,7 @@ class DrinkType : NSObject, NSCoding {
     required init?(coder aDecoder: NSCoder) {
         drinkType = aDecoder.decodeObject(forKey: "drinkType") as! String
         drinkGroup = aDecoder.decodeObject(forKey: "drinkGroup") as! DrinkGroup?
-        //drinkTypeDescription = aDecoder.decodeObject(forKey: "drinkDescription") as! String
+        drinkTypeDescription = aDecoder.decodeObject(forKey: "drinkTypeDescription") as! String
         drinkTypeDescription = "hallo"
     }
     

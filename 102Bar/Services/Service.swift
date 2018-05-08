@@ -41,37 +41,20 @@ class Service: NSObject, UNUserNotificationCenterDelegate, WCSessionDelegate {
         return documentDirectory.appendingPathComponent("availableMixes.archive")
     }
     
-    let customMixesArchiveUrl = { () -> URL in
+    let customUserMixesArchiveUrl = { () -> URL in
         let documentsDirectories =
             FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
         let documentDirectory = documentsDirectories.first!
-        return documentDirectory.appendingPathComponent("customMixes.archive")
+        return documentDirectory.appendingPathComponent("customUserMixes.archive")
     }
     
     var availableDrinkGroups = [DrinkGroup]()
     var availableDrinkTypes = [DrinkType]()
     var availableIngredients = [Drink]()
-    var availableMixes = [Mix]() {
-        didSet {
-            NSKeyedArchiver.archiveRootObject(availableMixes, toFile: self.availableMixesArchiveUrl().path) //save to file
-            let data = NSKeyedArchiver.archivedData(withRootObject: availableMixes)
-            do { try self.session.updateApplicationContext(["default" : data]) }
-            catch {
-            }
-            
-        }
-    }
+    var availableMixes = [Mix]()
     var orderedMixes = [Mix]()
     var customMixes = [Mix]()
-    var customUserMixes = [Mix]() {
-        didSet {
-            NSKeyedArchiver.archiveRootObject(customMixes, toFile: self.customMixesArchiveUrl().path) //save to file
-            let data = NSKeyedArchiver.archivedData(withRootObject: customMixes)
-            do { try self.session.updateApplicationContext(["custom" : data]) }
-            catch {
-            }
-        }
-    }
+    var customUserMixes = [Mix]()
     var users = [User]()
     
     // MARK: - Rights Enum
@@ -400,6 +383,14 @@ class Service: NSObject, UNUserNotificationCenterDelegate, WCSessionDelegate {
                                     rootToFill.ingredients.append(ingToAdd)
                                 }
                             }
+                            /*send availableMixes to Watch*/
+                            NSKeyedArchiver.archiveRootObject(self.availableMixes, toFile: self.availableMixesArchiveUrl().path) //save to file
+                            let data = NSKeyedArchiver.archivedData(withRootObject: self.availableMixes)
+                            do { try self.session.updateApplicationContext(["default" : data]) }
+                            catch {
+                                //error handling
+                            }
+        
                             callback(true)
                         }else{
                             callback(false)
@@ -450,6 +441,15 @@ class Service: NSObject, UNUserNotificationCenterDelegate, WCSessionDelegate {
                                     self.customUserMixes.append(mix.clone())
                                 }
                             }
+                            
+                            /*send customUserMixes to Watch*/
+                            NSKeyedArchiver.archiveRootObject(self.customUserMixes, toFile: self.customUserMixesArchiveUrl().path) //save to file
+                            let data = NSKeyedArchiver.archivedData(withRootObject: self.customUserMixes)
+                            do { try self.session.updateApplicationContext(["custom" : data]) }
+                            catch {
+                                //error handling
+                            }
+                            
                             callback(true)
                         }else{
                             callback(false)

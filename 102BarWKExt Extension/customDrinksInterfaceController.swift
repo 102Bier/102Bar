@@ -9,6 +9,11 @@
 import WatchKit
 class customDrinksInterfaceController: WKInterfaceController, WatchDataChangedDelegate{
     
+    func newWatchData(data: Data) {
+        
+    }
+    
+    
     @IBOutlet var tableView: WKInterfaceTable!
     
     var customMixes : [Mix] = Array()
@@ -60,7 +65,8 @@ class customDrinksInterfaceController: WKInterfaceController, WatchDataChangedDe
     override func contextForSegue(withIdentifier segueIdentifier: String, in table: WKInterfaceTable, rowIndex: Int) -> Any? {
         if segueIdentifier == "customRow"
         {
-            return customMixes[rowIndex].ingredients
+            let context : IngredientsAndMixName = IngredientsAndMixName(ingredients: customMixes[rowIndex].ingredients, mixName: customMixes[rowIndex].mixDescription)
+            return context
         }
         return nil
     }

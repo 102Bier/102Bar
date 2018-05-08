@@ -9,6 +9,20 @@
 import WatchKit
 class defaultDrinkInterfaceController: WKInterfaceController, WatchDataChangedDelegate {
     
+    func newWatchData(data: Data) {
+        
+        NSKeyedUnarchiver.setClass(Mix.self, forClassName: "Mix")
+        NSKeyedUnarchiver.setClass(Drink.self, forClassName: "Drink")
+        NSKeyedUnarchiver.setClass(DrinkType.self, forClassName: "DrinkType")
+        NSKeyedUnarchiver.setClass(DrinkGroup.self, forClassName: "DrinkGroup")
+        
+        if let mixes = (NSKeyedUnarchiver.unarchiveObject(with: data) as? [Mix])
+        {
+            defaultMixes = mixes
+        }
+    }
+    
+    
     @IBOutlet var tableView: WKInterfaceTable!
     
     var defaultMixes : [Mix] = Array()
@@ -62,7 +76,8 @@ class defaultDrinkInterfaceController: WKInterfaceController, WatchDataChangedDe
     override func contextForSegue(withIdentifier segueIdentifier: String, in table: WKInterfaceTable, rowIndex: Int) -> Any? {
         if segueIdentifier == "defaultRow"
         {
-            return defaultMixes[rowIndex].ingredients
+            let context : IngredientsAndMixName = IngredientsAndMixName(ingredients: defaultMixes[rowIndex].ingredients, mixName: defaultMixes[rowIndex].mixDescription)
+            return context
         }
         return nil
     }

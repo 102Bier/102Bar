@@ -1,5 +1,5 @@
 //
-//  ingredientsInterfaceController.swift
+//  IngredientsInterfaceController.swift
 //  102BarWKExt Extension
 //
 //  Created by Justin Busse on 07.05.18.
@@ -16,9 +16,10 @@ class IngredientsInterfaceController : WKInterfaceController {
     override func awake(withContext context: Any?) {
         if context != nil
         {
-            if (context as! [Drink]).count > 0
+            if let contextCheck = context as? IngredientsAndMixName
             {
-                ingredients = context as! [Drink]
+                ingredients = contextCheck.ingredients
+                self.setTitle(contextCheck.mixName)
             }
         }
         super.awake(withContext: context)
@@ -38,12 +39,12 @@ class IngredientsInterfaceController : WKInterfaceController {
     }
     
     func loadTableData() {
-        tableView.setNumberOfRows( ingredients.count, withRowType: "defaultRowController")
+        tableView.setNumberOfRows( ingredients.count, withRowType: "ingredientsRowController")
         for (index, rowModel) in ingredients.enumerated() {
-            
-            if let ingredientRowController = tableView.rowController(at: index) as? IngredientRowController
+            if let ingredientsRowController = tableView.rowController(at: index) as? IngredientRowController
             {
-                ingredientRowController.ingredientLabel.setText(rowModel.drinkDescription)
+                ingredientsRowController.ingredientLabel.setText(rowModel.drinkDescription)
+                ingredientsRowController.percentageLabel.setText(String(rowModel.percentage))
             }
         }
     }

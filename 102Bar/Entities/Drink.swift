@@ -28,18 +28,17 @@ class Drink: NSObject, NSCoding {
         drink = aDecoder.decodeObject(forKey: "drink") as! String
         drinkType = aDecoder.decodeObject(forKey: "drinkType") as! DrinkType?
         drinkDescription = aDecoder.decodeObject(forKey: "drinkDescription") as! String
-        //percentage = aDecoder.decodeObject(forKey: "percentage") as! Int
-        percentage = 100
-        //AFO = aDecoder.decodeObject(forKey: "AFO") as! Int
-        AFO = 1
-        //connection = aDecoder.decodeObject(forKey: "connection") as! Int
-        connection = 0
+        percentage = (aDecoder.decodeObject(forKey: "percentage") as? Int) ?? 0
+        AFO = (aDecoder.decodeObject(forKey: "AFO") as? Int) ?? 9
+        connection = (aDecoder.decodeObject(forKey: "connection") as? Int) ?? 0
     }
     
     init(drink: String, drinkType: DrinkType, drinkDescription: String){
         self.drink = drink
         self.drinkType = drinkType
         self.drinkDescription = drinkDescription
+        self.percentage = 0
+        self.AFO = 9
     }
     
     init(drink: String, drinkType: DrinkType, drinkDescription: String, percentage: Int, AFO: Int, connection: Int){

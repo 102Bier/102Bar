@@ -65,21 +65,23 @@
             </objects>
             <point key="canvasLocation" x="468" y="49"/>
         </scene>
-        <!--ingredients-->
+        <!--Ingredients-->
         <scene sceneID="QyX-le-dmw">
             <objects>
-                <controller identifier="ingredients" id="kSD-5W-RCG" customClass="IngredientsInterfaceController" customModule="_02BarWKExt_Extension">
+                <controller identifier="ingredientsRowController" title="Ingredients" id="kSD-5W-RCG" customClass="IngredientsInterfaceController" customModule="_02BarWKExt_Extension">
                     <items>
                         <table alignment="left" id="RZF-U3-oAq">
                             <items>
-                                <tableRow id="vbX-W4-M4V" customClass="IngredientsRowController" customModule="_02BarWKExt_Extension">
+                                <tableRow identifier="ingredientsRowController" id="vbX-W4-M4V" customClass="IngredientRowController" customModule="_02BarWKExt_Extension">
                                     <group key="rootItem" width="1" alignment="left" id="PQT-ye-hAk">
                                         <items>
-                                            <label alignment="left" text="ingredient" id="ENb-OK-5dg"/>
+                                            <label width="77" alignment="left" text="ingredient" id="ENb-OK-5dg"/>
+                                            <label width="47" height="25" alignment="left" verticalAlignment="bottom" text="100%" textAlignment="right" id="JhV-Gf-RHq"/>
                                         </items>
                                     </group>
                                     <connections>
                                         <outlet property="ingredientLabel" destination="ENb-OK-5dg" id="qlm-YE-8qH"/>
+                                        <outlet property="percentageLabel" destination="JhV-Gf-RHq" id="PB3-S8-tv0"/>
                                     </connections>
                                 </tableRow>
                             </items>
@@ -147,7 +149,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="EaH-nE-I3v"/>
+        <segue reference="ePK-El-UAU"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="1" green="0.7646420498703137" blue="0.017813189672004182" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
 </document>

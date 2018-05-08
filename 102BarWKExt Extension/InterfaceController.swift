@@ -9,7 +9,12 @@ import WatchKit
 import Foundation
 import CoreData
 
-class InterfaceController: WKInterfaceController, WatchDataChangedDelegate{
+class InterfaceController: WKInterfaceController, WatchDataChangedDelegate {
+    
+    func newWatchData(data: Data) {
+        
+    }
+    
     
     var defaultMixes = [Mix]()
     var customMixes = [Mix]()

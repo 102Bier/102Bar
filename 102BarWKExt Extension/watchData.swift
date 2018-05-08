@@ -10,6 +10,20 @@ class WatchData {
     
     var customMixes : [Mix] = Array()
     var defaultMixes : [Mix] = Array()
+    var mixes : [Mix] = Array()
+    
+    init(data: Data, customOrDefault : String)
+    {
+        NSKeyedUnarchiver.setClass(Mix.self, forClassName: "Mix")
+        NSKeyedUnarchiver.setClass(Drink.self, forClassName: "Drink")
+        NSKeyedUnarchiver.setClass(DrinkType.self, forClassName: "DrinkType")
+        NSKeyedUnarchiver.setClass(DrinkGroup.self, forClassName: "DrinkGroup")
+        
+        if let _mixes = (NSKeyedUnarchiver.unarchiveObject(with: data) as? [Mix])
+        {
+            mixes = _mixes
+        }
+    }
     
     init(data: [String : AnyObject]) {
         
@@ -20,16 +34,16 @@ class WatchData {
         
         if let _custom = data["custom"] as? Data
         {
-            if let mixes = (NSKeyedUnarchiver.unarchiveObject(with: _custom) as? [Mix])
+            if let _mixes = (NSKeyedUnarchiver.unarchiveObject(with: _custom) as? [Mix])
             {
-                customMixes = mixes
+                customMixes = _mixes
             }
         }
         else if let _default = data["default"] as? Data
         {
-            if let mixes = (NSKeyedUnarchiver.unarchiveObject(with: _default) as? [Mix])
+            if let _mixes = (NSKeyedUnarchiver.unarchiveObject(with: _default) as? [Mix])
             {
-                defaultMixes = mixes
+                defaultMixes = _mixes
             }
         }
     }

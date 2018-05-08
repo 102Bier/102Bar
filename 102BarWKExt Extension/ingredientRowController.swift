@@ -1,5 +1,5 @@
 //
-//  ingredientRowController.swift
+//  IngredientRowController.swift
 //  102BarWKExt Extension
 //
 //  Created by Justin Busse on 07.05.18.
@@ -10,4 +10,5 @@ import WatchKit
 class IngredientRowController : NSObject
 {
     @IBOutlet var ingredientLabel: WKInterfaceLabel!
+    @IBOutlet var percentageLabel: WKInterfaceLabel!
 }
