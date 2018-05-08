@@ -2,9 +2,13 @@ import Foundation
 
 class DrinkType : NSObject, NSCoding {
     
+    // MARK: - Variables
+    
     var drinkType: String = ""
     var drinkGroup: DrinkGroup!
     var drinkTypeDescription: String = ""
+    
+    // MARK: - Encode Function
     
     func encode(with aCoder: NSCoder) {
         aCoder.encode(drinkType, forKey: "drinkType")
@@ -12,6 +16,8 @@ class DrinkType : NSObject, NSCoding {
         aCoder.encode(drinkTypeDescription, forKey: "drinkTypeDescription")
         
     }
+    
+    // MARK: - Initializer Function
     
     required init?(coder aDecoder: NSCoder) {
         drinkType = aDecoder.decodeObject(forKey: "drinkType") as! String

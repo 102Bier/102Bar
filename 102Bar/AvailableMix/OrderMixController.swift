@@ -1,19 +1,32 @@
-//
-//  orderMixController.swift
-//  102Bar
-//
-//  Created by Justin Busse on 16.04.18.
-//  Copyright © 2018 102 Bier. All rights reserved.
-//
-
 import UIKit
+
 class OrderMixController : UIViewController, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate
 {
+    // MARK: - Variables
+    
     @IBOutlet var tableView: UITableView!
     @IBOutlet var drinkNameLabel: UILabel!
     @IBOutlet var glassSizeSlider: UISlider!
     @IBOutlet var glassSizeField: UITextField!
     @IBOutlet var totalPercentageLabel: UILabel!
+    
+    var mixToOrder: Mix = Mix(mix: "", mixDescription: "", ingredients: Array())
+    var orderMode = true
+    
+    // MARK: - ViewDidLoad
+    
+    override func viewDidLoad() {
+        drinkNameLabel.text = mixToOrder.mixDescription
+        if(!orderMode)
+        {
+            glassSizeField.isEnabled = false
+            glassSizeSlider.isHidden = true
+            view.constraints.first(where: { $0.identifier == "tableViewTop" })?.constant -= (glassSizeSlider.frame.height) //adjust the top constraint of the tableView to the missing slider
+        }
+        super.viewDidLoad()
+    }
+    
+    // MARK: - Action Event Functions
     
     @IBAction func tableViewTapped(_ sender: UITapGestureRecognizer) {
         view.endEditing(true)
@@ -25,20 +38,6 @@ class OrderMixController : UIViewController, UITableViewDelegate, UITableViewDat
     
     @IBAction func glassSizeSliderChanged(_ sender: UISlider) {
        glassSizeField.text = String(Int((480 * sender.value) + 20))
-    }
-    
-    var mixToOrder: Mix = Mix(mix: "", mixDescription: "", ingredients: Array())
-    var orderMode = true
-    
-    override func viewDidLoad() {
-        drinkNameLabel.text = mixToOrder.mixDescription
-        if(!orderMode)
-        {
-            glassSizeField.isEnabled = false
-            glassSizeSlider.isHidden = true
-            view.constraints.first(where: { $0.identifier == "tableViewTop" })?.constant -= (glassSizeSlider.frame.height) //adjust the top constraint of the tableView to the missing slider
-        }
-        super.viewDidLoad()
     }
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
@@ -67,10 +66,10 @@ class OrderMixController : UIViewController, UITableViewDelegate, UITableViewDat
         let allowedCharacters = CharacterSet.decimalDigits
         var validCharacterCount : Int = 0
         if let rangeOfCharactersAllowed = string.rangeOfCharacter(from: allowedCharacters) { // if replacementText contains just valid characters
-            validCharacterCount = string.characters.distance(from: rangeOfCharactersAllowed.lowerBound, to: rangeOfCharactersAllowed.upperBound)
+            validCharacterCount = string.distance(from: rangeOfCharactersAllowed.lowerBound, to: rangeOfCharactersAllowed.upperBound)
         }
         
-        if validCharacterCount != string.characters.count
+        if validCharacterCount != string.count
         {
             return false
         }
@@ -135,7 +134,7 @@ class OrderMixController : UIViewController, UITableViewDelegate, UITableViewDat
         }
         else if textField.tag == 1 //percentage
         {
-            if let text = textField.text
+            if textField.text != nil
             {
                 //totalPercentageLabel.text = text + "%"
             }

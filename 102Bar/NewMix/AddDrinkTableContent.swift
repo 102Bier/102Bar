@@ -1,12 +1,8 @@
-//
-//  AddDrinkTableContent.swift
-//  102Bar
-//
-//  Created by Justin Busse on 26.03.18.
-//  Copyright © 2018 102 Bier. All rights reserved.
-//
 import Foundation
+
 class AddDrinkTableContent {
+    
+    // MARK: - Variables
     
     var percentages : [String]
     struct SectionAndObjects {
@@ -15,11 +11,11 @@ class AddDrinkTableContent {
         var sectionPercentage : [String]!
     }
     var mixName: String!
-
     var ingredArray = [SectionAndObjects]()
     let helpText = "Drag here to add"
     let noMoreIngredientsText = "You greedy little bitch"
     
+    // MARK: - Initializing Function
     
     init()
     {

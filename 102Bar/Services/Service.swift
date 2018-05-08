@@ -6,15 +6,8 @@ import WatchConnectivity
 
 class Service: NSObject, UNUserNotificationCenterDelegate, WCSessionDelegate {
     
-    func sessionDidBecomeInactive(_ session: WCSession) {
-        
-    }
+    // MARK: - Variables
     
-    func sessionDidDeactivate(_ session: WCSession) {
-        
-    }
-    
-
     static let shared = Service()
     let session : WCSession
     
@@ -39,14 +32,7 @@ class Service: NSObject, UNUserNotificationCenterDelegate, WCSessionDelegate {
     
     let defaultValues = UserDefaults.standard
     var timer = Timer()
-    
     var alamoFireManager : SessionManager = SessionManager.default
-    public enum Rights : Int{
-        case canLogin = 1       //darf sich anmelden
-        case canOrder = 2       //darf bestellen
-        case canCreateOwn = 4   //darf eigenes Getränk erstellen
-        case canOmit = 8        //darf Getränk auslassen
-    }
     
     let availableMixesArchiveUrl = { () -> URL in
         let documentsDirectories =
@@ -88,6 +74,31 @@ class Service: NSObject, UNUserNotificationCenterDelegate, WCSessionDelegate {
     }
     var users = [User]()
     
+    // MARK: - Rights Enum
+    
+    public enum Rights : Int{
+        case canLogin = 1       //darf sich anmelden
+        case canOrder = 2       //darf bestellen
+        case canCreateOwn = 4   //darf eigenes Getränk erstellen
+        case canOmit = 8        //darf Getränk auslassen
+    }
+    
+    // MARK: - WCSession Functions
+    
+    func sessionDidBecomeInactive(_ session: WCSession) {
+        
+    }
+    
+    func sessionDidDeactivate(_ session: WCSession) {
+        
+    }
+    
+    func session(_ session: WCSession, activationDidCompleteWith activationState: WCSessionActivationState, error: Error?) {
+        
+    }
+    
+    // MARK: - Initializer Function
+    
     override init() {
         BASE_URL = "http://102bier.de/102bar/"
         URL_USER_LOGIN = BASE_URL + "login.php"
@@ -119,7 +130,7 @@ class Service: NSObject, UNUserNotificationCenterDelegate, WCSessionDelegate {
         NSKeyedArchiver.setClassName("Drink", for: Drink.self)
         NSKeyedArchiver.setClassName("DrinkType", for: DrinkType.self)
         NSKeyedArchiver.setClassName("DrinkGroup", for: DrinkGroup.self)
-    
+        
         let configuration = URLSessionConfiguration.default
         configuration.timeoutIntervalForRequest = 4
         configuration.timeoutIntervalForResource = 4
@@ -137,19 +148,7 @@ class Service: NSObject, UNUserNotificationCenterDelegate, WCSessionDelegate {
         self.stopTimer()
     }
     
-    func session(_ session: WCSession,
-                 activationDidCompleteWith activationState: WCSessionActivationState,
-                 error: Error?)
-    {
-    }
-    
-    /*func sessionDidBecomeInactive(_ session: WCSession) {
-     
-    }
-    
-    func sessionDidDeactivate(_ session: WCSession) {
-     
-    }*/
+    // MARK: - Timer Functions
     
     public func initTimer(){
         timer = Timer.scheduledTimer(timeInterval: 10, target: self, selector: #selector(self.checkNotifications), userInfo: nil, repeats: true)
@@ -159,38 +158,44 @@ class Service: NSObject, UNUserNotificationCenterDelegate, WCSessionDelegate {
         timer.invalidate()
     }
     
+    // MARK: - Notification Functions
+    
     @objc public func checkNotifications(){
         let parameters: Parameters=[
             "User": defaultValues.object(forKey: "userid") as! String
         ]
         
         alamoFireManager.request(URL_CHECK_NOTIFICATIONS, method: .post, parameters: parameters).responseJSON
-        {
-            response in
-            if let result = response.result.value {
-                let jsonData = result as! NSArray
-                
-                for notifictaion in jsonData{
-                    let notificationInfo = notifictaion as! NSDictionary
-                    let pushNotification = UNMutableNotificationContent()
-                    pushNotification.title = notificationInfo.object(forKey: "Title") as! String
-                    pushNotification.body = notificationInfo.object(forKey: "Message") as! String
-                    pushNotification.sound = UNNotificationSound.default()
-                    let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 1, repeats: false)
-                    let request = UNNotificationRequest(identifier: self.getNewGUID(), content: pushNotification, trigger: trigger)
-                    UNUserNotificationCenter.current().add(request, withCompletionHandler: { (error) in
-                        if let error = error {
-                            print(error)
-                        }
-                    })
+            {
+                response in
+                if let result = response.result.value {
+                    let jsonData = result as! NSArray
+                    
+                    for notifictaion in jsonData{
+                        let notificationInfo = notifictaion as! NSDictionary
+                        let pushNotification = UNMutableNotificationContent()
+                        pushNotification.title = notificationInfo.object(forKey: "Title") as! String
+                        pushNotification.body = notificationInfo.object(forKey: "Message") as! String
+                        pushNotification.sound = UNNotificationSound.default()
+                        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 1, repeats: false)
+                        let request = UNNotificationRequest(identifier: self.getNewUUID(), content: pushNotification, trigger: trigger)
+                        UNUserNotificationCenter.current().add(request, withCompletionHandler: { (error) in
+                            if let error = error {
+                                print(error)
+                            }
+                        })
+                    }
                 }
-            }
         }
     }
+    
+    // MARK: - User Rights Functions
     
     public func hasUserRight(right: Int) -> Bool{
         return (UserDefaults.standard.integer(forKey: "userrights") & right) > 0
     }
+    
+    // MARK: - Account Functions
     
     public func login(username:String, password:String, callback: @escaping (_ success: String?) -> Void){
         
@@ -239,7 +244,7 @@ class Service: NSObject, UNUserNotificationCenterDelegate, WCSessionDelegate {
                         callback("A")
                     }else{
                         //error message in case of invalid credential
-                       callback("Wrong username or password")
+                        callback("Wrong username or password")
                     }
                     
                 }
@@ -280,6 +285,8 @@ class Service: NSObject, UNUserNotificationCenterDelegate, WCSessionDelegate {
                 }
         }
     }
+        
+    // MARK: - Available Ingredient and Mixes Functions
     
     public func getAvailableDrinkGroups(callback: @escaping (_ success: Bool?) -> Void){
         alamoFireManager.request(self.URL_AVAILABLE_DRINK_GROUPS).responseJSON
@@ -402,6 +409,81 @@ class Service: NSObject, UNUserNotificationCenterDelegate, WCSessionDelegate {
         }
     }
     
+    // MARK: - Custom Mixes Functions
+    
+    public func getCustomMixes(callback: @escaping (_ success: Bool?) -> Void){
+        
+        alamoFireManager.request(self.URL_GET_CUSTOM_MIXES_ROOT).responseJSON
+            {
+                response in
+                if let result = response.result.value {
+                    self.customMixes = Array()
+                    let rootArray = result as! NSArray
+                    for root in rootArray{
+                        let mixDictionary = root as! NSDictionary
+                        let tmpMix = mixDictionary.object(forKey: "CustomMix") as! String
+                        let tmpMixDescription = mixDictionary.object(forKey: "Description") as! String
+                        let tmpOrderedByUser = mixDictionary.object(forKey: "User") as! String
+                        let tmpCustomMix = Mix(mix: tmpMix, mixDescription: tmpMixDescription, ingredients: [Drink](), orderedByUser: tmpOrderedByUser)
+                        self.customMixes.append(tmpCustomMix)
+                    }
+                    self.alamoFireManager.request(self.URL_GET_CUSTOM_MIXES_ING).responseJSON{
+                        response1 in
+                        if let result1 = response1.result.value{
+                            let ingArray = result1 as! NSArray
+                            for ing in ingArray{
+                                let ingDic = ing as! NSDictionary
+                                let ingRoot = ingDic.object(forKey: "Root") as! String
+                                let ingGUID = ingDic.object(forKey: "Reference") as! String
+                                let ingPercentage = Int(ingDic.object(forKey: "Percentage") as! String)
+                                let ingAFO = Int(ingDic.object(forKey: "AFO") as! String)
+                                for rootToFill in self.customMixes where rootToFill.mix == ingRoot{
+                                    let ingToChange = self.availableIngredients.first(where: {$0.drink == ingGUID})?.clone()
+                                    ingToChange?.percentage = ingPercentage!
+                                    ingToChange?.AFO = ingAFO!
+                                    rootToFill.ingredients.append(ingToChange!)
+                                }
+                            }
+                            self.customUserMixes = Array()
+                            for mix in self.customMixes{
+                                if(mix.orderedByUser == UserDefaults.standard.object(forKey: "userid") as! String){
+                                    self.customUserMixes.append(mix.clone())
+                                }
+                            }
+                            callback(true)
+                        }else{
+                            callback(false)
+                        }
+                    }
+                }
+        }
+    }
+    
+    public func customMix(mixToAdd: Mix, add: Bool, callback: @escaping (_ success: String?) -> Void){
+        let ingredientsJSON: String = JSONSerializer.toJson(mixToAdd.ingredients)
+        let index = ingredientsJSON.index(ingredientsJSON.startIndex, offsetBy: 8)
+        let ingredients = ingredientsJSON[index...]
+        
+        let parameters: Parameters=[
+            "Mix": mixToAdd.mix,
+            "Description": mixToAdd.mixDescription,
+            "Ingredients": ingredients,
+            "User": defaultValues.object(forKey: "userid") as! String,
+            "Add": add ? "1" : "0"
+        ]
+        
+        alamoFireManager.request(URL_CUSTOM_MIX, method: .post, parameters: parameters).responseJSON
+            {
+                response in
+                if let result = response.result.value {
+                    let jsonData = result as! NSDictionary
+                    callback(jsonData.value(forKey: "message") as? String)
+                }
+        }
+    }
+    
+    // MARK: - Ordered Mixes Functions
+    
     public func getOrderedMixes(callback: @escaping (_ success: Bool?) -> Void){
         alamoFireManager.request(self.URL_ORDERED_MIXES_ROOT).responseJSON
             {
@@ -479,7 +561,7 @@ class Service: NSObject, UNUserNotificationCenterDelegate, WCSessionDelegate {
             "Title": title,
             "Reason": reason,
             "OrderedByUser": mixToRemove.orderedByUser,
-        ]
+            ]
         
         Alamofire.request(URL_REMOVE_ORDERED_MIX, method: .post, parameters: parameters).responseJSON
             {
@@ -492,76 +574,7 @@ class Service: NSObject, UNUserNotificationCenterDelegate, WCSessionDelegate {
         }
     }
     
-    public func getCustomMixes(callback: @escaping (_ success: Bool?) -> Void){
-        
-        alamoFireManager.request(self.URL_GET_CUSTOM_MIXES_ROOT).responseJSON
-            {
-                response in
-                if let result = response.result.value {
-                    self.customMixes = Array()
-                    let rootArray = result as! NSArray
-                    for root in rootArray{
-                        let mixDictionary = root as! NSDictionary
-                        let tmpMix = mixDictionary.object(forKey: "CustomMix") as! String
-                        let tmpMixDescription = mixDictionary.object(forKey: "Description") as! String
-                        let tmpOrderedByUser = mixDictionary.object(forKey: "User") as! String
-                        let tmpCustomMix = Mix(mix: tmpMix, mixDescription: tmpMixDescription, ingredients: [Drink](), orderedByUser: tmpOrderedByUser)
-                        self.customMixes.append(tmpCustomMix)
-                    }
-                    self.alamoFireManager.request(self.URL_GET_CUSTOM_MIXES_ING).responseJSON{
-                        response1 in
-                        if let result1 = response1.result.value{
-                            let ingArray = result1 as! NSArray
-                            for ing in ingArray{
-                                let ingDic = ing as! NSDictionary
-                                let ingRoot = ingDic.object(forKey: "Root") as! String
-                                let ingGUID = ingDic.object(forKey: "Reference") as! String
-                                let ingPercentage = Int(ingDic.object(forKey: "Percentage") as! String)
-                                let ingAFO = Int(ingDic.object(forKey: "AFO") as! String)
-                                for rootToFill in self.customMixes where rootToFill.mix == ingRoot{
-                                    let ingToChange = self.availableIngredients.first(where: {$0.drink == ingGUID})?.clone()
-                                    ingToChange?.percentage = ingPercentage!
-                                    ingToChange?.AFO = ingAFO!
-                                    rootToFill.ingredients.append(ingToChange!)
-                                }
-                            }
-                            self.customUserMixes = Array()
-                            for mix in self.customMixes{
-                                if(mix.orderedByUser == UserDefaults.standard.object(forKey: "userid") as! String){
-                                    self.customUserMixes.append(mix.clone())
-                                }
-                            }
-                            callback(true)
-                        }else{
-                            callback(false)
-                        }
-                    }
-                }
-            }
-    }
-    
-    public func customMix(mixToAdd: Mix, add: Bool, callback: @escaping (_ success: String?) -> Void){
-        let ingredientsJSON: String = JSONSerializer.toJson(mixToAdd.ingredients)
-        let index = ingredientsJSON.index(ingredientsJSON.startIndex, offsetBy: 8)
-        let ingredients = ingredientsJSON[index...]
-
-        let parameters: Parameters=[
-            "Mix": mixToAdd.mix,
-            "Description": mixToAdd.mixDescription,
-            "Ingredients": ingredients,
-            "User": defaultValues.object(forKey: "userid") as! String,
-            "Add": add ? "1" : "0"
-        ]
-        
-        alamoFireManager.request(URL_CUSTOM_MIX, method: .post, parameters: parameters).responseJSON
-            {
-                response in
-                if let result = response.result.value {
-                    let jsonData = result as! NSDictionary
-                    callback(jsonData.value(forKey: "message") as? String)
-                }
-        }
-    }
+    // MARK: - User Functions
     
     public func getUseres(callback: @escaping (_ success: Bool?) -> Void){
         alamoFireManager.request(URL_USER_INFO).responseJSON{
@@ -586,7 +599,9 @@ class Service: NSObject, UNUserNotificationCenterDelegate, WCSessionDelegate {
         }
     }
     
-    public func getNewGUID() -> String{
+    // MARK: - Generate UUID
+    
+    public func getNewUUID() -> String{
         return UUID.init().uuidString.lowercased()
     }
 }

@@ -1,6 +1,16 @@
 import Foundation
 
 class Mix: NSObject, NSCoding {
+    
+    // MARK: - Variables
+    
+    var mix: String = ""
+    var mixDescription: String = ""
+    var ingredients: [Drink]!
+    var orderedByUser: String = ""
+    
+    // MARK: - Encode Function
+    
     func encode(with aCoder: NSCoder) {
         aCoder.encode(mix, forKey: "mix")
         aCoder.encode(mixDescription, forKey: "mixDescription")
@@ -8,17 +18,14 @@ class Mix: NSObject, NSCoding {
         aCoder.encode(orderedByUser, forKey: "orderedByUser")
     }
     
+    // MARK: - Initializer Function
+
     required init?(coder aDecoder: NSCoder) {
         mix = aDecoder.decodeObject(forKey: "mix") as! String
         mixDescription = aDecoder.decodeObject(forKey: "mixDescription") as! String
         ingredients = aDecoder.decodeObject(forKey: "ingredients") as! [Drink]?
         orderedByUser = aDecoder.decodeObject(forKey: "orderedByUser") as! String
     }
-    
-    var mix: String = ""
-    var mixDescription: String = ""
-    var ingredients: [Drink]!
-    var orderedByUser: String = ""
     
     init(mix: String, mixDescription: String, ingredients: [Drink]){
         self.mix = mix
@@ -32,6 +39,8 @@ class Mix: NSObject, NSCoding {
         self.ingredients = ingredients
         self.orderedByUser = orderedByUser
     }
+    
+    // MARK: - Clone Functions
     
     func clone() -> Mix{
         return Mix(mix: self.mix, mixDescription: self.mixDescription, ingredients: self.cloneIngArray(), orderedByUser: self.orderedByUser)

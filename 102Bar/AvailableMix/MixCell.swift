@@ -1,21 +1,19 @@
-//
-//  ingredCell.swift
-//  102Bar
-//
-//  Created by Justin Busse on 10.04.18.
-//  Copyright © 2018 102 Bier. All rights reserved.
-//
-
 import UIKit
+
 class MixCell : UITableViewCell {
+    
+    // MARK: - Variables
+    
     @IBOutlet var mixTitle: UILabel!
+    
+    // MARK: - Functions
     
     func addOrReplaceLabel(ingredient: String, yPos: Int)
     {
         var labels : [UILabel] = Array()
         for i in 0..<self.subviews.count
         {
-            if self.subviews[i] is UILabel // get all UILabel
+            if self.subviews[i] is UILabel
             {
                 labels.append(self.subviews[i] as! UILabel)
             }
@@ -26,14 +24,14 @@ class MixCell : UITableViewCell {
         
         for i in 0..<labels.count
         {
-            if labels[i].frame.origin == labelRect.origin //look if at this point already exists a UILabel
+            if labels[i].frame.origin == labelRect.origin
             {
-                labels[i].text = ingredient //if yes, just update its text
+                labels[i].text = ingredient
                 return
             }
         }
         
-        let label = UILabel(frame: labelRect) //if not, put a UILabel there
+        let label = UILabel(frame: labelRect)
         label.text = ingredient
         self.addSubview(label)
     }

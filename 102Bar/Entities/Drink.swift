@@ -2,12 +2,16 @@ import Foundation
 
 class Drink: NSObject, NSCoding {
     
+    // MARK: - Variables
+    
     var drink: String = ""
     var drinkType: DrinkType!
     var drinkDescription: String = ""
     var percentage: Int = 0
     var AFO: Int = 0
     var connection: Int = 0
+    
+    // MARK: - Encode Function
     
     func encode(with aCoder: NSCoder) {
         aCoder.encode(drink, forKey: "drink")
@@ -17,6 +21,8 @@ class Drink: NSObject, NSCoding {
         aCoder.encode(AFO, forKey: "AFO")
         aCoder.encode(connection, forKey: "connection")
     }
+    
+    // MARK: - Initializer Functions
     
     required init?(coder aDecoder: NSCoder) {
         drink = aDecoder.decodeObject(forKey: "drink") as! String
@@ -44,14 +50,13 @@ class Drink: NSObject, NSCoding {
         self.AFO = AFO
     }
     
-    func addPercentage (percentage: Int)
-    {
-        self.percentage = percentage
-    }
+    // MARK: - Clone Function
     
     func clone() -> Drink {
         return Drink(drink: self.drink, drinkType: self.drinkType, drinkDescription: self.drinkDescription, percentage: self.percentage, AFO: self.AFO, connection: self.connection)
     }
+    
+    // MARK: - ToString Function
     
     func toString() -> String {
         return drinkDescription == drinkType.drinkTypeDescription ? drinkDescription : "\(drinkType.drinkTypeDescription) (\(drinkDescription))"

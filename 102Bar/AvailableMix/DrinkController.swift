@@ -2,17 +2,50 @@ import UIKit
 
 class DrinkController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
+    // MARK: - Variables
+    
     @IBOutlet var tableView: UITableView!
     @IBOutlet var segControl: UISegmentedControl!
+    @IBOutlet var CustomDrinkTable: UITableView!
+    
+    let refreshControl = UIRefreshControl()
+    
+    // MARK: - ViewWillAppear
+    
+    override func viewWillAppear(_ animated: Bool) {
+        tableView.reloadData()
+        super.viewWillAppear(animated)
+    }
+    
+    // MARK: - ViewDidLoad
+    
+    override func viewDidLoad() {
+        // Add Refresh Control to Table View
+        if #available(iOS 10.0, *) {
+            tableView.refreshControl = refreshControl
+        } else {
+            tableView.addSubview(refreshControl)
+        }
+        refreshControl.addTarget(self, action: #selector(refreshTable(_:)), for: .valueChanged)
+        Service.shared.getCustomMixes {
+            success in
+            self.tableView.reloadData()
+        }
+        super.viewDidLoad()
+        if(!Service.shared.hasUserRight(right: Service.Rights.canCreateOwn.rawValue)){
+            self.navigationItem.setRightBarButton(nil, animated: true)
+            segControl.isHidden = true
+        }
+        tableView.allowsSelection = Service.shared.hasUserRight(right: Service.Rights.canOrder.rawValue)
+    }
+    
+    // MARK: - Action Event Functions
     
     @IBAction func segSwitched(_ sender: UISegmentedControl) {
         if sender.selectedSegmentIndex == 0 {
         }
         tableView.reloadData()
     }
-    
-    
-    @IBOutlet var CustomDrinkTable: UITableView!
     
     @IBAction func LogoutTapped(_ sender: Any) {
         
@@ -31,37 +64,19 @@ class DrinkController: UIViewController, UITableViewDelegate, UITableViewDataSou
         present(vc, animated: true, completion: nil)
     }
     
+    @objc func orderTapped() {
+        if let vc = navigationController?.topViewController
+        {
+            (vc as! OrderMixController).orderTapped()
+        }
+        navigationController?.popViewController(animated: true)
+    }
     
     @IBAction func viewTapped(_ sender: UITapGestureRecognizer) {
-        //print("lol")
-    }
-    
-    let refreshControl = UIRefreshControl()
-    
-    override func viewDidLoad() {
-        // Add Refresh Control to Table View
-        if #available(iOS 10.0, *) {
-            tableView.refreshControl = refreshControl
-        } else {
-            tableView.addSubview(refreshControl)
-        }
-        refreshControl.addTarget(self, action: #selector(refreshTable(_:)), for: .valueChanged)
-        Service.shared.getCustomMixes {
-            success in
-            Service.shared.getAvailableMixes {
-                success in
-                 self.tableView.reloadData()
-            }
-        }
-        
-        super.viewDidLoad()
-        if(!Service.shared.hasUserRight(right: Service.Rights.canCreateOwn.rawValue)){
-            self.navigationItem.setRightBarButton(nil, animated: true)
-            segControl.isHidden = true
-        }
-        tableView.allowsSelection = Service.shared.hasUserRight(right: Service.Rights.canOrder.rawValue)
         
     }
+    
+    // MARK: - Refresh Table Functions
     
     @objc private func refreshTable(_ sender: Any) {
         fetchDrinkData()
@@ -84,6 +99,8 @@ class DrinkController: UIViewController, UITableViewDelegate, UITableViewDataSou
         default: break
         }
     }
+    
+    // MARK: - Init Table View Functions
     
     func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCellEditingStyle {
         if segControl.selectedSegmentIndex == 1 {
@@ -148,19 +165,6 @@ class DrinkController: UIViewController, UITableViewDelegate, UITableViewDataSou
         vc.navigationItem.title = "Order " + mix.mixDescription
         (vc as! OrderMixController).mixToOrder = mix
         navigationController?.pushViewController(vc, animated: true)
-    }
-    
-    @objc func orderTapped() {
-        if let vc = navigationController?.topViewController
-        {
-            (vc as! OrderMixController).orderTapped()
-        }
-        navigationController?.popViewController(animated: true)
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        tableView.reloadData()
-        super.viewWillAppear(animated)
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

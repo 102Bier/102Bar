@@ -1,7 +1,8 @@
 import UIKit
-import Alamofire
 
 class RegisterController: UIViewController {
+    
+    // MARK: - Variables
     
     @IBOutlet weak var _firstname: UITextField!
     @IBOutlet weak var _lastname: UITextField!
@@ -11,11 +12,13 @@ class RegisterController: UIViewController {
     @IBOutlet weak var _confirmPassword: UITextField!
     @IBOutlet weak var labelMessage: UILabel!
     
-    let service = Service()
+    // MARK: - ViewDidLoad
     
-    @IBAction func dismissKeyboard(_ sender: UITapGestureRecognizer) {
-        view.endEditing(true)
+    override func viewDidLoad() {
+        super.viewDidLoad()
     }
+    
+    // MARK: - Action Event Functions
     
     @IBAction func RegisterButton(_ sender: UIButton) {
         
@@ -29,7 +32,7 @@ class RegisterController: UIViewController {
             return
         }
         
-        self.service.register(username: _username.text!, firstname: _firstname.text!, lastname: _lastname.text!, email: _email.text!, password: _password.text!){
+        Service.shared.register(username: _username.text!, firstname: _firstname.text!, lastname: _lastname.text!, email: _email.text!, password: _password.text!){
             success in
             self.saveAccountDataToUserDefault(username: self._username.text!, password: self._password.text!)
             UserDefaults.standard.set(true, forKey: "hasData")
@@ -42,8 +45,10 @@ class RegisterController: UIViewController {
         self.dismiss(animated: true, completion: nil)
     }
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    // MARK: - Tap Gesture Recognizer
+    
+    @IBAction func dismissKeyboard(_ sender: UITapGestureRecognizer) {
+        view.endEditing(true)
     }
     
     func saveAccountDataToUserDefault(username : String, password : String)
