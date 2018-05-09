@@ -17,6 +17,7 @@ class customDrinksInterfaceController: WKInterfaceController, WatchDataChangedDe
     @IBOutlet var tableView: WKInterfaceTable!
     
     var customMixes : [Mix] = Array()
+    var alc : [Bool] = Array()
     
     override func awake(withContext context: Any?) {
         if context != nil
@@ -26,6 +27,7 @@ class customDrinksInterfaceController: WKInterfaceController, WatchDataChangedDe
             }
         }
         WatchSessionManager.sharedManager.addWatchDataChangedDelegate(delegate: self)
+        WatchSessionManager.sharedManager.requestAlcoholic(who : "custom")
         super.awake(withContext: context)
         loadTableData()
         // Configure interface objects here.
@@ -46,8 +48,11 @@ class customDrinksInterfaceController: WKInterfaceController, WatchDataChangedDe
         if watchData.customMixes.count > 0
         {
             customMixes = watchData.customMixes
-            loadTableData()
         }
+        if watchData.customAlc.count == customMixes.count {
+            alc = watchData.customAlc
+        }
+        loadTableData()
     }
     
     func loadTableData() {
@@ -57,6 +62,18 @@ class customDrinksInterfaceController: WKInterfaceController, WatchDataChangedDe
             if let customRowController = tableView.rowController(at: index) as? customRowController
             {
                 customRowController.mixLabel.setText(rowModel.mixDescription)
+                
+                if alc.count >= customMixes.count
+                {
+                    if alc[index] == true
+                    {
+                        customRowController.alcLabel.setText("alc")
+                    }
+                    else
+                    {
+                        customRowController.alcLabel.setText("no alc")
+                    }
+                }
                 //print("row set \(rowModel.mixDescription)")
             }
         }

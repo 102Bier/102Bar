@@ -70,6 +70,14 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
+         contextName = "WatchSessionManager.session(_:didReceiveMessage:):WatchSessionManager.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "alc.count">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "main:AppDelegate.swift">
          <PersistentStrings>
             <PersistentString
@@ -129,6 +137,9 @@
          contextName = "defaultDrinkInterfaceController.watchDataDidUpdate(watchData:):defaultDrinkInterfaceController.swift">
          <PersistentStrings>
             <PersistentString
+               value = "watchData.defaultAlc.count">
+            </PersistentString>
+            <PersistentString
                value = "defaultMixes.count">
             </PersistentString>
          </PersistentStrings>
@@ -186,10 +197,10 @@
          contextName = "defaultDrinkInterfaceController.loadTableData():defaultDrinkInterfaceController.swift">
          <PersistentStrings>
             <PersistentString
-               value = "availableMixes">
+               value = "availableMixes.count">
             </PersistentString>
             <PersistentString
-               value = "availableMixes.count">
+               value = "availableMixes">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -197,13 +208,13 @@
          contextName = "orderMixController.tableView(_:cellForRowAt:):orderMixController.swift">
          <PersistentStrings>
             <PersistentString
-               value = "mixToOrder.ingredients[indexPath.row]">
+               value = "cell.percentageTextField.text">
             </PersistentString>
             <PersistentString
                value = "cell.drinkLabel.text">
             </PersistentString>
             <PersistentString
-               value = "cell.percentageTextField.text">
+               value = "mixToOrder.ingredients[indexPath.row]">
             </PersistentString>
          </PersistentStrings>
       </ContextState>

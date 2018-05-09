@@ -11,6 +11,8 @@ class WatchData {
     var customMixes : [Mix] = Array()
     var defaultMixes : [Mix] = Array()
     var mixes : [Mix] = Array()
+    var customAlc : [Bool] = Array()
+    var defaultAlc : [Bool] = Array()
     
     init(data: Data, customOrDefault : String)
     {
@@ -22,6 +24,18 @@ class WatchData {
         if let _mixes = (NSKeyedUnarchiver.unarchiveObject(with: data) as? [Mix])
         {
             mixes = _mixes
+        }
+    }
+    
+    init(data: [Bool], customOrDefault : String)
+    {
+        if customOrDefault == "custom"
+        {
+            customAlc = data
+        }
+        else if customOrDefault == "default"
+        {
+            defaultAlc = data
         }
     }
     

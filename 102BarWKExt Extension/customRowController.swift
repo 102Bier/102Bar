@@ -10,4 +10,5 @@ import WatchKit
 class customRowController : NSObject {
     
     @IBOutlet var mixLabel: WKInterfaceLabel!
+    @IBOutlet var alcLabel: WKInterfaceLabel!
 }

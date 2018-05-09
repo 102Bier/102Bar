@@ -80,6 +80,28 @@ class Service: NSObject, UNUserNotificationCenterDelegate, WCSessionDelegate {
         
     }
     
+    func session(_ session: WCSession, didReceiveMessage message: [String : Any]) {
+        if let who = message["alcoholic"] as? String
+        {
+            if who == "custom"
+            {
+                var alc = [Bool]()
+                for i in 0..<customUserMixes.count{
+                    alc.append(customUserMixes[i].ingredients.contains(where: {$0.drinkType.drinkGroup.alcoholic})) //if one ingredient is alcoholic, the whole mix is as well
+                }
+                session.sendMessage(["customAlc":alc], replyHandler: nil, errorHandler: {error in print(error.localizedDescription)})
+            }
+            else if who == "default"
+            {
+                var alc = [Bool]()
+                for i in 0..<availableMixes.count{
+                    alc.append(availableMixes[i].ingredients.contains(where: {$0.drinkType.drinkGroup.alcoholic})) //if one ingredient is alcoholic, the whole mix is as well
+                }
+                session.sendMessage(["defaultAlc":alc], replyHandler: nil, errorHandler: {error in print(error.localizedDescription)})
+            }
+        }
+    }
+    
     // MARK: - Initializer Function
     
     override init() {
@@ -267,6 +289,24 @@ class Service: NSObject, UNUserNotificationCenterDelegate, WCSessionDelegate {
                     callback("ERROR")
                 }
         }
+    }
+    
+    /* saves user data, stops timer and sends logout message to watch*/
+    public func logout()
+    {
+        let username = UserDefaults.standard.string(forKey: "username")
+        let hasData = UserDefaults.standard.bool(forKey: "hasData")
+        UserDefaults.standard.removePersistentDomain(forName: Bundle.main.bundleIdentifier!)
+        if username != "Guest"
+        {
+            UserDefaults.standard.set(username, forKey: "username")
+            UserDefaults.standard.set(hasData, forKey: "hasData")
+        }
+        UserDefaults.standard.set(true, forKey: "loggedOut" )
+        
+        stopTimer()
+        
+        //TODO send logout message to watch
     }
         
     // MARK: - Available Ingredient and Mixes Functions

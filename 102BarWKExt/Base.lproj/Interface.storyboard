@@ -46,8 +46,8 @@
                                 <tableRow identifier="defaultRowController" id="X7L-aT-sDd" customClass="defaultRowController" customModule="_02BarWKExt_Extension">
                                     <group key="rootItem" width="1" alignment="left" id="ncO-hM-m9n">
                                         <items>
-                                            <label alignment="left" text="Default Drink" textAlignment="left" id="hVp-eG-EE1"/>
-                                            <label width="44" alignment="right" verticalAlignment="bottom" text="no alc" textAlignment="right" id="ONr-tp-neY">
+                                            <label alignment="left" text="Default Drink" textAlignment="left" numberOfLines="2" id="hVp-eG-EE1"/>
+                                            <label alignment="right" verticalAlignment="bottom" textAlignment="right" id="ONr-tp-neY">
                                                 <color key="textColor" red="1" green="0.58823529409999997" blue="0.23921568630000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <fontDescription key="font" type="italicSystem" pointSize="16"/>
                                             </label>
@@ -57,6 +57,7 @@
                                         </connections>
                                     </group>
                                     <connections>
+                                        <outlet property="alcLabel" destination="ONr-tp-neY" id="Icj-Gf-ohc"/>
                                         <outlet property="mixLabel" destination="hVp-eG-EE1" id="Kmi-6h-OSH"/>
                                     </connections>
                                 </tableRow>
@@ -112,8 +113,8 @@
                                 <tableRow identifier="customRowController" id="BLk-74-uUz" customClass="customRowController" customModule="_02BarWKExt_Extension">
                                     <group key="rootItem" width="1" alignment="left" id="ltU-1P-1al">
                                         <items>
-                                            <label alignment="left" text="Custom Drink" id="zVA-kL-yLz"/>
-                                            <label width="44" alignment="right" verticalAlignment="bottom" text="no alc" textAlignment="right" id="Dfx-xT-70x">
+                                            <label alignment="left" text="Custom Drink" textAlignment="left" numberOfLines="2" id="zVA-kL-yLz"/>
+                                            <label alignment="right" verticalAlignment="bottom" textAlignment="right" id="Dfx-xT-70x">
                                                 <color key="textColor" red="1" green="0.58823529409999997" blue="0.23921568630000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <fontDescription key="font" type="italicSystem" pointSize="16"/>
                                             </label>
@@ -123,6 +124,7 @@
                                         </connections>
                                     </group>
                                     <connections>
+                                        <outlet property="alcLabel" destination="Dfx-xT-70x" id="8Pe-5d-lQg"/>
                                         <outlet property="mixLabel" destination="zVA-kL-yLz" id="ZaT-EB-3fU"/>
                                     </connections>
                                 </tableRow>

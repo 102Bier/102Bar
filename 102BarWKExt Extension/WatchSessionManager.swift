@@ -16,7 +16,7 @@ class WatchSessionManager: NSObject, WCSessionDelegate {
     
     var customOrDefault : CustomOrDefault = ._none
     
-    enum CustomOrDefault {
+    public enum CustomOrDefault {
         case _custom
         case _default
         case _none
@@ -85,28 +85,21 @@ class WatchSessionManager: NSObject, WCSessionDelegate {
         print("\(watchDataChangedDelegates[0] is InterfaceController)")
     }*/
     
-    func session(_ session: WCSession, didReceiveMessageData messageData: Data, replyHandler: @escaping (Data) -> Void) {
-        print("hello")
+    func session(_ session: WCSession, didReceiveMessage message: [String : Any]) {
+        if let alc = message["customAlc"] as? [Bool]
+        {
+            watchDataChangedDelegates.first(where: {$0 is customDrinksInterfaceController})?.watchDataDidUpdate(watchData: WatchData(data: alc, customOrDefault: "custom"))
+        }
+        else if let alc = message["defaultAlc"] as? [Bool]
+        {
+             watchDataChangedDelegates.first(where: {$0 is defaultDrinkInterfaceController})?.watchDataDidUpdate(watchData: WatchData(data: alc, customOrDefault: "default"))
+        }
     }
     
-
-    
-    /*func session(_ session: WCSession, didReceiveMessage message: [String : Any]) {
-        if let customOrDefaultCheck = message["customOrDefault"] as? String
-        {
-            if customOrDefaultCheck == "custom"
-            {
-                customOrDefault = ._custom
-            }
-            else if customOrDefaultCheck == "default" {
-                customOrDefault = ._default
-            }
-            else
-            {
-                customOrDefault = ._none
-            }
-        }
-    }*/
+    func session(_ session: WCSession, didReceiveMessage message: [String : Any], replyHandler: @escaping ([String : Any]) -> Void) {
+            print("lol")
+            print("wtf")
+    }
     
     private let session: WCSession? = WCSession.isSupported() ? WCSession.default : nil
     private var watchDataChangedDelegates = [WatchDataChangedDelegate]()
@@ -132,10 +125,20 @@ class WatchSessionManager: NSObject, WCSessionDelegate {
             }
         }
     }
+    
+    public func requestAlcoholic(who : String) {
+
+        session?.sendMessage(["alcoholic":who],
+                             replyHandler: nil,
+                             errorHandler:  { error in
+                                              print(error.localizedDescription)
+                                            }
+                            )
+    }
 }
 
 protocol WatchDataChangedDelegate {
     func watchDataDidUpdate(watchData: WatchData)
-    func newWatchData(data: Data)
+    //func newWatchData(data: Data)
 }
 

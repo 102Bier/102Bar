@@ -26,6 +26,7 @@ class defaultDrinkInterfaceController: WKInterfaceController, WatchDataChangedDe
     @IBOutlet var tableView: WKInterfaceTable!
     
     var defaultMixes : [Mix] = Array()
+    var alc : [Bool] = Array()
 
     override func awake(withContext context: Any?) {
         if context != nil
@@ -36,6 +37,7 @@ class defaultDrinkInterfaceController: WKInterfaceController, WatchDataChangedDe
             }
         }
         WatchSessionManager.sharedManager.addWatchDataChangedDelegate(delegate: self)
+        WatchSessionManager.sharedManager.requestAlcoholic(who : "default")
         super.awake(withContext: context)
         loadTableData()
         
@@ -57,8 +59,11 @@ class defaultDrinkInterfaceController: WKInterfaceController, WatchDataChangedDe
         if watchData.defaultMixes.count > 0
         {
             defaultMixes = watchData.defaultMixes
-            loadTableData()
         }
+        if watchData.defaultAlc.count == defaultMixes.count {
+            alc = watchData.defaultAlc
+        }
+        loadTableData()
     }
     
     func loadTableData() {
@@ -68,6 +73,18 @@ class defaultDrinkInterfaceController: WKInterfaceController, WatchDataChangedDe
             if let defaultRowController = tableView.rowController(at: index) as? defaultRowController
             {
                 defaultRowController.mixLabel.setText(rowModel.mixDescription)
+                
+                if alc.count >= defaultMixes.count
+                {
+                    if alc[index] == true
+                    {
+                        defaultRowController.alcLabel.setText("alc")
+                    }
+                    else
+                    {
+                        defaultRowController.alcLabel.setText("no alc")
+                    }
+                }
                 //print("row set \(rowModel.mixDescription)")
             }
         }
