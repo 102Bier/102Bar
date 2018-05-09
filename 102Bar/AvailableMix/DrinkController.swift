@@ -54,14 +54,7 @@ class DrinkController: UIViewController, UITableViewDelegate, UITableViewDataSou
     
     @IBAction func LogoutTapped(_ sender: Any) {
         
-        let username = UserDefaults.standard.string(forKey: "username")
-        let hasData = UserDefaults.standard.bool(forKey: "hasData")
-        UserDefaults.standard.removePersistentDomain(forName: Bundle.main.bundleIdentifier!)
-        UserDefaults.standard.set(username, forKey: "username")
-        UserDefaults.standard.set(hasData, forKey: "hasData")
-        UserDefaults.standard.set(true, forKey: "loggedOut" )
-        
-        Service.shared.stopTimer()
+        Service.shared.logout()
         
         //switching to login screen
         let storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
@@ -127,6 +120,15 @@ class DrinkController: UIViewController, UITableViewDelegate, UITableViewDataSou
             {
                 cell.addOrReplaceLabel(ingredient: Service.shared.availableMixes[indexPath.row].ingredients[i].drinkDescription, yPos: i)
             }
+            
+            if Service.shared.availableMixes[indexPath.row].ingredients.contains(where: {$0.drinkType.drinkGroup.alcoholic == true})
+            {
+                cell.alcoholicLabel.text = "alcoholic"
+            }
+            else
+            {
+                cell.alcoholicLabel.text = "non alcoholic"
+            }
             return cell
             
         case 1: //custom Drinks
@@ -135,6 +137,15 @@ class DrinkController: UIViewController, UITableViewDelegate, UITableViewDataSou
             for i in 0..<Service.shared.customUserMixes[indexPath.row].ingredients.count
             {
                 cell.addOrReplaceLabel(ingredient: Service.shared.customUserMixes[indexPath.row].ingredients[i].drinkDescription, yPos: i)
+            }
+            
+            if Service.shared.customUserMixes[indexPath.row].ingredients.contains(where: {$0.drinkType.drinkGroup.alcoholic == true})
+            {
+                cell.alcoholicLabel.text = "alcoholic"
+            }
+            else
+            {
+                cell.alcoholicLabel.text = "non alcoholic"
             }
             return cell
             

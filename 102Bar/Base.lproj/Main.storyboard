@@ -401,6 +401,7 @@
                                             <constraint firstItem="BNc-pY-1fY" firstAttribute="top" secondItem="e3j-5a-T0E" secondAttribute="top" constant="11" id="rFG-I0-M4e"/>
                                         </constraints>
                                         <connections>
+                                            <outlet property="alcoholicLabel" destination="JO6-LO-xQe" id="eQs-m2-ofj"/>
                                             <outlet property="mixTitle" destination="BNc-pY-1fY" id="dIC-yk-FtF"/>
                                         </connections>
                                     </tableViewCell>
@@ -985,6 +986,7 @@
         <image name="icon_256.png" width="256" height="256"/>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="BO2-xK-XJp"/>
         <segue reference="o1N-db-PVj"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="1" green="0.58823529409999997" blue="0.23921568630000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
