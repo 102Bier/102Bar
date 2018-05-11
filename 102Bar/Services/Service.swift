@@ -83,9 +83,9 @@ class Service: NSObject, UNUserNotificationCenterDelegate, WCSessionDelegate {
     func session(_ session: WCSession, didReceiveMessage message: [String : Any]) {
         if let who = message["alcoholic"] as? String
         {
+            var alc = [Bool]()
             if who == "custom"
             {
-                var alc = [Bool]()
                 for i in 0..<customUserMixes.count{
                     alc.append(customUserMixes[i].ingredients.contains(where: {$0.drinkType.drinkGroup.alcoholic})) //if one ingredient is alcoholic, the whole mix is as well
                 }
@@ -93,12 +93,42 @@ class Service: NSObject, UNUserNotificationCenterDelegate, WCSessionDelegate {
             }
             else if who == "default"
             {
-                var alc = [Bool]()
                 for i in 0..<availableMixes.count{
                     alc.append(availableMixes[i].ingredients.contains(where: {$0.drinkType.drinkGroup.alcoholic})) //if one ingredient is alcoholic, the whole mix is as well
                 }
                 session.sendMessage(["defaultAlc":alc], replyHandler: nil, errorHandler: {error in print(error.localizedDescription)})
             }
+        }
+        else if let drinkInfo = message["percentage"] as? String
+        {
+            var percentages = [Int]()
+            /*search customuserMixes and availableMixes for the mix matching the submitted mixId*/
+            let mix1 = availableMixes.first(where: {mix in
+                mix.mix == drinkInfo
+            })
+            
+            let mix2 = customUserMixes.first(where: {mix in
+                mix.mix == drinkInfo
+            })
+            if let mix = mix1
+            {
+                for i in 0..<mix.ingredients.count
+                {
+                    percentages.append(mix.ingredients[i].percentage)
+                }
+            }
+            else if let mix = mix2
+            {
+                for i in 0..<mix.ingredients.count
+                {
+                    percentages.append(mix.ingredients[i].percentage)
+                }
+            }
+            else
+            {
+                fatalError()
+            }
+            session.sendMessage(["percentage": percentages], replyHandler: nil, errorHandler: {error in print(error.localizedDescription)})
         }
     }
     
@@ -308,7 +338,7 @@ class Service: NSObject, UNUserNotificationCenterDelegate, WCSessionDelegate {
         
         //TODO send logout message to watch
     }
-        
+    
     // MARK: - Available Ingredient and Mixes Functions
     
     public func getAvailableDrinkGroups(callback: @escaping (_ success: Bool?) -> Void){
@@ -430,7 +460,7 @@ class Service: NSObject, UNUserNotificationCenterDelegate, WCSessionDelegate {
                             catch {
                                 //error handling
                             }
-        
+                            
                             callback(true)
                         }else{
                             callback(false)

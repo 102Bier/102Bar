@@ -8,19 +8,18 @@
 import WatchConnectivity
 class WatchSessionManager: NSObject, WCSessionDelegate {
     
-    // Instantiate the Singleton
     public static let sharedManager = WatchSessionManager()
     private override init() {
         super.init()
     }
     
-    var customOrDefault : CustomOrDefault = ._none
+//    var customOrDefault : CustomOrDefault = ._none
     
-    public enum CustomOrDefault {
-        case _custom
-        case _default
-        case _none
-    }
+//    public enum CustomOrDefault {
+//        case _custom
+//        case _default
+//        case _none
+//    }
     
     func session(_ session: WCSession, activationDidCompleteWith activationState: WCSessionActivationState, error: Error?) {
     }
@@ -100,10 +99,10 @@ class WatchSessionManager: NSObject, WCSessionDelegate {
         }
     }
     
-    func session(_ session: WCSession, didReceiveMessage message: [String : Any], replyHandler: @escaping ([String : Any]) -> Void) {
-            print("lol")
-            print("wtf")
-    }
+//    func session(_ session: WCSession, didReceiveMessage message: [String : Any], replyHandler: @escaping ([String : Any]) -> Void) {
+//            print("lol")
+//            print("wtf")
+//    }
     
     private let session: WCSession? = WCSession.isSupported() ? WCSession.default : nil
     private var watchDataChangedDelegates = [WatchDataChangedDelegate]()

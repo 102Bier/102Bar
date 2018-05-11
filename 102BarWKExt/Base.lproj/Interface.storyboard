@@ -39,11 +39,11 @@
         <!--Default-->
         <scene sceneID="zJZ-wq-oZ7">
             <objects>
-                <controller identifier="defaultRowController" title="Default" id="hh9-Gb-dzI" customClass="defaultDrinkInterfaceController" customModule="_02BarWKExt_Extension">
+                <controller identifier="defaultRowController" title="Default" id="hh9-Gb-dzI" customClass="DefaultMixInterfaceController" customModule="_02BarWKExt_Extension">
                     <items>
                         <table alignment="left" id="Bz7-Ng-K84">
                             <items>
-                                <tableRow identifier="defaultRowController" id="X7L-aT-sDd" customClass="defaultRowController" customModule="_02BarWKExt_Extension">
+                                <tableRow identifier="defaultRowController" id="X7L-aT-sDd" customClass="DefaultRowController" customModule="_02BarWKExt_Extension">
                                     <group key="rootItem" width="1" alignment="left" id="ncO-hM-m9n">
                                         <items>
                                             <label alignment="left" text="Default Drink" textAlignment="left" numberOfLines="2" id="hVp-eG-EE1"/>
@@ -82,7 +82,7 @@
                                     <group key="rootItem" width="1" alignment="left" id="PQT-ye-hAk">
                                         <items>
                                             <label alignment="left" text="ingredient" textAlignment="left" id="ENb-OK-5dg"/>
-                                            <label alignment="right" verticalAlignment="bottom" text="100%" textAlignment="right" id="JhV-Gf-RHq">
+                                            <label alignment="right" verticalAlignment="bottom" textAlignment="right" id="JhV-Gf-RHq">
                                                 <color key="textColor" red="1" green="0.58823529409999997" blue="0.23921568630000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <fontDescription key="font" type="italicSystem" pointSize="16"/>
                                             </label>
@@ -106,11 +106,11 @@
         <!--Custom-->
         <scene sceneID="hua-PI-mht">
             <objects>
-                <controller identifier="customRowController" title="Custom" id="ENP-PW-ier" customClass="customDrinksInterfaceController" customModule="_02BarWKExt_Extension">
+                <controller identifier="CustomRowController" title="Custom" id="ENP-PW-ier" customClass="CustomMixInterfaceController" customModule="_02BarWKExt_Extension">
                     <items>
                         <table alignment="left" id="B2z-nr-JpJ">
                             <items>
-                                <tableRow identifier="customRowController" id="BLk-74-uUz" customClass="customRowController" customModule="_02BarWKExt_Extension">
+                                <tableRow identifier="customRowController" id="BLk-74-uUz" customClass="CustomRowController" customModule="_02BarWKExt_Extension">
                                     <group key="rootItem" width="1" alignment="left" id="ltU-1P-1al">
                                         <items>
                                             <label alignment="left" text="Custom Drink" textAlignment="left" numberOfLines="2" id="zVA-kL-yLz"/>
@@ -163,7 +163,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="EaH-nE-I3v"/>
+        <segue reference="ePK-El-UAU"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="1" green="0.58823529409999997" blue="0.23921568630000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
 </document>
