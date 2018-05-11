@@ -369,7 +369,7 @@ class AddDrinkController : UITableViewController, UITextFieldDelegate
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        print(".............. \(segue.identifier)")
+        print(".............. \(segue.identifier ?? "no segue")" )
         if segue.identifier == "Save"
         {
             save()
@@ -423,7 +423,6 @@ class AddDrinkController : UITableViewController, UITextFieldDelegate
         }
         Service.shared.customMix(mixToAdd: Mix(mix: Service.shared.getNewUUID(), mixDescription: mixName!, ingredients: drinks), add: true){
             success in
-            //self.presentingViewController?.dismiss(animated: true, completion: nil)
         }
         self.presentingViewController?.dismiss(animated: true, completion: nil)
     }

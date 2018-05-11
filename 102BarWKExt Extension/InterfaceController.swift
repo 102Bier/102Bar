@@ -11,11 +11,9 @@ import CoreData
 
 class InterfaceController: WKInterfaceController, WatchDataChangedDelegate {
     
-    func newWatchData(data: Data) {
-        
+    func gotOrderResponse(response: String) {
     }
-    
-    
+
     var defaultMixes = [Mix]()
     var customMixes = [Mix]()
     
@@ -33,6 +31,22 @@ class InterfaceController: WKInterfaceController, WatchDataChangedDelegate {
     override func awake(withContext context: Any?) {
         super.awake(withContext: context)
         WatchSessionManager.sharedManager.addWatchDataChangedDelegate(delegate: self)
+        if defaultMixes.count == 0
+        {
+            WatchSessionManager.sharedManager.request(what: "mixes", who: "default")
+        }
+        if defaultMixes.count == 0
+        {
+            //say user we don't have any default mixes right now
+        }
+        if customMixes.count == 0
+        {
+            WatchSessionManager.sharedManager.request(what: "mixes", who: "custom")
+        }
+        if customMixes.count == 0
+        {
+            //say user he hasn't any customMixes
+        }
         // Configure interface objects here.
     }
     

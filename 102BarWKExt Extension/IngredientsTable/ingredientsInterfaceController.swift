@@ -9,6 +9,11 @@
 import WatchKit
 class IngredientsInterfaceController : WKInterfaceController, WatchDataChangedDelegate {
     
+    func gotOrderResponse(response: String) {
+        let action = WKAlertAction(title: "OK", style: .default) {}
+        presentAlert(withTitle: "Order Response", message: response, preferredStyle: .actionSheet, actions: [action])
+    }
+    
     func watchDataDidUpdate(watchData: WatchData) {
         if watchData.percentages.count > 0 {
             self.percentages = watchData.percentages
@@ -21,6 +26,10 @@ class IngredientsInterfaceController : WKInterfaceController, WatchDataChangedDe
     var percentages : [Int] = Array()
     
     @IBOutlet var tableView: WKInterfaceTable!
+    
+    @IBAction func order() {
+        WatchSessionManager.sharedManager.request(what: "order", who: mixId)
+    }
     
     override func awake(withContext context: Any?) {
         if context != nil

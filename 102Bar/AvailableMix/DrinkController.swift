@@ -13,6 +13,7 @@ class DrinkController: UIViewController, UITableViewDelegate, UITableViewDataSou
     // MARK: - ViewWillAppear
     
     override func viewWillAppear(_ animated: Bool) {
+        fetchDrinkData()
         tableView.reloadData()
         super.viewWillAppear(animated)
     }

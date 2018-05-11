@@ -22,6 +22,11 @@ class CustomMixInterfaceController: WKInterfaceController, WatchDataChangedDeleg
         }
     }
     
+    func gotOrderResponse(response: String) {
+        let action = WKAlertAction(title: "OK", style: .default) {}
+        presentAlert(withTitle: "Order Response", message: response, preferredStyle: .actionSheet, actions: [action])
+    }
+    
     @IBOutlet var tableView: WKInterfaceTable!
     
     var customMixes : [Mix] = Array()
