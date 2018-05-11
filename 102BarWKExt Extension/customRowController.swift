@@ -7,8 +7,8 @@
 //
 
 import WatchKit
-class customRowController : NSObject {
-    
+class CustomRowController : NSObject
+{
     @IBOutlet var mixLabel: WKInterfaceLabel!
     @IBOutlet var alcLabel: WKInterfaceLabel!
 }

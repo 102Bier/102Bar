@@ -88,11 +88,15 @@ class WatchSessionManager: NSObject, WCSessionDelegate {
     func session(_ session: WCSession, didReceiveMessage message: [String : Any]) {
         if let alc = message["customAlc"] as? [Bool]
         {
-            watchDataChangedDelegates.first(where: {$0 is customDrinksInterfaceController})?.watchDataDidUpdate(watchData: WatchData(data: alc, customOrDefault: "custom"))
+            watchDataChangedDelegates.first(where: {$0 is CustomMixInterfaceController})?.watchDataDidUpdate(watchData: WatchData(data: alc, customOrDefault: "custom"))
         }
         else if let alc = message["defaultAlc"] as? [Bool]
         {
-             watchDataChangedDelegates.first(where: {$0 is defaultDrinkInterfaceController})?.watchDataDidUpdate(watchData: WatchData(data: alc, customOrDefault: "default"))
+             watchDataChangedDelegates.first(where: {$0 is DefaultMixInterfaceController})?.watchDataDidUpdate(watchData: WatchData(data: alc, customOrDefault: "default"))
+        }
+        else if let percentage = message["percentage"] as? [Int]
+        {
+            watchDataChangedDelegates.first(where: {$0 is IngredientsInterfaceController})?.watchDataDidUpdate(watchData: WatchData(data: percentage))
         }
     }
     
@@ -126,14 +130,19 @@ class WatchSessionManager: NSObject, WCSessionDelegate {
         }
     }
     
-    public func requestAlcoholic(who : String) {
+    public func request(what: String, who : String) {
 
-        session?.sendMessage(["alcoholic":who],
+        session?.sendMessage([what:who],
                              replyHandler: nil,
                              errorHandler:  { error in
                                               print(error.localizedDescription)
                                             }
                             )
+    }
+    
+    public func getPercentage(for mix: String)
+    {
+        session?.sendMessage(["percentage": mix], replyHandler: nil, errorHandler: { error in print(error.localizedDescription)})
     }
 }
 
