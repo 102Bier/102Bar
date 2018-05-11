@@ -7,14 +7,16 @@
 //
 
 import Foundation
-class IngredientsAndMixName
+class IngredientsAndMixInfo
 {
     var ingredients : [Drink]
     var mixName : String
+    var mixId : String
     
-    init(ingredients : [Drink], mixName : String)
+    init(ingredients : [Drink], mixName : String, mixId : String)
     {
         self.ingredients = ingredients
         self.mixName = mixName
+        self.mixId = mixId
     }
 }
