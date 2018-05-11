@@ -369,6 +369,7 @@ class AddDrinkController : UITableViewController, UITextFieldDelegate
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        print(".............. \(segue.identifier)")
         if segue.identifier == "Save"
         {
             save()
