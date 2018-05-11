@@ -32,19 +32,19 @@
 		8AB0AAFF2084D25200C7B994 /* iconAccept.png in Resources */ = {isa = PBXBuildFile; fileRef = 8AB0AAFD2084D25100C7B994 /* iconAccept.png */; };
 		8AB52C4020603C91003EA1BB /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A46A0EB206030CB004EDA94 /* Alamofire.framework */; };
 		8AB52C4120603C91003EA1BB /* Alamofire.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8A46A0EB206030CB004EDA94 /* Alamofire.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		8AD05B1320A5E52500B00B72 /* WatchSessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AD05B1120A5E52500B00B72 /* WatchSessionManager.swift */; };
+		8AD05B1420A5E52500B00B72 /* watchData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AD05B1220A5E52500B00B72 /* watchData.swift */; };
+		8AD05B1720A5E54900B00B72 /* ingredientRowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AD05B1520A5E54900B00B72 /* ingredientRowController.swift */; };
+		8AD05B1820A5E54900B00B72 /* ingredientsInterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AD05B1620A5E54900B00B72 /* ingredientsInterfaceController.swift */; };
+		8AD05B1E20A5E56C00B00B72 /* defaultRowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AD05B1A20A5E56B00B00B72 /* defaultRowController.swift */; };
+		8AD05B1F20A5E56C00B00B72 /* DefaultMixInterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AD05B1B20A5E56C00B00B72 /* DefaultMixInterfaceController.swift */; };
+		8AD05B2020A5E56C00B00B72 /* CustomMixInterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AD05B1C20A5E56C00B00B72 /* CustomMixInterfaceController.swift */; };
+		8AD05B2120A5E56C00B00B72 /* customRowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AD05B1D20A5E56C00B00B72 /* customRowController.swift */; };
 		8ADF9F7D20A0803B001D3C2E /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ADF9F7C20A0803B001D3C2E /* User.swift */; };
 		8ADF9F7E20A0804A001D3C2E /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ADF9F7C20A0803B001D3C2E /* User.swift */; };
 		8AE72D10207C9D8500F049F3 /* iconDelete.png in Resources */ = {isa = PBXBuildFile; fileRef = 8AE72D07207C9D8300F049F3 /* iconDelete.png */; };
 		8AE72D11207C9D8500F049F3 /* iconOk.png in Resources */ = {isa = PBXBuildFile; fileRef = 8AE72D0F207C9D8400F049F3 /* iconOk.png */; };
 		8AEFB087207F45EB00F534A5 /* JSONSerializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AEFB086207F45EB00F534A5 /* JSONSerializer.swift */; };
-		C317C05B20A5C77D00EAB550 /* DefaultMixInterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C317C05A20A5C77C00EAB550 /* DefaultMixInterfaceController.swift */; };
-		C317C06120A5C79300EAB550 /* CustomMixInterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C317C06020A5C79300EAB550 /* CustomMixInterfaceController.swift */; };
-		C317C06720A5C7C000EAB550 /* CustomRowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C317C06620A5C7C000EAB550 /* CustomRowController.swift */; };
-		C317C06920A5C7C600EAB550 /* DefaultRowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C317C06820A5C7C600EAB550 /* DefaultRowController.swift */; };
-		C317C06B20A5C7CA00EAB550 /* WatchSessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C317C06A20A5C7CA00EAB550 /* WatchSessionManager.swift */; };
-		C317C06D20A5C7CE00EAB550 /* WatchData.swift in Sources */ = {isa = PBXBuildFile; fileRef = C317C06C20A5C7CD00EAB550 /* WatchData.swift */; };
-		C317C06F20A5C80B00EAB550 /* IngredientsInterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C317C06E20A5C80B00EAB550 /* IngredientsInterfaceController.swift */; };
-		C317C07120A5C81300EAB550 /* IngredientRowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C317C07020A5C81300EAB550 /* IngredientRowController.swift */; };
 		C317C07420A5C83C00EAB550 /* DrinkGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A5FA712206A5ADA00161D86 /* DrinkGroup.swift */; };
 		C317C07620A5C88000EAB550 /* IngredienentsAndMixInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = C317C07520A5C88000EAB550 /* IngredienentsAndMixInfo.swift */; };
 		C3381529208DD7D900FB7D57 /* Mix.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A5FA716206A5AF800161D86 /* Mix.swift */; };
@@ -249,18 +249,18 @@
 		8A88781520A0641F00552BC0 /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		8AB0AAF52084D24E00C7B994 /* iconDecline.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = iconDecline.png; sourceTree = "<group>"; };
 		8AB0AAFD2084D25100C7B994 /* iconAccept.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = iconAccept.png; sourceTree = "<group>"; };
+		8AD05B1120A5E52500B00B72 /* WatchSessionManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WatchSessionManager.swift; sourceTree = "<group>"; };
+		8AD05B1220A5E52500B00B72 /* watchData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = watchData.swift; sourceTree = "<group>"; };
+		8AD05B1520A5E54900B00B72 /* ingredientRowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ingredientRowController.swift; sourceTree = "<group>"; };
+		8AD05B1620A5E54900B00B72 /* ingredientsInterfaceController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ingredientsInterfaceController.swift; sourceTree = "<group>"; };
+		8AD05B1A20A5E56B00B00B72 /* defaultRowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = defaultRowController.swift; path = "102BarWKExt Extension/MixTable/defaultRowController.swift"; sourceTree = SOURCE_ROOT; };
+		8AD05B1B20A5E56C00B00B72 /* DefaultMixInterfaceController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DefaultMixInterfaceController.swift; path = "102BarWKExt Extension/MixTable/DefaultMixInterfaceController.swift"; sourceTree = SOURCE_ROOT; };
+		8AD05B1C20A5E56C00B00B72 /* CustomMixInterfaceController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CustomMixInterfaceController.swift; path = "102BarWKExt Extension/MixTable/CustomMixInterfaceController.swift"; sourceTree = SOURCE_ROOT; };
+		8AD05B1D20A5E56C00B00B72 /* customRowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = customRowController.swift; path = "102BarWKExt Extension/MixTable/customRowController.swift"; sourceTree = SOURCE_ROOT; };
 		8ADF9F7C20A0803B001D3C2E /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		8AE72D07207C9D8300F049F3 /* iconDelete.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = iconDelete.png; sourceTree = "<group>"; };
 		8AE72D0F207C9D8400F049F3 /* iconOk.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = iconOk.png; sourceTree = "<group>"; };
 		8AEFB086207F45EB00F534A5 /* JSONSerializer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONSerializer.swift; sourceTree = "<group>"; };
-		C317C05A20A5C77C00EAB550 /* DefaultMixInterfaceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = DefaultMixInterfaceController.swift; path = "/Users/jus/Documents/102Bar/102BarWKExt Extension/DefaultMixInterfaceController.swift"; sourceTree = "<absolute>"; };
-		C317C06020A5C79300EAB550 /* CustomMixInterfaceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CustomMixInterfaceController.swift; path = "/Users/jus/Documents/102Bar/102BarWKExt Extension/CustomMixInterfaceController.swift"; sourceTree = "<absolute>"; };
-		C317C06620A5C7C000EAB550 /* CustomRowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CustomRowController.swift; path = "/Users/jus/Documents/102Bar/102BarWKExt Extension/CustomRowController.swift"; sourceTree = "<absolute>"; };
-		C317C06820A5C7C600EAB550 /* DefaultRowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = DefaultRowController.swift; path = "/Users/jus/Documents/102Bar/102BarWKExt Extension/DefaultRowController.swift"; sourceTree = "<absolute>"; };
-		C317C06A20A5C7CA00EAB550 /* WatchSessionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = WatchSessionManager.swift; path = "/Users/jus/Documents/102Bar/102BarWKExt Extension/WatchSessionManager.swift"; sourceTree = "<absolute>"; };
-		C317C06C20A5C7CD00EAB550 /* WatchData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = WatchData.swift; path = "/Users/jus/Documents/102Bar/102BarWKExt Extension/WatchData.swift"; sourceTree = "<absolute>"; };
-		C317C06E20A5C80B00EAB550 /* IngredientsInterfaceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = IngredientsInterfaceController.swift; path = "/Users/jus/Documents/102Bar/102BarWKExt Extension/IngredientsInterfaceController.swift"; sourceTree = "<absolute>"; };
-		C317C07020A5C81300EAB550 /* IngredientRowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = IngredientRowController.swift; path = "/Users/jus/Documents/102Bar/102BarWKExt Extension/IngredientRowController.swift"; sourceTree = "<absolute>"; };
 		C317C07520A5C88000EAB550 /* IngredienentsAndMixInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IngredienentsAndMixInfo.swift; sourceTree = "<group>"; };
 		C34442B42084D74F005C8AFA /* OrderMixController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderMixController.swift; sourceTree = "<group>"; };
 		C34442C3208DCA61005C8AFA /* 102BarWKExt.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = 102BarWKExt.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -421,6 +421,27 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		8AD05B1020A5E4C600B00B72 /* DataExchange */ = {
+			isa = PBXGroup;
+			children = (
+				8AD05B1220A5E52500B00B72 /* watchData.swift */,
+				8AD05B1120A5E52500B00B72 /* WatchSessionManager.swift */,
+			);
+			path = DataExchange;
+			sourceTree = "<group>";
+		};
+		8AD05B1920A5E55900B00B72 /* MixTable */ = {
+			isa = PBXGroup;
+			children = (
+				8AD05B1C20A5E56C00B00B72 /* CustomMixInterfaceController.swift */,
+				8AD05B1D20A5E56C00B00B72 /* customRowController.swift */,
+				8AD05B1B20A5E56C00B00B72 /* DefaultMixInterfaceController.swift */,
+				8AD05B1A20A5E56B00B00B72 /* defaultRowController.swift */,
+			);
+			name = MixTable;
+			path = "New Group";
+			sourceTree = "<group>";
+		};
 		8ADF9F6F20A07CBE001D3C2E /* Images */ = {
 			isa = PBXGroup;
 			children = (
@@ -495,32 +516,12 @@
 			path = AvailableMix;
 			sourceTree = "<group>";
 		};
-		C317C07720A5C88600EAB550 /* DataExchange */ = {
-			isa = PBXGroup;
-			children = (
-				C317C06C20A5C7CD00EAB550 /* WatchData.swift */,
-				C317C06A20A5C7CA00EAB550 /* WatchSessionManager.swift */,
-			);
-			path = DataExchange;
-			sourceTree = "<group>";
-		};
-		C317C07820A5C88D00EAB550 /* MixTable */ = {
-			isa = PBXGroup;
-			children = (
-				C317C06020A5C79300EAB550 /* CustomMixInterfaceController.swift */,
-				C317C06620A5C7C000EAB550 /* CustomRowController.swift */,
-				C317C05A20A5C77C00EAB550 /* DefaultMixInterfaceController.swift */,
-				C317C06820A5C7C600EAB550 /* DefaultRowController.swift */,
-			);
-			path = MixTable;
-			sourceTree = "<group>";
-		};
 		C317C07920A5C8A000EAB550 /* IngredientsTable */ = {
 			isa = PBXGroup;
 			children = (
+				8AD05B1520A5E54900B00B72 /* ingredientRowController.swift */,
+				8AD05B1620A5E54900B00B72 /* ingredientsInterfaceController.swift */,
 				C317C07520A5C88000EAB550 /* IngredienentsAndMixInfo.swift */,
-				C317C06E20A5C80B00EAB550 /* IngredientsInterfaceController.swift */,
-				C317C07020A5C81300EAB550 /* IngredientRowController.swift */,
 			);
 			path = IngredientsTable;
 			sourceTree = "<group>";
@@ -539,9 +540,9 @@
 		C34442D3208DCA63005C8AFA /* 102BarWKExt Extension */ = {
 			isa = PBXGroup;
 			children = (
+				8AD05B1920A5E55900B00B72 /* MixTable */,
+				8AD05B1020A5E4C600B00B72 /* DataExchange */,
 				C317C07920A5C8A000EAB550 /* IngredientsTable */,
-				C317C07820A5C88D00EAB550 /* MixTable */,
-				C317C07720A5C88600EAB550 /* DataExchange */,
 				C34442D4208DCA63005C8AFA /* InterfaceController.swift */,
 				C34442DA208DCA63005C8AFA /* ComplicationController.swift */,
 				C34442D8208DCA63005C8AFA /* NotificationController.swift */,
@@ -868,20 +869,20 @@
 			files = (
 				C34442D9208DCA63005C8AFA /* NotificationController.swift in Sources */,
 				C34442DB208DCA63005C8AFA /* ComplicationController.swift in Sources */,
+				8AD05B1320A5E52500B00B72 /* WatchSessionManager.swift in Sources */,
 				C34442D7208DCA63005C8AFA /* ExtensionDelegate.swift in Sources */,
-				C317C06120A5C79300EAB550 /* CustomMixInterfaceController.swift in Sources */,
+				8AD05B2020A5E56C00B00B72 /* CustomMixInterfaceController.swift in Sources */,
 				8ADF9F7E20A0804A001D3C2E /* User.swift in Sources */,
 				C3381531208DD8BD00FB7D57 /* DrinkType.swift in Sources */,
-				C317C06920A5C7C600EAB550 /* DefaultRowController.swift in Sources */,
-				C317C06B20A5C7CA00EAB550 /* WatchSessionManager.swift in Sources */,
-				C317C06F20A5C80B00EAB550 /* IngredientsInterfaceController.swift in Sources */,
+				8AD05B1F20A5E56C00B00B72 /* DefaultMixInterfaceController.swift in Sources */,
+				8AD05B1820A5E54900B00B72 /* ingredientsInterfaceController.swift in Sources */,
+				8AD05B1720A5E54900B00B72 /* ingredientRowController.swift in Sources */,
 				C34442D5208DCA63005C8AFA /* InterfaceController.swift in Sources */,
-				C317C06D20A5C7CE00EAB550 /* WatchData.swift in Sources */,
 				C3381530208DD8AF00FB7D57 /* Drink.swift in Sources */,
-				C317C05B20A5C77D00EAB550 /* DefaultMixInterfaceController.swift in Sources */,
-				C317C07120A5C81300EAB550 /* IngredientRowController.swift in Sources */,
-				C317C06720A5C7C000EAB550 /* CustomRowController.swift in Sources */,
+				8AD05B1420A5E52500B00B72 /* watchData.swift in Sources */,
 				C317C07420A5C83C00EAB550 /* DrinkGroup.swift in Sources */,
+				8AD05B1E20A5E56C00B00B72 /* defaultRowController.swift in Sources */,
+				8AD05B2120A5E56C00B00B72 /* customRowController.swift in Sources */,
 				C317C07620A5C88000EAB550 /* IngredienentsAndMixInfo.swift in Sources */,
 				C3381529208DD7D900FB7D57 /* Mix.swift in Sources */,
 			);

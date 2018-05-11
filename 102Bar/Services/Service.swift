@@ -610,6 +610,7 @@ class Service: NSObject, UNUserNotificationCenterDelegate, WCSessionDelegate {
             "Description": mixToOrder.mixDescription,
             "Ingredients": ingredients,
             "User": defaultValues.object(forKey: "userid") as! String,
+            "Add": 1,
             "GlassSize": glasssize
         ]
         
@@ -630,6 +631,7 @@ class Service: NSObject, UNUserNotificationCenterDelegate, WCSessionDelegate {
             "Mix": mixToRemove.mix,
             "Title": title,
             "Reason": reason,
+            "Add":0,
             "OrderedByUser": mixToRemove.orderedByUser,
             ]
         

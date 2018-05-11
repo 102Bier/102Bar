@@ -27,11 +27,14 @@ class OrderedMixesController : UITableViewController{
     @objc func refresh(_ sender: Any?){
         Service.shared.getUseres{
             success in
-            Service.shared.getOrderedMixes {
-                success in
-                self.orderedMixes = Service.shared.orderedMixes
-                self.tableView.reloadData()
-                self.refreshControl?.endRefreshing()
+            Service.shared.getCustomMixes{
+                succes in
+                Service.shared.getOrderedMixes {
+                    success in
+                    self.orderedMixes = Service.shared.orderedMixes
+                    self.tableView.reloadData()
+                    self.refreshControl?.endRefreshing()
+                }
             }
         }
     }
