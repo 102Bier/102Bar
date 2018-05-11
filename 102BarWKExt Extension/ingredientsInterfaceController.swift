@@ -7,21 +7,33 @@
 //
 
 import WatchKit
-class IngredientsInterfaceController : WKInterfaceController {
+class IngredientsInterfaceController : WKInterfaceController, WatchDataChangedDelegate {
+    
+    func watchDataDidUpdate(watchData: WatchData) {
+        if watchData.percentages.count > 0 {
+            self.percentages = watchData.percentages
+        }
+        loadPercentageLabels()
+    }
     
     var ingredients = [Drink]()
+    var mixId : String = ""
+    var percentages : [Int] = Array()
     
     @IBOutlet var tableView: WKInterfaceTable!
     
     override func awake(withContext context: Any?) {
         if context != nil
         {
-            if let contextCheck = context as? IngredientsAndMixName
+            if let contextCheck = context as? IngredientsAndMixInfo
             {
                 ingredients = contextCheck.ingredients
                 self.setTitle(contextCheck.mixName)
+                mixId = contextCheck.mixId
             }
         }
+        WatchSessionManager.sharedManager.addWatchDataChangedDelegate(delegate: self)
+        WatchSessionManager.sharedManager.getPercentage(for: mixId)
         super.awake(withContext: context)
         loadTableData()
         
@@ -35,6 +47,7 @@ class IngredientsInterfaceController : WKInterfaceController {
     
     override func didDeactivate() {
         // This method is called when watch view controller is no longer visible
+        WatchSessionManager.sharedManager.removeWatchDataChangedDelegate(delegate: self)
         super.didDeactivate()
     }
     
@@ -44,7 +57,26 @@ class IngredientsInterfaceController : WKInterfaceController {
             if let ingredientsRowController = tableView.rowController(at: index) as? IngredientRowController
             {
                 ingredientsRowController.ingredientLabel.setText(rowModel.drinkDescription)
-                ingredientsRowController.percentageLabel.setText(String(rowModel.percentage)+"%")
+                if rowModel.percentage > 0
+                {
+                    ingredientsRowController.percentageLabel.setText(String(rowModel.percentage)+"%")
+                }
+                else if percentages.count == ingredients.count
+                {
+                    ingredientsRowController.percentageLabel.setText(String(percentages[index])+"%")
+                }
+            }
+        }
+    }
+    
+    func loadPercentageLabels() {
+        for (index, percentage) in percentages.enumerated() {
+            if let ingredientsRowController = tableView.rowController(at: index) as? IngredientRowController
+            {
+                if percentages.count == ingredients.count
+                {
+                    ingredientsRowController.percentageLabel.setText(String(percentage)+"%")
+                }
             }
         }
     }

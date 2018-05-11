@@ -2,6 +2,33 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "self:102Bar.xcodeproj">
+      location = "group:/Users/jus/Documents/102Bar/102BarWKExt Extension/CustomMixInterfaceController.swift">
+   </FileRef>
+   <FileRef
+      location = "group:/Users/jus/Documents/102Bar/102BarWKExt Extension/CustomRowController.swift">
+   </FileRef>
+   <FileRef
+      location = "group:/Users/jus/Documents/102Bar/102BarWKExt Extension/DefaultMixInterfaceController.swift">
+   </FileRef>
+   <FileRef
+      location = "group:/Users/jus/Documents/102Bar/102BarWKExt Extension/DefaultRowController.swift">
+   </FileRef>
+   <FileRef
+      location = "group:/Users/jus/Documents/102Bar/102BarWKExt Extension/IngredienentsAndMixName.swift">
+   </FileRef>
+   <FileRef
+      location = "group:/Users/jus/Documents/102Bar/102BarWKExt Extension/IngredientRowController.swift">
+   </FileRef>
+   <FileRef
+      location = "group:/Users/jus/Documents/102Bar/102BarWKExt Extension/IngredientsInterfaceController.swift">
+   </FileRef>
+   <FileRef
+      location = "group:/Users/jus/Documents/102Bar/102BarWKExt Extension/WatchData.swift">
+   </FileRef>
+   <FileRef
+      location = "group:/Users/jus/Documents/102Bar/102BarWKExt Extension/WatchSessionManager.swift">
+   </FileRef>
+   <FileRef
+      location = "self:">
    </FileRef>
 </Workspace>

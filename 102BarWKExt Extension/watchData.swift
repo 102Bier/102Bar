@@ -13,6 +13,7 @@ class WatchData {
     var mixes : [Mix] = Array()
     var customAlc : [Bool] = Array()
     var defaultAlc : [Bool] = Array()
+    var percentages : [Int] = Array()
     
     init(data: Data, customOrDefault : String)
     {
@@ -37,6 +38,11 @@ class WatchData {
         {
             defaultAlc = data
         }
+    }
+    
+    init(data: [Int])
+    {
+        percentages = data
     }
     
     init(data: [String : AnyObject]) {
