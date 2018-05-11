@@ -20,6 +20,8 @@ class DrinkController: UIViewController, UITableViewDelegate, UITableViewDataSou
     // MARK: - ViewDidLoad
     
     override func viewDidLoad() {
+        super.viewDidLoad()
+        
         // Add Refresh Control to Table View
         if #available(iOS 10.0, *) {
             tableView.refreshControl = refreshControl
@@ -31,12 +33,15 @@ class DrinkController: UIViewController, UITableViewDelegate, UITableViewDataSou
             success in
             self.tableView.reloadData()
         }
-        super.viewDidLoad()
+        
         if(!Service.shared.hasUserRight(right: Service.Rights.canCreateOwn.rawValue)){
             self.navigationItem.setRightBarButton(nil, animated: true)
             segControl.isHidden = true
         }
         tableView.allowsSelection = Service.shared.hasUserRight(right: Service.Rights.canOrder.rawValue)
+        
+        segControl.layer.borderWidth = 1
+        segControl.layer.cornerRadius = 4.0
     }
     
     // MARK: - Action Event Functions
@@ -49,14 +54,7 @@ class DrinkController: UIViewController, UITableViewDelegate, UITableViewDataSou
     
     @IBAction func LogoutTapped(_ sender: Any) {
         
-        let username = UserDefaults.standard.string(forKey: "username")
-        let hasData = UserDefaults.standard.bool(forKey: "hasData")
-        UserDefaults.standard.removePersistentDomain(forName: Bundle.main.bundleIdentifier!)
-        UserDefaults.standard.set(username, forKey: "username")
-        UserDefaults.standard.set(hasData, forKey: "hasData")
-        UserDefaults.standard.set(true, forKey: "loggedOut" )
-        
-        Service.shared.stopTimer()
+        Service.shared.logout()
         
         //switching to login screen
         let storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
@@ -122,6 +120,15 @@ class DrinkController: UIViewController, UITableViewDelegate, UITableViewDataSou
             {
                 cell.addOrReplaceLabel(ingredient: Service.shared.availableMixes[indexPath.row].ingredients[i].drinkDescription, yPos: i)
             }
+            
+            if Service.shared.availableMixes[indexPath.row].ingredients.contains(where: {$0.drinkType.drinkGroup.alcoholic == true})
+            {
+                cell.alcoholicLabel.text = "alcoholic"
+            }
+            else
+            {
+                cell.alcoholicLabel.text = "non alcoholic"
+            }
             return cell
             
         case 1: //custom Drinks
@@ -130,6 +137,15 @@ class DrinkController: UIViewController, UITableViewDelegate, UITableViewDataSou
             for i in 0..<Service.shared.customUserMixes[indexPath.row].ingredients.count
             {
                 cell.addOrReplaceLabel(ingredient: Service.shared.customUserMixes[indexPath.row].ingredients[i].drinkDescription, yPos: i)
+            }
+            
+            if Service.shared.customUserMixes[indexPath.row].ingredients.contains(where: {$0.drinkType.drinkGroup.alcoholic == true})
+            {
+                cell.alcoholicLabel.text = "alcoholic"
+            }
+            else
+            {
+                cell.alcoholicLabel.text = "non alcoholic"
             }
             return cell
             
@@ -161,6 +177,7 @@ class DrinkController: UIViewController, UITableViewDelegate, UITableViewDataSou
         let vc: UIViewController = storyboard!.instantiateViewController(withIdentifier: "orderMix")
         
         let order = UIBarButtonItem(title: "Order", style: .plain, target: self, action: #selector(orderTapped))
+        order.style = .done
         vc.navigationItem.rightBarButtonItem = order
         vc.navigationItem.title = "Order " + mix.mixDescription
         (vc as! OrderMixController).mixToOrder = mix

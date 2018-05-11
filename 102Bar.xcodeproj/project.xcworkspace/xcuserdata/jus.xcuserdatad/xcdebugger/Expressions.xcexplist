@@ -3,56 +3,45 @@
    version = "1.0">
    <ContextStates>
       <ContextState
-         contextName = "defaultDrinkInterfaceController.loadTableData():defaultDrinkInterfaceController.swift">
+         contextName = "orderMixController.viewDidLoad():orderMixController.swift">
          <PersistentStrings>
             <PersistentString
-               value = "availableMixes">
-            </PersistentString>
-            <PersistentString
-               value = "availableMixes.count">
+               value = "const?.constant">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "orderMixController.textFieldDidEndEditing(_:):orderMixController.swift">
+         contextName = "defaultDrinkInterfaceController.contextForSegue(withIdentifier:in:rowIndex:):defaultDrinkInterfaceController.swift">
          <PersistentStrings>
             <PersistentString
-               value = "test">
+               value = "defaultMixes[0].ingredients">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "AddDrinkController.save():AddDrinkController.swift">
+         contextName = "AddDrinkController.safeCellTextField(at:in:):AddDrinkController.swift">
          <PersistentStrings>
             <PersistentString
-               value = "Service.shared.availableIngredients">
-            </PersistentString>
-            <PersistentString
-               value = "Service.shared.customDrinkModel">
+               value = "drinkContent.ingredArray[indexPath.section].sectionPercentage">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "AddDrinkTableContent.init():AddDrinkTableContent.swift">
+         contextName = "IngredientsInterfaceController.loadTableData():ingredientsInterfaceController.swift">
          <PersistentStrings>
             <PersistentString
-               value = "Service.shared">
+               value = "tableView.numberOfRows">
+            </PersistentString>
+            <PersistentString
+               value = "ingredients">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "defaultDrinkInterfaceController.awake(withContext:):defaultDrinkInterfaceController.swift">
+         contextName = "IngredientsInterfaceController.awake(withContext:):ingredientsInterfaceController.swift">
          <PersistentStrings>
             <PersistentString
-               value = "availableMixes.count">
-            </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
-         contextName = "AddDrinkController.getDefaultPercentage():AddDrinkController.swift">
-         <PersistentStrings>
-            <PersistentString
-               value = "drinkContent.ingredArray[0].sectionPercentage">
+               value = "(context as! [Drink])[0]">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -65,29 +54,42 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "AppDelegate.application(_:didFinishLaunchingWithOptions:):AppDelegate.swift">
+         contextName = "AddDrinkController.getDefaultPercentage():AddDrinkController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "drinkContent.ingredArray[0].sectionPercentage">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "defaultDrinkInterfaceController.awake(withContext:):defaultDrinkInterfaceController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "availableMixes.count">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "WatchSessionManager.session(_:didReceiveMessage:):WatchSessionManager.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "alc.count">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "main:AppDelegate.swift">
          <PersistentStrings>
             <PersistentString
                value = "addDrinkController">
             </PersistentString>
-            <PersistentString
-               value = "vc">
-            </PersistentString>
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "orderMixController.viewDidLoad():orderMixController.swift">
+         contextName = "AddDrinkTableContent.init():AddDrinkTableContent.swift">
          <PersistentStrings>
             <PersistentString
-               value = "const?.constant">
-            </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
-         contextName = "AddDrinkController.SaveTapped(_:):AddDrinkController.swift">
-         <PersistentStrings>
-            <PersistentString
-               value = "Int(String((total?.removeLast())!))">
+               value = "Service.shared">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -121,25 +123,6 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "orderMixController.tableView(_:numberOfRowsInSection:):orderMixController.swift">
-         <PersistentStrings>
-            <PersistentString
-               value = "mixToOrder">
-            </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
-         contextName = "main:AppDelegate.swift">
-         <PersistentStrings>
-            <PersistentString
-               value = "addDrinkController">
-            </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
-         contextName = "LoginController.changeView():LoginController.swift">
-      </ContextState>
-      <ContextState
          contextName = "ingredCell.addOrReplaceLabel(ingredient:yPos:):ingredCell.swift">
          <PersistentStrings>
             <PersistentString
@@ -151,10 +134,73 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "AddDrinkController.safeCellTextField(at:in:):AddDrinkController.swift">
+         contextName = "defaultDrinkInterfaceController.watchDataDidUpdate(watchData:):defaultDrinkInterfaceController.swift">
          <PersistentStrings>
             <PersistentString
-               value = "drinkContent.ingredArray[indexPath.section].sectionPercentage">
+               value = "watchData.defaultAlc.count">
+            </PersistentString>
+            <PersistentString
+               value = "defaultMixes.count">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "LoginController.changeView():LoginController.swift">
+      </ContextState>
+      <ContextState
+         contextName = "AddDrinkController.save():AddDrinkController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "Service.shared.availableIngredients">
+            </PersistentString>
+            <PersistentString
+               value = "Service.shared.customDrinkModel">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "Service.availableMixes.didset:Service.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "availableMixes[0].ingredients.count">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "AddDrinkController.SaveTapped(_:):AddDrinkController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "Int(String((total?.removeLast())!))">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "orderMixController.textFieldDidEndEditing(_:):orderMixController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "test">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "AppDelegate.application(_:didFinishLaunchingWithOptions:):AppDelegate.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "addDrinkController">
+            </PersistentString>
+            <PersistentString
+               value = "vc">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "defaultDrinkInterfaceController.loadTableData():defaultDrinkInterfaceController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "availableMixes.count">
+            </PersistentString>
+            <PersistentString
+               value = "availableMixes">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -162,13 +208,21 @@
          contextName = "orderMixController.tableView(_:cellForRowAt:):orderMixController.swift">
          <PersistentStrings>
             <PersistentString
-               value = "mixToOrder.ingredients[indexPath.row]">
+               value = "cell.percentageTextField.text">
             </PersistentString>
             <PersistentString
                value = "cell.drinkLabel.text">
             </PersistentString>
             <PersistentString
-               value = "cell.percentageTextField.text">
+               value = "mixToOrder.ingredients[indexPath.row]">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "orderMixController.tableView(_:numberOfRowsInSection:):orderMixController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "mixToOrder">
             </PersistentString>
          </PersistentStrings>
       </ContextState>

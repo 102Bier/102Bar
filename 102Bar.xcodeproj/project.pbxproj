@@ -59,11 +59,14 @@
 		C36F6E9E209C8CC100920553 /* KeychainPasswordItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = C36F6E9D209C8CC000920553 /* KeychainPasswordItem.swift */; };
 		C37D0DC420A098910098CA67 /* WatchSessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C37D0DBC20A098570098CA67 /* WatchSessionManager.swift */; };
 		C37D0DC720A09CA70098CA67 /* watchData.swift in Sources */ = {isa = PBXBuildFile; fileRef = C37D0DC620A09CA70098CA67 /* watchData.swift */; };
+		C37D0DCC20A0BD8F0098CA67 /* ingredientsInterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C37D0DCB20A0BD8F0098CA67 /* ingredientsInterfaceController.swift */; };
+		C37D0DD420A0BE2D0098CA67 /* ingredientRowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C37D0DD320A0BE2D0098CA67 /* ingredientRowController.swift */; };
 		C3B66DF6207CC3DF00C26328 /* MixCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3B66DF5207CC3DF00C26328 /* MixCell.swift */; };
 		C3E19269208E71EF000122E0 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A46A0F7206030CB004EDA94 /* Alamofire.framework */; };
 		C3E1926A208E71EF000122E0 /* Alamofire.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8A46A0F7206030CB004EDA94 /* Alamofire.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		C3EB45B3206932AF00F69F16 /* DrinkCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3EB45B2206932AF00F69F16 /* DrinkCell.swift */; };
 		C3EB45BD2069427900F69F16 /* AddDrinkTableContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3EB45BC2069427900F69F16 /* AddDrinkTableContent.swift */; };
+		C3F796CC20A2021700F672F8 /* IngredienentsAndMixName.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3F796CB20A2021700F672F8 /* IngredienentsAndMixName.swift */; };
 		C3FAE6BB209C92A900DAAA63 /* LocalAuthentication.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C3FAE6B4209C92A800DAAA63 /* LocalAuthentication.framework */; };
 /* End PBXBuildFile section */
 
@@ -271,9 +274,12 @@
 		C36F6E9D209C8CC000920553 /* KeychainPasswordItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeychainPasswordItem.swift; sourceTree = "<group>"; };
 		C37D0DBC20A098570098CA67 /* WatchSessionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchSessionManager.swift; sourceTree = "<group>"; };
 		C37D0DC620A09CA70098CA67 /* watchData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = watchData.swift; sourceTree = "<group>"; };
+		C37D0DCB20A0BD8F0098CA67 /* ingredientsInterfaceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ingredientsInterfaceController.swift; sourceTree = "<group>"; };
+		C37D0DD320A0BE2D0098CA67 /* ingredientRowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ingredientRowController.swift; sourceTree = "<group>"; };
 		C3B66DF5207CC3DF00C26328 /* MixCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MixCell.swift; sourceTree = "<group>"; };
 		C3EB45B2206932AF00F69F16 /* DrinkCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrinkCell.swift; sourceTree = "<group>"; };
 		C3EB45BC2069427900F69F16 /* AddDrinkTableContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddDrinkTableContent.swift; sourceTree = "<group>"; };
+		C3F796CB20A2021700F672F8 /* IngredienentsAndMixName.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IngredienentsAndMixName.swift; sourceTree = "<group>"; };
 		C3FAE6B4209C92A800DAAA63 /* LocalAuthentication.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = LocalAuthentication.framework; path = System/Library/Frameworks/LocalAuthentication.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
@@ -515,6 +521,9 @@
 				C34442F1208DD4B3005C8AFA /* defaultDrinkInterfaceController.swift */,
 				C37D0DBC20A098570098CA67 /* WatchSessionManager.swift */,
 				C37D0DC620A09CA70098CA67 /* watchData.swift */,
+				C37D0DCB20A0BD8F0098CA67 /* ingredientsInterfaceController.swift */,
+				C37D0DD320A0BE2D0098CA67 /* ingredientRowController.swift */,
+				C3F796CB20A2021700F672F8 /* IngredienentsAndMixName.swift */,
 			);
 			path = "102BarWKExt Extension";
 			sourceTree = "<group>";
@@ -833,6 +842,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C37D0DCC20A0BD8F0098CA67 /* ingredientsInterfaceController.swift in Sources */,
 				C34442F0208DD46D005C8AFA /* defaultRowController.swift in Sources */,
 				C34442D9208DCA63005C8AFA /* NotificationController.swift in Sources */,
 				C34442F2208DD4B3005C8AFA /* defaultDrinkInterfaceController.swift in Sources */,
@@ -844,10 +854,12 @@
 				C37D0DC420A098910098CA67 /* WatchSessionManager.swift in Sources */,
 				C3381532208DD8C800FB7D57 /* DrinkGroup.swift in Sources */,
 				C37D0DC720A09CA70098CA67 /* watchData.swift in Sources */,
+				C37D0DD420A0BE2D0098CA67 /* ingredientRowController.swift in Sources */,
 				C34442EC208DD1C5005C8AFA /* customDrinksInterfaceController.swift in Sources */,
 				C34442D5208DCA63005C8AFA /* InterfaceController.swift in Sources */,
 				C3381530208DD8AF00FB7D57 /* Drink.swift in Sources */,
 				C3381529208DD7D900FB7D57 /* Mix.swift in Sources */,
+				C3F796CC20A2021700F672F8 /* IngredienentsAndMixName.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -922,6 +934,7 @@
 		8A41BA2C205FDD9900907669 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
@@ -979,6 +992,7 @@
 		8A41BA2D205FDD9900907669 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
@@ -1036,7 +1050,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = F57P2RGF3M;
 				INFOPLIST_FILE = 102Bar/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = de.102bier.102Bar.lol;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1056,7 +1070,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = F57P2RGF3M;
 				INFOPLIST_FILE = 102Bar/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = de.102bier.102Bar.lol;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1151,7 +1165,7 @@
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = 4;
-				WATCHOS_DEPLOYMENT_TARGET = 4.2;
+				WATCHOS_DEPLOYMENT_TARGET = 4.3;
 			};
 			name = Debug;
 		};
@@ -1174,7 +1188,7 @@
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = 4;
-				WATCHOS_DEPLOYMENT_TARGET = 4.2;
+				WATCHOS_DEPLOYMENT_TARGET = 4.3;
 			};
 			name = Release;
 		};
@@ -1196,7 +1210,7 @@
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = 4;
-				WATCHOS_DEPLOYMENT_TARGET = 4.2;
+				WATCHOS_DEPLOYMENT_TARGET = 4.3;
 			};
 			name = Debug;
 		};
@@ -1218,7 +1232,7 @@
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = 4;
-				WATCHOS_DEPLOYMENT_TARGET = 4.2;
+				WATCHOS_DEPLOYMENT_TARGET = 4.3;
 			};
 			name = Release;
 		};

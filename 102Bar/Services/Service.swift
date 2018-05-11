@@ -41,37 +41,20 @@ class Service: NSObject, UNUserNotificationCenterDelegate, WCSessionDelegate {
         return documentDirectory.appendingPathComponent("availableMixes.archive")
     }
     
-    let customMixesArchiveUrl = { () -> URL in
+    let customUserMixesArchiveUrl = { () -> URL in
         let documentsDirectories =
             FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
         let documentDirectory = documentsDirectories.first!
-        return documentDirectory.appendingPathComponent("customMixes.archive")
+        return documentDirectory.appendingPathComponent("customUserMixes.archive")
     }
     
     var availableDrinkGroups = [DrinkGroup]()
     var availableDrinkTypes = [DrinkType]()
     var availableIngredients = [Drink]()
-    var availableMixes = [Mix]() {
-        didSet {
-            NSKeyedArchiver.archiveRootObject(availableMixes, toFile: self.availableMixesArchiveUrl().path) //save to file
-            let data = NSKeyedArchiver.archivedData(withRootObject: availableMixes)
-            do { try self.session.updateApplicationContext(["default" : data]) }
-            catch{
-            }
-            
-        }
-    }
+    var availableMixes = [Mix]()
     var orderedMixes = [Mix]()
     var customMixes = [Mix]()
-    var customUserMixes = [Mix]() {
-        didSet {
-            NSKeyedArchiver.archiveRootObject(customMixes, toFile: self.customMixesArchiveUrl().path) //save to file
-            let data = NSKeyedArchiver.archivedData(withRootObject: customMixes)
-            do { try self.session.updateApplicationContext(["custom" : data]) }
-            catch {}
-            
-        }
-    }
+    var customUserMixes = [Mix]()
     var users = [User]()
     
     // MARK: - Rights Enum
@@ -95,6 +78,28 @@ class Service: NSObject, UNUserNotificationCenterDelegate, WCSessionDelegate {
     
     func session(_ session: WCSession, activationDidCompleteWith activationState: WCSessionActivationState, error: Error?) {
         
+    }
+    
+    func session(_ session: WCSession, didReceiveMessage message: [String : Any]) {
+        if let who = message["alcoholic"] as? String
+        {
+            if who == "custom"
+            {
+                var alc = [Bool]()
+                for i in 0..<customUserMixes.count{
+                    alc.append(customUserMixes[i].ingredients.contains(where: {$0.drinkType.drinkGroup.alcoholic})) //if one ingredient is alcoholic, the whole mix is as well
+                }
+                session.sendMessage(["customAlc":alc], replyHandler: nil, errorHandler: {error in print(error.localizedDescription)})
+            }
+            else if who == "default"
+            {
+                var alc = [Bool]()
+                for i in 0..<availableMixes.count{
+                    alc.append(availableMixes[i].ingredients.contains(where: {$0.drinkType.drinkGroup.alcoholic})) //if one ingredient is alcoholic, the whole mix is as well
+                }
+                session.sendMessage(["defaultAlc":alc], replyHandler: nil, errorHandler: {error in print(error.localizedDescription)})
+            }
+        }
     }
     
     // MARK: - Initializer Function
@@ -285,6 +290,24 @@ class Service: NSObject, UNUserNotificationCenterDelegate, WCSessionDelegate {
                 }
         }
     }
+    
+    /* saves user data, stops timer and sends logout message to watch*/
+    public func logout()
+    {
+        let username = UserDefaults.standard.string(forKey: "username")
+        let hasData = UserDefaults.standard.bool(forKey: "hasData")
+        UserDefaults.standard.removePersistentDomain(forName: Bundle.main.bundleIdentifier!)
+        if username != "Guest"
+        {
+            UserDefaults.standard.set(username, forKey: "username")
+            UserDefaults.standard.set(hasData, forKey: "hasData")
+        }
+        UserDefaults.standard.set(true, forKey: "loggedOut" )
+        
+        stopTimer()
+        
+        //TODO send logout message to watch
+    }
         
     // MARK: - Available Ingredient and Mixes Functions
     
@@ -400,6 +423,14 @@ class Service: NSObject, UNUserNotificationCenterDelegate, WCSessionDelegate {
                                     rootToFill.ingredients.append(ingToAdd)
                                 }
                             }
+                            /*send availableMixes to Watch*/
+                            NSKeyedArchiver.archiveRootObject(self.availableMixes, toFile: self.availableMixesArchiveUrl().path) //save to file
+                            let data = NSKeyedArchiver.archivedData(withRootObject: self.availableMixes)
+                            do { try self.session.updateApplicationContext(["default" : data]) }
+                            catch {
+                                //error handling
+                            }
+        
                             callback(true)
                         }else{
                             callback(false)
@@ -450,6 +481,15 @@ class Service: NSObject, UNUserNotificationCenterDelegate, WCSessionDelegate {
                                     self.customUserMixes.append(mix.clone())
                                 }
                             }
+                            
+                            /*send customUserMixes to Watch*/
+                            NSKeyedArchiver.archiveRootObject(self.customUserMixes, toFile: self.customUserMixesArchiveUrl().path) //save to file
+                            let data = NSKeyedArchiver.archivedData(withRootObject: self.customUserMixes)
+                            do { try self.session.updateApplicationContext(["custom" : data]) }
+                            catch {
+                                //error handling
+                            }
+                            
                             callback(true)
                         }else{
                             callback(false)

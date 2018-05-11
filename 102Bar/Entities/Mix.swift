@@ -33,6 +33,13 @@ class Mix: NSObject, NSCoding {
         self.ingredients = ingredients
     }
     
+    init(mix: String, mixDescription: String)
+    {
+        self.mix = mix
+        self.mixDescription = mixDescription
+        self.ingredients = Array()
+    }
+    
     init(mix: String, mixDescription: String, ingredients: [Drink], orderedByUser: String){
         self.mix = mix
         self.mixDescription = mixDescription

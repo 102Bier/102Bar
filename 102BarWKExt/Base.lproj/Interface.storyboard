@@ -16,15 +16,16 @@
                     <items>
                         <label alignment="left" id="MwQ-dw-nso"/>
                         <button width="1" height="0.5" alignment="left" title="Default Drinks" id="LnV-dR-C1H">
-                            <color key="titleColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <color key="titleColor" red="1" green="0.58735128170555562" blue="0.24050085529277776" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                             <fontDescription key="font" type="system" pointSize="18"/>
                             <connections>
                                 <segue destination="hh9-Gb-dzI" kind="push" identifier="default" id="vfB-T8-nm4"/>
                             </connections>
                         </button>
                         <button width="1" height="0.5" alignment="left" title="Custom Drinks" id="ono-1n-TYZ">
-                            <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <color key="titleColor" red="1" green="0.58823529411764708" blue="0.23921568627450979" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <color key="backgroundColor" white="0.2524142795138889" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <fontDescription key="font" type="system" pointSize="18"/>
                             <connections>
                                 <segue destination="ENP-PW-ier" kind="push" identifier="custom" id="Zqf-yM-eCD"/>
@@ -45,10 +46,18 @@
                                 <tableRow identifier="defaultRowController" id="X7L-aT-sDd" customClass="defaultRowController" customModule="_02BarWKExt_Extension">
                                     <group key="rootItem" width="1" alignment="left" id="ncO-hM-m9n">
                                         <items>
-                                            <label alignment="left" text="Default Drink" id="hVp-eG-EE1"/>
+                                            <label alignment="left" text="Default Drink" textAlignment="left" numberOfLines="2" id="hVp-eG-EE1"/>
+                                            <label alignment="right" verticalAlignment="bottom" textAlignment="right" id="ONr-tp-neY">
+                                                <color key="textColor" red="1" green="0.58823529409999997" blue="0.23921568630000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <fontDescription key="font" type="italicSystem" pointSize="16"/>
+                                            </label>
                                         </items>
+                                        <connections>
+                                            <segue destination="kSD-5W-RCG" kind="push" identifier="defaultRow" id="EaH-nE-I3v"/>
+                                        </connections>
                                     </group>
                                     <connections>
+                                        <outlet property="alcLabel" destination="ONr-tp-neY" id="Icj-Gf-ohc"/>
                                         <outlet property="mixLabel" destination="hVp-eG-EE1" id="Kmi-6h-OSH"/>
                                     </connections>
                                 </tableRow>
@@ -62,6 +71,38 @@
             </objects>
             <point key="canvasLocation" x="468" y="49"/>
         </scene>
+        <!--Ingredients-->
+        <scene sceneID="QyX-le-dmw">
+            <objects>
+                <controller identifier="ingredientsRowController" title="Ingredients" id="kSD-5W-RCG" customClass="IngredientsInterfaceController" customModule="_02BarWKExt_Extension">
+                    <items>
+                        <table alignment="left" id="RZF-U3-oAq">
+                            <items>
+                                <tableRow identifier="ingredientsRowController" id="vbX-W4-M4V" customClass="IngredientRowController" customModule="_02BarWKExt_Extension">
+                                    <group key="rootItem" width="1" alignment="left" id="PQT-ye-hAk">
+                                        <items>
+                                            <label alignment="left" text="ingredient" textAlignment="left" id="ENb-OK-5dg"/>
+                                            <label alignment="right" verticalAlignment="bottom" text="100%" textAlignment="right" id="JhV-Gf-RHq">
+                                                <color key="textColor" red="1" green="0.58823529409999997" blue="0.23921568630000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <fontDescription key="font" type="italicSystem" pointSize="16"/>
+                                            </label>
+                                        </items>
+                                    </group>
+                                    <connections>
+                                        <outlet property="ingredientLabel" destination="ENb-OK-5dg" id="qlm-YE-8qH"/>
+                                        <outlet property="percentageLabel" destination="JhV-Gf-RHq" id="PB3-S8-tv0"/>
+                                    </connections>
+                                </tableRow>
+                            </items>
+                        </table>
+                    </items>
+                    <connections>
+                        <outlet property="tableView" destination="RZF-U3-oAq" id="SIy-Ku-gRK"/>
+                    </connections>
+                </controller>
+            </objects>
+            <point key="canvasLocation" x="750" y="260"/>
+        </scene>
         <!--Custom-->
         <scene sceneID="hua-PI-mht">
             <objects>
@@ -72,10 +113,18 @@
                                 <tableRow identifier="customRowController" id="BLk-74-uUz" customClass="customRowController" customModule="_02BarWKExt_Extension">
                                     <group key="rootItem" width="1" alignment="left" id="ltU-1P-1al">
                                         <items>
-                                            <label alignment="left" text="Custom Drink" id="zVA-kL-yLz"/>
+                                            <label alignment="left" text="Custom Drink" textAlignment="left" numberOfLines="2" id="zVA-kL-yLz"/>
+                                            <label alignment="right" verticalAlignment="bottom" textAlignment="right" id="Dfx-xT-70x">
+                                                <color key="textColor" red="1" green="0.58823529409999997" blue="0.23921568630000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <fontDescription key="font" type="italicSystem" pointSize="16"/>
+                                            </label>
                                         </items>
+                                        <connections>
+                                            <segue destination="kSD-5W-RCG" kind="push" identifier="customRow" id="ePK-El-UAU"/>
+                                        </connections>
                                     </group>
                                     <connections>
+                                        <outlet property="alcLabel" destination="Dfx-xT-70x" id="8Pe-5d-lQg"/>
                                         <outlet property="mixLabel" destination="zVA-kL-yLz" id="ZaT-EB-3fU"/>
                                     </connections>
                                 </tableRow>
@@ -113,5 +162,8 @@
             <point key="canvasLocation" x="468" y="811"/>
         </scene>
     </scenes>
-    <color key="tintColor" red="1" green="0.7646420498703137" blue="0.017813189672004182" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+    <inferredMetricsTieBreakers>
+        <segue reference="EaH-nE-I3v"/>
+    </inferredMetricsTieBreakers>
+    <color key="tintColor" red="1" green="0.58823529409999997" blue="0.23921568630000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
 </document>

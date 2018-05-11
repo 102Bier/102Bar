@@ -6,6 +6,7 @@ class MixCell : UITableViewCell {
     
     @IBOutlet var mixTitle: UILabel!
     
+    @IBOutlet var alcoholicLabel: UILabel!
     // MARK: - Functions
     
     func addOrReplaceLabel(ingredient: String, yPos: Int)
@@ -33,6 +34,7 @@ class MixCell : UITableViewCell {
         
         let label = UILabel(frame: labelRect)
         label.text = ingredient
+        label.textColor = UIColor.darkGray
         self.addSubview(label)
     }
 }
