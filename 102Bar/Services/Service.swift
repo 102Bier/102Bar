@@ -80,6 +80,27 @@ class Service: NSObject, UNUserNotificationCenterDelegate, WCSessionDelegate {
         
     }
     
+    func sendMixes(custom : Bool)
+    {
+        if(custom)
+        {
+            NSKeyedArchiver.archiveRootObject(self.customUserMixes, toFile: self.customUserMixesArchiveUrl().path) //save to file
+            let data = NSKeyedArchiver.archivedData(withRootObject: self.customUserMixes)
+            do { try self.session.updateApplicationContext(["custom" : data]) }
+            catch {
+                print("didn't work quite well")
+            }
+        }
+        else {
+            NSKeyedArchiver.archiveRootObject(self.availableMixes, toFile: self.availableMixesArchiveUrl().path) //save to file
+            let data = NSKeyedArchiver.archivedData(withRootObject: self.availableMixes)
+            do { try self.session.updateApplicationContext(["default" : data]) }
+            catch {
+                print("didn't work quite well")
+            }
+        }
+    }
+    
     func session(_ session: WCSession, didReceiveMessage message: [String : Any]) {
         if let who = message["alcoholic"] as? String
         {
@@ -129,6 +150,50 @@ class Service: NSObject, UNUserNotificationCenterDelegate, WCSessionDelegate {
                 fatalError()
             }
             session.sendMessage(["percentage": percentages], replyHandler: nil, errorHandler: {error in print(error.localizedDescription)})
+        }
+        else if let order = message["order"] as? String {
+            let mixToOrder1 = availableMixes.first(where: {mix in
+                mix.mix == order
+            })
+            
+            let mixToOrder2 = customUserMixes.first(where: {mix in
+                mix.mix == order
+            })
+            if let mixToOrder = mixToOrder1
+            {
+                orderMix(mixToOrder: mixToOrder, glasssize: 330, callback: {success in
+                    if let orderStatus = success
+                    {
+                        session.sendMessage(["orderStatus" : orderStatus], replyHandler: nil, errorHandler: {
+                            error in
+                            print(error.localizedDescription)
+                        })
+                    }
+                })
+            }
+            else if let mixToOrder = mixToOrder2
+            {
+                orderMix(mixToOrder: mixToOrder, glasssize: 330, callback: {success in
+                    if let orderStatus = success
+                    {
+                        session.sendMessage(["orderStatus" : orderStatus], replyHandler: nil, errorHandler: {
+                            error in
+                            print(error.localizedDescription)
+                        })
+                    }
+                })
+            }
+            else if let send = message["mixes"] as? String
+            {
+                if send == "custom"
+                {
+                    sendMixes(custom: true)
+                }
+                else if send == "default"
+                {
+                    sendMixes(custom: false)
+                }
+            }
         }
     }
     
@@ -454,12 +519,7 @@ class Service: NSObject, UNUserNotificationCenterDelegate, WCSessionDelegate {
                                 }
                             }
                             /*send availableMixes to Watch*/
-                            NSKeyedArchiver.archiveRootObject(self.availableMixes, toFile: self.availableMixesArchiveUrl().path) //save to file
-                            let data = NSKeyedArchiver.archivedData(withRootObject: self.availableMixes)
-                            do { try self.session.updateApplicationContext(["default" : data]) }
-                            catch {
-                                //error handling
-                            }
+                            self.sendMixes(custom: true)
                             
                             callback(true)
                         }else{
@@ -511,14 +571,8 @@ class Service: NSObject, UNUserNotificationCenterDelegate, WCSessionDelegate {
                                     self.customUserMixes.append(mix.clone())
                                 }
                             }
-                            
                             /*send customUserMixes to Watch*/
-                            NSKeyedArchiver.archiveRootObject(self.customUserMixes, toFile: self.customUserMixesArchiveUrl().path) //save to file
-                            let data = NSKeyedArchiver.archivedData(withRootObject: self.customUserMixes)
-                            do { try self.session.updateApplicationContext(["custom" : data]) }
-                            catch {
-                                //error handling
-                            }
+                            self.sendMixes(custom: false)
                             
                             callback(true)
                         }else{

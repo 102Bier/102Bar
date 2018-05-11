@@ -96,6 +96,15 @@
                             </items>
                         </table>
                     </items>
+                    <menu key="menu" id="tis-Q5-j85">
+                        <items>
+                            <menuItem title="Order" icon="accept" id="VRt-Tv-zaC">
+                                <connections>
+                                    <action selector="order" destination="kSD-5W-RCG" id="zii-g1-Z9u"/>
+                                </connections>
+                            </menuItem>
+                        </items>
+                    </menu>
                     <connections>
                         <outlet property="tableView" destination="RZF-U3-oAq" id="SIy-Ku-gRK"/>
                     </connections>

@@ -13,6 +13,16 @@ class WatchSessionManager: NSObject, WCSessionDelegate {
         super.init()
     }
     
+    private let session: WCSession? = WCSession.isSupported() ? WCSession.default : nil
+    private var watchDataChangedDelegates = [WatchDataChangedDelegate]()
+    var customMixes = [Mix]()
+    var defaultMixes = [Mix]()
+    
+    func startSession() {
+        session?.delegate = self
+        session?.activate()
+    }
+    
 //    var customOrDefault : CustomOrDefault = ._none
     
 //    public enum CustomOrDefault {
@@ -97,22 +107,18 @@ class WatchSessionManager: NSObject, WCSessionDelegate {
         {
             watchDataChangedDelegates.first(where: {$0 is IngredientsInterfaceController})?.watchDataDidUpdate(watchData: WatchData(data: percentage))
         }
-    }
+        else if let orderStatus = message["orderStatus"] as? String
+        {
+            DispatchQueue.main.async() { [weak self] in
+                    self?.watchDataChangedDelegates.forEach { $0.gotOrderResponse(response: orderStatus)}
+                }
+            }
+        }
     
 //    func session(_ session: WCSession, didReceiveMessage message: [String : Any], replyHandler: @escaping ([String : Any]) -> Void) {
 //            print("lol")
 //            print("wtf")
 //    }
-    
-    private let session: WCSession? = WCSession.isSupported() ? WCSession.default : nil
-    private var watchDataChangedDelegates = [WatchDataChangedDelegate]()
-    var customMixes = [Mix]()
-    var defaultMixes = [Mix]()
-    
-    func startSession() {
-        session?.delegate = self
-        session?.activate()
-    }
     
     /* https://www.natashatherobot.com/watchconnectivity-application-context/ */
     public func addWatchDataChangedDelegate<T>(delegate: T) where T: WatchDataChangedDelegate, T: Equatable {
@@ -147,6 +153,5 @@ class WatchSessionManager: NSObject, WCSessionDelegate {
 
 protocol WatchDataChangedDelegate {
     func watchDataDidUpdate(watchData: WatchData)
-    //func newWatchData(data: Data)
+    func gotOrderResponse(response : String)
 }
-
