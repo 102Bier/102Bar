@@ -115,17 +115,10 @@ class WatchSessionManager: NSObject, WCSessionDelegate {
             }
         }
     
-//    func session(_ session: WCSession, didReceiveMessage message: [String : Any], replyHandler: @escaping ([String : Any]) -> Void) {
-//            print("lol")
-//            print("wtf")
-//    }
-    
-    /* https://www.natashatherobot.com/watchconnectivity-application-context/ */
     public func addWatchDataChangedDelegate<T>(delegate: T) where T: WatchDataChangedDelegate, T: Equatable {
         watchDataChangedDelegates.append(delegate)
     }
     
-    /* https://www.natashatherobot.com/watchconnectivity-application-context/ */
     public func removeWatchDataChangedDelegate<T>(delegate: T) where T: WatchDataChangedDelegate, T: Equatable {
         for (index, indexDelegate) in watchDataChangedDelegates.enumerated() {
             if let indexDelegate = indexDelegate as? T, indexDelegate == delegate {
@@ -136,7 +129,7 @@ class WatchSessionManager: NSObject, WCSessionDelegate {
     }
     
     public func request(what: String, who : String) {
-
+        //request alc label, percentage and mixes from iPhone
         session?.sendMessage([what:who],
                              replyHandler: nil,
                              errorHandler:  { error in
@@ -147,10 +140,12 @@ class WatchSessionManager: NSObject, WCSessionDelegate {
     
     public func getPercentage(for mix: String)
     {
+        //Deserilizing the percentages doens't work quite well, thats why there is a back up function for it
         session?.sendMessage(["percentage": mix], replyHandler: nil, errorHandler: { error in print(error.localizedDescription)})
     }
 }
 
+//protocol to update data sent by the iPhone at any time
 protocol WatchDataChangedDelegate {
     func watchDataDidUpdate(watchData: WatchData)
     func gotOrderResponse(response : String)

@@ -119,6 +119,7 @@ class DefaultMixInterfaceController: WKInterfaceController, WatchDataChangedDele
     override func contextForSegue(withIdentifier segueIdentifier: String, in table: WKInterfaceTable, rowIndex: Int) -> Any? {
         if segueIdentifier == "defaultRow"
         {
+            //hand over information to the ingredients-displaying interface controller
             let context : IngredientsAndMixInfo = IngredientsAndMixInfo(ingredients: defaultMixes[rowIndex].ingredients, mixName: defaultMixes[rowIndex].mixDescription, mixId : defaultMixes[rowIndex].mix)
             return context
         }

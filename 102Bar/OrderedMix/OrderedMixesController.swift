@@ -11,8 +11,8 @@ class OrderedMixesController : UITableViewController{
     
     override func viewDidLoad() {
         self.refresh(nil)
-        //tableView.isUserInteractionEnabled = false
         tableView.allowsSelection = true
+        //add pull to refresh
         if #available(iOS 10.0, *) {
             tableView.refreshControl = reloadControl
         } else {
@@ -79,6 +79,7 @@ class OrderedMixesController : UITableViewController{
         let vc: UIViewController = storyboard!.instantiateViewController(withIdentifier: "orderMix")
         
         vc.navigationItem.title = mix.mixDescription
+        //set properties of next vc
         (vc as! OrderMixController).mixToOrder = mix
         (vc as! OrderMixController).orderMode = false
         navigationController?.pushViewController(vc, animated: true)
