@@ -24,7 +24,7 @@ class IngredientsInterfaceController : WKInterfaceController, WatchDataChangedDe
     var ingredients = [Drink]()
     var mixId : String = ""
     var percentages : [Int] = Array()
-    
+
     @IBOutlet var tableView: WKInterfaceTable!
     
     @IBAction func order() {

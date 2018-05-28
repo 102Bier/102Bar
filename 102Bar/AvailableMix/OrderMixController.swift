@@ -21,7 +21,7 @@ class OrderMixController : UIViewController, UITableViewDelegate, UITableViewDat
         {
             glassSizeField.isEnabled = false
             glassSizeSlider.isHidden = true
-            view.constraints.first(where: { $0.identifier == "tableViewTop" })?.constant -= (glassSizeSlider.frame.height) //adjust the top constraint of the tableView to the missing slider
+            view.constraints.first(where: { $0.identifier == "tableViewTop" })?.constant -= (glassSizeSlider.frame.height) //adjust the top constraint of the tableView to the missing slider (an existing VC is reused here and slightly tweaked)
         }
         super.viewDidLoad()
     }
@@ -41,7 +41,7 @@ class OrderMixController : UIViewController, UITableViewDelegate, UITableViewDat
     }
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        
+        //just integers and total percentage <= 100%
         var newString = NSString(string: textField.text!).replacingCharacters(in: range, with: string)
         
         if(string.count < 1) {
@@ -132,22 +132,15 @@ class OrderMixController : UIViewController, UITableViewDelegate, UITableViewDat
                 glassSizeSlider.setValue(value,  animated: true)
             }
         }
-        else if textField.tag == 1 //percentage
-        {
-            if textField.text != nil
-            {
-                //totalPercentageLabel.text = text + "%"
-            }
-        }
     }
     
     func orderTapped() -> Void
     {
         var txtFieldText = totalPercentageLabel.text
-        txtFieldText?.removeLast()
+        txtFieldText?.removeLast() //get rid of the '%' 
         if Int(txtFieldText!)! != 100
         {
-            let alert = UIAlertController(title: "Invalid percentage", message: "To order, the total percentage must be 100", preferredStyle: .alert)
+            let alert = UIAlertController(title: "Invalid percentage", message: "To order, the total percentage must be 100%", preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "Ok", style: .cancel, handler: nil))
             self.present(alert, animated: true)
             return

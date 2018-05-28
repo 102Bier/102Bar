@@ -67,6 +67,7 @@
 		C3E1926A208E71EF000122E0 /* Alamofire.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8A46A0F7206030CB004EDA94 /* Alamofire.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		C3EB45B3206932AF00F69F16 /* DrinkCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3EB45B2206932AF00F69F16 /* DrinkCell.swift */; };
 		C3EB45BD2069427900F69F16 /* AddDrinkTableContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3EB45BC2069427900F69F16 /* AddDrinkTableContent.swift */; };
+		C3F8295220A6E9B8002FE922 /* demo.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3F8295120A6E9B8002FE922 /* demo.swift */; };
 		C3FAE6BB209C92A900DAAA63 /* LocalAuthentication.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C3FAE6B4209C92A800DAAA63 /* LocalAuthentication.framework */; };
 /* End PBXBuildFile section */
 
@@ -280,6 +281,7 @@
 		C3B66DF5207CC3DF00C26328 /* MixCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MixCell.swift; sourceTree = "<group>"; };
 		C3EB45B2206932AF00F69F16 /* DrinkCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrinkCell.swift; sourceTree = "<group>"; };
 		C3EB45BC2069427900F69F16 /* AddDrinkTableContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddDrinkTableContent.swift; sourceTree = "<group>"; };
+		C3F8295120A6E9B8002FE922 /* demo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = demo.swift; sourceTree = "<group>"; };
 		C3FAE6B4209C92A800DAAA63 /* LocalAuthentication.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = LocalAuthentication.framework; path = System/Library/Frameworks/LocalAuthentication.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
@@ -522,6 +524,7 @@
 				8AD05B1520A5E54900B00B72 /* ingredientRowController.swift */,
 				8AD05B1620A5E54900B00B72 /* ingredientsInterfaceController.swift */,
 				C317C07520A5C88000EAB550 /* IngredienentsAndMixInfo.swift */,
+				C3F8295120A6E9B8002FE922 /* demo.swift */,
 			);
 			path = IngredientsTable;
 			sourceTree = "<group>";
@@ -881,6 +884,7 @@
 				C3381530208DD8AF00FB7D57 /* Drink.swift in Sources */,
 				8AD05B1420A5E52500B00B72 /* watchData.swift in Sources */,
 				C317C07420A5C83C00EAB550 /* DrinkGroup.swift in Sources */,
+				C3F8295220A6E9B8002FE922 /* demo.swift in Sources */,
 				8AD05B1E20A5E56C00B00B72 /* defaultRowController.swift in Sources */,
 				8AD05B2120A5E56C00B00B72 /* customRowController.swift in Sources */,
 				C317C07620A5C88000EAB550 /* IngredienentsAndMixInfo.swift in Sources */,
@@ -1075,13 +1079,13 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = F57P2RGF3M;
 				INFOPLIST_FILE = 102Bar/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = de.102bier.102Bar.lol;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -1095,13 +1099,13 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = F57P2RGF3M;
 				INFOPLIST_FILE = 102Bar/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = de.102bier.102Bar.lol;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

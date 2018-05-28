@@ -66,7 +66,7 @@ class CustomMixInterfaceController: WKInterfaceController, WatchDataChangedDeleg
             customMixes = watchData.customMixes
             loadTableData()
         }
-        if watchData.customMixes.count == customMixes.count {
+        if watchData.customAlc.count == customMixes.count {
             alc = watchData.customAlc
             loadAlcLabel()
         }
