@@ -233,7 +233,7 @@
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0%" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Aon-t8-27A">
-                                    <rect key="frame" x="285.5" y="46" width="24.5" height="21"/>
+                                    <rect key="frame" x="268" y="46" width="42" height="21"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
@@ -255,7 +255,7 @@
                                 <constraint firstItem="T99-fA-2Qd" firstAttribute="top" secondItem="MM1-kF-3yN" secondAttribute="bottom" constant="8" id="Iys-zx-zht"/>
                                 <constraint firstAttribute="trailing" secondItem="T99-fA-2Qd" secondAttribute="trailing" constant="60" id="SBG-IT-LnR"/>
                                 <constraint firstItem="T99-fA-2Qd" firstAttribute="leading" secondItem="eFm-Je-wiQ" secondAttribute="leading" constant="8" id="VQY-Gf-FQX"/>
-                                <constraint firstItem="Aon-t8-27A" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="T99-fA-2Qd" secondAttribute="trailing" constant="8" symbolic="YES" id="fz6-Hg-oCf"/>
+                                <constraint firstItem="Aon-t8-27A" firstAttribute="leading" relation="lessThanOrEqual" secondItem="T99-fA-2Qd" secondAttribute="trailing" constant="8" symbolic="YES" id="fz6-Hg-oCf"/>
                                 <constraint firstAttribute="trailing" secondItem="Aon-t8-27A" secondAttribute="trailing" constant="10" id="mZ3-Uo-Bfv"/>
                                 <constraint firstItem="Aon-t8-27A" firstAttribute="top" secondItem="ndw-gV-cnJ" secondAttribute="bottom" constant="13" id="o8W-r3-ebk"/>
                                 <constraint firstItem="ndw-gV-cnJ" firstAttribute="top" secondItem="eFm-Je-wiQ" secondAttribute="top" constant="12" id="oUw-o4-7CB"/>
