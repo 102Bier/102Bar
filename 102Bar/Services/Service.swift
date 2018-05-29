@@ -297,26 +297,19 @@ class Service: NSObject, UNUserNotificationCenterDelegate, WCSessionDelegate {
     
     // MARK: - Account Functions
     
-    public func login(username:String, password:String, callback: @escaping (_ success: String?) -> Void){
-        
+    public func login(username:String, password:String, callback: @escaping (_ response: String?) -> Void){
         let parameters: Parameters=[
             "username": username,
             "password": password
         ]
-        
         alamoFireManager.request(URL_USER_LOGIN, method: .post, parameters: parameters).responseJSON
             {
                 response in
                 if let result = response.result.value {
                     let jsonData = result as! NSDictionary
-                    
-                    //if there is no error
                     if(!(jsonData.value(forKey: "error") as! Bool)){
-                        
-                        //getting the user from response
                         let user = jsonData.value(forKey: "user") as! NSDictionary
                         
-                        //getting user values
                         let userId = user.value(forKey: "id") as! String
                         let userName = user.value(forKey: "username") as! String
                         let userFirstname = user.value(forKey: "firstname") as! String
@@ -324,7 +317,6 @@ class Service: NSObject, UNUserNotificationCenterDelegate, WCSessionDelegate {
                         let userEmail = user.value(forKey: "email") as! String
                         let userRights = user.value(forKey: "rights") as! Int
                         
-                        //saving user values to defaults
                         self.defaultValues.set(userId, forKey: "userid")
                         self.defaultValues.set(userName, forKey: "username")
                         self.defaultValues.set(userEmail, forKey: "useremail")
@@ -333,7 +325,7 @@ class Service: NSObject, UNUserNotificationCenterDelegate, WCSessionDelegate {
                         self.defaultValues.set(userRights, forKey: "userrights")
                         
                         if((userRights & Rights.canLogin.rawValue) <= 0){
-                            callback("You ar enot allowed to Login!")
+                            callback("You are not allowed to Login!")
                         }
                         
                         self.checkNotifications()
@@ -343,10 +335,8 @@ class Service: NSObject, UNUserNotificationCenterDelegate, WCSessionDelegate {
                         
                         callback("A")
                     }else{
-                        //error message in case of invalid credential
                         callback("Wrong username or password")
                     }
-                    
                 }
         }
     }
@@ -518,9 +508,7 @@ class Service: NSObject, UNUserNotificationCenterDelegate, WCSessionDelegate {
                                     rootToFill.ingredients.append(ingToAdd)
                                 }
                             }
-                            /*send availableMixes to Watch*/
                             self.sendMixes(custom: true)
-                            
                             callback(true)
                         }else{
                             callback(false)
