@@ -66,7 +66,7 @@ class CustomMixInterfaceController: WKInterfaceController, WatchDataChangedDeleg
             customMixes = watchData.customMixes
             loadTableData()
         }
-        if watchData.customMixes.count == customMixes.count {
+        if watchData.customAlc.count == customMixes.count {
             alc = watchData.customAlc
             loadAlcLabel()
         }
@@ -119,6 +119,7 @@ class CustomMixInterfaceController: WKInterfaceController, WatchDataChangedDeleg
     override func contextForSegue(withIdentifier segueIdentifier: String, in table: WKInterfaceTable, rowIndex: Int) -> Any? {
         if segueIdentifier == "customRow"
         {
+            //hand over information to the ingredients-displaying interface controller
             let context : IngredientsAndMixInfo = IngredientsAndMixInfo(ingredients: customMixes[rowIndex].ingredients, mixName: customMixes[rowIndex].mixDescription, mixId : customMixes[rowIndex].mix)
             return context
         }

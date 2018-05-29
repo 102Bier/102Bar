@@ -57,6 +57,7 @@ class InterfaceController: WKInterfaceController, WatchDataChangedDelegate {
     
     
     override func contextForSegue(withIdentifier segueIdentifier: String) -> Any? {
+        //hand mixes to next interface controller
         if segueIdentifier == "default"
         {
             if defaultMixes.count > 0

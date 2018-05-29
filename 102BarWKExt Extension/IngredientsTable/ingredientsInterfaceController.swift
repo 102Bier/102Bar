@@ -24,7 +24,7 @@ class IngredientsInterfaceController : WKInterfaceController, WatchDataChangedDe
     var ingredients = [Drink]()
     var mixId : String = ""
     var percentages : [Int] = Array()
-    
+
     @IBOutlet var tableView: WKInterfaceTable!
     
     @IBAction func order() {
@@ -34,6 +34,7 @@ class IngredientsInterfaceController : WKInterfaceController, WatchDataChangedDe
     override func awake(withContext context: Any?) {
         if context != nil
         {
+            //update context
             if let contextCheck = context as? IngredientsAndMixInfo
             {
                 ingredients = contextCheck.ingredients
@@ -70,6 +71,7 @@ class IngredientsInterfaceController : WKInterfaceController, WatchDataChangedDe
                 {
                     ingredientsRowController.percentageLabel.setText(String(rowModel.percentage)+"%")
                 }
+                //Deserilizing the percentages doens't work quite well, thats why there is a back up solution for it
                 else if percentages.count == ingredients.count
                 {
                     ingredientsRowController.percentageLabel.setText(String(percentages[index])+"%")

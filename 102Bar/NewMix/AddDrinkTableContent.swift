@@ -21,9 +21,8 @@ class AddDrinkTableContent {
     {
         /****** When object <--> DB works*/
          var availableIngredients : [String]! = Array()
-        //print (Service.shared.testI)
         Service.shared.availableIngredients.forEach({availableIngredients.append($0.drinkDescription)})
-        /*******/
+
         let selectedIngredients : [String] = [helpText]
         percentages = ["0", "0", "0", "0", "0", "0", "0", "0"]
         let initialPercentages : [String] = ["0"]

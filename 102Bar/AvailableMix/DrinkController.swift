@@ -47,7 +47,7 @@ class DrinkController: UIViewController, UITableViewDelegate, UITableViewDataSou
     
     // MARK: - Action Event Functions
     
-    @IBAction func segSwitched(_ sender: UISegmentedControl) {
+    @IBAction func segSwitched(_ sender: UISegmentedControl) { //switch for custom/default mixes
         if sender.selectedSegmentIndex == 0 {
         }
         tableView.reloadData()
@@ -71,10 +71,6 @@ class DrinkController: UIViewController, UITableViewDelegate, UITableViewDataSou
         navigationController?.popViewController(animated: true)
     }
     
-    @IBAction func viewTapped(_ sender: UITapGestureRecognizer) {
-        
-    }
-    
     // MARK: - Refresh Table Functions
     
     @objc private func refreshTable(_ sender: Any) {
@@ -88,12 +84,10 @@ class DrinkController: UIViewController, UITableViewDelegate, UITableViewDataSou
         case 0: Service.shared.getAvailableMixes {
             succsess in self.tableView.reloadData()
             self.refreshControl.endRefreshing()
-            //self.activityIndicatorView.stopAnimating()
         }
         case 1: Service.shared.getCustomMixes {
             succsess in self.tableView.reloadData()
             self.refreshControl.endRefreshing()
-            //self.activityIndicatorView.stopAnimating()
             }
         default: break
         }
@@ -102,6 +96,7 @@ class DrinkController: UIViewController, UITableViewDelegate, UITableViewDataSou
     // MARK: - Init Table View Functions
     
     func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCellEditingStyle {
+        // removing of custom mixes is possible, default mixes not
         if segControl.selectedSegmentIndex == 1 {
             return .delete
         }
@@ -115,7 +110,7 @@ class DrinkController: UIViewController, UITableViewDelegate, UITableViewDataSou
         let cell = tableView.dequeueReusableCell(withIdentifier: "mixCell") as! MixCell
         switch(segControl.selectedSegmentIndex)
         {
-        case 0: //available Drinks
+        case 0: //available mixes
             cell.mixTitle.text = Service.shared.availableMixes[indexPath.row].mixDescription
             for i in 0..<Service.shared.availableMixes[indexPath.row].ingredients.count
             {
@@ -132,7 +127,7 @@ class DrinkController: UIViewController, UITableViewDelegate, UITableViewDataSou
             }
             return cell
             
-        case 1: //custom Drinks
+        case 1: //custom mixes
             cell.mixTitle.text = Service.shared.customUserMixes[indexPath.row].mixDescription
             
             for i in 0..<Service.shared.customUserMixes[indexPath.row].ingredients.count
@@ -157,7 +152,7 @@ class DrinkController: UIViewController, UITableViewDelegate, UITableViewDataSou
     
     func tableView(_: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if segControl.selectedSegmentIndex == 1 && editingStyle == .delete {
-            //remove ingred from data model
+            //remove ingredient from data model
             Service.shared.customMix(mixToAdd: Service.shared.customUserMixes[indexPath.row], add: false){
                 success in
             }

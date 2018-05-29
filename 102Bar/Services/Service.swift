@@ -68,21 +68,23 @@ class Service: NSObject, UNUserNotificationCenterDelegate, WCSessionDelegate {
     
     // MARK: - WCSession Functions
     
+    //to confrom to protocol
     func sessionDidBecomeInactive(_ session: WCSession) {
-        
     }
     
+    //to confrom to protocol
     func sessionDidDeactivate(_ session: WCSession) {
         
     }
     
+    //to confrom to protocol
     func session(_ session: WCSession, activationDidCompleteWith activationState: WCSessionActivationState, error: Error?) {
         
     }
     
     func sendMixes(custom : Bool)
     {
-        if(custom)
+        if(custom) //custom mix
         {
             NSKeyedArchiver.archiveRootObject(self.customUserMixes, toFile: self.customUserMixesArchiveUrl().path) //save to file
             let data = NSKeyedArchiver.archivedData(withRootObject: self.customUserMixes)
@@ -91,7 +93,7 @@ class Service: NSObject, UNUserNotificationCenterDelegate, WCSessionDelegate {
                 print("didn't work quite well")
             }
         }
-        else {
+        else { //default mix
             NSKeyedArchiver.archiveRootObject(self.availableMixes, toFile: self.availableMixesArchiveUrl().path) //save to file
             let data = NSKeyedArchiver.archivedData(withRootObject: self.availableMixes)
             do { try self.session.updateApplicationContext(["default" : data]) }
@@ -102,7 +104,7 @@ class Service: NSObject, UNUserNotificationCenterDelegate, WCSessionDelegate {
     }
     
     func session(_ session: WCSession, didReceiveMessage message: [String : Any]) {
-        if let who = message["alcoholic"] as? String
+        if let who = message["alcoholic"] as? String //watch wants alcoholic labels
         {
             var alc = [Bool]()
             if who == "custom"
@@ -120,7 +122,7 @@ class Service: NSObject, UNUserNotificationCenterDelegate, WCSessionDelegate {
                 session.sendMessage(["defaultAlc":alc], replyHandler: nil, errorHandler: {error in print(error.localizedDescription)})
             }
         }
-        else if let drinkInfo = message["percentage"] as? String
+        else if let drinkInfo = message["percentage"] as? String //watch wants percentage labels
         {
             var percentages = [Int]()
             /*search customuserMixes and availableMixes for the mix matching the submitted mixId*/
@@ -266,26 +268,26 @@ class Service: NSObject, UNUserNotificationCenterDelegate, WCSessionDelegate {
         ]
         
         alamoFireManager.request(URL_CHECK_NOTIFICATIONS, method: .post, parameters: parameters).responseJSON
-            {
-                response in
-                if let result = response.result.value {
-                    let jsonData = result as! NSArray
-                    
-                    for notifictaion in jsonData{
-                        let notificationInfo = notifictaion as! NSDictionary
-                        let pushNotification = UNMutableNotificationContent()
-                        pushNotification.title = notificationInfo.object(forKey: "Title") as! String
-                        pushNotification.body = notificationInfo.object(forKey: "Message") as! String
-                        pushNotification.sound = UNNotificationSound.default()
-                        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 1, repeats: false)
-                        let request = UNNotificationRequest(identifier: self.getNewUUID(), content: pushNotification, trigger: trigger)
-                        UNUserNotificationCenter.current().add(request, withCompletionHandler: { (error) in
-                            if let error = error {
-                                print(error)
-                            }
-                        })
-                    }
+        {
+            response in
+            if let result = response.result.value {
+                let jsonData = result as! NSArray
+                
+                for notifictaion in jsonData{
+                    let notificationInfo = notifictaion as! NSDictionary
+                    let pushNotification = UNMutableNotificationContent()
+                    pushNotification.title = notificationInfo.object(forKey: "Title") as! String
+                    pushNotification.body = notificationInfo.object(forKey: "Message") as! String
+                    pushNotification.sound = UNNotificationSound.default()
+                    let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 1, repeats: false)
+                    let request = UNNotificationRequest(identifier: self.getNewUUID(), content: pushNotification, trigger: trigger)
+                    UNUserNotificationCenter.current().add(request, withCompletionHandler: { (error) in
+                        if let error = error {
+                            print(error)
+                        }
+                    })
                 }
+            }
         }
     }
     
@@ -560,7 +562,7 @@ class Service: NSObject, UNUserNotificationCenterDelegate, WCSessionDelegate {
                                 }
                             }
                             /*send customUserMixes to Watch*/
-                            self.sendMixes(custom: false)
+                            self.sendMixes(custom: true)
                             
                             callback(true)
                         }else{

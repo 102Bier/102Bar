@@ -137,10 +137,10 @@
          contextName = "defaultDrinkInterfaceController.watchDataDidUpdate(watchData:):defaultDrinkInterfaceController.swift">
          <PersistentStrings>
             <PersistentString
-               value = "watchData.defaultAlc.count">
+               value = "defaultMixes.count">
             </PersistentString>
             <PersistentString
-               value = "defaultMixes.count">
+               value = "watchData.defaultAlc.count">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -197,10 +197,10 @@
          contextName = "defaultDrinkInterfaceController.loadTableData():defaultDrinkInterfaceController.swift">
          <PersistentStrings>
             <PersistentString
-               value = "availableMixes.count">
+               value = "availableMixes">
             </PersistentString>
             <PersistentString
-               value = "availableMixes">
+               value = "availableMixes.count">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -208,13 +208,24 @@
          contextName = "orderMixController.tableView(_:cellForRowAt:):orderMixController.swift">
          <PersistentStrings>
             <PersistentString
-               value = "cell.percentageTextField.text">
+               value = "mixToOrder.ingredients[indexPath.row]">
             </PersistentString>
             <PersistentString
                value = "cell.drinkLabel.text">
             </PersistentString>
             <PersistentString
-               value = "mixToOrder.ingredients[indexPath.row]">
+               value = "cell.percentageTextField.text">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "CustomMixInterfaceController.loadTableData():CustomMixInterfaceController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "customMixes.count">
+            </PersistentString>
+            <PersistentString
+               value = "alc.count">
             </PersistentString>
          </PersistentStrings>
       </ContextState>

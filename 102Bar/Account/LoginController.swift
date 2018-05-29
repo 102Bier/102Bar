@@ -12,24 +12,23 @@ class LoginController: UIViewController {
     @IBOutlet weak var _login_button: UIButton!
     @IBOutlet weak var _login_as_guest_button: UIButton!
     @IBOutlet weak var _register_button: UIButton!
-    
-    @IBOutlet var bier: UIImageView!
+
     var errorMessage = ""
     
     // MARK: - ViewDidLoad
     
     override func viewDidLoad() {
-        /*bier.frame = CGRect(x: bier.frame.origin.x, y: bier.frame.origin.y, width: view.safeAreaLayoutGuide.layoutFrame.size.width * 0.5 , height: view.safeAreaLayoutGuide.layoutFrame.size.height * 0.25)*/
         super.viewDidLoad()
         let context = LAContext()
         
-        
-        
-        if let loggedOut = UserDefaults.standard.object(forKey: "loggedOut")
+        if let loggedOut = UserDefaults.standard.object(forKey: "loggedOut") as? Bool
         {
-            if context.canEvaluatePolicy(LAPolicy.deviceOwnerAuthenticationWithBiometrics, error: nil) && (UserDefaults.standard.object(forKey: "hasData") as! Bool) && !(loggedOut as! Bool)
+            if let hasData = UserDefaults.standard.object(forKey: "hasData") as? Bool
             {
-                evaulateBiometricAuthenticity(context: context)
+                if context.canEvaluatePolicy(LAPolicy.deviceOwnerAuthenticationWithBiometrics, error: nil) && hasData && !loggedOut
+                {
+                    evaulateBiometricAuthenticity(context: context)
+                }
             }
         }
     }
@@ -114,12 +113,11 @@ class LoginController: UIViewController {
             message = error.localizedDescription
             break
         }
-        //self.showPopupWithMessage(message)
-        errorMessage = message
+        errorMessage = message //error message can't be printed in a non-main thread
         print(message)
     }
     
-    func checkErrorMessage()
+    func checkErrorMessage() //print error message in the main thread
     {
         if(errorMessage != "")
         {
@@ -132,12 +130,12 @@ class LoginController: UIViewController {
     {
         UserDefaults.standard.set(username, forKey: "username")
         do {
-            // This is a new account, create a new keychain item with the account name.
+            // new account, create a new keychain item with the account name.
             let passwordItem = KeychainPasswordItem(
                 service: KeychainConfiguration.serviceName,
                 account: username,
                 accessGroup: KeychainConfiguration.accessGroup)
-            // Save the password for the new item.
+            // save password for the new item.
             try passwordItem.savePassword(password)
         } catch {
             fatalError("Error updating keychain - \(error)")

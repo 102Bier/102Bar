@@ -12,18 +12,18 @@
         <!--102Bar-->
         <scene sceneID="aou-V4-d1y">
             <objects>
-                <controller title="102Bar" id="AgC-eL-Hgc" customClass="InterfaceController" customModule="_02BarWKExt" customModuleProvider="target">
+                <controller identifier="102Bar" title="102Bar" id="AgC-eL-Hgc" customClass="InterfaceController" customModule="_02BarWKExt" customModuleProvider="target">
                     <items>
                         <label alignment="left" id="MwQ-dw-nso"/>
-                        <button width="1" height="0.5" alignment="left" title="Default Drinks" id="LnV-dR-C1H">
-                            <color key="titleColor" red="1" green="0.58735128170555562" blue="0.24050085529277776" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <button width="1" height="0.5" alignment="left" title="Default Mixes" id="LnV-dR-C1H">
+                            <color key="titleColor" red="1" green="0.58039215686274503" blue="0.23921568627450979" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                             <fontDescription key="font" type="system" pointSize="18"/>
                             <connections>
                                 <segue destination="hh9-Gb-dzI" kind="push" identifier="default" id="vfB-T8-nm4"/>
                             </connections>
                         </button>
-                        <button width="1" height="0.5" alignment="left" title="Custom Drinks" id="ono-1n-TYZ">
+                        <button width="1" height="0.5" alignment="left" title="Custom Mixes" id="ono-1n-TYZ">
                             <color key="titleColor" red="1" green="0.58823529411764708" blue="0.23921568627450979" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <color key="backgroundColor" white="0.2524142795138889" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <fontDescription key="font" type="system" pointSize="18"/>
@@ -74,18 +74,18 @@
         <!--Ingredients-->
         <scene sceneID="QyX-le-dmw">
             <objects>
-                <controller identifier="ingredientsRowController" title="Ingredients" id="kSD-5W-RCG" customClass="IngredientsInterfaceController" customModule="_02BarWKExt_Extension">
+                <controller title="Ingredients" id="kSD-5W-RCG" customClass="IngredientsInterfaceController" customModule="_02BarWKExt_Extension">
                     <items>
                         <table alignment="left" id="RZF-U3-oAq">
                             <items>
                                 <tableRow identifier="ingredientsRowController" id="vbX-W4-M4V" customClass="IngredientRowController" customModule="_02BarWKExt_Extension">
                                     <group key="rootItem" width="1" alignment="left" id="PQT-ye-hAk">
                                         <items>
-                                            <label alignment="left" text="ingredient" textAlignment="left" id="ENb-OK-5dg"/>
                                             <label alignment="right" verticalAlignment="bottom" textAlignment="right" id="JhV-Gf-RHq">
                                                 <color key="textColor" red="1" green="0.58823529409999997" blue="0.23921568630000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <fontDescription key="font" type="italicSystem" pointSize="16"/>
                                             </label>
+                                            <label alignment="left" text="ingredient" textAlignment="left" id="ENb-OK-5dg"/>
                                         </items>
                                     </group>
                                     <connections>

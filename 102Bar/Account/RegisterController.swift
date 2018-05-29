@@ -12,12 +12,6 @@ class RegisterController: UIViewController {
     @IBOutlet weak var _confirmPassword: UITextField!
     @IBOutlet weak var labelMessage: UILabel!
     
-    // MARK: - ViewDidLoad
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-    }
-    
     // MARK: - Action Event Functions
     
     @IBAction func RegisterButton(_ sender: UIButton) {
@@ -55,12 +49,12 @@ class RegisterController: UIViewController {
     {
         UserDefaults.standard.set(username, forKey: "username")
         do {
-            // This is a new account, create a new keychain item with the account name.
+            // new account, create a new keychain item with the account name.
             let passwordItem = KeychainPasswordItem(
                 service: KeychainConfiguration.serviceName,
                 account: username,
                 accessGroup: KeychainConfiguration.accessGroup)
-            // Save the password for the new item.
+            // save password for the new item.
             try passwordItem.savePassword(password)
         } catch {
             fatalError("Error updating keychain - \(error)")

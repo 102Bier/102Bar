@@ -9,7 +9,7 @@ class MixCell : UITableViewCell {
     @IBOutlet var alcoholicLabel: UILabel!
     // MARK: - Functions
     
-    func addOrReplaceLabel(ingredient: String, yPos: Int)
+    func addOrReplaceLabel(ingredient: String, yPos: Int) //dynamically adds igngredient labels in cell and adjusts the frame
     {
         var labels : [UILabel] = Array()
         for i in 0..<self.subviews.count
