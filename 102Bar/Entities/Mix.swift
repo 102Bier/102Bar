@@ -4,10 +4,12 @@ class Mix: NSObject, NSCoding {
     
     // MARK: - Variables
     
+    var groupId: String = ""
     var mix: String = ""
     var mixDescription: String = ""
     var ingredients: [Drink]!
     var orderedByUser: String = ""
+    var glassSize: Int = 0
     
     // MARK: - Encode Function
     
@@ -47,10 +49,19 @@ class Mix: NSObject, NSCoding {
         self.orderedByUser = orderedByUser
     }
     
+    init(mix: String, mixDescription: String, ingredients: [Drink], orderedByUser: String, glassSize: Int, groupId: String){
+        self.mix = mix
+        self.mixDescription = mixDescription
+        self.ingredients = ingredients
+        self.orderedByUser = orderedByUser
+        self.glassSize = glassSize
+        self.groupId = groupId
+    }
+    
     // MARK: - Clone Functions
     
     func clone() -> Mix{
-        return Mix(mix: self.mix, mixDescription: self.mixDescription, ingredients: self.cloneIngArray(), orderedByUser: self.orderedByUser)
+        return Mix(mix: self.mix, mixDescription: self.mixDescription, ingredients: self.cloneIngArray(), orderedByUser: self.orderedByUser, glassSize: self.glassSize, groupId: self.groupId)
     }
     
     func cloneIngArray() -> [Drink]{

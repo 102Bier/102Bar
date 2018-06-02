@@ -19,6 +19,9 @@
 		8A46A0D4205FE71E004EDA94 /* icon_256.png in Resources */ = {isa = PBXBuildFile; fileRef = 8A46A0D3205FE71E004EDA94 /* icon_256.png */; };
 		8A46A0DA206012CC004EDA94 /* DrinkController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A46A0D9206012CC004EDA94 /* DrinkController.swift */; };
 		8A46A0DC20601362004EDA94 /* RegisterController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A46A0DB20601362004EDA94 /* RegisterController.swift */; };
+		8A4A920C20BD539B0001F888 /* statistics.png in Resources */ = {isa = PBXBuildFile; fileRef = 8A4A920920BD53970001F888 /* statistics.png */; };
+		8A4A920D20BD539B0001F888 /* barkeeper.png in Resources */ = {isa = PBXBuildFile; fileRef = 8A4A920A20BD539A0001F888 /* barkeeper.png */; };
+		8A4A920E20BD539B0001F888 /* mix.png in Resources */ = {isa = PBXBuildFile; fileRef = 8A4A920B20BD539B0001F888 /* mix.png */; };
 		8A5FA708206A51F600161D86 /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A5FA707206A51F600161D86 /* Service.swift */; };
 		8A5FA711206A5AC800161D86 /* DrinkType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A5FA710206A5AC800161D86 /* DrinkType.swift */; };
 		8A5FA713206A5ADA00161D86 /* DrinkGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A5FA712206A5ADA00161D86 /* DrinkGroup.swift */; };
@@ -240,6 +243,9 @@
 		8A46A0DF206030CB004EDA94 /* Alamofire.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; path = Alamofire.xcodeproj; sourceTree = "<group>"; };
 		8A46A0F8206030CC004EDA94 /* Source */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Source; sourceTree = "<group>"; };
 		8A46A0F9206030CC004EDA94 /* Alamofire.xcworkspace */ = {isa = PBXFileReference; lastKnownFileType = wrapper.workspace; path = Alamofire.xcworkspace; sourceTree = "<group>"; };
+		8A4A920920BD53970001F888 /* statistics.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = statistics.png; sourceTree = "<group>"; };
+		8A4A920A20BD539A0001F888 /* barkeeper.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = barkeeper.png; sourceTree = "<group>"; };
+		8A4A920B20BD539B0001F888 /* mix.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mix.png; sourceTree = "<group>"; };
 		8A5FA707206A51F600161D86 /* Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
 		8A5FA710206A5AC800161D86 /* DrinkType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrinkType.swift; sourceTree = "<group>"; };
 		8A5FA712206A5ADA00161D86 /* DrinkGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrinkGroup.swift; sourceTree = "<group>"; };
@@ -445,6 +451,9 @@
 		8ADF9F6F20A07CBE001D3C2E /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				8A4A920A20BD539A0001F888 /* barkeeper.png */,
+				8A4A920B20BD539B0001F888 /* mix.png */,
+				8A4A920920BD53970001F888 /* statistics.png */,
 				8A46A0CF205FE337004EDA94 /* banner_853_480.png */,
 				8A46A0D3205FE71E004EDA94 /* icon_256.png */,
 				8AB0AAFD2084D25100C7B994 /* iconAccept.png */,
@@ -780,9 +789,12 @@
 				8AE72D11207C9D8500F049F3 /* iconOk.png in Resources */,
 				8A46A0D0205FE337004EDA94 /* banner_853_480.png in Resources */,
 				8AE72D10207C9D8500F049F3 /* iconDelete.png in Resources */,
+				8A4A920C20BD539B0001F888 /* statistics.png in Resources */,
 				8AB0AAFE2084D25200C7B994 /* iconDecline.png in Resources */,
 				8A41BA11205FDD9900907669 /* Assets.xcassets in Resources */,
 				8A41BA0F205FDD9900907669 /* Main.storyboard in Resources */,
+				8A4A920E20BD539B0001F888 /* mix.png in Resources */,
+				8A4A920D20BD539B0001F888 /* barkeeper.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1079,7 +1091,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = F57P2RGF3M;
 				INFOPLIST_FILE = 102Bar/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = de.102bier.102Bar.lol;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1099,7 +1111,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = F57P2RGF3M;
 				INFOPLIST_FILE = 102Bar/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = de.102bier.102Bar.lol;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1194,7 +1206,7 @@
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = 4;
-				WATCHOS_DEPLOYMENT_TARGET = 4.3;
+				WATCHOS_DEPLOYMENT_TARGET = 4.2;
 			};
 			name = Debug;
 		};
@@ -1217,7 +1229,7 @@
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = 4;
-				WATCHOS_DEPLOYMENT_TARGET = 4.3;
+				WATCHOS_DEPLOYMENT_TARGET = 4.2;
 			};
 			name = Release;
 		};
@@ -1239,7 +1251,7 @@
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = 4;
-				WATCHOS_DEPLOYMENT_TARGET = 4.3;
+				WATCHOS_DEPLOYMENT_TARGET = 4.2;
 			};
 			name = Debug;
 		};
@@ -1261,7 +1273,7 @@
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = 4;
-				WATCHOS_DEPLOYMENT_TARGET = 4.3;
+				WATCHOS_DEPLOYMENT_TARGET = 4.2;
 			};
 			name = Release;
 		};

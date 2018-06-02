@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina4_0" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -364,7 +364,7 @@
                                 </connections>
                             </segmentedControl>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="otY-Qa-xWE">
-                                <rect key="frame" x="0.0" y="110" width="320" height="458"/>
+                                <rect key="frame" x="0.0" y="110" width="320" height="409"/>
                                 <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                 <color key="tintColor" red="1" green="0.58823529409999997" blue="0.23921568630000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <color key="separatorColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -380,12 +380,12 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="very long Drink Title" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="22" translatesAutoresizingMaskIntoConstraints="NO" id="BNc-pY-1fY">
-                                                    <rect key="frame" x="33.5" y="11" width="253.5" height="36"/>
+                                                    <rect key="frame" x="33" y="11" width="254" height="36"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="30"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="alcoholic" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JO6-LO-xQe">
-                                                    <rect key="frame" x="237" y="76.5" width="68" height="20.5"/>
+                                                    <rect key="frame" x="237" y="76" width="68" height="21"/>
                                                     <fontDescription key="fontDescription" type="italicSystem" pointSize="17"/>
                                                     <color key="textColor" red="1" green="0.58823529409999997" blue="0.23921568630000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -396,8 +396,8 @@
                                                 <constraint firstItem="BNc-pY-1fY" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="auU-8D-gXp" secondAttribute="leading" id="HoT-QK-HL6"/>
                                                 <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="BNc-pY-1fY" secondAttribute="trailing" id="HsH-Rw-OdD"/>
                                                 <constraint firstAttribute="trailing" secondItem="JO6-LO-xQe" secondAttribute="trailing" constant="15" id="LMR-iq-ErT"/>
+                                                <constraint firstItem="BNc-pY-1fY" firstAttribute="leading" secondItem="auU-8D-gXp" secondAttribute="leadingMargin" constant="18" id="Ric-m2-Xgv"/>
                                                 <constraint firstAttribute="bottom" secondItem="JO6-LO-xQe" secondAttribute="bottom" constant="10.5" id="Tvx-CO-RpY"/>
-                                                <constraint firstItem="BNc-pY-1fY" firstAttribute="centerX" secondItem="auU-8D-gXp" secondAttribute="centerX" id="vv1-XM-Aeb"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
@@ -460,7 +460,7 @@
         <scene sceneID="vxT-7P-CMV">
             <objects>
                 <navigationController id="zwS-Ou-y2R" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Mixes" id="hHR-Nf-6c9">
+                    <tabBarItem key="tabBarItem" title="Mixes" image="mix.png" id="hHR-Nf-6c9">
                         <color key="badgeColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </tabBarItem>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="0MM-9D-yc2">
@@ -571,12 +571,6 @@
                                     <outlet property="delegate" destination="ErE-Vj-rtu" id="wT7-qT-ww4"/>
                                 </connections>
                             </textField>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" text="ml" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VqN-yC-g13">
-                                <rect key="frame" x="159" y="80" width="18.5" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="total:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mId-pT-QMf">
                                 <rect key="frame" x="214.5" y="79" width="39" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -584,7 +578,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="100%" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="k7o-n5-xg8">
-                                <rect key="frame" x="261.5" y="79" width="42.5" height="21"/>
+                                <rect key="frame" x="262.5" y="79" width="41.5" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -592,6 +586,12 @@
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Drink Name " lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="U2B-IO-Iga">
                                 <rect key="frame" x="15" y="31" width="288" height="36"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" text="ml" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VqN-yC-g13">
+                                <rect key="frame" x="126" y="79" width="18.5" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
@@ -605,17 +605,19 @@
                             <constraint firstItem="DGF-ot-afX" firstAttribute="leading" secondItem="aj4-xf-rWO" secondAttribute="trailing" constant="3.5" id="8Eb-Dm-yJj"/>
                             <constraint firstItem="GBS-Rx-rtt" firstAttribute="bottom" secondItem="47F-N2-VEe" secondAttribute="bottom" id="A6J-4B-xLq"/>
                             <constraint firstItem="mId-pT-QMf" firstAttribute="top" secondItem="U2B-IO-Iga" secondAttribute="bottom" constant="12" id="LHN-uf-ZDk"/>
+                            <constraint firstItem="VqN-yC-g13" firstAttribute="leading" secondItem="DGF-ot-afX" secondAttribute="trailing" constant="8" id="LgB-oA-VIi"/>
                             <constraint firstItem="DGF-ot-afX" firstAttribute="leading" secondItem="aj4-xf-rWO" secondAttribute="trailing" constant="3.5" id="MNu-Xh-SZ8"/>
                             <constraint firstItem="aj4-xf-rWO" firstAttribute="top" secondItem="U2B-IO-Iga" secondAttribute="bottom" constant="13" id="RAi-rn-Pv3"/>
                             <constraint firstItem="U2B-IO-Iga" firstAttribute="leading" secondItem="GBS-Rx-rtt" secondAttribute="leading" constant="15" id="TIU-US-pgS"/>
                             <constraint firstItem="47F-N2-VEe" firstAttribute="top" secondItem="GBS-Rx-rtt" secondAttribute="top" constant="139" identifier="tableViewTop" id="TbK-bE-pGA"/>
                             <constraint firstItem="k7o-n5-xg8" firstAttribute="top" secondItem="U2B-IO-Iga" secondAttribute="bottom" constant="12" id="UYc-c4-jJm"/>
-                            <constraint firstItem="VqN-yC-g13" firstAttribute="top" secondItem="U2B-IO-Iga" secondAttribute="bottom" constant="13" id="Uok-8b-srL"/>
+                            <constraint firstItem="VqN-yC-g13" firstAttribute="top" secondItem="U2B-IO-Iga" secondAttribute="bottom" constant="12" id="Uok-8b-srL"/>
                             <constraint firstItem="GBS-Rx-rtt" firstAttribute="trailing" secondItem="JPu-Zf-FOV" secondAttribute="trailing" constant="36" id="Y6J-Vs-IwQ"/>
                             <constraint firstItem="JPu-Zf-FOV" firstAttribute="leading" secondItem="GBS-Rx-rtt" secondAttribute="leading" constant="36" id="e1b-ga-nGn"/>
                             <constraint firstItem="DGF-ot-afX" firstAttribute="top" secondItem="U2B-IO-Iga" secondAttribute="bottom" constant="8" id="gdH-3y-TK3"/>
-                            <constraint firstAttribute="trailing" secondItem="VqN-yC-g13" secondAttribute="trailing" constant="142.5" id="ih2-xo-r7B"/>
+                            <constraint firstAttribute="trailing" secondItem="VqN-yC-g13" secondAttribute="trailing" constant="175.5" id="ih2-xo-r7B"/>
                             <constraint firstItem="47F-N2-VEe" firstAttribute="leading" secondItem="GBS-Rx-rtt" secondAttribute="leading" id="jmm-2I-uqH"/>
+                            <constraint firstItem="VqN-yC-g13" firstAttribute="leading" secondItem="DGF-ot-afX" secondAttribute="trailing" constant="8" id="kZy-WB-1Hy"/>
                             <constraint firstItem="aj4-xf-rWO" firstAttribute="leading" secondItem="GBS-Rx-rtt" secondAttribute="leading" constant="16" id="kqQ-8T-Fup"/>
                             <constraint firstItem="GBS-Rx-rtt" firstAttribute="trailing" secondItem="k7o-n5-xg8" secondAttribute="trailing" constant="16" id="pFJ-Vl-iUU"/>
                             <constraint firstItem="U2B-IO-Iga" firstAttribute="centerX" secondItem="GBS-Rx-rtt" secondAttribute="centerX" constant="-1" id="vWK-0V-baf"/>
@@ -854,7 +856,7 @@
         <scene sceneID="l1L-Fg-Qq4">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="392-t8-KVp" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Ordered Mixes" id="qik-Sa-pA5">
+                    <tabBarItem key="tabBarItem" title="Ordered Mixes" image="barkeeper.png" id="qik-Sa-pA5">
                         <color key="badgeColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </tabBarItem>
                     <toolbarItems/>
@@ -883,7 +885,7 @@
         <scene sceneID="MLs-Dm-TT8">
             <objects>
                 <navigationController id="AAW-yp-WY7" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Statistics" id="bi1-aQ-Nlb">
+                    <tabBarItem key="tabBarItem" title="Statistics" image="statistics.png" id="bi1-aQ-Nlb">
                         <color key="badgeColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </tabBarItem>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="6zz-DA-TC3">
@@ -998,12 +1000,15 @@
         </scene>
     </scenes>
     <resources>
+        <image name="barkeeper.png" width="32" height="32"/>
         <image name="iconAccept.png" width="50" height="50"/>
         <image name="iconDecline.png" width="50" height="50"/>
         <image name="icon_256.png" width="256" height="256"/>
+        <image name="mix.png" width="32" height="32"/>
+        <image name="statistics.png" width="32" height="32"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="NRW-tR-2oX"/>
+        <segue reference="Flp-qb-PYb"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="1" green="0.58823529409999997" blue="0.23921568630000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
 </document>

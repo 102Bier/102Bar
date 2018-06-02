@@ -510,7 +510,9 @@ class Service: NSObject, UNUserNotificationCenterDelegate, WCSessionDelegate {
                                     rootToFill.ingredients.append(ingToAdd)
                                 }
                             }
-                            self.sendMixes(custom: true)
+                            /*send availableMixes to Watch*/
+                            self.sendMixes(custom: false)
+                            
                             callback(true)
                         }else{
                             callback(false)
@@ -609,14 +611,20 @@ class Service: NSObject, UNUserNotificationCenterDelegate, WCSessionDelegate {
                         let mixDictionary = root as! NSDictionary
                         let tmpMix = mixDictionary.object(forKey: "Mix") as! String
                         let tmpOrderedByUser = mixDictionary.object(forKey: "User") as! String
+                        let tmpGlassSize = Int(mixDictionary.object(forKey: "GlassSize") as! String)!
+                        let tmpGroupId = mixDictionary.object(forKey: "GroupId") as! String
                         if let orderedMix = self.availableMixes.first(where: {$0.mix == tmpMix}){
                             let orderedMixToSave = orderedMix.clone()
                             orderedMixToSave.orderedByUser = tmpOrderedByUser
+                            orderedMixToSave.glassSize = tmpGlassSize
+                            orderedMixToSave.groupId = tmpGroupId
                             self.orderedMixes.append(orderedMixToSave)
                         }else{
                             if let orderedCustomMix = self.customMixes.first(where: {$0.mix == tmpMix}){
                                 let orderedCustomMixToSave = orderedCustomMix.clone()
                                 orderedCustomMixToSave.orderedByUser = tmpOrderedByUser
+                                orderedCustomMixToSave.glassSize = tmpGlassSize
+                                orderedCustomMixToSave.groupId = tmpGroupId
                                 self.orderedMixes.append(orderedCustomMixToSave)
                             }
                         }
@@ -630,7 +638,8 @@ class Service: NSObject, UNUserNotificationCenterDelegate, WCSessionDelegate {
                                 let ingRoot = ingDic.object(forKey: "Root") as! String
                                 let ingGUID = ingDic.object(forKey: "Reference") as! String
                                 let ingPercentage = Int(ingDic.object(forKey: "Percentage") as! String)
-                                for rootToFill in self.orderedMixes where rootToFill.mix == ingRoot{
+                                let ingGroupId = ingDic.object(forKey: "GroupId") as! String
+                                if let rootToFill = self.orderedMixes.first(where: {$0.mix == ingRoot && $0.groupId == ingGroupId}){
                                     let ingToChange = rootToFill.ingredients.first(where: {$0.drink == ingGUID})
                                     ingToChange?.percentage = ingPercentage!
                                 }
@@ -654,7 +663,6 @@ class Service: NSObject, UNUserNotificationCenterDelegate, WCSessionDelegate {
             "Description": mixToOrder.mixDescription,
             "Ingredients": ingredients,
             "User": defaultValues.object(forKey: "userid") as! String,
-            "Add": 1,
             "GlassSize": glasssize
         ]
         
@@ -672,10 +680,9 @@ class Service: NSObject, UNUserNotificationCenterDelegate, WCSessionDelegate {
     public func removeOrderedMix(mixToRemove: Mix, title: String, reason: String, callback: @escaping (_ success: String?) -> Void){
         
         let parameters: Parameters=[
-            "Mix": mixToRemove.mix,
+            "GroupId": mixToRemove.groupId,
             "Title": title,
             "Reason": reason,
-            "Add":0,
             "OrderedByUser": mixToRemove.orderedByUser,
             ]
         

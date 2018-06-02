@@ -21,6 +21,7 @@ class OrderMixController : UIViewController, UITableViewDelegate, UITableViewDat
         {
             glassSizeField.isEnabled = false
             glassSizeSlider.isHidden = true
+            glassSizeField.text = String(mixToOrder.glassSize)
             view.constraints.first(where: { $0.identifier == "tableViewTop" })?.constant -= (glassSizeSlider.frame.height) //adjust the top constraint of the tableView to the missing slider (an existing VC is reused here and slightly tweaked)
         }
         super.viewDidLoad()
@@ -41,10 +42,22 @@ class OrderMixController : UIViewController, UITableViewDelegate, UITableViewDat
     }
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        
+        let allowedCharacters = CharacterSet.decimalDigits
+        var validCharacterCount : Int = 0
+        if let rangeOfCharactersAllowed = string.rangeOfCharacter(from: allowedCharacters) { // if replacementText contains just valid characters
+            validCharacterCount = string.distance(from: rangeOfCharactersAllowed.lowerBound, to: rangeOfCharactersAllowed.upperBound)
+        }
+        
+        if validCharacterCount != string.count
+        {
+            return false
+        }
+        
         //just integers and total percentage <= 100%
         var newString = NSString(string: textField.text!).replacingCharacters(in: range, with: string)
         
-        if(string.count < 1) {
+        //if(string.count < 1) {
             var totalPercentage : Int = Int(NSString(string: totalPercentageLabel.text!).intValue)
             if(newString == "")
             {
@@ -59,20 +72,23 @@ class OrderMixController : UIViewController, UITableViewDelegate, UITableViewDat
                 totalPercentage -= Int(oldString)!
                 totalPercentage += Int(newString)!
                 totalPercentageLabel.text = String(totalPercentage) + "%"
+                
+                let cells = tableView.visibleCells
+                var currentRow : Int?
+                for i in 0..<cells.count
+                {
+                    if (cells[i] as! DrinkCell).percentageTextField.isFirstResponder == true
+                    {
+                        currentRow = i
+                        break
+                    }
+                }
+                
+                mixToOrder.ingredients[currentRow!].percentage = Int(newString)!
+                
                 return true
             }
-        }
-        
-        let allowedCharacters = CharacterSet.decimalDigits
-        var validCharacterCount : Int = 0
-        if let rangeOfCharactersAllowed = string.rangeOfCharacter(from: allowedCharacters) { // if replacementText contains just valid characters
-            validCharacterCount = string.distance(from: rangeOfCharactersAllowed.lowerBound, to: rangeOfCharactersAllowed.upperBound)
-        }
-        
-        if validCharacterCount != string.count
-        {
-            return false
-        }
+        /*}
         
         if(textField.tag == 0) //glassSize
         {
@@ -119,7 +135,7 @@ class OrderMixController : UIViewController, UITableViewDelegate, UITableViewDat
                     return true
                 }
             }
-        }
+        }*/
         return false
     }
     
